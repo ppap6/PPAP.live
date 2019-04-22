@@ -19,7 +19,7 @@
             <router-link to="/chats">私信</router-link>
           </li>
           <li>
-            <router-link to="/user/007">jwchan1996</router-link>
+            <router-link to="/user">jwchan1996</router-link>
           </li>
         </ul>
       </div>

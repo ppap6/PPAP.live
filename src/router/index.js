@@ -1,7 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '@/components/home/home'
-import Index from '@/components/index'
+import NewPost from '@/components/new-post/new-post'
+import NotificationList from '@/components/notification-list/notification-list'
+import ChatList from '@/components/chat-list/chat-list'
+import User from '@/components/user/user'
 
 Vue.use(Router)
 
@@ -14,8 +17,23 @@ export default new Router({
     },
     {
       path: '/new-posts',
-      name: 'Index',
-      component: Index
+      name: 'NewPost',
+      component: NewPost
+    },
+    {
+      path: '/notifications',
+      name: 'NotificationList',
+      component: NotificationList
+    },
+    {
+      path: '/chats',
+      name: 'ChatList',
+      component: ChatList
+    },
+    {
+      path: '/user',
+      name: 'User',
+      component: User
     },
     {
       path: '*',
