@@ -2,8 +2,10 @@
   <div class="header">
     <div class="container">
       <div class="header-left">
-        <img class="logo" src="../../assets/img/logo.png" alt="">
-        <input class="search-input" type="text">
+        <router-link to="/" class="pc-logo">
+          <img class="logo" src="../../assets/img/logo.png" alt>
+        </router-link>
+        <input class="search-input" type="text" placeholder="搜索">
       </div>
       <div class="header-right">
         <ul>
@@ -11,10 +13,10 @@
             <router-link to="/new-posts">发帖</router-link>
           </li>
           <li>
-            <router-link to="/notifitions">通知</router-link>
+            <router-link to="/notifications">通知</router-link>
           </li>
           <li>
-            <router-link to="/sessions">私信</router-link>
+            <router-link to="/chats">私信</router-link>
           </li>
           <li>
             <router-link to="/user/007">jwchan1996</router-link>
@@ -32,12 +34,11 @@ export default {};
 <style scoped>
 .header {
   position: fixed;
-  /* height: 56px; */
   top: 0;
   left: 0;
   right: 0;
   z-index: 10;
-  padding: 0 10px;
+  padding: 2px 10px;
   background: #ffffff;
   box-shadow: 0 2px 10px 0 rgba(4, 21, 39, 0.2), 0 1px rgba(4, 21, 39, 0.2);
 }
@@ -56,9 +57,14 @@ export default {};
   flex-direction: row;
   align-items: center;
 }
+
+.pc-logo {
+  font-size: 0;
+}
+
 .logo {
-  width: 68px;
-  height: 32px;
+  width: 60px;
+  height: 28px;
   margin: 8px 10px;
   border-radius: 5px;
 }
