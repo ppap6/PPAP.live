@@ -1,7 +1,6 @@
 <template>
   <div id="app">
     <p-header></p-header>
-    <!-- <img src="./assets/img/logo.png"> -->
     <router-view/>
   </div>
 </template>
@@ -19,6 +18,9 @@ export default {
 
 <style>
 @import "./assets/css/reset.css";
+body{
+  background-color: #EAEDF0;
+}
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
