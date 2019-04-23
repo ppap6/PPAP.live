@@ -1,6 +1,8 @@
 <template>
   <div class="container">
-    <div class="topic-list" id="left"></div>
+    <div class="topic-list" id="left">
+      <TopicList></TopicList>
+    </div>
     <div class="post-list" id="center"></div>
     <div id="right">
       <div class="profile-card">
@@ -17,18 +19,19 @@
 </template>
 
 <script>
-
-import ProfileCard from "@/components/profile-card/profile-card"
-import HotPostCard from "@/components/hot-post-card/hot-post-card"
-import LinkCard from "@/components/link-card/link-card"
+import TopicList from "@/components/topic-list/topic-list";
+import ProfileCard from "@/components/profile-card/profile-card";
+import HotPostCard from "@/components/hot-post-card/hot-post-card";
+import LinkCard from "@/components/link-card/link-card";
 
 export default {
   components: {
     ProfileCard,
     HotPostCard,
-    LinkCard
+    LinkCard,
+    TopicList
   }
-}
+};
 </script>
 
 <style scoped>
@@ -42,7 +45,7 @@ export default {
   position: fixed;
   width: 250px;
   height: 500px;
-  background-color: #ffffff;
+  /* background-color: #ffffff; */
   border-radius: 5px;
 }
 
@@ -66,7 +69,7 @@ export default {
 }
 
 .profile-card,
-.hot-post-card{
+.hot-post-card {
   margin-bottom: 10px;
 }
 </style>
