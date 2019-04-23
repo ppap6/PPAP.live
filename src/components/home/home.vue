@@ -9,7 +9,9 @@
       <div class="hot-post-card">
         <HotPostCard></HotPostCard>
       </div>
-      <div class="links"></div>
+      <div class="link-card">
+        <LinkCard></LinkCard>
+      </div>
     </div>
   </div>
 </template>
@@ -18,11 +20,13 @@
 
 import ProfileCard from "@/components/profile-card/profile-card"
 import HotPostCard from "@/components/hot-post-card/hot-post-card"
+import LinkCard from "@/components/link-card/link-card"
 
 export default {
   components: {
     ProfileCard,
-    HotPostCard
+    HotPostCard,
+    LinkCard
   }
 }
 </script>
