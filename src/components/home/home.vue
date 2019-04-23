@@ -3,7 +3,9 @@
     <div class="topic-list" id="left">
       <TopicList></TopicList>
     </div>
-    <div class="post-list" id="center"></div>
+    <div class="post-list" id="center">
+      <PostList></PostList>
+    </div>
     <div id="right">
       <div class="profile-card">
         <ProfileCard></ProfileCard>
@@ -19,19 +21,21 @@
 </template>
 
 <script>
-import TopicList from "@/components/topic-list/topic-list";
-import ProfileCard from "@/components/profile-card/profile-card";
-import HotPostCard from "@/components/hot-post-card/hot-post-card";
-import LinkCard from "@/components/link-card/link-card";
+import TopicList from "@/components/topic-list/topic-list"
+import PostList from "@/components/post-list/post-list"
+import ProfileCard from "@/components/profile-card/profile-card"
+import HotPostCard from "@/components/hot-post-card/hot-post-card"
+import LinkCard from "@/components/link-card/link-card"
 
 export default {
   components: {
     ProfileCard,
     HotPostCard,
     LinkCard,
-    TopicList
+    TopicList,
+    PostList
   }
-};
+}
 </script>
 
 <style scoped>
@@ -54,7 +58,7 @@ export default {
   margin-left: 260px;
   margin-right: 260px;
   height: 800px;
-  background-color: #ffffff;
+  /* background-color: #ffffff; */
   border-radius: 5px;
 }
 
