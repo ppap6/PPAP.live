@@ -10,7 +10,7 @@
       <div class="header-right">
         <ul>
           <li>
-            <router-link to="/new-posts">发帖</router-link>
+            <router-link to="/new-post">发帖</router-link>
           </li>
           <li>
             <router-link to="/notifications">通知</router-link>
