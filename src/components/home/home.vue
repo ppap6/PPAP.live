@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="tag-list" id="left"></div>
+    <div class="topic-list" id="left"></div>
     <div class="post-list" id="center"></div>
     <div id="right">
       <div class="profile-card"></div>
