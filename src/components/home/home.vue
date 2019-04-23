@@ -6,17 +6,23 @@
       <div class="profile-card">
         <ProfileCard></ProfileCard>
       </div>
-      <div class="hot-post-list"></div>
+      <div class="hot-post-card">
+        <HotPostCard></HotPostCard>
+      </div>
       <div class="links"></div>
     </div>
   </div>
 </template>
 
 <script>
+
 import ProfileCard from "@/components/profile-card/profile-card"
+import HotPostCard from "@/components/hot-post-card/hot-post-card"
+
 export default {
   components: {
-    ProfileCard
+    ProfileCard,
+    HotPostCard
   }
 }
 </script>
@@ -53,5 +59,10 @@ export default {
   height: 600px;
   /* background-color: #ffffff; */
   border-radius: 5px;
+}
+
+.profile-card,
+.hot-post-card{
+  margin-bottom: 10px;
 }
 </style>
