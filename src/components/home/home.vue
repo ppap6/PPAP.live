@@ -3,7 +3,9 @@
     <div class="topic-list" id="left"></div>
     <div class="post-list" id="center"></div>
     <div id="right">
-      <div class="profile-card"></div>
+      <div class="profile-card">
+        <ProfileCard></ProfileCard>
+      </div>
       <div class="hot-post-list"></div>
       <div class="links"></div>
     </div>
@@ -11,7 +13,12 @@
 </template>
 
 <script>
-export default {};
+import ProfileCard from "@/components/profile-card/profile-card"
+export default {
+  components: {
+    ProfileCard
+  }
+}
 </script>
 
 <style scoped>
@@ -44,7 +51,7 @@ export default {};
   right: 0;
   width: 250px;
   height: 600px;
-  background-color: #ffffff;
+  /* background-color: #ffffff; */
   border-radius: 5px;
 }
 </style>
