@@ -6,6 +6,7 @@ import NotificationList from '@/components/notification-list/notification-list'
 import ChatList from '@/components/chat-list/chat-list'
 import User from '@/components/user/user'
 import PostDetail from '@/components/post-detail/post-detail'
+import TopicDetail from '@/components/topic-detail/topic-detail'
 
 Vue.use(Router)
 
@@ -40,6 +41,11 @@ export default new Router({
       path: '/post-detail',
       name: 'PostDetail',
       component: PostDetail
+    },
+    {
+      path: '/topic-detail',
+      name: 'TopicDetail',
+      component: TopicDetail
     },
     {
       path: '*',

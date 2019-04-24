@@ -13,7 +13,7 @@
               <p class="name">jwchan</p>
             </router-link>
             <div class="dispaly">
-              <router-link to="/topics">
+              <router-link to="/topic-detail">
                 <span class="topic">产品经理</span>
               </router-link>
               <span class="datetime">02月22日</span>
@@ -46,7 +46,7 @@
               <p class="name">梁虚天</p>
             </router-link>
             <div class="dispaly">
-              <router-link to="/topics">
+              <router-link to="/topic-detail">
                 <span class="topic">产品经理</span>
               </router-link>
               <span class="datetime">03月22日</span>
@@ -79,7 +79,7 @@
               <p class="name">陆明恒</p>
             </router-link>
             <div class="dispaly">
-              <router-link to="/topics">
+              <router-link to="/topic-detail">
                 <span class="topic">产品经理</span>
               </router-link>
               <span class="datetime">03月28日</span>
@@ -112,7 +112,7 @@
               <p class="name">周胜军</p>
             </router-link>
             <div class="dispaly">
-              <router-link to="/topics">
+              <router-link to="/topic-detail">
                 <span class="topic">产品经理</span>
               </router-link>
               <span class="datetime">04月12日</span>
