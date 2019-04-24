@@ -6,7 +6,7 @@ import NotificationList from '@/components/notification-list/notification-list'
 import ChatList from '@/components/chat-list/chat-list'
 
 import PostDetail from '@/components/post-detail/post-detail'
-import TopicDetail from '@/components/topic-detail/topic-detail'
+import Topic from '@/components/topic-detail/topic-detail'
 
 import User from '@/components/user/user'
 // user 的子组件
@@ -79,9 +79,9 @@ export default new Router({
       component: PostDetail
     },
     {
-      path: '/topic-detail',
-      name: 'TopicDetail',
-      component: TopicDetail
+      path: '/topic/:id',
+      name: 'Topic',
+      component: Topic
     },
     {
       path: '*',
