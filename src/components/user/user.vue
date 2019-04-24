@@ -11,7 +11,7 @@
         </div>
       </header>
       <nav>
-        <router-link to="/">
+        <router-link to="/user">
           <span
             class="posts"
             @click="selectNav('posts')"
