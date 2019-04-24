@@ -4,12 +4,12 @@
       <div class="post">
         <div class="post-header">
           <div class="header-left">
-            <router-link to="/user">
+            <router-link to="/user/666">
               <img class="avatar" src="https://jwchan.cn/images/avatar.jpg" alt>
             </router-link>
           </div>
           <div class="header-right">
-            <router-link to="/user">
+            <router-link to="/user/666">
               <p class="name">jwchan</p>
             </router-link>
             <div class="dispaly">
@@ -37,12 +37,12 @@
       <div class="post">
         <div class="post-header">
           <div class="header-left">
-            <router-link to="/user">
+            <router-link to="/user/666">
               <img class="avatar" src="https://img.haosuzhou.com/4fbb8bc2-36fd-4eec-813c-6de619025e94.gif?imageMogr2/crop/!234x234a6a11/thumbnail/!200/quality/90" alt>
             </router-link>
           </div>
           <div class="header-right">
-            <router-link to="/user">
+            <router-link to="/user/666">
               <p class="name">梁虚天</p>
             </router-link>
             <div class="dispaly">
@@ -70,12 +70,12 @@
       <div class="post">
         <div class="post-header">
           <div class="header-left">
-            <router-link to="/user">
+            <router-link to="/user/666">
               <img class="avatar" src="https://img.xiaoduyu.com/dcb97678-d958-4210-be43-6ebd5ebcc5c5.png?imageMogr2/crop/!1200x1200a593a43/thumbnail/!200/quality/90" alt>
             </router-link>
           </div>
           <div class="header-right">
-            <router-link to="/user">
+            <router-link to="/user/666">
               <p class="name">陆明恒</p>
             </router-link>
             <div class="dispaly">
@@ -103,12 +103,12 @@
       <div class="post">
         <div class="post-header">
           <div class="header-left">
-            <router-link to="/user">
+            <router-link to="/user/666">
               <img class="avatar" src="https://img.xiaoduyu.com/Fk2Boi_rCu0cHzXGU3v14oy8Z1sR?imageMogr2/auto-orient/thumbnail/!200/quality/90" alt>
             </router-link>
           </div>
           <div class="header-right">
-            <router-link to="/user">
+            <router-link to="/user/666">
               <p class="name">周胜军</p>
             </router-link>
             <div class="dispaly">

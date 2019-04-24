@@ -11,35 +11,35 @@
         </div>
       </header>
       <nav>
-        <router-link to="/user">
+        <router-link to="/user/666">
           <span
             class="posts"
             @click="selectNav('posts')"
             :class="{active: navName === 'posts'}"
           >帖子 1</span>
         </router-link>
-        <router-link to="/user/followers">
+        <router-link to="/user/666/followers">
           <span
             class="followers"
             @click="selectNav('followers')"
             :class="{active: navName === 'followers'}"
           >粉丝 2</span>
         </router-link>
-        <router-link to="/user/follow-peoples">
+        <router-link to="/user/666/follow-peoples">
           <span
             class="follow-peoples"
             @click="selectNav('follow-peoples')"
             :class="{active: navName === 'follow-peoples'}"
           >关注的人 1</span>
         </router-link>
-        <router-link to="/user/follow-posts">
+        <router-link to="/user/666/follow-posts">
           <span
             class="follow-posts"
             @click="selectNav('follow-posts')"
             :class="{active: navName === 'follow-posts'}"
           >关注的帖子 1</span>
         </router-link>
-        <router-link to="/user/follow-topics">
+        <router-link to="/user/666/follow-topics">
           <span
             class="follow-topics"
             @click="selectNav('follow-topics')"

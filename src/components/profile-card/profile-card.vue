@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <router-link to="/user">
+    <router-link to="/user/666">
       <img class="profile" :src="avatar" alt>
     </router-link>
     <router-link to="/user">

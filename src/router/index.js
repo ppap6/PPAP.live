@@ -41,33 +41,33 @@ export default new Router({
       component: ChatList
     },
     {
-      path: '/user',
+      path: '/user/:id',
       name: 'User',
       component: User,
-      redirect: '/user',
+      redirect: '/user/:id',
       children: [
         {
-          path: '/user',
+          path: '/user/:id',
           name: 'UserPostList',
           component: UserPostList
         },
         {
-          path: '/user/followers',
+          path: '/user/:id/followers',
           name: 'UserFollowerList',
           component: UserFollowerList
         },
         {
-          path: '/user/follow-peoples',
+          path: '/user/:id/follow-peoples',
           name: 'UserFollowPeopleList',
           component: UserFollowPeopleList
         },
         {
-          path: '/user/follow-posts',
+          path: '/user/:id/follow-posts',
           name: 'UserFollowPostList',
           component: UserFollowPostList
         },
         {
-          path: '/user/follow-topics',
+          path: '/user/:id/follow-topics',
           name: 'UserFollowTopicList',
           component: UserFollowTopicList
         }
