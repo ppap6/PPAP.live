@@ -14,6 +14,7 @@ import UserPostList from '@/components/user/post-list/post-list'
 import UserFollowerList from '@/components/user/follower-list/follower-list'
 import UserFollowPeopleList from '@/components/user/follow-people-list/follow-people-list'
 import UserFollowPostList from '@/components/user/follow-post-list/follow-post-list'
+import UserFollowTopicList from '@/components/user/follow-topic-list/follow-topic-list'
 
 Vue.use(Router)
 
@@ -65,6 +66,11 @@ export default new Router({
           name: 'UserFollowPostList',
           component: UserFollowPostList
         },
+        {
+          path: '/user/follow-topics',
+          name: 'UserFollowTopicList',
+          component: UserFollowTopicList
+        }
       ]
     },
     {
