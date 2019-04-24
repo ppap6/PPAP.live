@@ -4,9 +4,13 @@ import Home from '@/components/home/home'
 import NewPost from '@/components/new-post/new-post'
 import NotificationList from '@/components/notification-list/notification-list'
 import ChatList from '@/components/chat-list/chat-list'
-import User from '@/components/user/user'
+
 import PostDetail from '@/components/post-detail/post-detail'
 import TopicDetail from '@/components/topic-detail/topic-detail'
+
+import User from '@/components/user/user'
+// user 的子组件
+import UserPostList from '@/components/user/post-list/post-list'
 
 Vue.use(Router)
 
@@ -35,7 +39,15 @@ export default new Router({
     {
       path: '/user',
       name: 'User',
-      component: User
+      component: User,
+      redirect: '/',
+      children: [
+        {
+          path: '/',
+          name: 'UserPostList',
+          component: UserPostList
+        }
+      ]
     },
     {
       path: '/post-detail',
