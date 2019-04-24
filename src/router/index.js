@@ -12,6 +12,7 @@ import User from '@/components/user/user'
 // user 的子组件
 import UserPostList from '@/components/user/post-list/post-list'
 import UserFollowerList from '@/components/user/follower-list/follower-list'
+import UserFollowPeopleList from '@/components/user/follow-people-list/follow-people-list'
 
 Vue.use(Router)
 
@@ -52,6 +53,11 @@ export default new Router({
           path: '/user/followers',
           name: 'UserFollowerList',
           component: UserFollowerList
+        },
+        {
+          path: '/user/follow-peoples',
+          name: 'UserFollowPeopleList',
+          component: UserFollowPeopleList
         },
       ]
     },
