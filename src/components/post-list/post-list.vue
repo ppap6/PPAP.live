@@ -21,7 +21,7 @@
           </div>
         </div>
         <div class="post-content">
-          <router-link to="/post-detail">
+          <router-link to="/post/帖子id">
             <div class="post-title">这是我的第一个帖子？？？</div>
           </router-link>
           <div class="post-summary">这是这个帖子内容的一部分</div>
@@ -54,7 +54,7 @@
           </div>
         </div>
         <div class="post-content">
-          <router-link to="/post-detail">
+          <router-link to="/post/帖子id">
             <div class="post-title">这是我的第二个帖子？？？</div>
           </router-link>
           <div class="post-summary">这是这个帖子内容的一部分</div>
@@ -87,7 +87,7 @@
           </div>
         </div>
         <div class="post-content">
-          <router-link to="/post-detail">
+          <router-link to="/post/帖子id">
             <div class="post-title">这是我的第san个帖子？？？</div>
           </router-link>
           <div class="post-summary">这是这个帖子内容的一部分</div>
@@ -120,7 +120,7 @@
           </div>
         </div>
         <div class="post-content">
-          <router-link to="/post-detail">
+          <router-link to="/post/帖子id">
             <div class="post-title">这是我的第si个帖子？？？</div>
           </router-link>
           <div class="post-summary">这是这个帖子内容的一部分</div>

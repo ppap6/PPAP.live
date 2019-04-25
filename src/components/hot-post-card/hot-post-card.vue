@@ -6,7 +6,7 @@
     <div class="post-list">
       <div class="post" v-for="item in posts">
         <img class="hot-icon" src="../../assets/img/hot.png" alt>
-        <router-link to="/post-detail">
+        <router-link to="/post/帖子id">
           <p class="post-title">{{item.title}}</p>
         </router-link>
       </div>

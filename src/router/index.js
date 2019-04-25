@@ -74,7 +74,7 @@ export default new Router({
       ]
     },
     {
-      path: '/post-detail',
+      path: '/post/:id',
       name: 'PostDetail',
       component: PostDetail
     },
