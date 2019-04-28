@@ -13,7 +13,7 @@
             <router-link to="/new-post">发帖</router-link>
           </li>
           <li>
-            <router-link to="/notifications">通知</router-link>
+            <router-link to="/notice/用户id">通知</router-link>
           </li>
           <li>
             <router-link to="/chats">私信</router-link>

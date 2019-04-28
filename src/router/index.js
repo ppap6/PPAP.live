@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '@/components/home/home'
 import NewPost from '@/components/new-post/new-post'
-import NotificationList from '@/components/notification-list/notification-list'
+import Notice from '@/components/notice/notice'
 import ChatList from '@/components/chat-list/chat-list'
 
 import PostDetail from '@/components/post-detail/post-detail'
@@ -31,9 +31,17 @@ export default new Router({
       component: NewPost
     },
     {
-      path: '/notifications',
-      name: 'NotificationList',
-      component: NotificationList
+      path: '/notice/:id',
+      name: 'Notice',
+      component: Notice,
+      redirect: '/notice/:id',
+      children: [
+        {
+          path: '/notice/:id',
+          name: 'UserPostList',
+          component: UserPostList
+        },
+      ]
     },
     {
       path: '/chats',
