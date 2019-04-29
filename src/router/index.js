@@ -16,6 +16,9 @@ import UserFollowPeopleList from '@/components/user/follow-people-list/follow-pe
 import UserFollowPostList from '@/components/user/follow-post-list/follow-post-list'
 import UserFollowTopicList from '@/components/user/follow-topic-list/follow-topic-list'
 
+// notice 的子组件
+import NoticeAll from '@/components/notice/all/all'
+
 Vue.use(Router)
 
 export default new Router({
@@ -38,8 +41,8 @@ export default new Router({
       children: [
         {
           path: '/notice/:id',
-          name: 'UserPostList',
-          component: UserPostList
+          name: 'NoticeAll',
+          component: NoticeAll
         },
       ]
     },
