@@ -18,6 +18,7 @@ import UserFollowTopicList from '@/components/user/follow-topic-list/follow-topi
 
 // notice 的子组件
 import NoticeAll from '@/components/notice/all/all'
+import Comments from '@/components/notice/comments/comments'
 
 Vue.use(Router)
 
@@ -43,6 +44,11 @@ export default new Router({
           path: '/notice/:id',
           name: 'NoticeAll',
           component: NoticeAll
+        },
+        {
+          path: '/notice/:id/comments',
+          name: 'Comments',
+          component: Comments
         },
       ]
     },

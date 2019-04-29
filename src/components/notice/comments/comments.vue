@@ -1,5 +1,5 @@
 <template>
-  <div class="all-list">
+  <div class="comment-list">
     <h1>{{ msg }}</h1>
   </div>
 </template>
@@ -8,7 +8,7 @@
 export default {
   data () {
     return {
-      msg: '全部通知的组件'
+      msg: '评论通知的组件'
     }
   }
 }
