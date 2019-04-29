@@ -20,6 +20,7 @@ import UserFollowTopicList from '@/components/user/follow-topic-list/follow-topi
 import NoticeAll from '@/components/notice/all/all'
 import Comments from '@/components/notice/comments/comments'
 import Answers from '@/components/notice/answers/answers'
+import Followers from '@/components/notice/followers/followers'
 
 Vue.use(Router)
 
@@ -55,6 +56,11 @@ export default new Router({
           path: '/notice/:id/answers',
           name: 'Answers',
           component: Answers
+        },
+        {
+          path: '/notice/:id/followers',
+          name: 'Followers',
+          component: Followers
         },
       ]
     },

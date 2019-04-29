@@ -23,11 +23,11 @@
             :class="{active: navName === 'answers'}"
           >回复 1</span>
         </router-link>
-        <router-link to="/notice/666/follows">
+        <router-link to="/notice/666/followers">
           <span
-            class="follows"
-            @click="selectNav('follows')"
-            :class="{active: navName === 'follows'}"
+            class="followers"
+            @click="selectNav('followers')"
+            :class="{active: navName === 'followers'}"
           >关注 1</span>
         </router-link>
         <router-link to="/notice/666/likes">
@@ -112,7 +112,7 @@ nav {
 .all,
 .comments,
 .answers,
-.follows,
+.followers,
 .likes {
   font-size: 14px;
   padding: 10px 15px;
