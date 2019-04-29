@@ -21,6 +21,7 @@ import NoticeAll from '@/components/notice/all/all'
 import Comments from '@/components/notice/comments/comments'
 import Answers from '@/components/notice/answers/answers'
 import Followers from '@/components/notice/followers/followers'
+import Likes from '@/components/notice/likes/likes'
 
 Vue.use(Router)
 
@@ -62,6 +63,11 @@ export default new Router({
           name: 'Followers',
           component: Followers
         },
+        {
+          path: '/notice/:id/likes',
+          name: 'Likes',
+          component: Likes
+        }
       ]
     },
     {
