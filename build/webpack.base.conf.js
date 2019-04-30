@@ -64,6 +64,23 @@ module.exports = {
           limit: 10000,
           name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
         }
+      },
+      {
+        test: /\.styl(us)?$/,
+        use: [
+          'stylus-loader',
+          'vue-style-loader',
+          'css-loader',
+        ],
+        include: ['node webpack.dev.config.js']
+      },
+      {
+        test: /\.css$/,
+        use: [
+          'vue-style-loader',
+          'css-loader'
+        ],
+        exclude: /node_modules/
       }
     ]
   },
