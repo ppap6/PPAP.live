@@ -26,6 +26,7 @@ import Likes from '@/components/notice/likes/likes'
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',
