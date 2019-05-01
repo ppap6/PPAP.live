@@ -14,13 +14,13 @@
     </div>
     <div class="post-footer">
       <div class="left">
-        <span>44 次阅读</span>
-        <span>3 条评论</span>
-        <span>6 条回复</span>
+        <span class="reads">44 次阅读</span>
+        <span class="comments">3 条评论</span>
+        <span class="answers">6 条回复</span>
       </div>
-      <div class="righ">
-        <span>点赞</span>
-        <span>收藏</span>
+      <div class="right">
+        <span class="likes">点赞</span>
+        <span class="collects">收藏</span>
       </div>
     </div>
   </div>
@@ -57,8 +57,8 @@ export default {
   .post-header {
     position: relative;
     background-color: #ffffff;
-    border-radius: 5px;
-    margin-bottom: 10px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
     padding: 10px 20px;
     display: flex;
     flex-direction: row;
@@ -83,6 +83,65 @@ export default {
       .last-datetime {
         font-size: 14px;
         color: #797979;
+      }
+    }
+  }
+
+  .post-content{
+    text-align: left;
+    padding: 10px 20px;
+    background-color: #FFF;
+
+    .title{
+      font-size: 30px;
+      line-height: 60px;
+      width: 100%;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .content{
+      padding: 10px 0;
+    }
+  }
+
+  .post-footer{
+    background-color: #FFFFFF;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    .left{
+      padding: 10px 20px;
+      font-size: 14px;
+      color: #777;
+
+      .reads{
+        padding-right: 10px;
+      }
+
+      .comments{
+        padding-right: 10px;
+      }
+
+      .answers{
+        padding-right: 10px;
+      }
+    }
+
+    .right{
+      padding: 10px 20px;
+      font-size: 14px;
+      color: #777;
+
+      .likes{
+        padding-left: 10px;
+        cursor: pointer;
+      }
+
+      .collects{
+        padding-left: 10px;
+        cursor: pointer;
       }
     }
   }
