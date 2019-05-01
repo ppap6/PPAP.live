@@ -45,46 +45,46 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang="stylus">
 .post-detail {
   max-width: 720px;
   margin: auto;
-}
 
-.post-detail h1 {
-  padding: 10px;
-}
+  h1 {
+    padding: 10px;
+  }
 
-.post-header {
-  position: relative;
-  background-color: #ffffff;
-  border-radius: 5px;
-  margin-bottom: 10px;
-  padding: 10px 20px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  cursor: pointer;
-}
+  .post-header {
+    position: relative;
+    background-color: #ffffff;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
 
-.post-header img {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-}
+    img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+    }
 
-.post-header .information {
-  padding: 0 10px;
-  text-align: left;
-}
+    .information {
+      padding: 0 10px;
+      text-align: left;
 
-.information .name {
-  font-size: 16px;
-  color: #333333;
-}
+      .name {
+        font-size: 16px;
+        color: #333333;
+      }
 
-.information .last-datetime {
-  font-size: 14px;
-  color: #797979;
+      .last-datetime {
+        font-size: 14px;
+        color: #797979;
+      }
+    }
+  }
 }
 </style>
