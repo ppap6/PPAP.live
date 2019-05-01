@@ -106,6 +106,8 @@ export default {
 
   .post-footer{
     background-color: #FFFFFF;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
     display: flex;
     flex-direction: row;
     align-items: center;
