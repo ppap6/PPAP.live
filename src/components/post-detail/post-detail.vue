@@ -23,10 +23,14 @@
         <span class="collects">收藏</span>
       </div>
     </div>
+    <!-- 评论组件  -->
+    <CommentList></CommentList>
   </div>
 </template>
 
 <script>
+import CommentList from '@/components/comment-list/comment-list'
+
 export default {
   data() {
     return {
@@ -41,6 +45,9 @@ export default {
         content: "我是这个帖子的正文 🍰🍰🍰🍰🍰🍰🍰🍰🍰"
       }
     };
+  },
+  components: {
+    CommentList
   }
 };
 </script>
