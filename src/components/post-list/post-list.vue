@@ -147,7 +147,6 @@ export default {
 
 <style scoped>
 .container {
-  /* background-color: hsl(0, 0%, 100%); */
   border-radius: 5px;
   text-align: left;
 }
