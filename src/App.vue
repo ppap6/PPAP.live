@@ -17,10 +17,12 @@ export default {
 </script>
 
 <style>
-@import "./assets/css/reset.css";
+@import './common/stylus/reset.styl';
+
 body{
   background-color: #EAEDF0;
 }
+
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
