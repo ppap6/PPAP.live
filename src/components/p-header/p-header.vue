@@ -3,10 +3,10 @@
     <div class="container">
       <div class="header-left">
         <router-link to="/" class="pc-logo">
-          <img class="logo" src="../../assets/img/logo.png" alt>
+          <img class="logo" src="../../common/img/logo.png" alt>
         </router-link>
         <div>
-          <img class="search-icon" src="../../assets/img/search.png" alt="">
+          <img class="search-icon" src="../../common/img/search.png" alt="">
           <input class="search-input" type="text" placeholder="搜索">
         </div> 
       </div>
