@@ -21,11 +21,11 @@
 </template>
 
 <script>
-import TopicList from "@/components/topic-list/topic-list"
-import PostList from "@/components/post-list/post-list"
-import ProfileCard from "@/components/profile-card/profile-card"
-import HotPostCard from "@/components/hot-post-card/hot-post-card"
-import LinkCard from "@/components/link-card/link-card"
+import TopicList from "component/topic-list/topic-list"
+import PostList from "component/post-list/post-list"
+import ProfileCard from "component/profile-card/profile-card"
+import HotPostCard from "component/hot-post-card/hot-post-card"
+import LinkCard from "component/link-card/link-card"
 
 export default {
   components: {

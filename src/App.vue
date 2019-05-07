@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import PHeader from "./components/p-header/p-header.vue";
+import PHeader from "component/p-header/p-header.vue";
 
 export default {
   name: "App",

@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import CommentList from '@/components/comment-list/comment-list'
+import CommentList from 'component/comment-list/comment-list'
 
 export default {
   data() {
