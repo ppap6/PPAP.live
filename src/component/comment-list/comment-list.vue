@@ -119,6 +119,7 @@ export default {
         width: 40px;
         height: 40px;
         border-radius: 50%;
+        flex-shrink: 0;
       }
 
       .detail {
@@ -161,6 +162,7 @@ export default {
         width: 40px;
         height: 40px;
         border-radius: 50%;
+        flex-shrink: 0;
       }
 
       .detail {
