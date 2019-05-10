@@ -1,24 +1,32 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '@/components/home/home'
-import NewPost from '@/components/new-post/new-post'
-import Notice from '@/components/notice/notice'
-import ChatList from '@/components/chat-list/chat-list'
+import Home from 'component/home/home'
+import NewPost from 'component/new-post/new-post'
+import Notice from 'component/notice/notice'
+import ChatList from 'component/chat-list/chat-list'
 
-import PostDetail from '@/components/post-detail/post-detail'
-import Topic from '@/components/topic-detail/topic-detail'
+import PostDetail from 'component/post-detail/post-detail'
+import Topic from 'component/topic-detail/topic-detail'
 
-import User from '@/components/user/user'
+import User from 'component/user/user'
 // user 的子组件
-import UserPostList from '@/components/user/post-list/post-list'
-import UserFollowerList from '@/components/user/follower-list/follower-list'
-import UserFollowPeopleList from '@/components/user/follow-people-list/follow-people-list'
-import UserFollowPostList from '@/components/user/follow-post-list/follow-post-list'
-import UserFollowTopicList from '@/components/user/follow-topic-list/follow-topic-list'
+import UserPostList from 'component/user/post-list/post-list'
+import UserFollowerList from 'component/user/follower-list/follower-list'
+import UserFollowPeopleList from 'component/user/follow-people-list/follow-people-list'
+import UserFollowPostList from 'component/user/follow-post-list/follow-post-list'
+import UserFollowTopicList from 'component/user/follow-topic-list/follow-topic-list'
+
+// notice 的子组件
+import NoticeAll from 'component/notice/all/all'
+import Comments from 'component/notice/comments/comments'
+import Answers from 'component/notice/answers/answers'
+import Followers from 'component/notice/followers/followers'
+import Likes from 'component/notice/likes/likes'
 
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',
@@ -38,9 +46,29 @@ export default new Router({
       children: [
         {
           path: '/notice/:id',
-          name: 'UserPostList',
-          component: UserPostList
+          name: 'NoticeAll',
+          component: NoticeAll
         },
+        {
+          path: '/notice/:id/comments',
+          name: 'Comments',
+          component: Comments
+        },
+        {
+          path: '/notice/:id/answers',
+          name: 'Answers',
+          component: Answers
+        },
+        {
+          path: '/notice/:id/followers',
+          name: 'Followers',
+          component: Followers
+        },
+        {
+          path: '/notice/:id/likes',
+          name: 'Likes',
+          component: Likes
+        }
       ]
     },
     {

@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import PHeader from "./components/p-header/p-header.vue";
+import PHeader from "component/p-header/p-header.vue";
 
 export default {
   name: "App",
@@ -17,10 +17,12 @@ export default {
 </script>
 
 <style>
-@import "./assets/css/reset.css";
+@import './common/stylus/reset.styl';
+
 body{
   background-color: #EAEDF0;
 }
+
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
