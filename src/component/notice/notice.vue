@@ -129,6 +129,5 @@ nav {
 .container-content {
   margin: 10px 0;
   border-radius: 5px;
-  background-color: #FFFFFF;
 }
 </style>
