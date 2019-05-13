@@ -11,7 +11,7 @@
       <span class="datetime">17天前</span>
       <span class="text">点赞了你的文章</span>
       <div class="right">
-        <router-link :to="`/topic/${item.post.id}`">
+        <router-link :to="`/post/${item.post.id}`">
           <p class="title">{{item.post.title}}</p>
         </router-link>
       </div>
