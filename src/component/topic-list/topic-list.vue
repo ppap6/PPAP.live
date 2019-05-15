@@ -1,22 +1,25 @@
 <template>
   <div class="container">
     <div class="topic-list">
-
       <div class="fixed-label">
         <span @click="selectTopic(0)" :class="{active: activeId === 0}">全部</span>
         <span @click="selectTopic(1)" :class="{active: activeId === 1}">优选</span>
       </div>
 
-      <div class="level1-topic" v-for="level1Topic in topicList">
-        <span @click="selectTopic(level1Topic.id)" :class="{active: activeId === level1Topic.id}">{{level1Topic.name}}</span>
+      <div class="level1-topic" v-for="level1Topic in topicList" :key="level1Topic.id">
+        <span
+          @click="selectTopic(level1Topic.id)"
+          :class="{active: activeId === level1Topic.id}"
+        >{{level1Topic.name}}</span>
         <div class="level2-topic">
-          <span @click="selectTopic(level2Topic.id)" 
-                v-for="level2Topic in level1Topic.childs"
-                :class="{active: activeId === level2Topic.id}"
+          <span
+            @click="selectTopic(level2Topic.id)"
+            v-for="level2Topic in level1Topic.childs"
+            :class="{active: activeId === level2Topic.id}"
+            :key="level2Topic.id"
           >{{level2Topic.name}}</span>
         </div>
       </div>
-
     </div>
   </div>
 </template>
@@ -150,100 +153,78 @@ export default {
           ]
         }
       ]
-    }
+    };
   },
   methods: {
-    selectTopic(id){
-      this.activeId = id
+    selectTopic(id) {
+      this.activeId = id;
     }
   }
-}
+};
 </script>
 
-<style scoped>
+<style scoped lang="stylus">
 .container {
   background-color: hsl(0, 0%, 100%);
   border-radius: 5px;
   text-align: left;
-}
 
-.topic-list {
-  padding: 20px 10px;
-}
+  .topic-list {
+    padding: 20px 10px;
 
-.topic-list span{
-  cursor: pointer;
-}
+    span {
+      cursor: pointer;
+    }
 
-.fixed-label{
-  padding: 0 0 10px 0;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  flex-wrap: wrap;
-}
+    .fixed-label {
+      padding: 0 0 10px 0;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      flex-wrap: wrap;
 
-.fixed-label>span{
-  font-size: 14px;
-  padding: 4px 10px;
-  margin: 4px;
-  background-color: #f2f2f2;
-  border-radius: 5px;
-}
+      >span {
+        font-size: 14px;
+        padding: 4px 10px;
+        margin: 4px;
+        background-color: #f2f2f2;
+        border-radius: 5px;
+      }
+    }
 
-.level1-topic {
-  padding: 5px 0;
-}
+    .level1-topic {
+      padding: 5px 0;
 
-.level2-topic {
-  padding: 5px 0;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  flex-wrap: wrap;
-}
+      >span {
+        font-size: 14px;
+        font-weight: bold;
+        padding: 4px 10px;
+        margin: 4px;
+        background-color: #f2f2f2;
+        border-radius: 5px;
+      }
+    }
 
-.level1-topic>span {
-  font-size: 14px;
-  font-weight: bold;
-  padding: 4px 10px;
-  margin: 4px;
-  background-color: #f2f2f2;
-  border-radius: 5px;
-}
+    .level2-topic {
+      padding: 5px 0;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      flex-wrap: wrap;
 
-.level2-topic>span {
-  font-size: 14px;
-  padding: 4px 10px;
-  margin: 4px;
-  background-color: #f2f2f2;
-  border-radius: 5px;
-}
+      >span {
+        font-size: 14px;
+        padding: 4px 10px;
+        margin: 4px;
+        background-color: #f2f2f2;
+        border-radius: 5px;
+      }
+    }
 
-.active{
-  color: #FFFFFF;
-  background-color: #4170EA !important;
-}
-
-.link {
-  text-align: left;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 4px 0;
-}
-
-.link-title {
-  font-size: 12px;
-  font-weight: bold;
-  color: #171717;
-}
-
-.link-intro {
-  font-size: 12px;
-  color: #171717;
-}
-.link a:hover {
-  text-decoration: underline;
+    .active {
+      color: #FFFFFF;
+      background-color: #4170EA !important;
+    }
+  }
 }
 </style>
