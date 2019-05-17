@@ -6,18 +6,30 @@
       <div class="content">
         <template v-for="item in commentList">
           <div class="comment-item">
-            <img :src="item.avatar" alt="头像">
+            <router-link to="/user/用户id">
+              <img :src="item.avatar" alt="头像">
+            </router-link>
             <div class="detail">
-              <div class="name">{{item.name}}</div>
+              <router-link to="/user/用户id">
+                <div class="name">{{item.name}}</div>
+              </router-link>
               <div class="content">{{item.content}}</div>
               <div class="datetime">{{item.datetime}}</div>
             </div>
           </div>
           <div class="answer-item" v-for="answer in item.answer_list">
-            <img :src="answer.avatar" alt="头像">
+            <router-link to="/user/用户id">
+              <img :src="answer.avatar" alt="头像">
+            </router-link>
             <div class="detail">
               <div class="answer-point-to">
-                <div class="name">{{answer.name}}</div>回复了<div class="targetor">{{answer.targetor}}</div>
+                <router-link to="/user/用户id">
+                  <div class="name">{{answer.name}}</div>
+                </router-link>
+                  回复了
+                <router-link to="/user/用户id">
+                  <div class="targetor">{{answer.targetor}}</div>
+                </router-link>
               </div>
               <div class="content">{{answer.content}}</div>
               <div class="datetime">{{answer.datetime}}</div>
@@ -120,6 +132,10 @@ export default {
         height: 40px;
         border-radius: 50%;
         flex-shrink: 0;
+
+        &:hover{
+          text-decoration: underline;
+        }
       }
 
       .detail {
@@ -130,6 +146,10 @@ export default {
           font-size: 14px;
           color: #333333;
           font-weight: bold;
+
+          &:hover{
+            text-decoration: underline;
+          }
         }
 
         .content {
@@ -163,6 +183,10 @@ export default {
         height: 40px;
         border-radius: 50%;
         flex-shrink: 0;
+
+        &:hover{
+          text-decoration: underline;
+        }
       }
 
       .detail {
@@ -187,12 +211,20 @@ export default {
               margin: 0 8px 0 8px;
               content: "\2022";
             }
+
+            &:hover{
+              text-decoration: underline;
+            }
           }
 
           .targetor{
             font-size: 14px;
             color: #333333;
             font-weight: bold;
+
+            &:hover{
+              text-decoration: underline;
+            }
           }
         }
 

@@ -2,9 +2,13 @@
   <div class="post-detail">
     <h1>{{ msg }}</h1>
     <div class="post-header">
-      <img :src="post.avatar" alt="头像">
+      <router-link to="/user/用户id">
+        <img :src="post.avatar" alt="头像">
+      </router-link>
       <div class="information">
-        <div class="name">{{post.name}}</div>
+        <router-link to="/user/用户id">
+          <div class="name">{{post.name}}</div>
+        </router-link>
         <div class="last-datetime">{{post.last_datetime}}</div>
       </div>
     </div>
@@ -85,6 +89,10 @@ export default {
       .name {
         font-size: 16px;
         color: #333333;
+
+        &:hover{
+          text-decoration: underline;
+        }
       }
 
       .last-datetime {
