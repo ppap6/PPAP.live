@@ -1,27 +1,27 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from 'component/home/home'
-import NewPost from 'component/new-post/new-post'
-import Notice from 'component/notice/notice'
-import ChatList from 'component/chat-list/chat-list'
+import Home from 'page/home/home'
+import NewPost from 'page/new-post/new-post'
+import Notice from 'page/notice/notice'
+import ChatList from 'page/chat-list/chat-list'
 
 import PostDetail from 'component/post-detail/post-detail'
 import Topic from 'component/topic-detail/topic-detail'
 
-import User from 'component/user/user'
+import User from 'page/user/user'
 // user 的子组件
-import UserPostList from 'component/user/post-list/post-list'
-import UserFollowerList from 'component/user/follower-list/follower-list'
-import UserFollowPeopleList from 'component/user/follow-people-list/follow-people-list'
-import UserFollowPostList from 'component/user/follow-post-list/follow-post-list'
-import UserFollowTopicList from 'component/user/follow-topic-list/follow-topic-list'
+import UserPostList from 'page/user/post-list/post-list'
+import UserFollowerList from 'page/user/follower-list/follower-list'
+import UserFollowPeopleList from 'page/user/follow-people-list/follow-people-list'
+import UserFollowPostList from 'page/user/follow-post-list/follow-post-list'
+import UserFollowTopicList from 'page/user/follow-topic-list/follow-topic-list'
 
 // notice 的子组件
-import NoticeAll from 'component/notice/all/all'
-import Comments from 'component/notice/comments/comments'
-import Answers from 'component/notice/answers/answers'
-import Followers from 'component/notice/followers/followers'
-import Likes from 'component/notice/likes/likes'
+import NoticeAll from 'page/notice/all/all'
+import Comments from 'page/notice/comments/comments'
+import Answers from 'page/notice/answers/answers'
+import Followers from 'page/notice/followers/followers'
+import Likes from 'page/notice/likes/likes'
 
 Vue.use(Router)
 

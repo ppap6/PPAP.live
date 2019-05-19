@@ -29,7 +29,7 @@ module.exports = {
       'component': path.resolve(__dirname, '../src/component'),
       'common': path.resolve(__dirname, '../src/common'),
       'api': path.resolve(__dirname, '../src/api'),
-      'base': path.resolve(__dirname, '../src/base'),
+      'page': path.resolve(__dirname, '../src/page'),
       'store': path.resolve(__dirname, '../src/store'),
     }
   },
