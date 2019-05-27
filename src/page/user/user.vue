@@ -62,9 +62,34 @@ export default {
       navName: "posts"
     };
   },
+  mounted(){
+    this.refleshSelectStatus(this.$route.name) 
+  },
   methods: {
     selectNav(str) {
       this.navName = str;
+    },
+    refleshSelectStatus(route){
+      switch (route) {
+        case 'UserPostList':
+          this.navName = 'posts'
+          break;
+        case 'UserFollowerList':
+          this.navName = 'followers'
+          break;
+        case 'UserFollowPeopleList':
+          this.navName = 'follow-peoples'
+          break;
+        case 'UserFollowPostList':
+          this.navName = 'follow-posts'
+          break;
+        case 'UserFollowTopicList':
+          this.navName = 'follow-topics'
+          break;
+      
+        default:
+          break;
+      }
     }
   }
 };
