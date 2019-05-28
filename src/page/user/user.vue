@@ -62,6 +62,12 @@ export default {
       navName: "posts"
     };
   },
+  watch: {
+    $route(to, from){
+      //监听路由变化，改变选中
+      this.refleshSelectStatus(to.name)
+    }
+  },
   mounted(){
     this.refleshSelectStatus(this.$route.name) 
   },
