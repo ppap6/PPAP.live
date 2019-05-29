@@ -53,9 +53,40 @@ export default {
       navName: "all"
     };
   },
+  watch: {
+    $route(to, from){
+      //监听路由变化，改变选中
+      this.refleshSelectStatus(to.name)
+    }
+  },
+  mounted(){
+    this.refleshSelectStatus(this.$route.name) 
+  },
   methods: {
     selectNav(str) {
       this.navName = str;
+    },
+    refleshSelectStatus(route){
+      switch (route) {
+        case 'NoticeAll':
+          this.navName = 'all'
+          break;
+        case 'Comments':
+          this.navName = 'comments'
+          break;
+        case 'Answers':
+          this.navName = 'answers'
+          break;
+        case 'Followers':
+          this.navName = 'followers'
+          break;
+        case 'Likes':
+          this.navName = 'likes'
+          break;
+      
+        default:
+          break;
+      }
     }
   }
 };
