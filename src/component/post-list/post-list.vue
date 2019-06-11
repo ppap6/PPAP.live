@@ -64,7 +64,7 @@ export default {
         {
           user_id: 2,
           user_name: "梁虚天",
-          user_avatar: "https://img.haosuzhou.com/4fbb8bc2-36fd-4eec-813c-6de619025e94.gif?imageMogr2/crop/!234x234a6a11/thumbnail/!200/quality/90",
+          user_avatar: "https://img.xiaoduyu.com/FklxjW19iOahN2nBRdVNvpyaPeao?imageMogr2/thumbnail/!200/quality/90",
           topic_id: 2,
           topic_name: "明星",
           post_id: 2,

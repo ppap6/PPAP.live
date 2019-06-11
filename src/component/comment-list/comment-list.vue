@@ -60,7 +60,7 @@ export default {
               name: "梁虚天",
               targetor: "大虫子",
               avatar:
-                "https://img.haosuzhou.com/4fbb8bc2-36fd-4eec-813c-6de619025e94.gif?imageMogr2/crop/!234x234a6a11/thumbnail/!200/quality/90",
+                "https://img.xiaoduyu.com/FklxjW19iOahN2nBRdVNvpyaPeao?imageMogr2/thumbnail/!200/quality/90",
               content: "hhhhhhhhhh 🍰",
               datetime: "2019-04-29 10:30:22"
             }
@@ -70,7 +70,7 @@ export default {
           id: 2,
           name: "梁虚天",
           avatar:
-            "https://img.haosuzhou.com/4fbb8bc2-36fd-4eec-813c-6de619025e94.gif?imageMogr2/crop/!234x234a6a11/thumbnail/!200/quality/90",
+            "https://img.xiaoduyu.com/FklxjW19iOahN2nBRdVNvpyaPeao?imageMogr2/thumbnail/!200/quality/90",
           content: "我是虚天啊，老铁还记得我吗 🍰",
           datetime: "2019-04-29 10:30:22",
           answer_list: [
