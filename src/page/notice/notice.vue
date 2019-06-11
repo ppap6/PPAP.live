@@ -37,6 +37,13 @@
             :class="{active: navName === 'likes'}"
           >赞 2</span>
         </router-link>
+        <router-link to="/notice/666/collects">
+          <span
+            class="collects"
+            @click="selectNav('collects')"
+            :class="{active: navName === 'collects'}"
+          >收藏 2</span>
+        </router-link>
       </nav>
     </div>
 
@@ -82,6 +89,9 @@ export default {
           break;
         case 'Likes':
           this.navName = 'likes'
+          break;
+        case 'Collects':
+          this.navName = 'collects'
           break;
       
         default:
@@ -143,7 +153,8 @@ export default {
       .comments,
       .answers,
       .followers,
-      .likes {
+      .likes
+      .collects {
         font-size: 14px;
         padding: 10px 15px;
         background-color: #ffffff;
