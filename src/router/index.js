@@ -25,6 +25,7 @@ import Answers from 'page/notice/answers/answers'
 import Followers from 'page/notice/followers/followers'
 import Likes from 'page/notice/likes/likes'
 import Collects from 'page/notice/collects/collects'
+import Lights from 'page/notice/lights/lights'
 
 Vue.use(Router)
 
@@ -76,7 +77,12 @@ export default new Router({
           path: '/notice/:id/collects',
           name: 'Collects',
           component: Collects
-        }
+        },
+        {
+          path: '/notice/:id/lights',
+          name: 'Lights',
+          component: Lights
+        },
       ]
     },
     {

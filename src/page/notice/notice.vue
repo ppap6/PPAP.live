@@ -44,6 +44,13 @@
             :class="{active: navName === 'collects'}"
           >收藏 2</span>
         </router-link>
+        <router-link to="/notice/666/lights">
+          <span
+            class="lights"
+            @click="selectNav('lights')"
+            :class="{active: navName === 'lights'}"
+          >亮了 2</span>
+        </router-link>
       </nav>
     </div>
 
@@ -92,6 +99,9 @@ export default {
           break;
         case 'Collects':
           this.navName = 'collects'
+          break;
+        case 'Lights':
+          this.navName = 'lights'
           break;
       
         default:
@@ -153,8 +163,9 @@ export default {
       .comments,
       .answers,
       .followers,
-      .likes
-      .collects {
+      .likes,
+      .collects,
+      .lights {
         font-size: 14px;
         padding: 10px 15px;
         background-color: #ffffff;
