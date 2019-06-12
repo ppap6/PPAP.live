@@ -137,6 +137,7 @@ export default {
     .content {
       padding: 10px 0;
       color: #171717;
+      font-size: 14px;
     }
 
     .post {
