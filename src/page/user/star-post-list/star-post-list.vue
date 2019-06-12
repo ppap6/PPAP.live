@@ -1,11 +1,11 @@
 <template>
-  <div class="user-follow-post-list">
+  <div class="user-star-post-list">
     <h1>{{ msg }}</h1>
     <div class="post" v-for="item in postList" :key="item.id">
       <div class="title">
         <router-link to="/post/帖子id">{{item.title}}</router-link>
       </div>
-      <div class="follow-btn">关注</div>
+      <div class="like-btn">点赞</div>
     </div>
   </div>
 </template>
@@ -14,7 +14,7 @@
 export default {
   data () {
     return {
-      msg: '我的关注的帖子列表组件',
+      msg: '我点赞的帖子列表组件',
       postList: [
         {
           id: 3,
@@ -53,7 +53,7 @@ export default {
     }
   }
   
-  .follow-btn{
+  .like-btn{
     position: absolute;
     right: 20px;
     top: 10px;

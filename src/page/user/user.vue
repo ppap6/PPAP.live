@@ -32,11 +32,18 @@
             :class="{active: navName === 'follow-peoples'}"
           >关注 1</span>
         </router-link>
-        <router-link to="/user/666/follow-posts">
+        <router-link to="/user/666/star-posts">
           <span
-            class="follow-posts"
-            @click="selectNav('follow-posts')"
-            :class="{active: navName === 'follow-posts'}"
+            class="star-posts"
+            @click="selectNav('star-posts')"
+            :class="{active: navName === 'star-posts'}"
+          >Stars 2</span>
+        </router-link>
+        <router-link to="/user/666/collect-posts">
+          <span
+            class="collect-posts"
+            @click="selectNav('collect-posts')"
+            :class="{active: navName === 'collect-posts'}"
           >收藏 1</span>
         </router-link>
         <router-link to="/user/666/follow-topics">
@@ -86,8 +93,11 @@ export default {
         case 'UserFollowPeopleList':
           this.navName = 'follow-peoples'
           break;
-        case 'UserFollowPostList':
-          this.navName = 'follow-posts'
+        case 'UserStarPostList':
+          this.navName = 'star-posts'
+          break;
+        case 'UserCollectPostList':
+          this.navName = 'collect-posts'
           break;
         case 'UserFollowTopicList':
           this.navName = 'follow-topics'
@@ -151,7 +161,8 @@ export default {
       .posts,
       .followers,
       .follow-peoples,
-      .follow-posts,
+      .star-posts,
+      .collect-posts,
       .follow-topics {
         font-size: 14px;
         padding: 10px 15px;

@@ -13,7 +13,8 @@ import User from 'page/user/user'
 import UserPostList from 'page/user/post-list/post-list'
 import UserFollowerList from 'page/user/follower-list/follower-list'
 import UserFollowPeopleList from 'page/user/follow-people-list/follow-people-list'
-import UserFollowPostList from 'page/user/follow-post-list/follow-post-list'
+import UserStarPostList from 'page/user/star-post-list/star-post-list'
+import UserCollectPostList from 'page/user/collect-post-list/collect-post-list'
 import UserFollowTopicList from 'page/user/follow-topic-list/follow-topic-list'
 
 // notice 的子组件
@@ -104,9 +105,14 @@ export default new Router({
           component: UserFollowPeopleList
         },
         {
-          path: '/user/:id/follow-posts',
-          name: 'UserFollowPostList',
-          component: UserFollowPostList
+          path: '/user/:id/star-posts',
+          name: 'UserStarPostList',
+          component: UserStarPostList
+        },
+        {
+          path: '/user/:id/collect-posts',
+          name: 'UserCollectPostList',
+          component: UserCollectPostList
         },
         {
           path: '/user/:id/follow-topics',
