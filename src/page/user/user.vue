@@ -18,6 +18,13 @@
             :class="{active: navName === 'posts'}"
           >帖子 1</span>
         </router-link>
+        <router-link to="/user/666/comments">
+          <span
+            class="comments"
+            @click="selectNav('comments')"
+            :class="{active: navName === 'comments'}"
+          >回帖 2</span>
+        </router-link>
         <router-link to="/user/666/followers">
           <span
             class="followers"
@@ -86,6 +93,9 @@ export default {
       switch (route) {
         case 'UserPostList':
           this.navName = 'posts'
+          break;
+        case 'UserCommentList':
+          this.navName = 'comments'
           break;
         case 'UserFollowerList':
           this.navName = 'followers'
@@ -159,6 +169,7 @@ export default {
       padding: 10px 20px;
 
       .posts,
+      .comments,
       .followers,
       .follow-peoples,
       .star-posts,

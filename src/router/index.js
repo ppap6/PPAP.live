@@ -11,6 +11,7 @@ import Topic from 'component/topic-detail/topic-detail'
 import User from 'page/user/user'
 // user 的子组件
 import UserPostList from 'page/user/post-list/post-list'
+import UserCommentList from 'page/user/comment-list/comment-list'
 import UserFollowerList from 'page/user/follower-list/follower-list'
 import UserFollowPeopleList from 'page/user/follow-people-list/follow-people-list'
 import UserStarPostList from 'page/user/star-post-list/star-post-list'
@@ -93,6 +94,11 @@ export default new Router({
           path: '/user/:id',
           name: 'UserPostList',
           component: UserPostList
+        },
+        {
+          path: '/user/:id/comments',
+          name: 'UserCommentList',
+          component: UserCommentList
         },
         {
           path: '/user/:id/followers',
