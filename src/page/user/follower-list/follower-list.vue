@@ -17,7 +17,6 @@
           <span class="follows">关注用户 {{item.count.follows}}</span>
         </div>
       </div>
-      <div class="follow-btn">关注</div>
     </div>
   </div>
 </template>
@@ -101,14 +100,6 @@ export default {
         margin-right: 10px;
       }
     }
-  }
-  
-  .follow-btn{
-    position: absolute;
-    right: 20px;
-    top: 10px;
-    font-size: 12px;
-    cursor: pointer;
   }
 }
 </style>

@@ -5,7 +5,6 @@
       <div class="name">
         <router-link to="/topic/话题id">{{item.name}}</router-link>
       </div>
-      <div class="follow-btn">关注</div>
     </div>
   </div>
 </template>
@@ -55,14 +54,6 @@ export default {
       color: #515151;
       cursor: pointer;
     }
-  }
-  
-  .follow-btn{
-    position: absolute;
-    right: 20px;
-    top: 10px;
-    font-size: 12px;
-    cursor: pointer;
   }
 }
 </style>

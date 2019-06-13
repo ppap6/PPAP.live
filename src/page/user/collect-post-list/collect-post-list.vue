@@ -5,7 +5,6 @@
       <div class="title">
         <router-link to="/post/帖子id">{{item.title}}</router-link>
       </div>
-      <div class="collect-btn">收藏</div>
     </div>
   </div>
 </template>
@@ -47,14 +46,6 @@ export default {
       color: #515151;
       cursor: pointer;
     }
-  }
-  
-  .collect-btn{
-    position: absolute;
-    right: 20px;
-    top: 10px;
-    font-size: 12px;
-    cursor: pointer;
   }
 }
 </style>

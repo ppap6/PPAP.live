@@ -5,7 +5,6 @@
       <div class="title">
         <router-link to="/post/帖子id">{{item.title}}</router-link>
       </div>
-      <div class="like-btn">点赞</div>
     </div>
   </div>
 </template>
@@ -51,14 +50,6 @@ export default {
       color: #515151;
       cursor: pointer;
     }
-  }
-  
-  .like-btn{
-    position: absolute;
-    right: 20px;
-    top: 10px;
-    font-size: 12px;
-    cursor: pointer;
   }
 }
 </style>
