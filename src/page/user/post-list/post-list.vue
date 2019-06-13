@@ -1,47 +1,41 @@
 <template>
   <div class="container">
     <div class="post-list">
-      <div class="post">
-        <div class="post-header">
-          <div class="header-left">
-            <router-link to="/user/666">
-              <img class="avatar" src="https://jwchan.cn/images/avatar.jpg" alt>
-            </router-link>
-          </div>
-          <div class="header-right">
-            <router-link to="/user/666">
-              <p class="name">jwchan</p>
-            </router-link>
-            <div class="display">
-              <router-link to="/topic/555">
-                <span class="topic">产品经理</span>
-              </router-link>
-              <span class="datetime">02月22日</span>
-            </div>
-          </div>
-        </div>
-        <div class="post-content">
-          <router-link to="/post/帖子id">
-            <div class="post-title">这是我的第一个帖子？？？</div>
-          </router-link>
-          <div class="post-summary">这是这个帖子内容的一部分</div>
-          <div class="statistics">
-            <span class="reads">159 次阅读</span>
-            <span class="comments">6 条评论</span>
-            <span class="answers">2 条回复</span>
-            <span class="likes">2 人赞</span>
-            <span class="collects">1 人收藏</span>
-          </div>
-        </div>
-      </div>
+      <PostList :postList="postList"></PostList>
     </div>
   </div>
 </template>
 
 <script>
+import PostList from "component/post-list/post-list"
+
 export default {
   data() {
-    return {};
+    return {
+      postList: [
+        {
+          user_id: 1,
+          user_name: "Jwchan",
+          user_avatar: "https://jwchan.cn/images/avatar.jpg",
+          topic_id: 1,
+          topic_name: "Vue",
+          post_id: 1,
+          post_title: "深入浅出 webpack 原理",
+          post_content: "这是这个帖子内容的一部分",
+          datetime: "02月22日",
+          count: {
+            reads: 159,
+            comments: 6,
+            answers: 2,
+            likes: 2,
+            collects: 1
+          }
+        }
+      ]
+    };
+  },
+  components: {
+    PostList
   }
 };
 </script>
