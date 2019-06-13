@@ -13,8 +13,12 @@
               <router-link to="/user/用户id">
                 <div class="name">{{item.name}}</div>
               </router-link>
-              <div class="content">{{item.content}}</div>
               <div class="datetime">{{item.datetime}}</div>
+              <div class="content">{{item.content}}</div>
+              <div class="light-comment">
+                <span class="light"><img src="../../common/img/light_0.png">亮了(0)</span>
+                <span class="comment"><img src="../../common/img/comment.png">回复</span>
+              </div>
             </div>
           </div>
           <div class="answer-item" v-for="answer in item.answer_list">
@@ -31,8 +35,12 @@
                   <div class="targetor">{{answer.targetor}}</div>
                 </router-link>
               </div>
-              <div class="content">{{answer.content}}</div>
               <div class="datetime">{{answer.datetime}}</div>
+              <div class="content">{{answer.content}}</div>
+              <div class="light-comment">
+                <span class="light"><img src="../../common/img/light_0.png">亮了(0)</span>
+                <span class="comment"><img src="../../common/img/comment.png">回复</span>
+              </div>
             </div>
           </div>
         </template>
@@ -152,6 +160,11 @@ export default {
           }
         }
 
+        .datetime {
+          color: #797979;
+          font-size: 12px;
+        }
+
         .content {
           font-size: 14px;
           color: #171717;
@@ -159,9 +172,40 @@ export default {
           padding: 4px 0;
         }
 
-        .datetime {
-          color: #797979;
-          font-size: 12px;
+        .light-comment{
+          padding-top: 5px;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          
+          .light{
+            color: #777;
+            font-size: 12px;
+            margin-right: 15px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+
+            img{
+              width: 18px;
+              height: 18px;
+              margin-right: 2px;
+            }
+          }
+
+          .comment{
+            color: #555;
+            font-size: 12px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+
+            img{
+              width: 15px;
+              height: 15px;
+              margin-right: 3px;
+            }
+          }
         }
       }
     }
@@ -228,6 +272,11 @@ export default {
           }
         }
 
+        .datetime {
+          color: #797979;
+          font-size: 12px;
+        }
+
         .content {
           font-size: 14px;
           color: #171717;
@@ -235,9 +284,40 @@ export default {
           padding: 4px 0;
         }
 
-        .datetime {
-          color: #797979;
-          font-size: 12px;
+        .light-comment{
+          padding-top: 5px;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          
+          .light{
+            color: #777;
+            font-size: 12px;
+            margin-right: 15px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+
+            img{
+              width: 18px;
+              height: 18px;
+              margin-right: 2px;
+            }
+          }
+
+          .comment{
+            color: #555;
+            font-size: 12px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+
+            img{
+              width: 15px;
+              height: 15px;
+              margin-right: 3px;
+            }
+          }
         }
       }
     }
