@@ -1,3 +1,9 @@
+/*
+ * @Author: jwchan1996
+ * @Date: 2019-04-22 22:47:02
+ * @LastEditors: jwchan1996
+ * @LastEditTime: 2019-04-22 22:47:02
+ */
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from 'page/home/home'
@@ -12,6 +18,7 @@ import User from 'page/user/user'
 // user 的子组件
 import UserPostList from 'page/user/post-list/post-list'
 import UserCommentList from 'page/user/comment-list/comment-list'
+import UserAnswerList from 'page/user/answer-list/answer-list'
 import UserFollowerList from 'page/user/follower-list/follower-list'
 import UserFollowPeopleList from 'page/user/follow-people-list/follow-people-list'
 import UserStarPostList from 'page/user/star-post-list/star-post-list'
@@ -105,6 +112,11 @@ export default new Router({
           path: '/user/:id/comments',
           name: 'UserCommentList',
           component: UserCommentList
+        },
+        {
+          path: '/user/:id/answers',
+          name: 'UserAnswerList',
+          component: UserAnswerList
         },
         {
           path: '/user/:id/followers',

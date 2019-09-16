@@ -1,3 +1,9 @@
+<!--
+ * @Author: jwchan1996
+ * @Date: 2019-05-10 22:55:01
+ * @LastEditors: jwchan1996
+ * @LastEditTime: 2019-05-10 22:55:01
+ -->
 <template>
   <div class="header">
     <div class="container">
@@ -112,6 +118,7 @@ export default {};
         >li {
           font-size: 14px;
           padding: 10px;
+          list-style: none;
         }
       }
     }

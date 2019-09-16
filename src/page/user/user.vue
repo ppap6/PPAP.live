@@ -1,3 +1,9 @@
+<!--
+ * @Author: jwchan1996
+ * @Date: 2019-05-19 22:24:35
+ * @LastEditors: jwchan1996
+ * @LastEditTime: 2019-09-16 23:38:29
+ -->
 <template>
   <div class="user-center">
     <div class="container-header">
@@ -23,7 +29,14 @@
             class="comments"
             @click="selectNav('comments')"
             :class="{active: navName === 'comments'}"
-          >回帖 2</span>
+          >评论 2</span>
+        </router-link>
+        <router-link to="/user/666/answers">
+          <span
+            class="answers"
+            @click="selectNav('answers')"
+            :class="{active: navName === 'answers'}"
+          >回复 4</span>
         </router-link>
         <router-link to="/user/666/followers">
           <span
@@ -96,6 +109,9 @@ export default {
           break;
         case 'UserCommentList':
           this.navName = 'comments'
+          break;
+        case 'UserAnswerList':
+          this.navName = 'answers'
           break;
         case 'UserFollowerList':
           this.navName = 'followers'
@@ -170,6 +186,7 @@ export default {
 
       .posts,
       .comments,
+      .answers,
       .followers,
       .follow-peoples,
       .star-posts,
