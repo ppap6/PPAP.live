@@ -19,6 +19,9 @@
       <div class="header-right">
         <ul>
           <li>
+            <router-link to="/follow">关注</router-link>
+          </li>
+          <li>
             <router-link to="/new-post">发帖</router-link>
           </li>
           <li>

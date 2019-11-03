@@ -7,6 +7,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from 'page/home/home'
+import Follow from 'page/follow/follow'
 import NewPost from 'page/new-post/new-post'
 import Notice from 'page/notice/notice'
 import ChatList from 'page/chat-list/chat-list'
@@ -43,6 +44,11 @@ export default new Router({
       path: '/',
       name: 'Home',
       component: Home
+    },
+    {
+      path: '/follow',
+      name: 'Follow',
+      component: Follow
     },
     {
       path: '/new-post',
