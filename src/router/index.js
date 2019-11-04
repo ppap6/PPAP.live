@@ -11,6 +11,7 @@ import Follow from 'page/follow/follow'
 import NewPost from 'page/new-post/new-post'
 import Notice from 'page/notice/notice'
 import ChatList from 'page/chat-list/chat-list'
+import Search from 'page/search/search'
 
 import PostDetail from 'component/post-detail/post-detail'
 import Topic from 'component/topic-detail/topic-detail'
@@ -34,6 +35,10 @@ import Followers from 'page/notice/followers/followers'
 import Likes from 'page/notice/likes/likes'
 import Collects from 'page/notice/collects/collects'
 import Lights from 'page/notice/lights/lights'
+
+//search 的子组件
+import SearchPostList from 'page/search/post-list/post-list'
+import SearchUserList from 'page/search/user-list/user-list'
 
 Vue.use(Router)
 
@@ -102,6 +107,24 @@ export default new Router({
       path: '/chats',
       name: 'ChatList',
       component: ChatList
+    },
+    {
+      path: '/search',
+      name: 'Search',
+      component: Search,
+      redirect: '/search/posts',
+      children: [
+        {
+          path: '/search/posts',
+          name: '/SearchPostList',
+          component: SearchPostList
+        },
+        {
+          path: '/search/users',
+          name: '/SearchUserList',
+          component: SearchUserList
+        }
+      ]
     },
     {
       path: '/user/:id',

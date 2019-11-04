@@ -12,7 +12,9 @@
           <img class="logo" src="../../common/img/logo.png" alt>
         </router-link>
         <div>
-          <img class="search-icon" src="../../common/img/search.png" alt="">
+          <router-link to="/search">
+            <img class="search-icon" src="../../common/img/search.png" alt="">
+          </router-link>
           <input class="search-input" type="text" placeholder="搜索">
         </div> 
       </div>

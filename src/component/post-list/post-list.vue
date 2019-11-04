@@ -52,9 +52,10 @@ export default {
 <style scoped lang="stylus">
 .container {
   border-radius: 5px;
-  text-align: left;
 
   .post-list {
+    text-align: left;
+    
     .post {
       padding: 20px 20px 5px 20px;
       margin-bottom: 10px;
