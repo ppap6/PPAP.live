@@ -86,17 +86,17 @@ export default {};
           width: 20px;
           height: 20px;
           top: 6px;
-          left: 6px;
+          right: 6px;
           cursor: pointer;
         }
 
         .search-input {
           height: 32px;
-          width: 240px;
+          width: 200px;
           color: #515151;
           border-radius: 10px;
           line-height: 32px;
-          padding: 0 10px 0 36px;
+          padding: 0 36px 0 10px;
           font-size: 14px;
           background: #f2f2f2;
 
