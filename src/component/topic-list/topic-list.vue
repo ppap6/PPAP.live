@@ -158,6 +158,7 @@ export default {
   methods: {
     selectTopic(id) {
       this.activeId = id;
+      this.$router.push({path: `/topic/${id}`});
     }
   }
 };
