@@ -47,10 +47,10 @@ export default {
     },
     refleshSelectStatus(route){
       switch (route) {
-        case 'Posts':
+        case 'SearchPostList':
           this.navName = 'posts'
           break;
-        case 'Users':
+        case 'SearchUserList':
           this.navName = 'users'
           break;
       

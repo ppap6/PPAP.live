@@ -116,12 +116,12 @@ export default new Router({
       children: [
         {
           path: '/search/posts',
-          name: '/SearchPostList',
+          name: 'SearchPostList',
           component: SearchPostList
         },
         {
           path: '/search/users',
-          name: '/SearchUserList',
+          name: 'SearchUserList',
           component: SearchUserList
         }
       ]
