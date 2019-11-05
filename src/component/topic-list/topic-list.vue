@@ -26,8 +26,10 @@
 
 <script>
 export default {
+  props: ["isRouter"],
   data() {
     return {
+      isRouter: false,
       activeId: 0,
       topicList: [
         {
@@ -158,6 +160,7 @@ export default {
   methods: {
     selectTopic(id) {
       this.activeId = id;
+      if(!this.isRouter) return
       this.$router.push({path: `/topic/${id}`});
     }
   }
