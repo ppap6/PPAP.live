@@ -15,7 +15,7 @@
       <PostList :postList="postList"></PostList>
     </div>
     <div class="topic-list" id="right">
-      <TopicList></TopicList>
+      <TopicList :isRouter="true"></TopicList>
     </div>
   </div>
 </template>
