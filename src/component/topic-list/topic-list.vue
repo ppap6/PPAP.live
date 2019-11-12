@@ -29,7 +29,6 @@ export default {
   props: ["isRouter"],
   data() {
     return {
-      isRouter: false,
       activeId: 0,
       topicList: [
         {

@@ -1,6 +1,8 @@
 import axios from 'axios'
+import { getStorage } from 'common/js/localstorage'
 
-const baseURL = 'http://localhost:2333'
+// const baseURL = 'http://localhost:2333'
+const baseURL = 'http://39.108.65.176:2333'
 
 const request = axios.create({
     baseURL,

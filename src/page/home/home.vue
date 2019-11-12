@@ -27,155 +27,12 @@ import ProfileCard from "component/profile-card/profile-card"
 import HotPostCard from "component/hot-post-card/hot-post-card"
 import LinkCard from "component/link-card/link-card"
 
+import { getPostList } from 'api/post'
+
 export default {
   data(){
     return {
-      postList: [
-        {
-          user_id: 1,
-          user_name: "jwchan",
-          user_avatar: "https://jwchan.cn/images/avatar.jpg",
-          topic_id: 1,
-          topic_name: "产品经理",
-          post_id: 1,
-          post_title: "这是我的第一个帖子？？？",
-          post_content: "这是这个帖子内容的一部分",
-          datetime: "02月22日",
-          count: {
-            reads: 159,
-            comments: 6,
-            answers: 2,
-            likes: 2,
-            collects: 1
-          }
-        },
-        {
-          user_id: 2,
-          user_name: "梁虚天",
-          user_avatar: "https://img.xiaoduyu.com/FklxjW19iOahN2nBRdVNvpyaPeao?imageMogr2/thumbnail/!200/quality/90",
-          topic_id: 2,
-          topic_name: "明星",
-          post_id: 2,
-          post_title: "这是我的第二个帖子？？？",
-          post_content: "这是这个帖子内容的一部分",
-          datetime: "03月22日",
-          count: {
-            reads: 19,
-            comments: 1,
-            answers: 2,
-            likes: 1,
-            collects: 0
-          }
-        },
-        {
-          user_id: 3,
-          user_name: "陆明恒",
-          user_avatar: "https://img.xiaoduyu.com/dcb97678-d958-4210-be43-6ebd5ebcc5c5.png?imageMogr2/crop/!1200x1200a593a43/thumbnail/!200/quality/90",
-          topic_id: 3,
-          topic_name: "演员",
-          post_id: 3,
-          post_title: "这是我的第三个帖子？？？",
-          post_content: "这是这个帖子内容的一部分",
-          datetime: "03月28日",
-          count: {
-            reads: 19,
-            comments: 1,
-            answers: 2,
-            likes: 0,
-            collects: 0
-          }
-        },
-        {
-          user_id: 4,
-          user_name: "周胜军",
-          user_avatar: "https://img.xiaoduyu.com/Fk2Boi_rCu0cHzXGU3v14oy8Z1sR?imageMogr2/auto-orient/thumbnail/!200/quality/90",
-          topic_id: 4,
-          topic_name: "程序员",
-          post_id: 4,
-          post_title: "这是我的第四个帖子？？？",
-          post_content: "这是这个帖子内容的一部分",
-          datetime: "04月12日",
-          count: {
-            reads: 1,
-            comments: 1,
-            answers: 0,
-            likes: 1,
-            collects: 0
-          }
-        },
-        {
-          user_id: 1,
-          user_name: "jwchan",
-          user_avatar: "https://jwchan.cn/images/avatar.jpg",
-          topic_id: 1,
-          topic_name: "产品经理",
-          post_id: 5,
-          post_title: "这是我的第一个帖子？？？",
-          post_content: "这是这个帖子内容的一部分",
-          datetime: "02月22日",
-          count: {
-            reads: 159,
-            comments: 6,
-            answers: 2,
-            likes: 2,
-            collects: 1
-          }
-        },
-        {
-          user_id: 2,
-          user_name: "梁虚天",
-          user_avatar: "https://img.xiaoduyu.com/FklxjW19iOahN2nBRdVNvpyaPeao?imageMogr2/thumbnail/!200/quality/90",
-          topic_id: 2,
-          topic_name: "明星",
-          post_id: 6,
-          post_title: "这是我的第二个帖子？？？",
-          post_content: "这是这个帖子内容的一部分",
-          datetime: "03月22日",
-          count: {
-            reads: 19,
-            comments: 1,
-            answers: 2,
-            likes: 1,
-            collects: 0
-          }
-        },
-        {
-          user_id: 3,
-          user_name: "陆明恒",
-          user_avatar: "https://img.xiaoduyu.com/dcb97678-d958-4210-be43-6ebd5ebcc5c5.png?imageMogr2/crop/!1200x1200a593a43/thumbnail/!200/quality/90",
-          topic_id: 3,
-          topic_name: "演员",
-          post_id: 7,
-          post_title: "这是我的第三个帖子？？？",
-          post_content: "这是这个帖子内容的一部分",
-          datetime: "03月28日",
-          count: {
-            reads: 19,
-            comments: 1,
-            answers: 2,
-            likes: 0,
-            collects: 0
-          }
-        },
-        {
-          user_id: 4,
-          user_name: "周胜军",
-          user_avatar: "https://img.xiaoduyu.com/Fk2Boi_rCu0cHzXGU3v14oy8Z1sR?imageMogr2/auto-orient/thumbnail/!200/quality/90",
-          topic_id: 4,
-          topic_name: "程序员",
-          post_id: 8,
-          post_title: "这是我的第四个帖子？？？",
-          post_content: "这是这个帖子内容的一部分",
-          datetime: "04月12日",
-          count: {
-            reads: 1,
-            comments: 1,
-            answers: 0,
-            likes: 1,
-            collects: 0
-          }
-        }
-      ]
+      postList: []
     }
   },
   components: {
@@ -184,6 +41,9 @@ export default {
     LinkCard,
     TopicList,
     PostList
+  },
+  created(){
+    this.getPostList()
   },
   mounted(){
     this.listenScroll()
@@ -203,6 +63,23 @@ export default {
       }else{         //否则显示回到顶部按钮
           obtn.style.display = 'block';
       }
+    },
+    getPostList(){
+      let data = {
+        page_num: 1,
+        page_size: 20
+      }
+      getPostList(data).then(response => {
+        if(response.data.status === 200){
+          this.postList = response.data.message
+        }else if(response.data.status === 10003){
+          this.postList = []
+        }else{
+          console.log('服务器开小差了，请稍后重试！')
+        }
+      }).catch(error => {
+        console.log('服务器丢失了，请稍后重试！')
+      })
     }
   }
 }

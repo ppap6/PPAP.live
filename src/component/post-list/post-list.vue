@@ -1,36 +1,36 @@
 <template>
   <div class="container">
     <div class="post-list">
-      <div class="post" v-for="post in itemList" :key="post.post_id">
+      <div class="post" v-for="post in postList" :key="post.id">
         <div class="post-header">
           <div class="header-left">
-            <router-link :to="`/user/${post.user_id}`">
-              <img class="avatar" :src="post.user_avatar" alt>
+            <router-link :to="`/user/${post.uid}`">
+              <img class="avatar" :src="post.avatar" alt>
             </router-link>
           </div>
           <div class="header-right">
-            <router-link :to="`/user/${post.user_id}`">
-              <p class="name">{{post.user_name}}</p>
+            <router-link :to="`/user/${post.uid}`">
+              <p class="name">{{post.uname}}</p>
             </router-link>
             <div class="display">
               <router-link :to="`/topic/${post.topic_id}`">
                 <span class="topic">{{post.topic_name}}</span>
               </router-link>
-              <span class="datetime">{{post.datetime}}</span>
+              <span class="datetime">{{post.create_time}}</span>
             </div>
           </div>
         </div>
         <div class="post-content">
-          <router-link :to="`/post/${post.post_id}`">
-            <div class="post-title">{{post.post_title}}</div>
+          <router-link :to="`/post/${post.id}`">
+            <div class="post-title">{{post.title}}</div>
           </router-link>
-          <div class="post-summary">{{post.post_content}}</div>
+          <div class="post-summary" v-html="post.content.slice(0,40) + '…'"></div>
           <div class="statistics">
-            <span class="reads" v-if="post.count.reads">{{post.count.reads}} 次阅读</span>
-            <span class="comments" v-if="post.count.comments">{{post.count.comments}} 条评论</span>
-            <span class="answers" v-if="post.count.answers">{{post.count.answers}} 条回复</span>
-            <span class="likes" v-if="post.count.likes">{{post.count.likes}} 人赞</span>
-            <span class="collects" v-if="post.count.collects">{{post.count.collects}} 人收藏</span>
+            <span class="reads" v-if="post.pv">{{post.pv}} 次阅读</span>
+            <span class="comments" v-if="post.comments">{{post.comments}} 条评论</span>
+            <span class="answers" v-if="post.answers">{{post.answers}} 条回复</span>
+            <span class="likes" v-if="post.likes">{{post.likes}} 人赞</span>
+            <span class="collects" v-if="post.collects">{{post.collects}} 人收藏</span>
           </div>
         </div>
       </div>
@@ -43,7 +43,7 @@ export default {
   props: ["postList"],
   data() {
     return {
-      itemList: this.postList
+      // itemList: this.postList
     };
   }
 };
