@@ -39,7 +39,13 @@
             <p class="title">{{item.post.title}}</p>
           </router-link>
         </div>
-        <span class="text">回复了你</span>
+        <!-- <span class="text">回复了你</span> -->
+        <span class="text">
+          <span>回复了&nbsp;</span>
+          <router-link :to="`/user/${item.id}`">
+            <p class="name">{{item.name}}</p>
+          </router-link>
+        </span>
         <div class="right">
           <router-link :to="`/post/${item.post.id}`">
             <p class="title">查看详情</p>
@@ -55,7 +61,13 @@
           </router-link>
         </div>
         <span class="datetime">17天前</span>
-        <span class="text">关注了你</span>
+        <!-- <span class="text">关注了你</span> -->
+        <span class="text">
+          <span>关注了&nbsp;</span>
+          <router-link :to="`/user/${item.id}`">
+            <p class="name">{{item.name}}</p>
+          </router-link>
+        </span>
       </div>
       <!-- 点赞消息 -->
       <div class="activity" v-if="item.type === 4" :key="item.id">
@@ -66,7 +78,69 @@
           </router-link>
         </div>
         <span class="datetime">17天前</span>
-        <span class="text">点赞了你的文章</span>
+        <!-- <span class="text">点赞了你的文章</span> -->
+        <span class="text">
+          <span>点赞了&nbsp;</span>
+          <router-link :to="`/user/${item.id}`">
+            <p class="name">{{item.name}}</p>
+          </router-link>
+          <span>&nbsp;的文章</span>
+        </span>
+        <div class="right">
+          <router-link :to="`/post/${item.post.id}`">
+            <p class="title">{{item.post.title}}</p>
+          </router-link>
+        </div>
+      </div>
+      <!-- 收藏 -->
+      <div class="activity" v-if="item.type === 5" :key="item.id">
+        <div class="left">
+          <router-link :to="`/user/${item.id}`">
+            <img class="avatar" :src="item.avatar" alt>
+            <p class="name">{{item.name}}</p>
+          </router-link>
+        </div>
+        <span class="datetime">17天前</span>
+        <!-- <span class="text">收藏了你的文章</span> -->
+        <span class="text">
+          <span>收藏了&nbsp;</span>
+          <router-link :to="`/user/${item.id}`">
+            <p class="name">{{item.name}}</p>
+          </router-link>
+          <span>&nbsp;的文章</span>
+        </span>
+        <div class="right">
+          <router-link :to="`/post/${item.post.id}`">
+            <p class="title">{{item.post.title}}</p>
+          </router-link>
+        </div>
+      </div>
+      <!-- 关注话题 -->
+      <div class="activity" v-if="item.type === 6" :key="item.id">
+        <div class="left">
+          <router-link :to="`/user/${item.id}`">
+            <img class="avatar" :src="item.avatar" alt>
+            <p class="name">{{item.name}}</p>
+          </router-link>
+        </div>
+        <span class="datetime">17天前</span>
+        <span class="text">
+          <span>关注了话题&nbsp;</span>
+          <router-link :to="`/topic/${item.topic.id}`">
+            <p class="name">{{item.topic.name}}</p>
+          </router-link>
+        </span>
+      </div>
+       <!-- 关注消息 -->
+      <div class="activity" v-if="item.type === 7" :key="item.id">
+        <div class="left">
+          <router-link :to="`/user/${item.id}`">
+            <img class="avatar" :src="item.avatar" alt>
+            <p class="name">{{item.name}}</p>
+          </router-link>
+        </div>
+        <span class="datetime">17天前</span>
+        <span class="text">发表了文章</span>
         <div class="right">
           <router-link :to="`/post/${item.post.id}`">
             <p class="title">{{item.post.title}}</p>
@@ -83,7 +157,7 @@ export default {
     return {
       msg: '我所关注用户的动态的组件',
       activityList: [
-        //type的值 1为评论，2为回复，3为关注，4为点赞
+        //type的值 1为评论，2为回复，3为关注，4为点赞，5为收藏，6为话题，7为发表
         {
           id: 3,
           name: '郑宇飞',
@@ -155,6 +229,36 @@ export default {
             title: '深入浅出 webpack'
           },
           type: 4
+        },
+        {
+          id: 22,
+          name: '辣子鸡',
+          avatar: 'https://img.xiaoduyu.com/586658ea1985b4532700fd0a.jpg?imageMogr2/thumbnail/!200/quality/90',
+          post: {
+            id: 56,
+            title: '深入浅出 webpack'
+          },
+          type: 5
+        },
+        {
+          id: 23,
+          name: '辣子鸡',
+          avatar: 'https://img.xiaoduyu.com/586658ea1985b4532700fd0a.jpg?imageMogr2/thumbnail/!200/quality/90',
+          topic: {
+            id: 57,
+            name: 'Vue'
+          },
+          type: 6
+        },
+        {
+          id: 24,
+          name: '辣子鸡',
+          avatar: 'https://img.xiaoduyu.com/586658ea1985b4532700fd0a.jpg?imageMogr2/thumbnail/!200/quality/90',
+          post: {
+            id: 58,
+            title: '深入浅出 webpack'
+          },
+          type: 7
         }
       ]
     }
@@ -212,6 +316,31 @@ export default {
       font-size: 14px;
       margin: 0 5px;
       color: #999999;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      a{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        .avatar {
+          height: 24px;
+          width: 24px;
+          border-radius: 50%;
+          margin-right: 6px;
+        }
+
+        .name{
+          color: #333333;
+          font-size: 14px;
+
+          &:hover{
+            text-decoration: underline;
+          }
+        }
+      }
     }
 
     .right{
