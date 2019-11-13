@@ -21,4 +21,16 @@ request.interceptors.request.use(
     }
 )
 
+request.interceptors.response.use(
+    response => {
+        if(response.data.status === 401){
+            alert('请先登录！')
+        }
+        return response
+    },
+    error => {
+        return Promise.reject(error)
+    }
+)
+
 export default request

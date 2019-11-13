@@ -33,7 +33,8 @@ import { getTopicList } from 'api/topic'
 export default {
   data(){
     return {
-      postList: []
+      postList: [],
+      topicList: []
     }
   },
   components: {
