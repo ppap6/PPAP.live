@@ -1,10 +1,10 @@
 <template>
   <div class="container">
     <div class="topic-list">
-      <div class="fixed-label">
+      <!-- <div class="fixed-label">
         <span @click="selectTopic(0)" :class="{active: activeId === 0}">全部</span>
         <span @click="selectTopic(1)" :class="{active: activeId === 1}">优选</span>
-      </div>
+      </div> -->
 
       <div class="level1-topic" v-for="level1Topic in topicList" :key="level1Topic.id">
         <span
@@ -14,7 +14,7 @@
         <div class="level2-topic">
           <span
             @click="selectTopic(level2Topic.id)"
-            v-for="level2Topic in level1Topic.childs"
+            v-for="level2Topic in level1Topic.child"
             :class="{active: activeId === level2Topic.id}"
             :key="level2Topic.id"
           >{{level2Topic.name}}</span>
@@ -26,134 +26,134 @@
 
 <script>
 export default {
-  props: ["isRouter"],
+  props: ["isRouter", "topicList"],
   data() {
     return {
       activeId: 0,
-      topicList: [
-        {
-          id: 2,
-          name: "职业",
-          childs: [
-            {
-              id: 5,
-              name: "程序员"
-            },
-            {
-              id: 6,
-              name: "产品经理"
-            },
-            {
-              id: 7,
-              name: "设计师"
-            },
-            {
-              id: 8,
-              name: "教师"
-            },
-            {
-              id: 9,
-              name: "演员"
-            },
-            {
-              id: 10,
-              name: "明星"
-            }
-          ]
-        },
-        {
-          id: 3,
-          name: "技术",
-          childs: [
-            {
-              id: 11,
-              name: "React"
-            },
-            {
-              id: 12,
-              name: "Vue"
-            },
-            {
-              id: 13,
-              name: "React Native"
-            },
-            {
-              id: 14,
-              name: "Angular"
-            },
-            {
-              id: 15,
-              name: "小程序"
-            },
-            {
-              id: 16,
-              name: "NodeJS"
-            },
-            {
-              id: 17,
-              name: "JavaScript"
-            },
-            {
-              id: 18,
-              name: "Go"
-            },
-            {
-              id: 19,
-              name: "Flutter"
-            },
-            {
-              id: 20,
-              name: "TypeScript"
-            },
-            {
-              id: 21,
-              name: "Webpack"
-            }
-          ]
-        },
-        {
-          id: 4,
-          name: "生活",
-          childs: [
-            {
-              id: 22,
-              name: "音乐"
-            },
-            {
-              id: 23,
-              name: "动漫"
-            },
-            {
-              id: 24,
-              name: "电影"
-            },
-            {
-              id: 25,
-              name: "旅游"
-            },
-            {
-              id: 26,
-              name: "美食"
-            },
-            {
-              id: 27,
-              name: "健康"
-            },
-            {
-              id: 28,
-              name: "运动"
-            },
-            {
-              id: 29,
-              name: "交友"
-            },
-            {
-              id: 30,
-              name: "健身"
-            }
-          ]
-        }
-      ]
+      // topicList: [
+      //   {
+      //     id: 2,
+      //     name: "职业",
+      //     childs: [
+      //       {
+      //         id: 5,
+      //         name: "程序员"
+      //       },
+      //       {
+      //         id: 6,
+      //         name: "产品经理"
+      //       },
+      //       {
+      //         id: 7,
+      //         name: "设计师"
+      //       },
+      //       {
+      //         id: 8,
+      //         name: "教师"
+      //       },
+      //       {
+      //         id: 9,
+      //         name: "演员"
+      //       },
+      //       {
+      //         id: 10,
+      //         name: "明星"
+      //       }
+      //     ]
+      //   },
+      //   {
+      //     id: 3,
+      //     name: "技术",
+      //     childs: [
+      //       {
+      //         id: 11,
+      //         name: "React"
+      //       },
+      //       {
+      //         id: 12,
+      //         name: "Vue"
+      //       },
+      //       {
+      //         id: 13,
+      //         name: "React Native"
+      //       },
+      //       {
+      //         id: 14,
+      //         name: "Angular"
+      //       },
+      //       {
+      //         id: 15,
+      //         name: "小程序"
+      //       },
+      //       {
+      //         id: 16,
+      //         name: "NodeJS"
+      //       },
+      //       {
+      //         id: 17,
+      //         name: "JavaScript"
+      //       },
+      //       {
+      //         id: 18,
+      //         name: "Go"
+      //       },
+      //       {
+      //         id: 19,
+      //         name: "Flutter"
+      //       },
+      //       {
+      //         id: 20,
+      //         name: "TypeScript"
+      //       },
+      //       {
+      //         id: 21,
+      //         name: "Webpack"
+      //       }
+      //     ]
+      //   },
+      //   {
+      //     id: 4,
+      //     name: "生活",
+      //     childs: [
+      //       {
+      //         id: 22,
+      //         name: "音乐"
+      //       },
+      //       {
+      //         id: 23,
+      //         name: "动漫"
+      //       },
+      //       {
+      //         id: 24,
+      //         name: "电影"
+      //       },
+      //       {
+      //         id: 25,
+      //         name: "旅游"
+      //       },
+      //       {
+      //         id: 26,
+      //         name: "美食"
+      //       },
+      //       {
+      //         id: 27,
+      //         name: "健康"
+      //       },
+      //       {
+      //         id: 28,
+      //         name: "运动"
+      //       },
+      //       {
+      //         id: 29,
+      //         name: "交友"
+      //       },
+      //       {
+      //         id: 30,
+      //         name: "健身"
+      //       }
+      //     ]
+      //   }
+      // ]
     };
   },
   methods: {
