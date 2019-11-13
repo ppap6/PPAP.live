@@ -15,7 +15,7 @@
       <PostList :postList="postList"></PostList>
     </div>
     <div class="topic-list" id="right">
-      <TopicList :isRouter="true" :topicList="topicList"></TopicList>
+      <TopicList :isRouter="true"></TopicList>
     </div>
   </div>
 </template>
@@ -28,13 +28,11 @@ import HotPostCard from "component/hot-post-card/hot-post-card"
 import LinkCard from "component/link-card/link-card"
 
 import { getPostList } from 'api/post'
-import { getTopicList } from 'api/topic'
 
 export default {
   data(){
     return {
-      postList: [],
-      topicList: []
+      postList: []
     }
   },
   components: {
@@ -46,7 +44,6 @@ export default {
   },
   created(){
     this.getPostList()
-    this.getTopicList()
   },
   mounted(){
     this.listenScroll()
@@ -77,19 +74,6 @@ export default {
           this.postList = response.data.message
         }else if(response.data.status === 10003){
           this.postList = []
-        }else{
-          console.log('服务器开小差了，请稍后重试！')
-        }
-      }).catch(error => {
-        console.log('服务器丢失了，请稍后重试！')
-      })
-    },
-    getTopicList(){
-      getTopicList().then(response => {
-        if(response.data.status === 200){
-          this.topicList = response.data.message
-        }else if(response.data.status === 10003){
-          this.topicList = []
         }else{
           console.log('服务器开小差了，请稍后重试！')
         }

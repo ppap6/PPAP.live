@@ -25,18 +25,37 @@
 </template>
 
 <script>
+import { getTopicList } from 'api/topic'
+
 export default {
-  props: ["isRouter", "topicList"],
+  props: ["isRouter"],
   data() {
     return {
-      activeId: 0
+      activeId: 0,
+      topicList: []
     };
+  },
+  created(){
+    this.getTopicList()
   },
   methods: {
     selectTopic(id) {
       this.activeId = id;
       if(!this.isRouter) return
       this.$router.push({path: `/topic/${id}`});
+    },
+    getTopicList(){
+      getTopicList().then(response => {
+        if(response.data.status === 200){
+          this.topicList = response.data.message
+        }else if(response.data.status === 10003){
+          this.topicList = []
+        }else{
+          console.log('服务器开小差了，请稍后重试！')
+        }
+      }).catch(error => {
+        console.log('服务器丢失了，请稍后重试！')
+      })
     }
   }
 };
