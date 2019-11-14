@@ -16,6 +16,8 @@ import Search from 'page/search/search'
 import PostDetail from 'component/post-detail/post-detail'
 import Topic from 'component/topic-detail/topic-detail'
 
+import Login from 'component/login/login'
+
 import User from 'page/user/user'
 // user 的子组件
 import UserPostList from 'page/user/post-list/post-list'
@@ -183,6 +185,11 @@ export default new Router({
       path: '/topic/:id',
       name: 'Topic',
       component: Topic
+    },
+    {
+      path: '/login',
+      name: 'Login',
+      component: Login
     },
     {
       path: '*',

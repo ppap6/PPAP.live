@@ -19,7 +19,7 @@
         </div> 
       </div>
       <div class="header-right">
-        <ul>
+        <ul v-if="token !== undefined">
           <li>
             <router-link to="/follow">关注</router-link>
           </li>
@@ -36,13 +36,35 @@
             <router-link to="/user/666">jwchan1996</router-link>
           </li>
         </ul>
+        <ul v-else>
+          <li>
+            <router-link to="/register">注册</router-link>
+          </li>
+          <li>
+            <router-link to="/login">登录</router-link>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+import { getStorage } from 'common/js/localstorage'
+
+export default {
+  data(){
+    return {
+      
+    }
+  },
+  computed: {
+    token(){
+      console.log(getStorage('user').token)
+      return getStorage('user').token
+    }
+  }
+};
 </script>
 
 <style scoped lang="stylus">
