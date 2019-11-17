@@ -25,6 +25,7 @@
 
 <script>
 import { getUserLoginStatus } from 'api/user'
+import { setStorage, getStorage } from 'common/js/localstorage'
 
 export default {
   data() {
@@ -43,17 +44,20 @@ export default {
   methods: {
     getUserLoginStatus(){
       getUserLoginStatus().then(response => {
-        console.log(response)
         if(response.data.status === 200){
-          //写入storage
-          setStorage('user', response.data.message)
+          //读写storage
+          let user = getStorage('user')
+          user.count = response.data.message.count
+          setStorage('user', user)
           //更新数据
           this.id = response.data.message.id
           this.name = response.data.message.name
           this.avatar = response.data.message.avatar
-          this.posts = response.data.message.posts
-          this.fans = response.data.message.fans
-          this.follows = response.data.message.follows
+          this.posts = response.data.message.count.posts
+          this.fans = response.data.message.count.fans
+          this.follows = response.data.message.count.follows
+          //更改state.token的状态
+          this.$store.commit('resetToken', user.token)
         }else{
 
         }
