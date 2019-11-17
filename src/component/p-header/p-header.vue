@@ -61,7 +61,8 @@ export default {
   computed: {
     token(){
       console.log(getStorage('user').token)
-      return getStorage('user').token
+      // return getStorage('user').token
+      return this.$store.state.token
     }
   }
 };

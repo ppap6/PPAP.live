@@ -7,7 +7,7 @@ const baseURL = 'http://39.108.65.176:2333'
 const request = axios.create({
     baseURL,
     headers: {
-        "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
+        "Content-Type": "application/json;charset=UTF-8"
     }
 })
   

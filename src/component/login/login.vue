@@ -11,14 +11,42 @@
         <input type="password" placeholder="请输入密码……" />
       </div>
       <div class="login">
-        <div>登录</div>
+        <div @click="login">登录</div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+import { login } from 'api/user'
+import { setStorage } from 'common/js/localstorage'
+
+export default {
+  data(){
+    return {
+
+    }
+  },
+  methods: {
+    login(){
+      let data = {
+        account: '741755613',
+        password: 'd93a5def7511da3d0f2d171d9c344e91'
+      }
+      login(data).then(response => {
+        if(response.data.status === 200){
+          setStorage('user', response.data.user)
+          alert('登录成功')
+          this.$router.go(-1)
+          //更改state.token状态、
+          this.$store.commit('resetToken', response.data.user.token)
+        }else{
+
+        }
+      })
+    }
+  }
+};
 </script>
 
 <style scoped lang="stylus">
