@@ -4,11 +4,11 @@
     <div class="main">
       <div class="account">
         <span>账号：</span>
-        <input type="text" placeholder="请输入账号……" />
+        <input type="text" v-model="account" placeholder="请输入账号……" />
       </div>
       <div class="password">
         <span>密码：</span>
-        <input type="password" placeholder="请输入密码……" />
+        <input type="password" v-model="password" placeholder="请输入密码……" />
       </div>
       <div class="login">
         <div @click="login">登录</div>
@@ -20,18 +20,29 @@
 <script>
 import { login } from 'api/user'
 import { setStorage } from 'common/js/localstorage'
+import sha1 from 'crypto-js/sha1'
+import md5 from 'crypto-js/md5'
 
 export default {
   data(){
     return {
-
+      account: '',
+      password: ''
     }
   },
   methods: {
     login(){
+      if(this.account.trim() === ''){
+        alert('账号不能为空')
+        return
+      }
+      if(this.password.trim() === ''){
+        alert('密码不能为空')
+        return
+      }
       let data = {
-        account: '741755613',
-        password: 'd93a5def7511da3d0f2d171d9c344e91'
+        account: this.account,
+        password: md5(sha1(this.password).toString()).toString()
       }
       login(data).then(response => {
         if(response.data.status === 200){
@@ -41,7 +52,8 @@ export default {
           //更改state.token状态、
           this.$store.commit('resetToken', response.data.user.token)
         }else{
-
+          console.log(response.data)
+          alert(response.data.message)
         }
       })
     }
