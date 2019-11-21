@@ -2,8 +2,12 @@
   <div class="container">
     <div class="main-container">
       <img class="close-btn" src="../../common/img/close.png" @click="backPrev" />
-      <div class="header">用户登录</div>
+      <div class="header">用户注册</div>
       <div class="main">
+        <div class="account">
+          <span>昵称：</span>
+          <input type="text" v-model="name" placeholder="请输入昵称……" />
+        </div>
         <div class="account">
           <span>账号：</span>
           <input type="text" v-model="account" placeholder="请输入账号……" />
@@ -13,7 +17,7 @@
           <input type="password" v-model="password" placeholder="请输入密码……" />
         </div>
         <div class="login">
-          <div @click="login">登录</div>
+          <div @click="register">注册</div>
         </div>
       </div>
     </div>
@@ -21,20 +25,24 @@
 </template>
 
 <script>
-import { login } from 'api/user'
-import { setStorage } from 'common/js/localstorage'
+import { register } from 'api/user'
 import sha1 from 'crypto-js/sha1'
 import md5 from 'crypto-js/md5'
 
 export default {
   data(){
     return {
+      name: '',
       account: '',
       password: ''
     }
   },
   methods: {
-    login(){
+    register(){
+      if(this.name.trim() === ''){
+        alert('昵称不能为空')
+        return
+      }
       if(this.account.trim() === ''){
         alert('账号不能为空')
         return
@@ -44,16 +52,14 @@ export default {
         return
       }
       let data = {
+        name: this.name,
         account: this.account,
         password: md5(sha1(this.password).toString()).toString()
       }
-      login(data).then(response => {
+      register(data).then(response => {
         if(response.data.status === 200){
-          setStorage('user', response.data.user)
-          alert('登录成功')
+          alert('注册成功')
           this.$router.go(-1)
-          //更改state.token状态、
-          this.$store.commit('resetToken', response.data.user.token)
         }else{
           console.log(response.data)
           alert(response.data.message)
@@ -76,7 +82,7 @@ export default {
   flex-direction column
   align-items center
   justify-content center
-  background-image url('https://jwchan.cn/images/GDG2018/dance.jpg')
+  background-image url('https://jwchan.cn/images/vue_data_update.jpg')
   background-position center
   background-repeat no-repeat
   background-size cover

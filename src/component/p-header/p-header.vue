@@ -38,10 +38,10 @@
         </ul>
         <ul v-else>
           <li>
-            <router-link to="/register">注册</router-link>
+            <a @click="goRegister">注册</a>
           </li>
           <li>
-            <router-link to="/login">登录</router-link>
+            <a @click="goLogin">登录</a>
           </li>
         </ul>
       </div>
@@ -63,6 +63,34 @@ export default {
       console.log(getStorage('user').token)
       // return getStorage('user').token
       return this.$store.state.token
+    }
+  },
+  methods: {
+    goLogin(){
+      if(this.$route.path == '/register' || this.$route.path == '/login'){
+        console.log('replace')
+        this.$router.replace({
+          path: '/login'
+        })
+      }else{
+        console.log('push')
+        this.$router.push({
+          path: '/login'
+        })
+      }
+    },
+    goRegister(){
+      if(this.$route.path == '/register' || this.$route.path == '/login'){
+        console.log('replace')
+        this.$router.replace({
+          path: '/register'
+        })
+      }else{
+        console.log('push')
+        this.$router.push({
+          path: '/register'
+        })
+      }
     }
   }
 };
@@ -147,7 +175,12 @@ export default {
           font-size: 14px;
           padding: 10px;
           list-style: none;
+
+          >a {
+            cursor: pointer;
+          }
         }
+
       }
     }
   }

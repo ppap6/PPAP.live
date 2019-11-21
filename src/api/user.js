@@ -9,3 +9,8 @@ export function getUserLoginStatus(){
 export function login(data){
     return Request.post('/user/login', data)
 }
+
+//用户注册
+export function register(data){
+    return Request.post('/user/register', data)
+}

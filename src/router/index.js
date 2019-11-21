@@ -17,6 +17,7 @@ import PostDetail from 'component/post-detail/post-detail'
 import Topic from 'component/topic-detail/topic-detail'
 
 import Login from 'component/login/login'
+import Register from 'component/register/register'
 
 import User from 'page/user/user'
 // user 的子组件
@@ -190,6 +191,11 @@ export default new Router({
       path: '/login',
       name: 'Login',
       component: Login
+    },
+    {
+      path: '/register',
+      name: 'Register',
+      component: Register
     },
     {
       path: '*',
