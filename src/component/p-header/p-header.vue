@@ -33,7 +33,10 @@
             <router-link to="/chats">私信</router-link>
           </li>
           <li>
-            <router-link to="/user/666">jwchan1996</router-link>
+            <router-link to="/user/666">
+              <img class="avatar" :src="avatar" alt="">
+              <span>{{uname}}</span>
+            </router-link>
           </li>
         </ul>
         <ul v-else>
@@ -55,12 +58,16 @@ import { getStorage } from 'common/js/localstorage'
 export default {
   data(){
     return {
-      keywords: ''
+      keywords: '',
+      avatar: '',
+      uname: ''
     }
   },
   computed: {
     token(){
       console.log(getStorage('user').token)
+      this.avatar = getStorage('user').avatar
+      this.uname = getStorage('user').uname
       // return getStorage('user').token
       return this.$store.state.token
     }
@@ -190,6 +197,18 @@ export default {
 
           >a {
             cursor: pointer;
+            display flex
+            flex-direction row
+            align-items center
+            justify-content center
+
+            .avatar {
+              width 24px
+              height 24px
+              border-radius 50%
+              padding-right 5px
+            }
+
           }
         }
 
