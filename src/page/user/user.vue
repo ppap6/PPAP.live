@@ -17,56 +17,56 @@
         </div>
       </header>
       <nav>
-        <router-link to="/user/666">
+        <router-link :to="`/user/${userId}`">
           <span
             class="posts"
             @click="selectNav('posts')"
             :class="{active: navName === 'posts'}"
           >帖子 1</span>
         </router-link>
-        <router-link to="/user/666/comments">
+        <router-link :to="`/user/${userId}/comments`">
           <span
             class="comments"
             @click="selectNav('comments')"
             :class="{active: navName === 'comments'}"
           >评论 2</span>
         </router-link>
-        <router-link to="/user/666/answers">
+        <router-link :to="`/user/${userId}/answers`">
           <span
             class="answers"
             @click="selectNav('answers')"
             :class="{active: navName === 'answers'}"
           >回复 4</span>
         </router-link>
-        <router-link to="/user/666/followers">
+        <router-link :to="`/user/${userId}/followers`">
           <span
             class="followers"
             @click="selectNav('followers')"
             :class="{active: navName === 'followers'}"
           >粉丝 2</span>
         </router-link>
-        <router-link to="/user/666/follow-peoples">
+        <router-link :to="`/user/${userId}/follow-peoples`">
           <span
             class="follow-peoples"
             @click="selectNav('follow-peoples')"
             :class="{active: navName === 'follow-peoples'}"
           >关注 1</span>
         </router-link>
-        <router-link to="/user/666/star-posts">
+        <router-link :to="`/user/${userId}/star-posts`">
           <span
             class="star-posts"
             @click="selectNav('star-posts')"
             :class="{active: navName === 'star-posts'}"
           >Stars 2</span>
         </router-link>
-        <router-link to="/user/666/collect-posts">
+        <router-link :to="`/user/${userId}/collect-posts`" v-if="uid == userId">
           <span
             class="collect-posts"
             @click="selectNav('collect-posts')"
             :class="{active: navName === 'collect-posts'}"
           >收藏 1</span>
         </router-link>
-        <router-link to="/user/666/follow-topics">
+        <router-link :to="`/user/${userId}/follow-topics`">
           <span
             class="follow-topics"
             @click="selectNav('follow-topics')"
@@ -83,19 +83,26 @@
 </template>
 
 <script>
+import { getStorage } from 'common/js/localstorage'
+
 export default {
   data() {
     return {
-      navName: "posts"
+      navName: "posts",
+      userId: this.$route.params.id,
+      uid: getStorage('user').uid
     };
   },
   watch: {
     $route(to, from){
       //监听路由变化，改变选中
       this.refleshSelectStatus(to.name)
+      //更细当前用户ID，显示收藏列表
+      this.userId = this.$route.params.id
     }
   },
   mounted(){
+    console.log(this.$route)
     this.refleshSelectStatus(this.$route.name) 
   },
   methods: {

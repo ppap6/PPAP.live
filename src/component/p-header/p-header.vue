@@ -27,13 +27,13 @@
             <router-link to="/new-post">发帖</router-link>
           </li>
           <li>
-            <router-link to="/notice/用户id">通知</router-link>
+            <router-link to="/notice">通知</router-link>
           </li>
           <li>
             <router-link to="/chats">私信</router-link>
           </li>
           <li>
-            <router-link to="/user/666">
+            <router-link :to="`/user/${uid}`">
               <img class="avatar" :src="avatar" alt="">
               <span>{{uname}}</span>
             </router-link>
@@ -59,6 +59,7 @@ export default {
   data(){
     return {
       keywords: '',
+      uid: 0,
       avatar: '',
       uname: ''
     }
@@ -66,6 +67,7 @@ export default {
   computed: {
     token(){
       console.log(getStorage('user').token)
+      this.uid = getStorage('user').uid
       this.avatar = getStorage('user').avatar
       this.uname = getStorage('user').uname
       // return getStorage('user').token
