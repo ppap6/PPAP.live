@@ -15,7 +15,7 @@
           <router-link to="/search">
             <img class="search-icon" src="../../common/img/search.png" alt="">
           </router-link>
-          <input class="search-input" type="text" placeholder="搜索">
+          <input class="search-input" type="text" v-model="keywords" placeholder="搜索">
         </div> 
       </div>
       <div class="header-right">
@@ -55,7 +55,7 @@ import { getStorage } from 'common/js/localstorage'
 export default {
   data(){
     return {
-      
+      keywords: ''
     }
   },
   computed: {
@@ -63,6 +63,18 @@ export default {
       console.log(getStorage('user').token)
       // return getStorage('user').token
       return this.$store.state.token
+    }
+  },
+  watch: {
+    $route(to, from){
+      console.log(to)
+      console.log(from)
+      if(from.path == '/search/posts' && to.path != '/search/users'){
+        this.keywords = ''
+      }
+      if(from.path == '/search/users' && to.path != '/search/posts'){
+        this.keywords = ''
+      }
     }
   },
   methods: {
