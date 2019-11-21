@@ -53,7 +53,8 @@
 </template>
 
 <script>
-import { getStorage } from 'common/js/localstorage'
+import { getUserLoginStatus } from 'api/user'
+import { getStorage, setStorage } from 'common/js/localstorage'
 
 export default {
   data(){
@@ -66,18 +67,16 @@ export default {
   },
   computed: {
     token(){
-      console.log(getStorage('user').token)
       this.uid = getStorage('user').uid
       this.avatar = getStorage('user').avatar
       this.uname = getStorage('user').uname
-      // return getStorage('user').token
       return this.$store.state.token
     }
   },
   watch: {
     $route(to, from){
-      console.log(to)
-      console.log(from)
+      // console.log(to)
+      // console.log(from)
       if(from.path == '/search/posts' && to.path != '/search/users'){
         this.keywords = ''
       }
@@ -85,6 +84,9 @@ export default {
         this.keywords = ''
       }
     }
+  },
+  created(){
+    this.getUserLoginStatus()
   },
   methods: {
     goLogin(){
@@ -112,6 +114,23 @@ export default {
           path: '/register'
         })
       }
+    },
+    getUserLoginStatus(){
+      getUserLoginStatus().then(response => {
+        if(response.data.status === 200){
+          //读写storage
+          let user = getStorage('user')
+          user.count = response.data.message.count
+          setStorage('user', user)
+          //更新数据
+          //更改state.token的状态
+          this.$store.commit('resetToken', user.token)
+        }else{
+
+        }
+      }).catch(error => {
+
+      })
     }
   }
 };

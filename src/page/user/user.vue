@@ -102,7 +102,6 @@ export default {
     }
   },
   mounted(){
-    console.log(this.$route)
     this.refleshSelectStatus(this.$route.name) 
   },
   methods: {
