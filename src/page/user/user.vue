@@ -9,11 +9,11 @@
     <div class="container-header">
       <header>
         <div class="header-left">
-          <img class="avatar" src="https://jwchan.cn/images/avatar.jpg" alt>
+          <img class="avatar" :src="user.avatar" alt>
         </div>
         <div class="header-right">
-          <p class="name">Jwchan</p>
-          <p class="join-date">加入于 10 天前</p>
+          <p class="name">{{user.name}}</p>
+          <p class="join-date">加入于 {{user.create_time.split(' ')[0]}}</p>
         </div>
       </header>
       <nav>
