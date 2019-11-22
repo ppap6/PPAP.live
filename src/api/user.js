@@ -14,3 +14,8 @@ export function login(data){
 export function register(data){
     return Request.post('/user/register', data)
 }
+
+//获取用户信息
+export function getUser(id){
+    return Request.get(`/user/${id}`)
+}
