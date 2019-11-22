@@ -13,7 +13,7 @@ const request = axios.create({
   
 request.interceptors.request.use(
     config => {
-        config.headers.common["Authorization"] = "Bearer " + getStorage("user").token
+        config.headers.common['Authorization'] = 'Bearer ' + getStorage('user').token
         return config
     },
     error => {
