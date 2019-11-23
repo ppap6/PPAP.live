@@ -1,12 +1,14 @@
 <template>
   <div class="container">
-    <router-link :to="`/user/${id}`">
+    <router-link :to="`/user/${uid}`" v-if="token !== undefined">
       <img class="profile" :src="avatar" alt>
     </router-link>
-    <router-link :to="`/user/${id}`">
-      <p class="name">{{name}}</p>
+    <img class="profile" @click="goLogin" src="../../common/img/avatar.gif" alt v-if="token === undefined">
+    <router-link :to="`/user/${uid}`" v-if="token !== undefined">
+      <p class="name">{{uname}}</p>
     </router-link>
-    <div class="user-information">
+    <p class="name" @click="goLogin" v-if="token === undefined">未登录</p>
+    <div class="user-information" v-if="token !== undefined">
       <div class="following">
         <div class="counts">{{follows}}</div>
         <div class="text">关注</div>
@@ -24,90 +26,81 @@
 </template>
 
 <script>
-import { getUserLoginStatus } from 'api/user'
-import { setStorage, getStorage } from 'common/js/localstorage'
+import { getStorage } from 'common/js/localstorage'
 
 export default {
   data() {
     return {
-      id: 0,
-      avatar: "https://jwchan.cn/images/avatar.jpg",
-      name: "Jwchan",
-      follows: '',
-      fans: '',
-      posts: ''
+      uid: 0,
+      avatar: '',
+      uname: '',
+      follows: 0,
+      fans: 0,
+      posts: 0
     }
   },
-  created(){
-    this.getUserLoginStatus()
+  computed: {
+    token(){
+      this.uid = getStorage('user').uid == undefined ? 0 : getStorage('user').uid
+      this.avatar = getStorage('user').avatar == undefined ? 0 : getStorage('user').avatar
+      this.uname = getStorage('user').uname == undefined ? 0 : getStorage('user').uname
+      this.follows = getStorage('user').count == undefined ? 0 : getStorage('user').count.follows
+      this.fans = getStorage('user').count == undefined ? 0 : getStorage('user').count.fans
+      this.posts = getStorage('user').count == undefined ? 0 : getStorage('user').count.posts
+      return this.$store.state.token
+    }
   },
   methods: {
-    getUserLoginStatus(){
-      getUserLoginStatus().then(response => {
-        if(response.data.status === 200){
-          //读写storage
-          let user = getStorage('user')
-          user.count = response.data.message.count
-          setStorage('user', user)
-          //更新数据
-          this.id = response.data.message.id
-          this.name = response.data.message.name
-          this.avatar = response.data.message.avatar
-          this.posts = response.data.message.count.posts
-          this.fans = response.data.message.count.fans
-          this.follows = response.data.message.count.follows
-          //更改state.token的状态
-          this.$store.commit('resetToken', user.token)
-        }else{
-
-        }
-      }).catch(error => {
-
+    goLogin(){
+      this.$router.push({
+        path: '/login'
       })
     }
   }
 }
 </script>
 
-<style scoped>
+<style scoped lang="stylus">
   .container{
-    padding: 15px;
-    background-color: #FFFFFF;
-    border-radius: 5px;
-  }
+    padding 15px
+    background-color #FFFFFF
+    border-radius 5px
 
-  .profile{
-    height: 80px;
-    width: 80px;
-    border-radius: 50%;
-  }
+    .profile{
+      height 80px
+      width 80px
+      border-radius 50%
+      cursor pointer
+    }
 
-  .name{
-    color: #171717;
-    font-weight: bold;
-  }
+    .name{
+      color #555555
+      font-weight bold
+      cursor pointer
+    }
 
-  .user-information{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-  }
+    .user-information{
+      display flex
+      flex-direction row
+      align-items center
+      justify-content center
 
-  .following,
-  .followers,
-  .posts{
-    width: 20%;
-    margin: 10px;
-  }
+      .following,
+      .followers,
+      .posts{
+        width 20%
+        margin 10px
 
-  .counts{
-    color: #666666;
-    font-size: 14px;
-  }
+        .counts{
+          color #666666
+          font-size 14px
+        }
 
-  .text{
-    color: #999999;
-    font-size: 12px;
+        .text{
+          color #999999
+          font-size 12px
+        }
+      }
+    }
   }
 </style>
