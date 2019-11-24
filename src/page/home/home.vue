@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div id="left">
+    <div class="left">
       <div class="profile-card">
         <ProfileCard></ProfileCard>
       </div>
@@ -11,10 +11,10 @@
         <LinkCard></LinkCard>
       </div>
     </div>
-    <div class="post-list" id="center">
+    <div class="center post-list">
       <PostList :postList="postList"></PostList>
     </div>
-    <div class="topic-list" id="right">
+    <div class="right topic-list">
       <TopicList :isRouter="true"></TopicList>
     </div>
   </div>
@@ -85,42 +85,39 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="stylus">
 .container {
-  position: relative;
-  max-width: 1180px;
-  margin: auto;
-}
+  position relative
+  max-width: 1180px
+  margin: auto
 
-#left {
-  position: fixed;
-  width: 250px;
-  height: 500px;
-  /* background-color: #ffffff; */
-  border-radius: 5px;
-}
+  .left {
+    position: fixed
+    width: 250px
+    height: 500px
+    border-radius: 5px
 
-#center {
-  position: relative;
-  margin-left: 260px;
-  margin-right: 260px;
-  height: 800px;
-  /* background-color: #ffffff; */
-  border-radius: 5px;
-}
+    .profile-card,
+    .hot-post-card {
+      margin-bottom: 10px
+    }
+  }
 
-#right {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 250px;
-  height: 600px;
-  /* background-color: #ffffff; */
-  border-radius: 5px;
-}
+  .center {
+    position: relative
+    margin-left: 260px
+    margin-right: 260px
+    height: 800px
+    border-radius: 5px
+  }
 
-.profile-card,
-.hot-post-card {
-  margin-bottom: 10px;
+  .right {
+    position: absolute
+    top: 0
+    right: 0
+    width: 250px
+    height: 600px
+    border-radius: 5px
+  }
 }
 </style>
