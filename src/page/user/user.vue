@@ -13,7 +13,7 @@
         </div>
         <div class="header-right">
           <p class="name">{{user.name}}</p>
-          <p class="join-date">加入于 {{user.create_time.split(' ')[0]}}</p>
+          <p class="join-date">加入于 {{user.create_time ? user.create_time.split(' ')[0] : ''}}</p>
         </div>
       </header>
       <nav>
@@ -22,56 +22,56 @@
             class="posts"
             @click="selectNav('posts')"
             :class="{active: navName === 'posts'}"
-          >帖子 {{user.count.posts}}</span>
+          >帖子 {{user.count ? user.count.posts : ''}}</span>
         </router-link>
         <router-link :to="`/user/${userId}/comments`">
           <span
             class="comments"
             @click="selectNav('comments')"
             :class="{active: navName === 'comments'}"
-          >评论 {{user.count.comments}}</span>
+          >评论 {{user.count ? user.count.comments : ''}}</span>
         </router-link>
         <router-link :to="`/user/${userId}/answers`">
           <span
             class="answers"
             @click="selectNav('answers')"
             :class="{active: navName === 'answers'}"
-          >回复 {{user.count.answers}}</span>
+          >回复 {{user.count ? user.count.answers : ''}}</span>
         </router-link>
         <router-link :to="`/user/${userId}/followers`">
           <span
             class="followers"
             @click="selectNav('followers')"
             :class="{active: navName === 'followers'}"
-          >粉丝 {{user.count.fans}}</span>
+          >粉丝 {{user.count ? user.count.fans : ''}}</span>
         </router-link>
         <router-link :to="`/user/${userId}/follow-peoples`">
           <span
             class="follow-peoples"
             @click="selectNav('follow-peoples')"
             :class="{active: navName === 'follow-peoples'}"
-          >关注 {{user.count.follows}}</span>
+          >关注 {{user.count ? user.count.follows : ''}}</span>
         </router-link>
         <router-link :to="`/user/${userId}/star-posts`">
           <span
             class="star-posts"
             @click="selectNav('star-posts')"
             :class="{active: navName === 'star-posts'}"
-          >Stars {{user.count.likes}}</span>
+          >Stars {{user.count ? user.count.likes : ''}}</span>
         </router-link>
         <router-link :to="`/user/${userId}/collect-posts`" v-if="uid == userId">
           <span
             class="collect-posts"
             @click="selectNav('collect-posts')"
             :class="{active: navName === 'collect-posts'}"
-          >收藏 {{user.count.collects}}</span>
+          >收藏 {{user.count ? user.count.collects : ''}}</span>
         </router-link>
         <router-link :to="`/user/${userId}/follow-topics`">
           <span
             class="follow-topics"
             @click="selectNav('follow-topics')"
             :class="{active: navName === 'follow-topics'}"
-          >话题 {{user.count.topics}}</span>
+          >话题 {{user.count ? user.count.topics : ''}}</span>
         </router-link>
       </nav>
     </div>

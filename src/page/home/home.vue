@@ -54,7 +54,7 @@ export default {
     },
     handleScroll(){
       //滚动条滚动事件
-      let obtn = document.querySelector('#left');  //获取回到左边视图的ID
+      let obtn = document.querySelector('.left');  //获取回到左边视图的ID
       let clientHeight = document.documentElement.clientHeight;   //获取可视区域的高度
       //获取滚动条的滚动高度
       let osTop = document.documentElement.scrollTop || document.body.scrollTop;
