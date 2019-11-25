@@ -44,3 +44,12 @@ export function getPersonFollowList(uid){
       }
   })
 }
+
+//获取用户个人点赞列表
+export function getPersonLikeList(uid){
+  return Request.get('/person/like', {
+      params: {
+          user_id: uid
+      }
+  })
+}

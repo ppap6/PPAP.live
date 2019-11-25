@@ -1,29 +1,40 @@
 <template>
   <div class="user-star-post-list">
-    <h1>{{ msg }}</h1>
     <div class="post" v-for="item in postList" :key="item.id">
       <div class="title">
-        <router-link to="/post/帖子id">{{item.title}}</router-link>
+        <router-link :to="`/post/${item.id}`">{{item.title}}</router-link>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { getPersonLikeList } from 'api/person'
+
 export default {
   data () {
     return {
       msg: '我点赞的帖子列表组件',
-      postList: [
-        {
-          id: 3,
-          title: 'Flutter 1.5 发布，正式成为全平台 UI 框架'
-        },
-        {
-          id: 4,
-          title: '手摸手，带你用 vue 撸后台 系列五（v4.0 版本）'
+      postList: []
+    }
+  },
+  created(){
+    this.getPersonLikeList()
+  },
+  methods: {
+    getPersonLikeList(){
+      let uid = this.$route.params.id
+      getPersonLikeList(uid).then(response => {
+        if(response.data.status === 200){
+          this.postList = response.data.message
+        }else if(response.data.status === 10003){
+          this.postList = []
+        }else{
+          console.log('服务器开小差了，请稍后重试！')
         }
-      ]
+      }).catch(error => {
+        console.log('服务器丢失了，请稍后重试！')
+      })
     }
   }
 }
@@ -47,8 +58,9 @@ export default {
 
     a{
       font-size: 14px;
-      color: #515151;
+      color: #717171;
       cursor: pointer;
+      font-weight: bold;
     }
   }
 }
