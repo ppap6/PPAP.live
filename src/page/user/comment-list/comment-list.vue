@@ -7,7 +7,7 @@
 <template>
   <div class="container">
     <div class="comment-list">
-      <router-link :to="`/post/${item._id}`" v-for="item in commentList" :key="item._id">
+      <router-link :to="`/post/${item.pid}`" v-for="item in commentList" :key="item._id">
         <div class="comment">
           <div class="header">
             <span class="datetime">{{item.create_time}}</span>
@@ -16,7 +16,7 @@
           <div class="content">{{item.content}}</div>
           <div class="post">
             <span class="text">来自：</span>
-            <span class="title">{{item.title}}</span>
+            <span class="title">{{item.ptitle}}</span>
           </div>
         </div>
       </router-link>
@@ -53,7 +53,7 @@ export default {
       })
     }
   }
-};
+}
 </script>
 
 <style scoped lang="stylus">
