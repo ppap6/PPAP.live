@@ -16,6 +16,11 @@ export default {
       postList: []
     }
   },
+  watch: {
+    $route(to, from){
+      this.getPersonPostList()
+    }
+  },
   components: {
     PostList
   },

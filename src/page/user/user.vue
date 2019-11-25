@@ -101,6 +101,8 @@ export default {
       this.refleshSelectStatus(to.name)
       //更细当前用户ID，显示收藏列表
       this.userId = this.$route.params.id
+      //反组件复用更新数据
+      this.getUser()
     }
   },
   created(){
