@@ -12,9 +12,9 @@
           <img class="logo" src="../../common/img/logo.png" alt>
         </router-link>
         <div>
-          <router-link to="/search">
+          <a @click="goSearch">
             <img class="search-icon" src="../../common/img/search.png" alt="">
-          </router-link>
+          </a>
           <input class="search-input" type="text" v-model="keywords" placeholder="搜索">
         </div> 
       </div>
@@ -75,12 +75,10 @@ export default {
   },
   watch: {
     $route(to, from){
-      // console.log(to)
-      // console.log(from)
-      if(from.path == '/search/posts' && to.path != '/search/users'){
+      if(from.path.includes('/search/posts') && (!to.path.includes('/search/users') && !to.path.includes('/search/posts'))){
         this.keywords = ''
       }
-      if(from.path == '/search/users' && to.path != '/search/posts'){
+      if(from.path.includes('/search/users') && (!to.path.includes('/search/posts') && !to.path.includes('/search/users'))){
         this.keywords = ''
       }
     }
@@ -114,6 +112,14 @@ export default {
           path: '/register'
         })
       }
+    },
+    goSearch(){
+      this.$router.push({
+        path: '/search',
+        query: {
+          keyword: this.keywords
+        }
+      })
     },
     getUserLoginStatus(){
       getUserLoginStatus().then(response => {
