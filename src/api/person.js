@@ -54,9 +54,18 @@ export function getPersonLikeList(uid){
   })
 }
 
-//获取用户个列表
+//获取用户个人收藏列表
 export function getPersonCollectList(uid){
   return Request.get('/person/collect', {
+      params: {
+          user_id: uid
+      }
+  })
+}
+
+//获取用户个人关注话题列表
+export function getPersonTopicList(uid){
+  return Request.get('/person/topic', {
       params: {
           user_id: uid
       }
