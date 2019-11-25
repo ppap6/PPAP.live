@@ -1,6 +1,5 @@
 <template>
   <div class="container">
-    <h1>{{ msg }}</h1>
     <div class="post-list">
       <PostList :postList="postList"></PostList>
     </div>

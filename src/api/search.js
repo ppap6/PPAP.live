@@ -8,3 +8,12 @@ export function getSearchPostList(keyword){
       }
   })
 }
+
+//搜索用户列表
+export function getSearchUserList(keyword){
+  return Request.get('/search/user', {
+      params: {
+          keyword
+      }
+  })
+}

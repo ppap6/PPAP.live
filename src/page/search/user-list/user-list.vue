@@ -1,6 +1,5 @@
 <template>
   <div class="container">
-    <h1>{{ msg }}</h1>
     <div class="user-list" v-for="item in userList" :key="item.id">
       <div class="left">
         <router-link :to="`/user/${item.id}`">
@@ -12,9 +11,8 @@
           <p class="name">{{item.name}}</p>
         </router-link>
         <div class="count">
-          <span class="comments">评论 {{item.count.comments}}</span>
-          <span class="followers">粉丝 {{item.count.followers}}</span>
-          <span class="follows">关注用户 {{item.count.follows}}</span>
+          <span class="followers">粉丝 {{item.fans_count}}</span>
+          <span class="follows">关注 {{item.follow_count}}</span>
         </div>
       </div>
     </div>
@@ -22,32 +20,37 @@
 </template>
 
 <script>
+import { getSearchUserList } from 'api/search'
+
 export default {
   data () {
     return {
       msg: '搜索用户列表组件',
-      userList: [
-        {
-          id: 3,
-          name: '郑宇飞',
-          avatar: 'https://img.xiaoduyu.com/FnSA2VQBP1s_T_KjDuVKxFZ8EoQp',
-          count: {
-            comments: 20,
-            followers: 1,
-            follows: 15
-          }
-        },
-        {
-          id: 4,
-          name: '层出林',
-          avatar: 'https://img.xiaoduyu.com/1528538065535-588cbeace0b53fc80c0ed551',
-          count: {
-            comments: 5,
-            followers: 5,
-            follows: 80
-          }
+      userList: []
+    }
+  },
+  watch: {
+    $route(to, from){
+      this.getSearchUserList()
+    }
+  },
+  created(){
+    this.getSearchUserList()
+  },
+  methods: {
+    getSearchUserList(){
+      let keyword = this.$route.query.keyword
+      getSearchUserList(keyword).then(response => {
+        if(response.data.status === 200){
+          this.userList = response.data.message
+        }else if(response.data.status === 10003){
+          this.userList = []
+        }else{
+          console.log('服务器开小差了，请稍后重试！')
         }
-      ]
+      }).catch(error => {
+        console.log('服务器丢失了，请稍后重试！')
+      })
     }
   }
 }

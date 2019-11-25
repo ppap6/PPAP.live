@@ -2,14 +2,14 @@
   <div class="search-center">
     <div class="container-header">
       <nav>
-        <router-link to="/search/posts">
+        <router-link :to="`/search/posts?keyword=${keyword}`">
           <span
             class="posts"
             @click="selectNav('posts')"
             :class="{active: navName === 'posts'}"
           >帖子</span>
         </router-link>
-        <router-link to="/search/users">
+        <router-link :to="`/search/users?keyword=${keyword}`">
           <span
             class="users"
             @click="selectNav('users')"
@@ -29,14 +29,21 @@
 export default {
   data() {
     return {
-      navName: "posts"
+      navName: 'posts',
+      keyword: ''
     };
   },
   watch: {
     $route(to, from){
       //监听路由变化，改变选中
       this.refleshSelectStatus(to.name)
+      //存储query
+      this.keyword = this.$route.query.keyword
+      console.log(this.keyword)
     }
+  },
+  created(){
+    this.keyword = this.$route.query.keyword
   },
   mounted(){
     this.refleshSelectStatus(this.$route.name) 
