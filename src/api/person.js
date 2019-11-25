@@ -8,3 +8,12 @@ export function getPersonPostList(uid){
       }
   })
 }
+
+//获取用户个人评论列表
+export function getPersonCommentList(uid){
+  return Request.get('/person/comment', {
+      params: {
+          user_id: uid
+      }
+  })
+}

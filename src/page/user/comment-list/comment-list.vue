@@ -6,12 +6,11 @@
  -->
 <template>
   <div class="container">
-    <h1>{{msg}}</h1>
     <div class="comment-list">
-      <router-link to="/post/帖子id" v-for="item in commentList" :key="item._id">
+      <router-link :to="`/post/${item._id}`" v-for="item in commentList" :key="item._id">
         <div class="comment">
           <div class="header">
-            <span class="datetime">{{item.datetime}}</span>
+            <span class="datetime">{{item.create_time}}</span>
             <span class="lights">亮了({{item.lights}})</span>
           </div>
           <div class="content">{{item.content}}</div>
@@ -26,22 +25,33 @@
 </template>
 
 <script>
+import { getPersonCommentList } from 'api/person'
+
 export default {
   data() {
     return {
       msg: "我的回帖列表组件",
-      commentList: [
-        //这个是评论
-        {
-          _id: '4a56q4s23a467q',   //评论id
-          content: '有丶东西啊666😂有丶东西啊666😂有丶东西啊666😂有丶东西啊666😂有丶东西啊666😂有丶东西啊666😂',    //评论内容
-          pid: 1,   //帖子id
-          title: '这是我的第一个帖子？？？',    //帖子标题
-          datetime: '10天前',    //评论时间
-          lights: 2   //点亮数
+      commentList: []
+    }
+  },
+  created(){
+    this.getPersonCommentList()
+  },
+  methods: {
+    getPersonCommentList(){
+      let uid = this.$route.params.id
+      getPersonCommentList(uid).then(response => {
+        if(response.data.status === 200){
+          this.commentList = response.data.message
+        }else if(response.data.status === 10003){
+          this.commentList = []
+        }else{
+          console.log('服务器开小差了，请稍后重试！')
         }
-      ]
-    };
+      }).catch(error => {
+        console.log('服务器丢失了，请稍后重试！')
+      })
+    }
   }
 };
 </script>
