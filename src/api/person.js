@@ -17,3 +17,12 @@ export function getPersonCommentList(uid){
       }
   })
 }
+
+//获取用户个人回复列表
+export function getPersonAnswerList(uid){
+  return Request.get('/person/answer', {
+      params: {
+          user_id: uid
+      }
+  })
+}

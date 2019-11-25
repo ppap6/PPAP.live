@@ -6,25 +6,42 @@
  -->
 <template>
   <div class="container">
-    <h1>{{msg}}</h1>
     <div class="answer-list">
-      <router-link to="/post/帖子id" v-for="item in answerList" :key="item._id">
-        <div class="answer">
+      <router-link :to="`/post/${item.pid}`" v-for="item in answerList" :key="item._id">
+        <div class="answer" v-if="item.type == 1">
           <div class="header">
-            <span class="datetime">{{item.datetime}}</span>
+            <span class="datetime">{{item.create_time}}</span>
             <span class="lights">亮了({{item.lights}})</span>
           </div>
           <div class="quote">
             <div class="header">
-              <img :src="item.commentor_avatar" alt="">
-              <span class="uname">{{item.commentor_name}}</span>
+              <img :src="item.targetor_avatar" alt="">
+              <span class="uname">{{item.targetor_name}}</span>
             </div>
             <div class="content">{{item.comment_content}}</div>
           </div>
           <div class="content">{{item.content}}</div>
           <div class="post">
             <span class="text">来自：</span>
-            <span class="title">{{item.title}}</span>
+            <span class="title">{{item.ptitle}}</span>
+          </div>
+        </div>
+        <div class="answer" v-if="item.type == 2">
+          <div class="header">
+            <span class="datetime">{{item.create_time}}</span>
+            <span class="lights">亮了({{item.lights}})</span>
+          </div>
+          <div class="quote">
+            <div class="header">
+              <img :src="item.targetor_avatar" alt="">
+              <span class="uname">{{item.targetor_name}}</span>
+            </div>
+            <div class="content">{{item.target_answer_content}}</div>
+          </div>
+          <div class="content">{{item.content}}</div>
+          <div class="post">
+            <span class="text">来自：</span>
+            <span class="title">{{item.ptitle}}</span>
           </div>
         </div>
       </router-link>
@@ -33,12 +50,14 @@
 </template>
 
 <script>
+import { getPersonAnswerList } from 'api/person'
+
 export default {
   data() {
     return {
       msg: "我的回复列表组件",
       answerList: [
-        //这个是回复
+        // //这个是回复
         {
           _id: '5d6a8asd887q633a',    //回复id
           content: '学习了学习了',
@@ -52,9 +71,28 @@ export default {
           lights: 1   //点亮数
         }
       ]
-    };
+    }
+  },
+  created(){
+    this.getPersonAnswerList()
+  },
+  methods: {
+    getPersonAnswerList(){
+      let uid = this.$route.params.id
+      getPersonAnswerList(uid).then(response => {
+        if(response.data.status === 200){
+          this.answerList = response.data.message
+        }else if(response.data.status === 10003){
+          this.answerList = []
+        }else{
+          console.log('服务器开小差了，请稍后重试！')
+        }
+      }).catch(error => {
+        console.log('服务器丢失了，请稍后重试！')
+      })
+    }
   }
-};
+}
 </script>
 
 <style scoped lang="stylus">
