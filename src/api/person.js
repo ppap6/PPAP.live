@@ -26,3 +26,12 @@ export function getPersonAnswerList(uid){
       }
   })
 }
+
+//获取用户个人粉丝列表
+export function getPersonFansList(uid){
+  return Request.get('/person/fans', {
+      params: {
+          user_id: uid
+      }
+  })
+}

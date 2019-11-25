@@ -1,7 +1,6 @@
 <template>
-  <div class="user-follower-list">
-    <h1>{{ msg }}</h1>
-    <div class="follower" v-for="item in followerList" :key="item.id">
+  <div class="user-fans-list">
+    <div class="follower" v-for="item in fansList" :key="item.id">
       <div class="left">
         <router-link :to="`/user/${item.id}`">
           <img class="avatar" :src="item.avatar" alt>
@@ -12,9 +11,8 @@
           <p class="name">{{item.name}}</p>
         </router-link>
         <div class="count">
-          <span class="comments">评论 {{item.count.comments}}</span>
-          <span class="followers">粉丝 {{item.count.followers}}</span>
-          <span class="follows">关注用户 {{item.count.follows}}</span>
+          <span class="fans">粉丝 {{item.fans_count}}</span>
+          <span class="follows">关注 {{item.follow_count}}</span>
         </div>
       </div>
     </div>
@@ -22,32 +20,32 @@
 </template>
 
 <script>
+import { getPersonFansList } from 'api/person'
+
 export default {
   data () {
     return {
       msg: '我的粉丝列表组件',
-      followerList: [
-        {
-          id: 1,
-          name: '撸明恒',
-          avatar: 'https://img.xiaoduyu.com/Fs-3Jv_PZa7nFu6BGJXPiTKRVkd6',
-          count: {
-            comments: 1,
-            followers: 1,
-            follows: 1
-          }
-        },
-        {
-          id: 2,
-          name: '两虚天',
-          avatar: 'https://img.xiaoduyu.com/FklxjW19iOahN2nBRdVNvpyaPeao?imageMogr2/thumbnail/!200/quality/90',
-          count: {
-            comments: 2,
-            followers: 5,
-            follows: 4
-          }
+      fansList: []
+    }
+  },
+  created(){
+    this.getPersonFansList()
+  },
+  methods: {
+    getPersonFansList(){
+      let uid = this.$route.params.id
+      getPersonFansList(uid).then(response => {
+        if(response.data.status === 200){
+          this.fansList = response.data.message
+        }else if(response.data.status === 10003){
+          this.fansList = []
+        }else{
+          console.log('服务器开小差了，请稍后重试！')
         }
-      ]
+      }).catch(error => {
+        console.log('服务器丢失了，请稍后重试！')
+      })
     }
   }
 }
