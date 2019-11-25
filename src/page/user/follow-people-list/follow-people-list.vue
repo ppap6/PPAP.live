@@ -1,6 +1,5 @@
 <template>
   <div class="user-follow-people-list">
-    <h1>{{ msg }}</h1>
     <div class="follow" v-for="item in followList" :key="item.id">
       <div class="left">
         <router-link :to="`/user/${item.id}`">
@@ -12,9 +11,8 @@
           <p class="name">{{item.name}}</p>
         </router-link>
         <div class="count">
-          <span class="comments">评论 {{item.count.comments}}</span>
-          <span class="followers">粉丝 {{item.count.followers}}</span>
-          <span class="follows">关注用户 {{item.count.follows}}</span>
+          <span class="followers">粉丝 {{item.fans_count}}</span>
+          <span class="follows">关注 {{item.follow_count}}</span>
         </div>
       </div>
     </div>
@@ -22,39 +20,39 @@
 </template>
 
 <script>
+import { getPersonFollowList } from 'api/person'
+
 export default {
   data () {
     return {
       msg: '我的关注列表组件',
-      followList: [
-        {
-          id: 3,
-          name: '郑宇飞',
-          avatar: 'https://img.xiaoduyu.com/FnSA2VQBP1s_T_KjDuVKxFZ8EoQp',
-          count: {
-            comments: 20,
-            followers: 1,
-            follows: 15
-          }
-        },
-        {
-          id: 4,
-          name: '层出林',
-          avatar: 'https://img.xiaoduyu.com/1528538065535-588cbeace0b53fc80c0ed551',
-          count: {
-            comments: 5,
-            followers: 5,
-            follows: 80
-          }
+      followList: []
+    }
+  },
+  created(){
+    this.getPersonFollowList()
+  },
+  methods: {
+    getPersonFollowList(){
+      let uid = this.$route.params.id
+      getPersonFollowList(uid).then(response => {
+        if(response.data.status === 200){
+          this.followList = response.data.message
+        }else if(response.data.status === 10003){
+          this.followList = []
+        }else{
+          console.log('服务器开小差了，请稍后重试！')
         }
-      ]
+      }).catch(error => {
+        console.log('服务器丢失了，请稍后重试！')
+      })
     }
   }
 }
 </script>
 
 <style scoped lang="stylus">
-.follow{
+.follow {
   position: relative;
   display: flex;
   flex-direction: row;
@@ -72,7 +70,7 @@ export default {
     }
   } 
 
-  .right{
+  .right {
     text-align: left;
     padding: 2px 15px;
 
@@ -96,7 +94,7 @@ export default {
       font-size: 12px;
       font-weight: bold;
 
-      span{
+      span {
         margin-right: 10px;
       }
     }

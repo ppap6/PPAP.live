@@ -35,3 +35,12 @@ export function getPersonFansList(uid){
       }
   })
 }
+
+//获取用户个人关注列表
+export function getPersonFollowList(uid){
+  return Request.get('/person/follow', {
+      params: {
+          user_id: uid
+      }
+  })
+}
