@@ -15,7 +15,7 @@
           <a @click="goSearch">
             <img class="search-icon" src="../../common/img/search.png" alt="">
           </a>
-          <input class="search-input" type="text" v-model="keywords" placeholder="搜索">
+          <input class="search-input" type="text" v-model="keywords" @keyup.enter="goSearch" placeholder="搜索">
         </div> 
       </div>
       <div class="header-right">
