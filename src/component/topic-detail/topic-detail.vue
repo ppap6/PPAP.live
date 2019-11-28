@@ -21,7 +21,7 @@
 import PostList from "component/post-list/post-list"
 import { getTopic } from "api/topic"
 import { getPostList } from "api/post"
-import { followTopic, cancelFollowTopic } from "api/user"
+import { followTopic, cancelFollowTopic, getUserTopicStatus } from "api/user"
 
 export default {
   data () {
@@ -46,6 +46,8 @@ export default {
       getTopic(id).then(response => {
         if(response.data.status === 200){
           this.topic = response.data.message
+          //获取用户对话题的关注状态
+          this.getUserTopicStatus()
         }else if(response.data.status === 10003){
           this.topic = {}
         }else{
@@ -111,6 +113,19 @@ export default {
         console.log('服务器丢失了，请稍后重试！')
       })
     },
+    getUserTopicStatus(){
+      let topicId = this.$route.params.id
+      getUserTopicStatus(topicId).then(response => {
+        if(response.data.status === 200){
+          this.isFollow = response.data.message.isFollow
+          this.noFollow = !response.data.message.isFollow
+        }else{
+          console.log('服务器开小差了，请稍后重试！')
+        }
+      }).catch(error => {
+        console.log('服务器丢失了，请稍后重试！')
+      })
+    }
   }
 }
 </script>

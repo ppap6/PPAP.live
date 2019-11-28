@@ -29,3 +29,8 @@ export function followTopic(data){
 export function cancelFollowTopic(data){
     return Request.post('/user/cancel/follow/topic', data)
 }
+
+//获取用户对话题的关注状态
+export function getUserTopicStatus(id){
+    return Request.get(`/user/topic/status/${id}`)
+}
