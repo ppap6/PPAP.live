@@ -36,6 +36,12 @@ export default {
   components: {
     PostList
   },
+  watch: {
+    $route(to, from){
+      this.getTopic()
+      this.getPostList()
+    }
+  },
   created(){
     this.getTopic()
     this.getPostList()
