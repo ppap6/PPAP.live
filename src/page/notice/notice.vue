@@ -2,54 +2,47 @@
   <div class="notification-center">
     <div class="container-header">
       <nav>
-        <router-link to="/notice/666">
+        <router-link to="/notice">
           <span
             class="all"
             @click="selectNav('all')"
             :class="{active: navName === 'all'}"
           >全部 5</span>
         </router-link>
-        <router-link to="/notice/666/comments">
+        <router-link to="/notice/comments">
           <span
             class="comments"
             @click="selectNav('comments')"
             :class="{active: navName === 'comments'}"
           >评论 2</span>
         </router-link>
-        <router-link to="/notice/666/answers">
+        <router-link to="/notice/answers">
           <span
             class="answers"
             @click="selectNav('answers')"
             :class="{active: navName === 'answers'}"
           >回复 1</span>
         </router-link>
-        <router-link to="/notice/666/followers">
+        <router-link to="/notice/followers">
           <span
             class="followers"
             @click="selectNav('followers')"
             :class="{active: navName === 'followers'}"
           >关注 1</span>
         </router-link>
-        <router-link to="/notice/666/likes">
+        <router-link to="/notice/likes">
           <span
             class="likes"
             @click="selectNav('likes')"
             :class="{active: navName === 'likes'}"
           >赞 2</span>
         </router-link>
-        <router-link to="/notice/666/collects">
+        <router-link to="/notice/collects">
           <span
             class="collects"
             @click="selectNav('collects')"
             :class="{active: navName === 'collects'}"
           >收藏 2</span>
-        </router-link>
-        <router-link to="/notice/666/lights">
-          <span
-            class="lights"
-            @click="selectNav('lights')"
-            :class="{active: navName === 'lights'}"
-          >亮了 2</span>
         </router-link>
       </nav>
     </div>
@@ -99,9 +92,6 @@ export default {
           break;
         case 'Collects':
           this.navName = 'collects'
-          break;
-        case 'Lights':
-          this.navName = 'lights'
           break;
       
         default:

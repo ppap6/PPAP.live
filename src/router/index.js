@@ -70,40 +70,35 @@ export default new Router({
       redirect: '/notice/:id',
       children: [
         {
-          path: '/notice/:id',
+          path: '/notice',
           name: 'NoticeAll',
           component: NoticeAll
         },
         {
-          path: '/notice/:id/comments',
+          path: '/notice/comments',
           name: 'Comments',
           component: Comments
         },
         {
-          path: '/notice/:id/answers',
+          path: '/notice/answers',
           name: 'Answers',
           component: Answers
         },
         {
-          path: '/notice/:id/followers',
+          path: '/notice/followers',
           name: 'Followers',
           component: Followers
         },
         {
-          path: '/notice/:id/likes',
+          path: '/notice/likes',
           name: 'Likes',
           component: Likes
         },
         {
-          path: '/notice/:id/collects',
+          path: '/notice/collects',
           name: 'Collects',
           component: Collects
-        },
-        {
-          path: '/notice/:id/lights',
-          name: 'Lights',
-          component: Lights
-        },
+        }
       ]
     },
     {
