@@ -2,7 +2,7 @@
   <div class="topic">
     <h1>{{ msg }}</h1>
     <div class="detail">
-      <img :src="topic.avatar" alt="图标">
+      <img :src="topic.icon" alt="图标">
       <div class="information">
         <div class="name">{{topic.name}}</div>
         <div class="intro">{{topic.intro}}</div>
@@ -19,16 +19,13 @@
 
 <script>
 import PostList from "component/post-list/post-list"
+import { getTopic } from "api/topic"
 
 export default {
   data () {
     return {
       msg: '我是话题详情组件',
-      topic: {
-        avatar: "https://img.xiaoduyu.com/885719a9-f083-47df-853a-a003764f4017.jpg?imageMogr2/crop/!400x400a0a0/thumbnail/!200",
-        name: "Vue",
-        intro: "Vue是一个构建数据驱动的 web 界面的渐进式框架。"
-      },
+      topic: {},
       postList: [
         {
           user_id: 1,
@@ -107,6 +104,25 @@ export default {
   },
   components: {
     PostList
+  },
+  created(){
+    this.getTopic()
+  },
+  methods: {
+    getTopic(){
+      let id = this.$route.params.id
+      getTopic(id).then(response => {
+        if(response.data.status === 200){
+          this.topic = response.data.message
+        }else if(response.data.status === 10003){
+          this.topic = {}
+        }else{
+          console.log('服务器开小差了，请稍后重试！')
+        }
+      }).catch(error => {
+        console.log('服务器丢失了，请稍后重试！')
+      })
+    }
   }
 }
 </script>
