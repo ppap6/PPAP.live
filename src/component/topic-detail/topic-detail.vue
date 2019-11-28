@@ -10,7 +10,8 @@
           <span class="follows">关注 {{topic.followers}}</span>
         </div>
       </div>
-      <div class="follow" v-if="topic.sid != 0">关注</div>
+      <div class="follow" @click="followTopic" v-if="topic.sid != 0 && noFollow">关注</div>
+      <div class="follow" @click="cancelFollowTopic" v-if="topic.sid != 0 && isFollow">已关注</div>
     </div>
     <PostList :postList="postList"></PostList>
   </div>
@@ -20,12 +21,15 @@
 import PostList from "component/post-list/post-list"
 import { getTopic } from "api/topic"
 import { getPostList } from "api/post"
+import { followTopic, cancelFollowTopic } from "api/user"
 
 export default {
   data () {
     return {
       msg: '我是话题详情组件',
       topic: {},
+      noFollow: true,
+      isFollow: false,
       postList: []
     }
   },
@@ -68,7 +72,45 @@ export default {
       }).catch(error => {
         console.log('服务器丢失了，请稍后重试！')
       })
-    }
+    },
+    followTopic(){
+      let data = {
+        follow_topic_id: this.$route.params.id
+      }
+      followTopic(data).then(response => {
+        if(response.data.status === 200){
+          this.isFollow = true
+          this.noFollow = false
+        }else if(response.data.status === 10000){
+          this.isFollow = true
+          this.noFollow = false
+          alert('已关注话题')
+        }else{
+          console.log('服务器开小差了，请稍后重试！')
+        }
+      }).catch(error => {
+        console.log('服务器丢失了，请稍后重试！')
+      })
+    },
+    cancelFollowTopic(){
+      let data = {
+        follow_topic_id: this.$route.params.id
+      }
+      cancelFollowTopic(data).then(response => {
+        if(response.data.status === 200){
+          this.isFollow = false
+          this.noFollow = true
+        }else if(response.data.status === 10000){
+          this.isFollow = false
+          this.noFollow = true
+          alert('已取消关注话题')
+        }else{
+          console.log('服务器开小差了，请稍后重试！')
+        }
+      }).catch(error => {
+        console.log('服务器丢失了，请稍后重试！')
+      })
+    },
   }
 }
 </script>
@@ -133,6 +175,14 @@ export default {
       right: 20px;
       font-size: 14px;
       cursor: pointer;
+      padding: 2px 8px;
+      border-radius: 10px;
+      background-color: #ececec;
+
+      &:hover{
+        background-color: #4170ea;
+        color: #fff;
+      }
     }
   }
 }

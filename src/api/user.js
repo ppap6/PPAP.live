@@ -19,3 +19,13 @@ export function register(data){
 export function getUser(id){
     return Request.get(`/user/${id}`)
 }
+
+//用户关注话题
+export function followTopic(data){
+    return Request.post('/user/follow/topic', data)
+}
+
+//用户取消关注话题
+export function cancelFollowTopic(data){
+    return Request.post('/user/cancel/follow/topic', data)
+}
