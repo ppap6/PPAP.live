@@ -5,12 +5,12 @@
       <div class="information">
         <div class="name">{{topic.name}}</div>
         <div class="intro">{{topic.intro}}</div>
-        <div class="count">
-          <span class="posts">2 帖子</span>
-          <span class="follows">10 关注</span>
+        <div class="count" v-if="topic.sid != 0">
+          <span class="posts">帖子 {{topic.posts}}</span>
+          <span class="follows">关注 {{topic.followers}}</span>
         </div>
       </div>
-      <div class="follow">关注</div>
+      <div class="follow" v-if="topic.sid != 0">关注</div>
     </div>
     <PostList :postList="postList"></PostList>
   </div>
