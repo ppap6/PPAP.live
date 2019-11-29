@@ -6,3 +6,8 @@ export function getPostList(data){
         params: data
     })
 }
+
+//获取帖子信息
+export function getPost(id){
+    return Request.get(`/post/${id}`)
+}
