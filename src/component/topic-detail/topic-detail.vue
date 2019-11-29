@@ -196,8 +196,9 @@ export default {
       right: 20px;
       font-size: 14px;
       cursor: pointer;
-      padding: 2px 8px;
-      border-radius: 10px;
+      padding: 4px 10px;
+      border-radius: 15px;
+      color: #515151;
       background-color: #ececec;
 
       &:hover{
