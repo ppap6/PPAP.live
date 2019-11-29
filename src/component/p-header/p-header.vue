@@ -114,10 +114,14 @@ export default {
       }
     },
     goSearch(){
+      if(this.keywords.trim() == ''){
+        alert('请输入搜索关键字！')
+        return
+      }
       this.$router.push({
         path: '/search',
         query: {
-          keyword: this.keywords
+          keyword: this.keywords.trim()
         }
       })
     },
