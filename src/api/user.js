@@ -34,3 +34,23 @@ export function cancelFollowTopic(data){
 export function getUserTopicStatus(id){
     return Request.get(`/user/topic/status/${id}`)
 }
+
+//用户点赞帖子
+export function likePost(data){
+    return Request.post('/user/like/post', data)
+}
+
+//用户取消点赞帖子
+export function cancelLikePost(data){
+    return Request.post('/user/cancel/like/post', data)
+}
+
+//用户收藏帖子
+export function collectPost(data){
+    return Request.post('/user/collect/post', data)
+}
+
+//用户取消收藏帖子
+export function cancelCollectPost(data){
+    return Request.post('/user/cancel/collect/post', data)
+}

@@ -22,8 +22,10 @@
         <span class="answers">{{post.answers}} 条回复</span>
       </div>
       <div class="right">
-        <span class="likes">点赞 {{post.likes}}</span>
-        <span class="collects">收藏 {{post.collects}}</span>
+        <span class="likes" @click="likePost" v-show="noLike">点赞 {{post.likes}}</span>
+        <span class="likes" @click="cancelLikePost" v-show="isLike">已点赞 {{post.likes}}</span>
+        <span class="collects" @click="collectPost" v-show="noCollect">收藏 {{post.collects}}</span>
+        <span class="collects" @click="cancelCollectPost" v-show="isCollect">已收藏 {{post.collects}}</span>
       </div>
     </div>
     <!-- 评论组件  -->
@@ -34,20 +36,17 @@
 <script>
 import CommentList from 'component/comment-list/comment-list'
 import { getPost } from 'api/post'
+import { likePost, cancelLikePost, collectPost, cancelCollectPost } from 'api/user'
 
 export default {
   data() {
     return {
       msg: "我是帖子详情组件",
-      post: {
-        id: 1,
-        name: "大虫子",
-        avatar:
-          "https://img.xiaoduyu.com/dcb97678-d958-4210-be43-6ebd5ebcc5c5.png?imageMogr2/crop/!1200x1200a593a43/thumbnail/!200/quality/90",
-        last_datetime: "2019-04-28 15:30:22",
-        title: "我是这个帖子的标题",
-        content: "我是这个帖子的正文 🍰🍰🍰🍰🍰🍰🍰🍰🍰"
-      }
+      post: {},
+      noLike: true,
+      isLike: false,
+      noCollect: true,
+      isCollect: false 
     };
   },
   components: {
@@ -64,6 +63,82 @@ export default {
           this.post = response.data.message
         }else if(response.data.status === 10003){
           this.post = {}
+        }else{
+          console.log('服务器开小差了，请稍后重试！')
+        }
+      }).catch(error => {
+        console.log('服务器丢失了，请稍后重试！')
+      })
+    },
+    likePost(){
+      let data = {
+        pid: this.$route.params.id
+      }
+      likePost(data).then(response => {
+        if(response.data.status === 200){
+          this.isLike = true
+          this.noLike = false
+        }else if(response.data.status === 10000){
+          this.isLike = true
+          this.noLike = false
+          alert('已点赞帖子')
+        }else{
+          console.log('服务器开小差了，请稍后重试！')
+        }
+      }).catch(error => {
+        console.log('服务器丢失了，请稍后重试！')
+      })
+    },
+    cancelLikePost(){
+      let data = {
+        pid: this.$route.params.id
+      }
+      cancelLikePost(data).then(response => {
+        if(response.data.status === 200){
+          this.isLike = false
+          this.noLike = true
+        }else if(response.data.status === 10000){
+          this.isLike = false
+          this.noLike = true
+          alert('已取消点赞帖子')
+        }else{
+          console.log('服务器开小差了，请稍后重试！')
+        }
+      }).catch(error => {
+        console.log('服务器丢失了，请稍后重试！')
+      })
+    },
+    collectPost(){
+      let data = {
+        pid: this.$route.params.id
+      }
+      collectPost(data).then(response => {
+        if(response.data.status === 200){
+          this.isCollect = true
+          this.noCollect = false
+        }else if(response.data.status === 10000){
+          this.isCollect = true
+          this.noCollect = false
+          alert('已收藏帖子')
+        }else{
+          console.log('服务器开小差了，请稍后重试！')
+        }
+      }).catch(error => {
+        console.log('服务器丢失了，请稍后重试！')
+      })
+    },
+    cancelCollectPost(){
+      let data = {
+        pid: this.$route.params.id
+      }
+      cancelCollectPost(data).then(response => {
+        if(response.data.status === 200){
+          this.isCollect = false
+          this.noCollect = true
+        }else if(response.data.status === 10000){
+          this.isCollect = false
+          this.noCollect = true
+          alert('已取消收藏帖子')
         }else{
           console.log('服务器开小差了，请稍后重试！')
         }
