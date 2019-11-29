@@ -54,3 +54,8 @@ export function collectPost(data){
 export function cancelCollectPost(data){
     return Request.post('/user/cancel/collect/post', data)
 }
+
+//获取用户对帖子的点赞收藏状态
+export function getUserPostStatus(id){
+    return Request.get(`/user/post/status/${id}`)
+}

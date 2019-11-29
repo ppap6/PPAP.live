@@ -36,7 +36,7 @@
 <script>
 import CommentList from 'component/comment-list/comment-list'
 import { getPost } from 'api/post'
-import { likePost, cancelLikePost, collectPost, cancelCollectPost } from 'api/user'
+import { likePost, cancelLikePost, collectPost, cancelCollectPost, getUserPostStatus } from 'api/user'
 
 export default {
   data() {
@@ -61,6 +61,8 @@ export default {
       getPost(id).then(response => {
         if(response.data.status === 200){
           this.post = response.data.message
+          //获取用户对帖子的点赞收藏状态
+          this.getUserPostStatus()
         }else if(response.data.status === 10003){
           this.post = {}
         }else{
@@ -139,6 +141,21 @@ export default {
           this.isCollect = false
           this.noCollect = true
           alert('已取消收藏帖子')
+        }else{
+          console.log('服务器开小差了，请稍后重试！')
+        }
+      }).catch(error => {
+        console.log('服务器丢失了，请稍后重试！')
+      })
+    },
+    getUserPostStatus(){
+      let postId = this.$route.params.id
+      getUserPostStatus(postId).then(response => {
+        if(response.data.status === 200){
+          this.isLike = response.data.message.isLike
+          this.noLike = !response.data.message.isLike
+          this.isCollect = response.data.message.isCollect
+          this.noCollect = !response.data.message.isCollect
         }else{
           console.log('服务器开小差了，请稍后重试！')
         }
@@ -246,10 +263,10 @@ export default {
       color: #777;
 
       .likes{
-        padding: 4px 10px;
+        padding: 6px 10px;
         cursor: pointer;
         background-color: #ececec;
-        border-radius: 10px;
+        border-radius: 15px;
 
         &:hover{
           background-color: #4170ea;
@@ -258,10 +275,10 @@ export default {
       }
 
       .collects{
-        padding: 4px 10px;
+        padding: 6px 10px;
         cursor: pointer;
         background-color: #ececec;
-        border-radius: 10px;
+        border-radius: 15px;
 
         &:hover{
           background-color: #4170ea;
