@@ -8,7 +8,12 @@
         <router-link :to="`/user/${post.uid}`">
           <div class="name">{{post.uname}}</div>
         </router-link>
-        <div class="last-datetime">{{post.create_time}}</div>
+        <div class="display">
+          <router-link :to="`/topic/${post.topic_id}`">
+            <span class="topic">{{post.topic_name}}</span>
+          </router-link>
+          <span class="datetime">{{post.create_time}}</span>
+        </div>
       </div>
     </div>
     <div class="post-content">
@@ -210,9 +215,33 @@ export default {
         }
       }
 
-      .last-datetime {
+      .display {
+        height: 18px;
+        line-height: 18px;
         font-size: 14px;
-        color: #797979;
+        font-weight: bold;
+
+        
+        .topic {
+          font-size: 12px;
+          color: #333333 !important;
+
+          &:hover {
+            text-decoration: underline;
+          }
+
+          &:after {
+            vertical-align: center;
+            font-size: 8px;
+            margin: 0 8px 0 8px;
+            content: "\2022";
+          }
+        }
+
+        .datetime {
+          font-size: 12px;
+          color: #999999;
+        }
       }
     }
   }
