@@ -2,7 +2,7 @@
   <div class="post-detail">
     <div class="post-header">
       <router-link :to="`/user/${post.uid}`">
-        <img :src="post.avatar" alt="头像">
+        <img :src="post.avatar" alt>
       </router-link>
       <div class="information">
         <router-link :to="`/user/${post.uid}`">

@@ -1,7 +1,7 @@
 <template>
   <div class="topic">
     <div class="detail">
-      <img :src="topic.icon" alt="图标">
+      <img :src="topic.icon" alt>
       <div class="information">
         <div class="name">{{topic.name}}</div>
         <div class="intro">{{topic.intro}}</div>
