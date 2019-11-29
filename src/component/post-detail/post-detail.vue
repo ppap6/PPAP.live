@@ -80,6 +80,7 @@ export default {
         if(response.data.status === 200){
           this.isLike = true
           this.noLike = false
+          this.post.likes ++
         }else if(response.data.status === 10000){
           this.isLike = true
           this.noLike = false
@@ -99,6 +100,7 @@ export default {
         if(response.data.status === 200){
           this.isLike = false
           this.noLike = true
+          this.post.likes --
         }else if(response.data.status === 10000){
           this.isLike = false
           this.noLike = true
@@ -118,6 +120,7 @@ export default {
         if(response.data.status === 200){
           this.isCollect = true
           this.noCollect = false
+          this.post.collects ++
         }else if(response.data.status === 10000){
           this.isCollect = true
           this.noCollect = false
@@ -137,6 +140,7 @@ export default {
         if(response.data.status === 200){
           this.isCollect = false
           this.noCollect = true
+          this.post.collects --
         }else if(response.data.status === 10000){
           this.isCollect = false
           this.noCollect = true
