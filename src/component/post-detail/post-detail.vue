@@ -273,7 +273,7 @@ export default {
     justify-content: space-between;
 
     .left{
-      padding: 10px 20px;
+      padding: 0 20px 10px;
       font-size: 14px;
       color: #777;
 
@@ -291,12 +291,12 @@ export default {
     }
 
     .right{
-      padding: 10px 20px;
+      padding: 0 20px 15px;
       font-size: 14px;
       color: #777;
 
       .likes{
-        padding: 6px 10px;
+        padding: 4px 10px;
         cursor: pointer;
         background-color: #ececec;
         border-radius: 15px;
@@ -308,7 +308,7 @@ export default {
       }
 
       .collects{
-        padding: 6px 10px;
+        padding: 4px 10px;
         cursor: pointer;
         background-color: #ececec;
         border-radius: 15px;
