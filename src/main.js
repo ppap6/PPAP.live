@@ -14,10 +14,12 @@ Vue.use(mavonEditor)
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
-new Vue({
+const VM = new Vue({
   el: '#app',
   router,
   store,
   components: { App },
   template: '<App/>'
 })
+
+export default VM

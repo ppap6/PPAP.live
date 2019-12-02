@@ -1,4 +1,5 @@
 import axios from 'axios'
+import VM from '../main'
 import { getStorage, setStorage, removeStorage } from 'common/js/localstorage'
 
 // const baseURL = 'http://localhost:2333'
@@ -32,6 +33,8 @@ request.interceptors.response.use(
             }else if(response.config.url.indexOf('/user/topic/status') > -1){
                 return response
             }
+            //store清除state.token
+            VM.$store.commit('resetToken', undefined)
             //清除storage
             removeStorage('user')
             alert('请先登录！')
