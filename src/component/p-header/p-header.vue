@@ -135,8 +135,8 @@ export default {
           //更新数据
           //更改state.token的状态
           this.$store.commit('resetToken', user.token)
-        }else{
-
+        }else if(response.data.status === 401){
+          //不作处理
         }
       }).catch(error => {
 

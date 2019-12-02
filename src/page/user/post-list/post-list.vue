@@ -36,7 +36,7 @@ export default {
         }else if(response.data.status === 10003){
           this.postList = []
         }else{
-          console.log('服务器开小差了，请稍后重试！')
+          //不作处理
         }
       }).catch(error => {
         console.log('服务器丢失了，请稍后重试！')

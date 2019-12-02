@@ -57,7 +57,7 @@ export default {
         }else if(response.data.status === 10003){
           this.topic = {}
         }else{
-          console.log('服务器开小差了，请稍后重试！')
+          //不作处理
         }
       }).catch(error => {
         console.log('服务器丢失了，请稍后重试！')
@@ -75,7 +75,7 @@ export default {
         }else if(response.data.status === 10003){
           this.postList = []
         }else{
-          console.log('服务器开小差了，请稍后重试！')
+          //不作处理
         }
       }).catch(error => {
         console.log('服务器丢失了，请稍后重试！')
@@ -94,7 +94,7 @@ export default {
           this.noFollow = false
           alert('已关注话题')
         }else{
-          console.log('服务器开小差了，请稍后重试！')
+          //不作处理
         }
       }).catch(error => {
         console.log('服务器丢失了，请稍后重试！')
@@ -113,7 +113,7 @@ export default {
           this.noFollow = true
           alert('已取消关注话题')
         }else{
-          console.log('服务器开小差了，请稍后重试！')
+          //不作处理
         }
       }).catch(error => {
         console.log('服务器丢失了，请稍后重试！')
@@ -125,8 +125,10 @@ export default {
         if(response.data.status === 200){
           this.isFollow = response.data.message.isFollow
           this.noFollow = !response.data.message.isFollow
+        }else if(response.data.status === 401){
+          //不作处理
         }else{
-          console.log('服务器开小差了，请稍后重试！')
+          //不作处理
         }
       }).catch(error => {
         console.log('服务器丢失了，请稍后重试！')

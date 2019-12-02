@@ -71,7 +71,7 @@ export default {
         }else if(response.data.status === 10003){
           this.post = {}
         }else{
-          console.log('服务器开小差了，请稍后重试！')
+          //不作处理
         }
       }).catch(error => {
         console.log('服务器丢失了，请稍后重试！')
@@ -91,7 +91,7 @@ export default {
           this.noLike = false
           alert('已点赞帖子')
         }else{
-          console.log('服务器开小差了，请稍后重试！')
+          //不作处理
         }
       }).catch(error => {
         console.log('服务器丢失了，请稍后重试！')
@@ -111,7 +111,7 @@ export default {
           this.noLike = true
           alert('已取消点赞帖子')
         }else{
-          console.log('服务器开小差了，请稍后重试！')
+          //不作处理
         }
       }).catch(error => {
         console.log('服务器丢失了，请稍后重试！')
@@ -131,7 +131,7 @@ export default {
           this.noCollect = false
           alert('已收藏帖子')
         }else{
-          console.log('服务器开小差了，请稍后重试！')
+          //不作处理
         }
       }).catch(error => {
         console.log('服务器丢失了，请稍后重试！')
@@ -151,7 +151,7 @@ export default {
           this.noCollect = true
           alert('已取消收藏帖子')
         }else{
-          console.log('服务器开小差了，请稍后重试！')
+          //不作处理
         }
       }).catch(error => {
         console.log('服务器丢失了，请稍后重试！')
@@ -165,6 +165,8 @@ export default {
           this.noLike = !response.data.message.isLike
           this.isCollect = response.data.message.isCollect
           this.noCollect = !response.data.message.isCollect
+        }else if(response.data.status === 401){
+          //不作处理
         }else{
           console.log('服务器开小差了，请稍后重试！')
         }

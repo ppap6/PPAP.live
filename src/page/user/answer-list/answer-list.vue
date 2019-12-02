@@ -56,21 +56,7 @@ export default {
   data() {
     return {
       msg: "我的回复列表组件",
-      answerList: [
-        // //这个是回复
-        {
-          _id: '5d6a8asd887q633a',    //回复id
-          content: '学习了学习了',
-          comment_id: '5a45s46f6a6',   //评论id
-          comment_content: '有丶东西啊555😂',   //评论内容
-          commentor_name: '渣渣辉',    //评论人昵称
-          commentor_avatar: 'https://img.xiaoduyu.com/Fs-3Jv_PZa7nFu6BGJXPiTKRVkd6',    //评论人头像
-          pid: 1,   //帖子id
-          title: 'react + ant-design 构建 web 应用',    //帖子标题
-          datetime: '10天前',    //回复时间
-          lights: 1   //点亮数
-        }
-      ]
+      answerList: []
     }
   },
   created(){
@@ -85,7 +71,7 @@ export default {
         }else if(response.data.status === 10003){
           this.answerList = []
         }else{
-          console.log('服务器开小差了，请稍后重试！')
+          //不作处理
         }
       }).catch(error => {
         console.log('服务器丢失了，请稍后重试！')
