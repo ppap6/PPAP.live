@@ -11,3 +11,8 @@ export function getPostList(data){
 export function getPost(id){
     return Request.get(`/post/${id}`)
 }
+
+//增加帖子阅读量
+export function addPv(data){
+    return Request.post('/post/add/pv', data)
+}

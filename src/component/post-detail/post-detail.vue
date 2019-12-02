@@ -40,7 +40,7 @@
 
 <script>
 import CommentList from 'component/comment-list/comment-list'
-import { getPost } from 'api/post'
+import { getPost, addPv } from 'api/post'
 import { likePost, cancelLikePost, collectPost, cancelCollectPost, getUserPostStatus } from 'api/user'
 
 export default {
@@ -58,6 +58,7 @@ export default {
     CommentList
   },
   created(){
+    this.addPv()
     this.getPost()
   },
   methods: {
@@ -76,6 +77,12 @@ export default {
       }).catch(error => {
         console.log('服务器丢失了，请稍后重试！')
       })
+    },
+    addPv(){
+      let data = {
+        pid: this.$route.params.id
+      }
+      addPv(data)
     },
     likePost(){
       let data = {
