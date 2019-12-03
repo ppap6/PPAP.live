@@ -6,11 +6,11 @@
       <div class="main">
         <div class="account">
           <span>账号：</span>
-          <input type="text" v-model="account" placeholder="请输入账号……" />
+          <input type="text" v-model="account" @keyup.enter="login" placeholder="请输入账号……" />
         </div>
         <div class="password">
           <span>密码：</span>
-          <input type="password" v-model="password" placeholder="请输入密码……" />
+          <input type="password" v-model="password" @keyup.enter="login" placeholder="请输入密码……" />
         </div>
         <div class="login">
           <div @click="login">登录</div>

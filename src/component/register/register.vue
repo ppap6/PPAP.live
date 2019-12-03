@@ -6,15 +6,15 @@
       <div class="main">
         <div class="account">
           <span>昵称：</span>
-          <input type="text" v-model="name" placeholder="请输入昵称……" />
+          <input type="text" v-model="name" @keyup.enter="register" placeholder="请输入昵称……" />
         </div>
         <div class="account">
           <span>账号：</span>
-          <input type="text" v-model="account" placeholder="请输入账号……" />
+          <input type="text" v-model="account" @keyup.enter="register" placeholder="请输入账号……" />
         </div>
         <div class="password">
           <span>密码：</span>
-          <input type="password" v-model="password" placeholder="请输入密码……" />
+          <input type="password" v-model="password" @keyup.enter="register" placeholder="请输入密码……" />
         </div>
         <div class="login">
           <div @click="register">注册</div>
