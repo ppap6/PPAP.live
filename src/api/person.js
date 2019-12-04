@@ -71,3 +71,13 @@ export function getPersonTopicList(uid){
       }
   })
 }
+
+//获取用户关注的用户的动态列表
+export function getPersonFollowDynamicList(data){
+  return Request.get('/person/dynamic/follow', {
+    params: {
+      page_num: data.pageNum,
+      page_size: data.pageSize
+    }
+  })
+}
