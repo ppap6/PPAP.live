@@ -41,8 +41,8 @@
         <!-- <span class="text">回复了你</span> -->
         <span class="text">
           <span>回复了&nbsp;</span>
-          <router-link :to="`/user/${item.uid}`">
-            <p class="name">{{item.uname}}</p>
+          <router-link :to="`/user/${item.targetor_id}`">
+            <p class="name">{{item.targetor_name}}</p>
           </router-link>
         </span>
         <div class="right">
