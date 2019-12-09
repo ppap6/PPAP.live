@@ -1,18 +1,17 @@
 <template>
   <div class="like-list">
-    <h1>{{ msg }}</h1>
-    <div class="notice" v-for="item in noticeList" :key="item.id">
+    <div class="notice" v-for="item in noticeList" :key="item._id">
       <div class="left">
-        <router-link :to="`/user/${item.id}`">
+        <router-link :to="`/user/${item.uid}`">
           <img class="avatar" :src="item.avatar" alt>
-          <p class="name">{{item.name}}</p>
+          <p class="name">{{item.uname}}</p>
         </router-link>
       </div>
-      <span class="datetime">17天前</span>
+      <span class="datetime">{{item.create_time}}</span>
       <span class="text">点赞了你的文章</span>
       <div class="right">
-        <router-link :to="`/post/${item.post.id}`">
-          <p class="title">{{item.post.title}}</p>
+        <router-link :to="`/post/${item.pid}`">
+          <p class="title">{{item.pname}}</p>
         </router-link>
       </div>
     </div>
@@ -20,30 +19,31 @@
 </template>
 
 <script>
+import { getLikeNoticeList } from 'api/notice'
+
 export default {
   data () {
     return {
       msg: '点赞通知的组件',
-      noticeList: [
-        {
-          id: 3,
-          name: '郑宇飞',
-          avatar: 'https://img.xiaoduyu.com/FnSA2VQBP1s_T_KjDuVKxFZ8EoQp',
-          post: {
-            id: 5,
-            title: '如何实现双向绑定？'
-          }
-        },
-        {
-          id: 8,
-          name: '辣子鸡',
-          avatar: 'https://img.xiaoduyu.com/586658ea1985b4532700fd0a.jpg?imageMogr2/thumbnail/!200/quality/90',
-          post: {
-            id: 55,
-            title: '深入浅出 webpack'
-          }
-        },
-      ]
+      pageNum: 1,
+      pageSize: 20,
+      noticeList: []
+    }
+  },
+  created(){
+    this.getLikeNoticeList()
+  },
+  methods: {
+    getLikeNoticeList(){
+      let data = {
+        page_num: this.pageNum,
+        page_size: this.pageSize
+      }
+      getLikeNoticeList(data).then(response => {
+        if(response.data.status == 200){
+          this.noticeList = response.data.message
+        }
+      })
     }
   }
 }

@@ -27,3 +27,10 @@ export function getCommentNoticeList(data){
         params: data
     })
 }
+
+//获取点赞通知列表
+export function getLikeNoticeList(data){
+    return Request.get('/notice/like', {
+        params: data
+    })
+}

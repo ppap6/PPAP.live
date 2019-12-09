@@ -1,22 +1,22 @@
 <template>
   <div class="comment-list">
-    <div class="notice" v-for="item in noticeList" :key="item.id">
+    <div class="notice" v-for="item in noticeList" :key="item._id">
       <div class="left">
-        <router-link :to="`/user/${item.id}`">
+        <router-link :to="`/user/${item.uid}`">
           <img class="avatar" :src="item.avatar" alt>
-          <p class="name">{{item.name}}</p>
+          <p class="name">{{item.uname}}</p>
         </router-link>
       </div>
-      <span class="datetime">17天前</span>
+      <span class="datetime">{{item.create_time}}</span>
       <span class="text">在文章</span>
       <div class="right">
-        <router-link :to="`/post/${item.post.id}`">
-          <p class="title">{{item.post.title}}</p>
+        <router-link :to="`/post/${item.pid}`">
+          <p class="title">{{item.pname}}</p>
         </router-link>
       </div>
       <span class="text">留下了评论</span>
       <div class="right">
-        <router-link :to="`/post/${item.post.id}`">
+        <router-link :to="`/post/${item.comment_id}`">
           <p class="title">查看详情</p>
         </router-link>
       </div>
