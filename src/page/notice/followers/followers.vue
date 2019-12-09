@@ -1,8 +1,8 @@
 <template>
   <div class="follower-list">
-    <div class="notice" v-for="item in noticeList" :key="item.id">
+    <div class="notice" v-for="item in noticeList" :key="item._id">
       <div class="left">
-        <router-link :to="`/user/${item.id}`">
+        <router-link :to="`/user/${item.uid}`">
           <img class="avatar" :src="item.avatar" alt>
           <p class="name">{{item.uname}}</p>
         </router-link>

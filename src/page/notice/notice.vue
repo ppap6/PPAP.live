@@ -7,42 +7,42 @@
             class="all"
             @click="selectNav('all')"
             :class="{active: navName === 'all'}"
-          >全部 5</span>
+          >全部</span>
         </router-link>
         <router-link to="/notice/comments">
           <span
             class="comments"
             @click="selectNav('comments')"
             :class="{active: navName === 'comments'}"
-          >评论 2</span>
+          >评论</span>
         </router-link>
         <router-link to="/notice/answers">
           <span
             class="answers"
             @click="selectNav('answers')"
             :class="{active: navName === 'answers'}"
-          >回复 1</span>
+          >回复</span>
         </router-link>
         <router-link to="/notice/followers">
           <span
             class="followers"
             @click="selectNav('followers')"
             :class="{active: navName === 'followers'}"
-          >关注 1</span>
+          >关注</span>
         </router-link>
         <router-link to="/notice/likes">
           <span
             class="likes"
             @click="selectNav('likes')"
             :class="{active: navName === 'likes'}"
-          >赞 2</span>
+          >赞</span>
         </router-link>
         <router-link to="/notice/collects">
           <span
             class="collects"
             @click="selectNav('collects')"
             :class="{active: navName === 'collects'}"
-          >收藏 2</span>
+          >收藏</span>
         </router-link>
       </nav>
     </div>
