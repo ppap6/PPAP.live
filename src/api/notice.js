@@ -6,3 +6,10 @@ export function getNoticeList(data){
         params: data
     })
 }
+
+//获取关注通知列表
+export function getFollowNoticeList(data){
+    return Request.get('/notice/follow', {
+        params: data
+    })
+}

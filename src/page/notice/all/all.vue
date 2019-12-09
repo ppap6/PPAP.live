@@ -1,6 +1,5 @@
 <template>
   <div class="all-list">
-    <h1>{{ msg }}</h1>
     <template v-for="item in noticeList">
       <!-- 评论消息 -->
       <div class="notice" v-if="item.type === 1" :key="item._id">

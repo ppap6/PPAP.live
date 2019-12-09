@@ -1,36 +1,44 @@
 <template>
   <div class="follower-list">
-    <h1>{{ msg }}</h1>
     <div class="notice" v-for="item in noticeList" :key="item.id">
       <div class="left">
         <router-link :to="`/user/${item.id}`">
           <img class="avatar" :src="item.avatar" alt>
-          <p class="name">{{item.name}}</p>
+          <p class="name">{{item.uname}}</p>
         </router-link>
       </div>
-      <span class="datetime">17天前</span>
+      <span class="datetime">{{item.create_time}}</span>
       <span class="text">关注了你</span>
     </div>
   </div>
 </template>
 
 <script>
+import { getFollowNoticeList } from 'api/notice'
+
 export default {
   data () {
     return {
       msg: '关注通知的组件',
-      noticeList: [
-        {
-          id: 88,
-          name: '诸葛孔明',
-          avatar: 'https://img.xiaoduyu.com/FiUaikT13Zy0M9yhxFN3iZN5SQKI',
-        },
-        {
-          id: 89,
-          name: '波波维奇教练',
-          avatar: 'https://img.xiaoduyu.com/FnSA2VQBP1s_T_KjDuVKxFZ8EoQp',
-        },
-      ]
+      pageNum: 1,
+      pageSize: 20,
+      noticeList: []
+    }
+  },
+  created(){
+    this.getFollowNoticeList()
+  },
+  methods: {
+    getFollowNoticeList(){
+      let data = {
+        page_num: this.pageNum,
+        page_size: this.pageSize
+      }
+      getFollowNoticeList(data).then(response => {
+        if(response.data.status == 200){
+          this.noticeList = response.data.message
+        }
+      })
     }
   }
 }
