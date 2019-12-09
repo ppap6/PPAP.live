@@ -20,3 +20,10 @@ export function getAnswerNoticeList(data){
         params: data
     })
 }
+
+//获取评论通知列表
+export function getCommentNoticeList(data){
+    return Request.get('/notice/comment', {
+        params: data
+    })
+}
