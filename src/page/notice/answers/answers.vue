@@ -1,23 +1,22 @@
 <template>
   <div class="answer-list">
-    <h1>{{ msg }}</h1>
     <div class="notice" v-for="item in noticeList" :key="item.id">
       <div class="left">
-        <router-link :to="`/user/${item.id}`">
+        <router-link :to="`/user/${item.uid}`">
           <img class="avatar" :src="item.avatar" alt>
-          <p class="name">{{item.name}}</p>
+          <p class="name">{{item.uname}}</p>
         </router-link>
       </div>
-      <span class="datetime">17天前</span>
+      <span class="datetime">{{item.create_time}}</span>
       <span class="text">在文章</span>
       <div class="right">
-        <router-link :to="`/post/${item.post.id}`">
-          <p class="title">{{item.post.title}}</p>
+        <router-link :to="`/post/${item.pid}`">
+          <p class="title">{{item.pname}}</p>
         </router-link>
       </div>
       <span class="text">回复了你</span>
       <div class="right">
-        <router-link :to="`/post/${item.post.id}`">
+        <router-link :to="`/post/${item.answer_id}`">
           <p class="title">查看详情</p>
         </router-link>
       </div>
@@ -26,30 +25,31 @@
 </template>
 
 <script>
+import { getAnswerNoticeList } from 'api/notice'
+
 export default {
   data () {
     return {
       msg: '回复通知的组件',
-      noticeList: [
-        {
-          id: 90,
-          name: '王思冲冲冲',
-          avatar: 'https://img.xiaoduyu.com/1554861017000-5cad4b77efbfbb333c4cb509',
-          post: {
-            id: 58,
-            title: '如何实现双向绑定？'
-          }
-        },
-        {
-          id: 91,
-          name: '有点东西的PDD',
-          avatar: 'https://img.xiaoduyu.com/812869a6-26ae-4455-a68f-16a0796153d4.JPG?imageMogr2/crop/!915x915a540a0/thumbnail/!200/quality/90',
-          post: {
-            id: 59,
-            title: '深入浅出 webpack'
-          }
-        },
-      ]
+      pageNum: 1,
+      pageSize: 20,
+      noticeList: []
+    }
+  },
+  created(){
+    this.getAnswerNoticeList()
+  },
+  methods: {
+    getAnswerNoticeList(){
+      let data = {
+        page_num: this.pageNum,
+        page_size: this.pageSize
+      }
+      getAnswerNoticeList(data).then(response => {
+        if(response.data.status == 200){
+          this.noticeList = response.data.message
+        }
+      })
     }
   }
 }

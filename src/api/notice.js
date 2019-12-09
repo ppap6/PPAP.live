@@ -13,3 +13,10 @@ export function getFollowNoticeList(data){
         params: data
     })
 }
+
+//获取回复通知列表
+export function getAnswerNoticeList(data){
+    return Request.get('/notice/answer', {
+        params: data
+    })
+}
