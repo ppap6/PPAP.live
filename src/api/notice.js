@@ -34,3 +34,10 @@ export function getLikeNoticeList(data){
         params: data
     })
 }
+
+//获取收藏通知列表
+export function getCollectNoticeList(data){
+    return Request.get('/notice/collect', {
+        params: data
+    })
+}

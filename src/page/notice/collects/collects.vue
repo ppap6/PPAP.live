@@ -1,18 +1,17 @@
 <template>
   <div class="collect-list">
-    <h1>{{ msg }}</h1>
-    <div class="notice" v-for="item in noticeList" :key="item.id">
+    <div class="notice" v-for="item in noticeList" :key="item._id">
       <div class="left">
-        <router-link :to="`/user/${item.id}`">
+        <router-link :to="`/user/${item.uid}`">
           <img class="avatar" :src="item.avatar" alt>
-          <p class="name">{{item.name}}</p>
+          <p class="name">{{item.uname}}</p>
         </router-link>
       </div>
-      <span class="datetime">10天前</span>
+      <span class="datetime">{{item.create_time}}</span>
       <span class="text">收藏了你的文章</span>
       <div class="right">
-        <router-link :to="`/post/${item.post.id}`">
-          <p class="title">{{item.post.title}}</p>
+        <router-link :to="`/post/${item.pid}`">
+          <p class="title">{{item.pname}}</p>
         </router-link>
       </div>
     </div>
@@ -20,30 +19,31 @@
 </template>
 
 <script>
+import { getCollectNoticeList } from 'api/notice'
+
 export default {
   data () {
     return {
       msg: '收藏通知的组件',
-      noticeList: [
-        {
-          id: 90,
-          name: '小勺子',
-          avatar: 'https://img.xiaoduyu.com/default_avatar.jpg',
-          post: {
-            id: 58,
-            title: '如何实现双向绑定？'
-          }
-        },
-        {
-          id: 91,
-          name: '狗不理包子',
-          avatar: 'https://img.xiaoduyu.com/5176adf3-2caf-44a3-ae8c-048bca0abfd5.jpeg?imageMogr2/crop/!840x840a162a564/thumbnail/!200/quality/90',
-          post: {
-            id: 59,
-            title: '深入浅出 webpack'
-          }
-        },
-      ]
+      pageNum: 1,
+      pageSize: 20,
+      noticeList: []
+    }
+  },
+  created(){
+    this.getCollectNoticeList()
+  },
+  methods: {
+    getCollectNoticeList(){
+      let data = {
+        page_num: this.pageNum,
+        page_size: this.pageSize
+      }
+      getCollectNoticeList(data).then(response => {
+        if(response.data.status == 200){
+          this.noticeList = response.data.message
+        }
+      })
     }
   }
 }
