@@ -16,3 +16,8 @@ export function getPost(id){
 export function addPv(data){
     return Request.post('/post/add/pv', data)
 }
+
+//发布帖子
+export function addPost(data){
+    return Request.post('/post', data)
+}

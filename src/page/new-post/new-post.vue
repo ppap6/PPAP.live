@@ -1,13 +1,13 @@
 <template>
   <div class="new-post">
     <h1>{{ msg }}</h1>
-    <TopicList></TopicList>
+    <TopicList @selectTopic="selectTopic"></TopicList>
     <div class="post-header">
       <div class="title-container">
         <span class="text">标题</span>
-        <input type="text" class="title" placeholder="请输入标题……">
+        <input type="text" class="title" v-model="title" placeholder="请输入标题……">
       </div>
-      <div class="submit" @click="submit">发布</div>
+      <div class="submit" @click="submit">{{isSubmit ? 'loading…' : '发布'}}</div>
     </div>
     <mavon-editor
       @change="change">
@@ -16,12 +16,17 @@
 </template>
 
 <script>
-import TopicList from "component/topic-list/topic-list"
+import TopicList from 'component/topic-list/topic-list'
+import { addPost } from 'api/post'
+
 export default {
   data() {
     return {
-      msg: "我是发帖 markdown 组件",
-      renderData: ''
+      msg: '我是发帖 markdown 组件',
+      topicId: 0,
+      title: '',
+      content: '',
+      isSubmit: false
     };
   },
   components: {
@@ -31,15 +36,56 @@ export default {
     change(value, render){
       console.log(value)
       console.log(render)
-      this.renderData = render
+      this.content = render
     },
     submit(){
-      if(confirm("确定要发表该文章吗？")){
-        console.log(this.renderData)
+      if(this.isSubmit){
+        alert('正在发布')
+        return 
       }
+      if(confirm("确定要发表该文章吗？")){
+        if(!this.topicId){
+          alert('请选择话题!')
+          return
+        }
+        if(this.title.trim().length == 0){
+          alert('标题不能为空!')
+          return
+        }
+        if(this.content.trim().length == 0){
+          alert('文章内容不能为空!')
+          return
+        }
+        this.addPost()
+        console.log(this.content)
+      }
+    },
+    //话题子组件传递所选中的话题id
+    selectTopic(id){
+      this.topicId = id
+    },
+    //发布帖子
+    addPost(){
+      this.isSubmit = true
+      let data = {
+        title: this.title,
+        content: this.content,
+        topic_id: this.topicId
+      }
+      addPost(data).then(response => {
+        if(response.data.status == 200){
+          alert('发布成功')
+          this.$router.push({
+            path: '/'
+          })
+        }
+        this.isSubmit = false
+      }).catch(error => {
+        this.isSubmit = false
+      })
     }
   }
-};
+}
 </script>
 
 <style scoped lang="stylus">
