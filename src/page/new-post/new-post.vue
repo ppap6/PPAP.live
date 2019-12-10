@@ -10,6 +10,7 @@
       <div class="submit" @click="submit">{{isSubmit ? 'loading…' : '发布'}}</div>
     </div>
     <mavon-editor
+      :externalLink="false"
       @change="change">
     </mavon-editor>
   </div>

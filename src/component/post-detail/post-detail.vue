@@ -16,10 +16,6 @@
         </div>
       </div>
     </div>
-    <div class="post-content">
-      <div class="title">{{post.title}}</div>
-      <div class="content" v-html="post.content"></div>
-    </div>
     <div class="post-footer">
       <div class="left">
         <span class="reads">{{post.pv}} 次阅读</span>
@@ -32,6 +28,10 @@
         <span class="collects" @click="collectPost" v-show="noCollect">收藏 {{post.collects}}</span>
         <span class="collects" @click="cancelCollectPost" v-show="isCollect">已收藏 {{post.collects}}</span>
       </div>
+    </div>
+    <div class="post-content">
+      <div class="title">{{post.title}}</div>
+      <div class="content" v-html="post.content"></div>
     </div>
     <!-- 评论组件  -->
     <CommentList></CommentList>
@@ -203,7 +203,6 @@ export default {
     display: flex;
     flex-direction: row;
     align-items: center;
-    cursor: pointer;
 
     img {
       width: 50px;
@@ -260,6 +259,25 @@ export default {
     padding: 10px 20px;
     background-color: #FFF;
 
+    /deep/ h1,
+    /deep/ h2,
+    /deep/ h3,
+    /deep/ h4,
+    /deep/ h5,
+    /deep/ h6 {
+      margin 16px 0
+    }
+
+    /deep/ p {
+      margin 12px 0
+
+      code {
+        background-color #f2f2f2
+        padding 2px 4px
+        border-radius 4px
+      }
+    }
+
     .title{
       font-size: 30px;
       line-height: 60px;
@@ -280,11 +298,13 @@ export default {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    padding-top: 10px;
 
     .left{
       padding: 0 20px 10px;
       font-size: 14px;
       color: #777;
+      display: block !important;
 
       .reads{
         padding-right: 10px;
