@@ -89,6 +89,7 @@ export default {
         if(response.data.status === 200){
           this.isFollow = true
           this.noFollow = false
+          this.topic.followers ++
         }else if(response.data.status === 10000){
           this.isFollow = true
           this.noFollow = false
@@ -108,6 +109,7 @@ export default {
         if(response.data.status === 200){
           this.isFollow = false
           this.noFollow = true
+          this.topic.followers --
         }else if(response.data.status === 10000){
           this.isFollow = false
           this.noFollow = true

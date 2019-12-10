@@ -43,10 +43,10 @@ export default {
   props: ["postList"],
   data() {
     return {
-      // itemList: this.postList
-    };
+
+    }
   }
-};
+}
 </script>
 
 <style scoped lang="stylus">
@@ -61,10 +61,6 @@ export default {
       margin-bottom: 10px;
       border-radius: 5px;
       background-color: #ffffff;
-
-      &:hover{
-        cursor: pointer;
-      }
 
       .post-header {
         display: flex;
@@ -87,8 +83,8 @@ export default {
               height: 18px;
               line-height: 18px;
               font-size: 14px;
-              font-weight: bold;
-              color: #1c1e25 !important;
+              // font-weight: bold;
+              color: #444;
 
               &:hover{
                 text-decoration: underline;
@@ -100,7 +96,7 @@ export default {
             height: 18px;
             line-height: 18px;
             font-size: 14px;
-            font-weight: bold;
+            // font-weight: bold;
 
             
             .topic {
@@ -131,7 +127,7 @@ export default {
         padding: 5px 0;
 
         .post-title{
-          color: #1c1e25 !important;
+          color: #313131 !important;
           font-size: 16px;
           font-weight: bold;
           padding-bottom: 5px;

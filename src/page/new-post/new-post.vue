@@ -1,6 +1,5 @@
 <template>
   <div class="new-post">
-    <h1>{{ msg }}</h1>
     <TopicList @selectTopic="selectTopic"></TopicList>
     <div class="post-header">
       <div class="title-container">
@@ -94,6 +93,7 @@ export default {
   max-width: 1150px;
   margin: auto;
   border-radius: 5px;
+  padding-top: 10px;
 
   h1{
     padding: 20px;
@@ -142,10 +142,18 @@ export default {
       background-color: #4170ea;
       padding: 10px 30px;
       cursor: pointer;
+      transition: all .1s linear;
 
       &:hover{
         color: #fff;
-        background-color: #009688;
+        height: 40px;
+        width: 40px;
+        padding: 10px 12px;
+        border-radius: 50%;
+        box-shadow: 0 0 15px #aaa;
+        background-color: #4170ea;
+        transition: all .1s linear;
+        transform: scale(1.1);
       }
     }
   }

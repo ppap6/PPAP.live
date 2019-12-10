@@ -227,7 +227,7 @@ export default {
         height: 18px;
         line-height: 18px;
         font-size: 14px;
-        font-weight: bold;
+        // font-weight: bold;
 
         
         .topic {

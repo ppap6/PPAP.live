@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <span class="tips" v-if="!isRouter">请选择话题</span>
     <div class="topic-list">
       <!-- <div class="fixed-label">
         <span @click="selectTopic(0)" :class="{active: activeId === 0}">全部</span>
@@ -70,6 +71,14 @@ export default {
   border-radius 5px
   text-align left
 
+  .tips {
+    background-color #F54545
+    color #fff
+    padding 5px 10px
+    font-size 12px
+    box-shadow 4px 4px 8px #bcbcbc
+  }
+
   .topic-list {
     padding 20px 10px
 
@@ -118,7 +127,7 @@ export default {
         flex-wrap wrap
 
         >span {
-          font-size 14px
+          font-size 12px
           padding 4px 10px
           margin 4px
           background-color #f2f2f2
