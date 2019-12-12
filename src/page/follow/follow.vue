@@ -174,7 +174,6 @@ export default {
         page_size: this.pageSize
       }
       getPersonFollowDynamicList(data).then(response => {
-        console.log(response.data)
         if(response.data.status == 200){
           let activityList = this.activityList
           let list = response.data.message

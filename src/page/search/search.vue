@@ -39,7 +39,6 @@ export default {
       this.refleshSelectStatus(to.name)
       //存储query
       this.keyword = this.$route.query.keyword
-      console.log(this.keyword)
     }
   },
   created(){
