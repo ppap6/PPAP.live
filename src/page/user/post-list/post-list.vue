@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="post-list">
-      <PostList :postList="postList"></PostList>
+      <PostList :useInPerson="true" :postList="postList"></PostList>
     </div>
   </div>
 </template>

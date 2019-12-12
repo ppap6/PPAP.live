@@ -2,7 +2,7 @@
  * @Author: jwchan1996
  * @Date: 2019-09-16 23:31:37
  * @LastEditors: jwchan1996
- * @LastEditTime: 2019-09-16 23:31:37
+ * @LastEditTime: 2019-12-12 20:10:34
  -->
 <template>
   <div class="container">
@@ -103,7 +103,7 @@ export default {
       justify-content space-between
 
       .datetime {
-        font-size: 14px;
+        font-size: 12px;
         color #999999
       }
 

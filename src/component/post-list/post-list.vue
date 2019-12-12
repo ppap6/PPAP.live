@@ -4,12 +4,12 @@
       <div class="post" v-for="post in postList" :key="post.id">
         <div class="post-header">
           <div class="header-left">
-            <router-link :to="`/user/${post.uid}`">
+            <router-link :to="`/user/${post.uid}`" v-if="!useInPerson">
               <img class="avatar" :src="post.avatar" alt>
             </router-link>
           </div>
           <div class="header-right">
-            <router-link :to="`/user/${post.uid}`">
+            <router-link :to="`/user/${post.uid}`" v-if="!useInPerson">
               <p class="name">{{post.uname}}</p>
             </router-link>
             <div class="display">
@@ -24,7 +24,7 @@
           <router-link :to="`/post/${post.id}`">
             <div class="post-title">{{post.title}}</div>
           </router-link>
-          <div class="post-summary" v-html="post.content.slice(0,40) + '…'"></div>
+          <div class="post-summary" v-if="!useInPerson" v-html="post.content.slice(0,40) + '…'"></div>
           <div class="statistics">
             <span class="reads" v-if="post.pv">{{post.pv}} 次阅读</span>
             <span class="comments" v-if="post.comments">{{post.comments}} 条评论</span>
@@ -40,7 +40,7 @@
 
 <script>
 export default {
-  props: ["postList"],
+  props: ['postList', 'useInPerson'],
   data() {
     return {
 
@@ -57,7 +57,7 @@ export default {
     text-align: left;
     
     .post {
-      padding: 20px 20px 5px 20px;
+      padding: 10px 20px 5px 20px;
       margin-bottom: 10px;
       border-radius: 5px;
       background-color: #ffffff;
@@ -72,11 +72,12 @@ export default {
             height: 45px;
             width: 45px;
             border-radius: 50%;
+            padding-right: 10px;
           }
         }
 
         .header-right {
-          padding: 2px 15px;
+          padding: 2px 15px 2px 0;
 
           a{
             .name {
