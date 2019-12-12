@@ -80,7 +80,7 @@ export default {
         line-height: 18px;
         font-size: 14px;
         font-weight: bold;
-        color: #1c1e25 !important;
+        color: #009688 !important;
 
         &:hover {
           text-decoration: underline;
@@ -93,6 +93,7 @@ export default {
       line-height: 24px;
       font-size: 12px;
       font-weight: bold;
+      color: #616161;
 
       span {
         margin-right: 10px;

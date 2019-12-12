@@ -1,3 +1,9 @@
+<!--
+ * @Author: jwchan1996
+ * @Date: 2019-04-24 16:04:28
+ * @LastEditors: jwchan1996
+ * @LastEditTime: 2019-12-12 19:50:46
+ -->
 <template>
   <div class="user-follow-topic-list">
     <div class="topic" v-for="item in topicList" :key="item.id">
@@ -58,7 +64,7 @@ export default {
 
     a{
       font-size: 14px;
-      color: #717171;
+      color: #414141;
       cursor: pointer;
       font-weight: bold;
     }

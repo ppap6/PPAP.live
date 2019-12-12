@@ -1,3 +1,9 @@
+<!--
+ * @Author: jwchan1996
+ * @Date: 2019-06-12 14:07:33
+ * @LastEditors: jwchan1996
+ * @LastEditTime: 2019-12-12 19:50:10
+ -->
 <template>
   <div class="user-star-post-list">
     <div class="post" v-for="item in postList" :key="item.id">
@@ -58,7 +64,7 @@ export default {
 
     a{
       font-size: 14px;
-      color: #717171;
+      color: #414141;
       cursor: pointer;
       font-weight: bold;
     }
