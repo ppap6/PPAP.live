@@ -2,7 +2,7 @@
  * @Author: jwchan1996
  * @Date: 2019-05-10 22:55:01
  * @LastEditors: jwchan1996
- * @LastEditTime: 2019-05-10 22:55:01
+ * @LastEditTime: 2019-12-12 20:12:46
  -->
 <template>
   <div class="header">
@@ -29,9 +29,9 @@
           <li>
             <router-link to="/notice">通知</router-link>
           </li>
-          <li>
+          <!-- <li>
             <router-link to="/chats">私信</router-link>
-          </li>
+          </li> -->
           <li>
             <router-link :to="`/user/${uid}`">
               <img class="avatar" :src="avatar" alt="">
