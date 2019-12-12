@@ -15,7 +15,7 @@
           <p class="name">{{user.name}}</p>
           <p class="join-date">加入于 {{user.create_time ? user.create_time.split(' ')[0] : ''}}</p>
         </div>
-        <span class="logout" @click="logout">退出</span>
+        <span class="logout" @click="logout" v-if="uid == userId">退出</span>
       </header>
       <nav>
         <router-link :to="`/user/${userId}`">
