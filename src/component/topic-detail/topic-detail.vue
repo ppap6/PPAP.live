@@ -181,7 +181,7 @@ export default {
       }
 
       .count{
-        font-size: 14px;
+        font-size: 12px;
         color: #777;
 
         .posts{

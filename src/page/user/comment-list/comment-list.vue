@@ -83,7 +83,7 @@ export default {
       }
 
       .lights{
-        font-size: 14px;
+        font-size: 12px;
         color #999999
       }
     }

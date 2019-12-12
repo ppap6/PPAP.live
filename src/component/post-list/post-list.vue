@@ -26,11 +26,11 @@
           </router-link>
           <div class="post-summary" v-if="!useInPerson" v-html="post.content.slice(0,40) + '…'"></div>
           <div class="statistics">
-            <span class="reads" v-if="post.pv">{{post.pv}} 次阅读</span>
-            <span class="comments" v-if="post.comments">{{post.comments}} 条评论</span>
-            <span class="answers" v-if="post.answers">{{post.answers}} 条回复</span>
-            <span class="likes" v-if="post.likes">{{post.likes}} 人赞</span>
-            <span class="collects" v-if="post.collects">{{post.collects}} 人收藏</span>
+            <span class="reads" v-if="post.pv">{{post.pv}} 阅读</span>
+            <span class="comments" v-if="post.comments">{{post.comments}} 评论</span>
+            <span class="answers" v-if="post.answers">{{post.answers}} 回复</span>
+            <span class="likes" v-if="post.likes">{{post.likes}} 赞</span>
+            <span class="collects" v-if="post.collects">{{post.collects}} 收藏</span>
           </div>
         </div>
       </div>
@@ -84,7 +84,6 @@ export default {
               height: 18px;
               line-height: 18px;
               font-size: 14px;
-              // font-weight: bold;
               color: #444;
 
               &:hover{
@@ -97,8 +96,6 @@ export default {
             height: 18px;
             line-height: 18px;
             font-size: 14px;
-            // font-weight: bold;
-
             
             .topic {
               font-size: 12px;
@@ -150,9 +147,9 @@ export default {
           .answers,
           .likes,
           .collects{
-            font-size: 14px;
+            font-size: 12px;
             color: #999999;
-            margin-right: 15px;
+            margin-right: 10px;
           }
         }
       }
