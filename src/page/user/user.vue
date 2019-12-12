@@ -15,6 +15,7 @@
           <p class="name">{{user.name}}</p>
           <p class="join-date">加入于 {{user.create_time ? user.create_time.split(' ')[0] : ''}}</p>
         </div>
+        <span class="logout" @click="logout">退出</span>
       </header>
       <nav>
         <router-link :to="`/user/${userId}`">
@@ -84,7 +85,7 @@
 
 <script>
 import { getUser } from 'api/user'
-import { getStorage } from 'common/js/localstorage'
+import { getStorage, removeStorage } from 'common/js/localstorage'
 
 export default {
   data() {
@@ -153,6 +154,13 @@ export default {
           this.user = response.data.message
         }
       })
+    },
+    logout(){
+      removeStorage('user')
+      this.$store.commit('resetToken', undefined)
+      this.$router.push({
+        path: '/'
+      })
     }
   }
 };
@@ -169,13 +177,34 @@ export default {
     background-color: #ffffff;
 
     header {
+      position: relative;
       display: flex;
       flex-direction: row;
       align-items: top;
       padding: 20px;
 
-      .header-left{
-        .avatar{
+      .logout {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        cursor: pointer;
+        color: #717171;
+        font-size: 12px;
+        background-color: #ececec;
+        border-radius: 12px;
+        padding: 4px 12px;
+        transition: all .1s linear;
+
+        &:hover {
+          color: #fff;
+          background-color: #F54545;
+          transition: all .1s linear;
+          transform: scale(1.1);
+        }
+      }
+
+      .header-left {
+        .avatar {
           height: 100px;
           width: 100px;
           margin: 0 10px;
