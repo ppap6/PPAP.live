@@ -88,36 +88,36 @@ export default {
 <style scoped lang="stylus">
 .container {
   position relative
-  max-width: 1180px
-  margin: auto
+  max-width 1180px
+  margin auto
 
   .left {
-    position: fixed
-    width: 250px
-    height: 500px
-    border-radius: 5px
+    position fixed
+    width 250px
+    height 500px
+    border-radius 5px
 
     .profile-card,
     .hot-post-card {
-      margin-bottom: 10px
+      margin-bottom 10px
     }
   }
 
   .center {
-    position: relative
-    margin-left: 260px
-    margin-right: 260px
-    height: 800px
-    border-radius: 5px
+    position relative
+    margin-left 260px
+    margin-right 260px
+    height 800px
+    border-radius 5px
   }
 
   .right {
-    position: absolute
-    top: 0
-    right: 0
-    width: 250px
-    height: 600px
-    border-radius: 5px
+    position absolute
+    top 0
+    right 0
+    width 250px
+    height 600px
+    border-radius 5px
   }
 }
 </style>

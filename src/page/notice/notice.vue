@@ -58,7 +58,7 @@ export default {
   data() {
     return {
       navName: "all"
-    };
+    }
   },
   watch: {
     $route(to, from){
@@ -71,83 +71,83 @@ export default {
   },
   methods: {
     selectNav(str) {
-      this.navName = str;
+      this.navName = str
     },
     refleshSelectStatus(route){
       switch (route) {
         case 'NoticeAll':
           this.navName = 'all'
-          break;
+          break
         case 'Comments':
           this.navName = 'comments'
-          break;
+          break
         case 'Answers':
           this.navName = 'answers'
-          break;
+          break
         case 'Followers':
           this.navName = 'followers'
-          break;
+          break
         case 'Likes':
           this.navName = 'likes'
-          break;
+          break
         case 'Collects':
           this.navName = 'collects'
-          break;
+          break
       
         default:
-          break;
+          break
       }
     }
   }
-};
+}
 </script>
 
 <style scoped lang="stylus">
 .notification-center {
-  max-width: 720px;
-  margin: auto;
-  border-radius: 5px;
+  max-width 720px
+  margin auto
+  border-radius 5px
 
   .container-header{
-    border-radius: 5px;
-    background-color: #ffffff;
+    border-radius 5px
+    background-color #ffffff
 
     header {
-      display: flex;
-      flex-direction: row;
-      align-items: top;
-      padding: 20px;
+      display flex
+      flex-direction row
+      align-items top
+      padding 20px
 
       .header-left{
         .avatar {
-          height: 100px;
-          width: 100px;
-          margin: 0 10px;
-          border-radius: 50%;
+          height 100px
+          width 100px
+          margin 0 10px
+          border-radius 50%
         }
       }
 
       .header-right {
-        padding: 2px 15px;
+        padding 2px 15px
 
         .name {
-          text-align: left;
-          font-size: 24px;
-          font-weight: bold;
+          text-align left
+          font-size 24px
+          font-weight bold
         }
 
         .join-date {
-          text-align: left;
-          font-size: 12px;
-          color: #999999;
+          text-align left
+          font-size 12px
+          color #999999
         }
       }
     }
 
     nav {
-      color: #515151;
-      text-align: left;
-      padding: 10px 20px;
+      color #515151
+      text-align left
+      padding 10px 20px
 
       .all,
       .comments,
@@ -156,23 +156,23 @@ export default {
       .likes,
       .collects,
       .lights {
-        font-size: 14px;
-        padding: 10px 15px;
-        background-color: #ffffff;
-        border-bottom: 2px solid #ffffff;
-        cursor: pointer;
+        font-size 14px
+        padding 10px 15px
+        background-color #ffffff
+        border-bottom 2px solid #ffffff
+        cursor pointer
       }
 
       .active {
-        color: #4170ea;
-        border-bottom: 2px solid #4170ea;
+        color #4170ea
+        border-bottom 2px solid #4170ea
       }
     }
   }
 
   .container-content {
-    margin: 10px 0;
-    border-radius: 5px;
+    margin 10px 0
+    border-radius 5px
   }
 }
 </style>

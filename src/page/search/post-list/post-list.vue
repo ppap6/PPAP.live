@@ -1,3 +1,9 @@
+<!--
+ * @Author: jwchan1996
+ * @Date: 2019-11-05 10:41:42
+ * @LastEditors: jwchan1996
+ * @LastEditTime: 2019-12-13 15:18:19
+ -->
 <template>
   <div class="container">
     <div class="post-list">
@@ -15,7 +21,7 @@ export default {
     return {
       msg: '搜索帖子列表组件',
       postList: []
-    };
+    }
   },
   components: {
     PostList
@@ -49,7 +55,7 @@ export default {
 
 <style scoped lang="stylus">
 .container {
-  border-radius: 5px;
-  margin: 5px 0;
+  border-radius 5px
+  margin 5px 0
 }
 </style>

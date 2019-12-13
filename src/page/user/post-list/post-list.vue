@@ -48,77 +48,77 @@ export default {
 
 <style scoped lang="stylus">
 .container {
-  border-radius: 5px;
-  text-align: left;
+  border-radius 5px
+  text-align left
 
   .post {
-    padding: 20px 20px 5px 20px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    background-color: #ffffff;
+    padding 20px 20px 5px 20px
+    margin-bottom 10px
+    border-radius 5px
+    background-color #ffffff
 
     &:hover{
-      cursor: pointer;
+      cursor pointer
     }
   }
 
   .post-header {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+    display flex
+    flex-direction row
+    align-items center
 
     .header-left {
       .avatar {
-        height: 45px;
-        width: 45px;
-        border-radius: 50%;
+        height 45px
+        width 45px
+        border-radius 50%
       }
     }
 
     .header-right {
-      padding: 2px 15px;
+      padding 2px 15px
 
       a {
         .name {
-          height: 18px;
-          line-height: 18px;
-          font-size: 14px;
-          font-weight: bold;
-          color: #1c1e25 !important;
+          height 18px
+          line-height 18px
+          font-size 14px
+          font-weight bold
+          color #1c1e25 !important
 
           &:hover {
-            text-decoration: underline;
+            text-decoration underline
           }
         }
       }
 
       .display {
-        height: 18px;
-        line-height: 18px;
-        font-size: 14px;
-        font-weight: bold;
+        height 18px
+        line-height 18px
+        font-size 14px
+        font-weight bold
 
         a {
           .topic {
-            font-size: 12px;
-            color: #333333 !important;
+            font-size 12px
+            color #333333 !important
 
             &:hover {
-              text-decoration: underline;
+              text-decoration underline
             }
 
             &:after {
-              vertical-align: center;
-              font-size: 8px;
-              margin: 0 8px 0 8px;
-              content: "\2022";
+              vertical-align center
+              font-size 8px
+              margin 0 8px 0 8px
+              content "\2022"
             }
           }
         }
 
         .datetime {
-          font-size: 12px;
-          color: #999999;
+          font-size 12px
+          color #999999
         }
         
 
@@ -127,36 +127,36 @@ export default {
   }
 
   .post-content{
-    padding: 5px 0;
+    padding 5px 0
 
     a {
       .post-title{
-        color: #1c1e25 !important;
-        font-size: 16px;
-        font-weight: bold;
-        padding-bottom: 5px;
+        color #1c1e25 !important
+        font-size 16px
+        font-weight bold
+        padding-bottom 5px
 
         &:hover{
-          text-decoration: underline;
+          text-decoration underline
         }
       }
     }
 
     .post-summary{
-      font-size: 14px;
+      font-size 14px
     }
 
     .statistics{
-      padding: 5px 0 0 0;
+      padding 5px 0 0 0
 
       .reads,
       .comments,
       .answers,
       .likes,
       .collects{
-        font-size: 14px;
-        color: #999999;
-        margin-right: 15px;
+        font-size 14px
+        color #999999
+        margin-right 15px
       }
     }
   }

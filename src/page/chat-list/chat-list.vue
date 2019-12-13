@@ -40,55 +40,55 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="stylus">
 .chat-list{
-  max-width: 720px;
-  margin: auto;
-}
+  max-width 720px
+  margin auto
 
-.chat-list h1{
-  padding: 10px;
-}
+  h1{
+    padding 10px
+  }
 
-.chat-item{
-  position: relative;
-  background-color: #FFFFFF;
-  border-radius: 5px;
-  margin-bottom: 10px; 
-  padding: 10px 20px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  cursor: pointer;
-}
+  .chat-item{
+    position relative
+    background-color #FFFFFF
+    border-radius 5px
+    margin-bottom 10px
+    padding 10px 20px
+    display flex
+    flex-direction row
+    align-items center
+    cursor pointer
 
-.chat-item img{
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
+    img{
+      width 50px
+      height 50px
+      border-radius 50%
+      flex-shrink 0
+    }
 
-.chat-item .detail{
-  padding: 0 10px;
-  text-align: left;
-}
+    .detail{
+      padding 0 10px
+      text-align left
 
-.detail .name{
-  font-size: 16px;
-  color: #333333;
-}
+      .name{
+        font-size 16px
+        color #333333
+      }
 
-.detail .last-message{
-  font-size: 14px;
-  color: #797979;
-}
+      .last-message{
+        font-size 14px
+        color #797979
+      }
+    }
 
-.chat-item .last-datetime{
-  position: absolute;
-  top: 10px;
-  right: 20px;
-  color: #797979;
-  font-size: 14px;
+    .last-datetime{
+      position absolute
+      top 10px
+      right 20px
+      color #797979
+      font-size 14px
+    }
+  }
 }
 </style>

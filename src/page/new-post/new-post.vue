@@ -90,70 +90,70 @@ export default {
 
 <style scoped lang="stylus">
 .new-post {
-  max-width: 1150px;
-  margin: auto;
-  border-radius: 5px;
-  padding-top: 10px;
+  max-width 1150px
+  margin auto
+  border-radius 5px
+  padding-top 10px
 
   h1{
-    padding: 20px;
+    padding 20px
   }
 
   .post-header{
-    display: flex;
-    align-items: center;
-    justify-content: left;
-    background-color: #fff;
-    width: 100%;
-    margin: 10px 0;
-    border-radius: 5px;
+    display flex
+    align-items center
+    justify-content left
+    background-color #fff
+    width 100%
+    margin 10px 0
+    border-radius 5px
 
     .title-container{
-      width: 100%;
-      display: flex;
-      align-items: center;
+      width 100%
+      display flex
+      align-items center
 
       .text{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 40px;
-        width: 80px;
-        border-right: 1px solid #ececec;
-        background-color: #fff;
+        display flex
+        align-items center
+        justify-content center
+        height 40px
+        width 80px
+        border-right 1px solid #ececec
+        background-color #fff
       }
 
       .title{
-        height: 20px;
-        width: 100%;
-        padding: 10px 20px;
-        background-color: #fefefe;
+        height 20px
+        width 100%
+        padding 10px 20px
+        background-color #fefefe
       }
     }
 
     .submit{
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 14px;
-      height: 20px;
-      width: 40px;
-      color: #fff;
-      background-color: #4170ea;
-      padding: 10px 30px;
-      cursor: pointer;
-      transition: all .1s linear;
+      display flex
+      align-items center
+      justify-content center
+      font-size 14px
+      height 20px
+      width 40px
+      color #fff
+      background-color #4170ea
+      padding 10px 30px
+      cursor pointer
+      transition all .1s linear
 
       &:hover{
-        color: #fff;
-        height: 40px;
-        width: 40px;
-        padding: 10px 12px;
-        border-radius: 50%;
-        box-shadow: 0 0 15px #aaa;
-        background-color: #4170ea;
-        transition: all .1s linear;
-        transform: scale(1.1);
+        color #fff
+        height 40px
+        width 40px
+        padding 10px 12px
+        border-radius 50%
+        box-shadow 0 0 15px #aaa
+        background-color #4170ea
+        transition all .1s linear
+        transform scale(1.1)
       }
     }
   }

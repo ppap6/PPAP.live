@@ -110,100 +110,100 @@ export default {
 
 <style scoped lang="stylus">
 .container{
-  // background-color: #FE6533;
+  // background-color #FE6533
 
   .count{
-    text-align: left;
-    font-size: 14px;
-    color: #515151;
-    padding: 6px 20px;
-    background-color: #FFFFFF;
+    text-align left
+    font-size 14px
+    color #515151
+    padding 6px 20px
+    background-color #FFFFFF
   }
 
   .content {
-    border-radius: 5px;
-    background-color: #FFFFFF;
+    border-radius 5px
+    background-color #FFFFFF
 
     .comment-item {
-      position: relative;
-      background-color: #FFFFFF;
-      // border-radius: 5px;
-      padding: 10px 20px;
-      display: flex;
-      flex-direction: row;
-      align-items: top;
-      cursor: pointer;
-      border-top: 1px solid #ECECEC;
+      position relative
+      background-color #FFFFFF
+      // border-radius 5px
+      padding 10px 20px
+      display flex
+      flex-direction row
+      align-items top
+      cursor pointer
+      border-top 1px solid #ECECEC
 
       img {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        flex-shrink: 0;
+        width 40px
+        height 40px
+        border-radius 50%
+        flex-shrink 0
 
         &:hover{
-          text-decoration: underline;
+          text-decoration underline
         }
       }
 
       .detail {
-        padding: 0 10px;
-        text-align: left;
+        padding 0 10px
+        text-align left
 
         .name {
-          font-size: 14px;
-          color: #333333;
-          font-weight: bold;
+          font-size 14px
+          color #333333
+          font-weight bold
 
           &:hover{
-            text-decoration: underline;
+            text-decoration underline
           }
         }
 
         .datetime {
-          color: #797979;
-          font-size: 12px;
+          color #797979
+          font-size 12px
         }
 
         .content {
-          font-size: 14px;
-          color: #171717;
-          line-height: 20px;
-          padding: 4px 0;
+          font-size 14px
+          color #171717
+          line-height 20px
+          padding 4px 0
         }
 
         .light-comment{
-          padding-top: 5px;
-          display: flex;
-          flex-direction: row;
-          align-items: center;
+          padding-top 5px
+          display flex
+          flex-direction row
+          align-items center
           
           .light{
-            color: #777;
-            font-size: 12px;
-            margin-right: 15px;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
+            color #777
+            font-size 12px
+            margin-right 15px
+            display flex
+            flex-direction row
+            align-items center
 
             img{
-              width: 18px;
-              height: 18px;
-              margin-right: 2px;
+              width 18px
+              height 18px
+              margin-right 2px
             }
           }
 
           .comment{
-            color: #555;
-            font-size: 12px;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
+            color #555
+            font-size 12px
+            display flex
+            flex-direction row
+            align-items center
 
             img{
-              width: 15px;
-              height: 15px;
-              margin-right: 3px;
+              width 15px
+              height 15px
+              margin-right 3px
             }
           }
         }
@@ -211,111 +211,111 @@ export default {
     }
 
     .answer-item {
-      position: relative;
-      background-color: #FFFFFF;
-      // border-radius: 5px;
-      padding: 10px 20px;
-      margin-left: 50px;
-      display: flex;
-      flex-direction: row;
-      align-items: top;
-      cursor: pointer;
-      border-top: 1px solid #ECECEC;
+      position relative
+      background-color #FFFFFF
+      // border-radius 5px
+      padding 10px 20px
+      margin-left 50px
+      display flex
+      flex-direction row
+      align-items top
+      cursor pointer
+      border-top 1px solid #ECECEC
 
       img {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        flex-shrink: 0;
+        width 40px
+        height 40px
+        border-radius 50%
+        flex-shrink 0
 
         &:hover{
-          text-decoration: underline;
+          text-decoration underline
         }
       }
 
       .detail {
-        padding: 0 10px;
-        text-align: left;
+        padding 0 10px
+        text-align left
 
         .answer-point-to{
-          display: flex;
-          flex-direction: row;
-          align-items: center; 
-          font-size: 14px;
+          display flex
+          flex-direction row
+          align-items center;
+          font-size 14px
 
           .name {
-            font-size: 14px;
-            color: #333333;
-            font-weight: bold;
+            font-size 14px
+            color #333333
+            font-weight bold
 
             &:after{
-              vertical-align: center;
-              color: #999999;
-              font-size: 8px;
-              margin: 0 8px 0 8px;
-              content: "\2022";
+              vertical-align center
+              color #999999
+              font-size 8px
+              margin 0 8px 0 8px
+              content "\2022"
             }
 
             &:hover{
-              text-decoration: underline;
+              text-decoration underline
             }
           }
 
           .targetor{
-            font-size: 14px;
-            color: #333333;
-            font-weight: bold;
+            font-size 14px
+            color #333333
+            font-weight bold
 
             &:hover{
-              text-decoration: underline;
+              text-decoration underline
             }
           }
         }
 
         .datetime {
-          color: #797979;
-          font-size: 12px;
+          color #797979
+          font-size 12px
         }
 
         .content {
-          font-size: 14px;
-          color: #171717;
-          line-height: 20px;
-          padding: 4px 0;
+          font-size 14px
+          color #171717
+          line-height 20px
+          padding 4px 0
         }
 
         .light-comment{
-          padding-top: 5px;
-          display: flex;
-          flex-direction: row;
-          align-items: center;
+          padding-top 5px
+          display flex
+          flex-direction row
+          align-items center
           
           .light{
-            color: #777;
-            font-size: 12px;
-            margin-right: 15px;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
+            color #777
+            font-size 12px
+            margin-right 15px
+            display flex
+            flex-direction row
+            align-items center
 
             img{
-              width: 18px;
-              height: 18px;
-              margin-right: 2px;
+              width 18px
+              height 18px
+              margin-right 2px
             }
           }
 
           .comment{
-            color: #555;
-            font-size: 12px;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
+            color #555
+            font-size 12px
+            display flex
+            flex-direction row
+            align-items center
 
             img{
-              width: 15px;
-              height: 15px;
-              margin-right: 3px;
+              width 15px
+              height 15px
+              margin-right 3px
             }
           }
         }

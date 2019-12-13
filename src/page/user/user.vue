@@ -1,9 +1,3 @@
-<!--
- * @Author: jwchan1996
- * @Date: 2019-05-19 22:24:35
- * @LastEditors: jwchan1996
- * @LastEditTime: 2019-09-16 23:38:29
- -->
 <template>
   <div class="user-center">
     <div class="container-header">
@@ -94,7 +88,7 @@ export default {
       userId: this.$route.params.id,
       uid: getStorage('user').uid,
       user: ''
-    };
+    }
   },
   watch: {
     $route(to, from){
@@ -114,37 +108,37 @@ export default {
   },
   methods: {
     selectNav(str) {
-      this.navName = str;
+      this.navName = str
     },
     refleshSelectStatus(route){
       switch (route) {
         case 'UserPostList':
           this.navName = 'posts'
-          break;
+          break
         case 'UserCommentList':
           this.navName = 'comments'
-          break;
+          break
         case 'UserAnswerList':
           this.navName = 'answers'
-          break;
+          break
         case 'UserFollowerList':
           this.navName = 'followers'
-          break;
+          break
         case 'UserFollowPeopleList':
           this.navName = 'follow-peoples'
-          break;
+          break
         case 'UserStarPostList':
           this.navName = 'star-posts'
-          break;
+          break
         case 'UserCollectPostList':
           this.navName = 'collect-posts'
-          break;
+          break
         case 'UserFollowTopicList':
           this.navName = 'follow-topics'
-          break;
+          break
       
         default:
-          break;
+          break
       }
     },
     getUser(){
@@ -163,76 +157,76 @@ export default {
       })
     }
   }
-};
+}
 </script>
 
 <style scoped lang="stylus">
 .user-center {
-  max-width: 720px;
-  margin: auto;
-  border-radius: 5px;
+  max-width 720px
+  margin auto
+  border-radius 5px
 
   .container-header{
-    border-radius: 5px;
-    background-color: #ffffff;
+    border-radius 5px
+    background-color #ffffff
 
     header {
-      position: relative;
-      display: flex;
-      flex-direction: row;
-      align-items: top;
-      padding: 20px;
+      position relative
+      display flex
+      flex-direction row
+      align-items top
+      padding 20px
 
       .logout {
-        position: absolute;
-        top: 20px;
-        right: 30px;
-        cursor: pointer;
-        color: #717171;
-        font-size: 12px;
-        background-color: #ececec;
-        border-radius: 12px;
-        padding: 4px 12px;
-        transition: all .1s linear;
+        position absolute
+        top 20px
+        right 30px
+        cursor pointer
+        color #717171
+        font-size 12px
+        background-color #ececec
+        border-radius 12px
+        padding 4px 12px
+        transition all .1s linear
 
         &:hover {
-          color: #fff;
-          background-color: #F54545;
-          transition: all .1s linear;
-          transform: scale(1.1);
+          color #fff
+          background-color #F54545
+          transition all .1s linear
+          transform scale(1.1)
         }
       }
 
       .header-left {
         .avatar {
-          height: 100px;
-          width: 100px;
-          margin: 0 10px;
-          border-radius: 50%;
+          height 100px
+          width 100px
+          margin 0 10px
+          border-radius 50%
         }
       }
 
       .header-right {
-        padding: 2px 15px;
+        padding 2px 15px
 
         .name {
-          text-align: left;
-          font-size: 24px;
-          font-weight: bold;
+          text-align left
+          font-size 24px
+          font-weight bold
         }
 
         .join-date {
-          text-align: left;
-          font-size: 12px;
-          color: #999999;
+          text-align left
+          font-size 12px
+          color #999999
         }
       }
     }
 
     nav {
-      color: #515151;
-      text-align: left;
-      padding: 10px 20px;
+      color #515151
+      text-align left
+      padding 10px 20px
 
       .posts,
       .comments,
@@ -242,23 +236,23 @@ export default {
       .star-posts,
       .collect-posts,
       .follow-topics {
-        font-size: 14px;
-        padding: 10px 15px;
-        background-color: #ffffff;
-        border-bottom: 2px solid #ffffff;
-        cursor: pointer;
+        font-size 14px
+        padding 10px 15px
+        background-color #ffffff
+        border-bottom 2px solid #ffffff
+        cursor pointer
       }
 
       .active {
-        color: #4170ea;
-        border-bottom: 2px solid #4170ea;
+        color #4170ea
+        border-bottom 2px solid #4170ea
       }
     }
   }
 
   .container-content {
-    margin: 10px 0;
-    border-radius: 5px;
+    margin 10px 0
+    border-radius 5px
   }
 }
 </style>

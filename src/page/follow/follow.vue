@@ -187,76 +187,76 @@ export default {
 
 <style scoped lang="stylus">
 .all-list{
-  max-width: 720px;
-  margin: auto;
-  border-radius: 5px;
+  max-width 720px
+  margin auto
+  border-radius 5px
 
   .activity{
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    background-color: #FFFFFF;
-    padding: 10px 20px;
-    border-radius: 5px;
-    margin: 5px 0;
+    position relative
+    display flex
+    flex-direction row
+    align-items center
+    background-color #FFFFFF
+    padding 10px 20px
+    border-radius 5px
+    margin 5px 0
 
     .left {
       a{
-        display: flex;
-        flex-direction: row;
-        align-items: center;
+        display flex
+        flex-direction row
+        align-items center
 
         .avatar {
-          height: 24px;
-          width: 24px;
-          border-radius: 50%;
-          margin-right: 6px;
+          height 24px
+          width 24px
+          border-radius 50%
+          margin-right 6px
         }
 
         .name{
-          color: #333333;
-          font-size: 14px;
+          color #333333
+          font-size 14px
 
           &:hover{
-            text-decoration: underline;
+            text-decoration underline
           }
         }
       }
     } 
 
     .datetime{
-      font-size: 14px;
-      margin-left: 5px;
-      color: #999999;
+      font-size 14px
+      margin-left 5px
+      color #999999
     }
 
     .text{
-      font-size: 14px;
-      margin: 0 5px;
-      color: #999999;
-      display: flex;
-      flex-direction: row;
-      align-items: center;
+      font-size 14px
+      margin 0 5px
+      color #999999
+      display flex
+      flex-direction row
+      align-items center
 
       a{
-        display: flex;
-        flex-direction: row;
-        align-items: center;
+        display flex
+        flex-direction row
+        align-items center
 
         .avatar {
-          height: 24px;
-          width: 24px;
-          border-radius: 50%;
-          margin-right: 6px;
+          height 24px
+          width 24px
+          border-radius 50%
+          margin-right 6px
         }
 
         .name{
-          color: #333333;
-          font-size: 14px;
+          color #333333
+          font-size 14px
 
           &:hover{
-            text-decoration: underline;
+            text-decoration underline
           }
         }
       }
@@ -265,13 +265,13 @@ export default {
     .right{
       a {
         .title {
-          height: 18px;
-          line-height: 18px;
-          font-size: 14px;
-          color: #1c1e25 !important;
+          height 18px
+          line-height 18px
+          font-size 14px
+          color #1c1e25 !important
 
           &:hover {
-            text-decoration: underline;
+            text-decoration underline
           }
         }
       }

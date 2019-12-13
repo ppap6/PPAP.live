@@ -35,54 +35,55 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang="stylus">
 .container {
-  background-color: hsl(0, 0%, 100%);
-  border-radius: 5px;
-}
+  background-color hsl(0, 0%, 100%)
+  border-radius 5px
 
-.title {
-  width: 100%;
-  height: 36px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  border-bottom: 1px solid #ececec;
-}
+  .title {
+    width 100%
+    height 36px
+    display flex
+    flex-direction column
+    justify-content center
+    border-bottom 1px solid #ececec
 
-.title p {
-  height: 16px;
-  line-height: 16px;
-  text-align: left;
-  padding: 0 10px;
-  margin-left: 10px;
-  font-size: 14px;
-  border-left: 3px solid #009688;
-}
+    p {
+      height 16px
+      line-height 16px
+      text-align left
+      padding 0 10px
+      margin-left 10px
+      font-size 14px
+      border-left 3px solid #009688
+    }
+  }
 
-.link-list {
-  padding: 10px;
-}
+  .link-list {
+    padding 10px
 
-.link {
-  text-align: left;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 4px 0;
-}
+    .link {
+      text-align left
+      display flex
+      flex-direction row
+      align-items center
+      padding 4px 0
 
-.link-title {
-  font-size: 12px;
-  font-weight: bold;
-  color: #171717;
-}
+      .link-title {
+        font-size 12px
+        font-weight bold
+        color #171717
+      }
 
-.link-intro{
-  font-size: 12px;
-  color: #171717;
-}
-.link a:hover {
-  text-decoration: underline;
+      .link-intro{
+        font-size 12px
+        color #171717
+      }
+
+      a:hover {
+        text-decoration underline
+      }
+    }
+  }
 }
 </style>

@@ -142,72 +142,72 @@ export default {
 
 <style scoped lang="stylus">
 .topic {
-  max-width: 720px;
-  margin: auto;
+  max-width 720px
+  margin auto
 
   h1 {
-    padding: 10px;
+    padding 10px
   }
 
   .detail {
-    position: relative;
-    background-color: #ffffff;
-    border-radius: 5px;
-    padding: 20px;
-    margin-bottom: 10px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+    position relative
+    background-color #ffffff
+    border-radius 5px
+    padding 20px
+    margin-bottom 10px
+    display flex
+    flex-direction row
+    align-items center
 
     img {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
+      width 80px
+      height 80px
+      border-radius 50%
     }
 
     .information {
-      padding: 0 10px;
-      text-align: left;
+      padding 0 10px
+      text-align left
 
       .name {
-        font-size: 24px;
-        color: #171717;
+        font-size 24px
+        color #171717
       }
 
       .intro {
-        font-size: 14px;
-        color: #444;
-        padding: 4px 0;
+        font-size 14px
+        color #444
+        padding 4px 0
       }
 
       .count{
-        font-size: 12px;
-        color: #777;
+        font-size 12px
+        color #777
 
         .posts{
-          padding-right: 10px;
+          padding-right 10px
         }
 
         .follows{
-          padding-right: 10px;
+          padding-right 10px
         }
       }
     }
 
     .follow{
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      font-size: 14px;
-      cursor: pointer;
-      padding: 4px 10px;
-      border-radius: 15px;
-      color: #515151;
-      background-color: #ececec;
+      position absolute
+      top 20px
+      right 20px
+      font-size 14px
+      cursor pointer
+      padding 4px 10px
+      border-radius 15px
+      color #515151
+      background-color #ececec
 
       &:hover{
-        background-color: #4170ea;
-        color: #fff;
+        background-color #4170ea
+        color #fff
       }
     }
   }

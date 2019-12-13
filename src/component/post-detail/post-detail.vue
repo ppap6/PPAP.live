@@ -187,77 +187,77 @@ export default {
 
 <style scoped lang="stylus">
 .post-detail {
-  max-width: 720px;
-  margin: auto;
+  max-width 720px
+  margin auto
 
   h1 {
-    padding: 10px;
+    padding 10px
   }
 
   .post-header {
-    position: relative;
-    background-color: #ffffff;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    padding: 20px 20px 0;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+    position relative
+    background-color #ffffff
+    border-top-left-radius 5px
+    border-top-right-radius 5px
+    padding 20px 20px 0
+    display flex
+    flex-direction row
+    align-items center
 
     img {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
+      width 50px
+      height 50px
+      border-radius 50%
     }
 
     .information {
-      padding: 0 10px;
-      text-align: left;
+      padding 0 10px
+      text-align left
 
       .name {
-        font-size: 16px;
-        color: #333333;
+        font-size 16px
+        color #333333
 
         &:hover{
-          text-decoration: underline;
+          text-decoration underline
         }
       }
 
       .display {
-        height: 18px;
-        line-height: 18px;
-        font-size: 14px;
-        // font-weight: bold;
+        height 18px
+        line-height 18px
+        font-size 14px
+        // font-weight bold
 
         
         .topic {
-          font-size: 12px;
-          color: #333333 !important;
+          font-size 12px
+          color #333333 !important
 
           &:hover {
-            text-decoration: underline;
+            text-decoration underline
           }
 
           &:after {
-            vertical-align: center;
-            font-size: 8px;
-            margin: 0 8px 0 8px;
-            content: "\2022";
+            vertical-align center
+            font-size 8px
+            margin 0 8px 0 8px
+            content "\2022"
           }
         }
 
         .datetime {
-          font-size: 12px;
-          color: #999999;
+          font-size 12px
+          color #999999
         }
       }
     }
   }
 
   .post-content{
-    text-align: left;
-    padding: 10px 20px;
-    background-color: #FFF;
+    text-align left
+    padding 10px 20px
+    background-color #FFF
 
     /deep/ h1,
     /deep/ h2,
@@ -279,72 +279,72 @@ export default {
     }
 
     .title{
-      font-size: 30px;
-      line-height: 60px;
-      width: 100%;
-      border-bottom: 1px solid #ececec;
+      font-size 30px
+      line-height 60px
+      width 100%
+      border-bottom 1px solid #ececec
     }
 
     .content{
-      padding: 30px 0 10px;
+      padding 30px 0 10px
     }
   }
 
   .post-footer{
-    background-color: #FFFFFF;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    padding-top: 10px;
+    background-color #FFFFFF
+    border-bottom-left-radius 5px
+    border-bottom-right-radius 5px
+    display flex
+    flex-direction row
+    align-items center
+    justify-content space-between
+    padding-top 10px
 
     .left{
-      padding: 0 20px 10px;
-      font-size: 14px;
-      color: #777;
-      display: block !important;
+      padding 0 20px 10px
+      font-size 14px
+      color #777
+      display block !important
 
       .reads{
-        padding-right: 10px;
+        padding-right 10px
       }
 
       .comments{
-        padding-right: 10px;
+        padding-right 10px
       }
 
       .answers{
-        padding-right: 10px;
+        padding-right 10px
       }
     }
 
     .right{
-      padding: 0 20px 15px;
-      font-size: 14px;
-      color: #777;
+      padding 0 20px 15px
+      font-size 14px
+      color #777
 
       .likes{
-        padding: 4px 10px;
-        cursor: pointer;
-        background-color: #ececec;
-        border-radius: 15px;
+        padding 4px 10px
+        cursor pointer
+        background-color #ececec
+        border-radius 15px
 
         &:hover{
-          background-color: #4170ea;
-          color: #fff;
+          background-color #4170ea
+          color #fff
         }
       }
 
       .collects{
-        padding: 4px 10px;
-        cursor: pointer;
-        background-color: #ececec;
-        border-radius: 15px;
+        padding 4px 10px
+        cursor pointer
+        background-color #ececec
+        border-radius 15px
 
         &:hover{
-          background-color: #4170ea;
-          color: #fff;
+          background-color #4170ea
+          color #fff
         }
       }
     }

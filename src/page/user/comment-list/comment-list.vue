@@ -1,9 +1,3 @@
-<!--
- * @Author: jwchan1996
- * @Date: 2019-06-12 20:45:46
- * @LastEditors: jwchan1996
- * @LastEditTime: 2019-12-12 20:10:08
- -->
 <template>
   <div class="container">
     <div class="comment-list">
@@ -58,17 +52,17 @@ export default {
 
 <style scoped lang="stylus">
 .container {
-  border-radius: 5px;
+  border-radius 5px
 
   .comment {
-    padding: 10px 20px 15px 20px;
-    margin: 5px 0;
-    border-radius: 5px;
-    background-color: #ffffff;
-    text-align: left;
+    padding 10px 20px 15px 20px
+    margin 5px 0
+    border-radius 5px
+    background-color #ffffff
+    text-align left
 
     &:hover {
-      cursor: pointer;
+      cursor pointer
     }
 
     .header {
@@ -78,12 +72,12 @@ export default {
       justify-content space-between
 
       .datetime {
-        font-size: 12px;
+        font-size 12px
         color #999999
       }
 
       .lights{
-        font-size: 12px;
+        font-size 12px
         color #999999
       }
     }
@@ -120,13 +114,13 @@ export default {
     }
 
     .content {
-      padding: 10px 0;
-      color: #171717;
-      font-size: 14px;
+      padding 10px 0
+      color #171717
+      font-size 14px
     }
 
     .post {
-      font-size: 15px;
+      font-size 15px
 
       .text{
         color #515151

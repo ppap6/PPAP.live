@@ -53,50 +53,50 @@ export default {
 
 <style scoped lang="stylus">
 .follower{
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  align-items: top;
-  background-color: #FFFFFF;
-  padding: 10px 20px 5px;
-  border-radius: 5px;
-  margin: 5px 0;
+  position relative
+  display flex
+  flex-direction row
+  align-items top
+  background-color #FFFFFF
+  padding 10px 20px 5px
+  border-radius 5px
+  margin 5px 0
 
   .left {
     .avatar {
-      height: 44px;
-      width: 44px;
-      border-radius: 50%;
+      height 44px
+      width 44px
+      border-radius 50%
     }
   } 
 
   .right{
-    text-align: left;
-    padding: 2px 15px;
+    text-align left
+    padding 2px 15px
 
     a {
       .name {
-        height: 18px;
-        line-height: 18px;
-        font-size: 14px;
-        font-weight: bold;
-        color: #009688 !important;
+        height 18px
+        line-height 18px
+        font-size 14px
+        font-weight bold
+        color #009688 !important
 
         &:hover {
-          text-decoration: underline;
+          text-decoration underline
         }
       }
     }
 
     .count {
-      height: 18px;
-      line-height: 24px;
-      font-size: 12px;
-      font-weight: bold;
-      color: #616161;
+      height 18px
+      line-height 24px
+      font-size 12px
+      font-weight bold
+      color #616161
 
       span{
-        margin-right: 10px;
+        margin-right 10px
       }
     }
   }

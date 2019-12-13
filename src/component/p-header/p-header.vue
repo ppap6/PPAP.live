@@ -1,9 +1,3 @@
-<!--
- * @Author: jwchan1996
- * @Date: 2019-05-10 22:55:01
- * @LastEditors: jwchan1996
- * @LastEditTime: 2019-12-12 20:12:46
- -->
 <template>
   <div class="header">
     <div class="container">
@@ -148,63 +142,63 @@ export default {
 
 <style scoped lang="stylus">
 .header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 10;
-  padding: 2px 10px;
-  background: #ffffff;
-  box-shadow: 0 2px 10px 0 rgba(4, 21, 39, 0.2), 0 1px rgba(4, 21, 39, 0.2);
+  position fixed
+  top 0
+  left 0
+  right 0
+  z-index 10
+  padding 2px 10px
+  background #ffffff
+  box-shadow 0 2px 10px 0 rgba(4, 21, 39, 0.2), 0 1px rgba(4, 21, 39, 0.2)
 
   .container {
-    max-width: 1180px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    margin: auto;
+    max-width 1180px
+    display flex
+    flex-direction row
+    align-items center
+    justify-content space-between
+    margin auto
 
     .header-left {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
+      display flex
+      flex-direction row
+      align-items center
 
       .pc-logo {
-        font-size: 0;
+        font-size 0
 
         .logo {
-          width: 60px;
-          height: 28px;
-          margin: 8px 10px;
-          border-radius: 5px;
+          width 60px
+          height 28px
+          margin 8px 10px
+          border-radius 5px
         }
       }
 
       >div{
-        position: relative;
+        position relative
 
         .search-icon {
-          position: absolute;
-          width: 20px;
-          height: 20px;
-          top: 6px;
-          right: 6px;
-          cursor: pointer;
+          position absolute
+          width 20px
+          height 20px
+          top 6px
+          right 6px
+          cursor pointer
         }
 
         .search-input {
-          height: 32px;
-          width: 200px;
-          color: #515151;
-          border-radius: 10px;
-          line-height: 32px;
-          padding: 0 36px 0 10px;
-          font-size: 14px;
-          background: #f2f2f2;
+          height 32px
+          width 200px
+          color #515151
+          border-radius 10px
+          line-height 32px
+          padding 0 36px 0 10px
+          font-size 14px
+          background #f2f2f2
 
           &hover {
-            background: #ececec;
+            background #ececec
           }
         }
        
@@ -212,22 +206,22 @@ export default {
     }
 
     .header-right {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
+      display flex
+      flex-direction row
+      align-items center
 
       >ul {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
+        display flex
+        flex-direction row
+        align-items center
 
         >li {
-          font-size: 14px;
-          padding: 10px;
-          list-style: none;
+          font-size 14px
+          padding 10px
+          list-style none
 
           >a {
-            cursor: pointer;
+            cursor pointer
             display flex
             flex-direction row
             align-items center

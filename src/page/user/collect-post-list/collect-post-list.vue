@@ -1,9 +1,3 @@
-<!--
- * @Author: jwchan1996
- * @Date: 2019-04-24 16:02:18
- * @LastEditors: jwchan1996
- * @LastEditTime: 2019-12-12 19:50:27
- -->
 <template>
   <div class="user-collect-post-list">
     <div class="post" v-for="item in postList" :key="item.id">
@@ -48,25 +42,25 @@ export default {
 
 <style scoped lang="stylus">
 .post{
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  align-items: top;
-  background-color: #FFFFFF;
-  padding: 10px 20px 10px;
-  border-radius: 5px;
-  margin: 5px 0;
+  position relative
+  display flex
+  flex-direction row
+  align-items top
+  background-color #FFFFFF
+  padding 10px 20px 10px
+  border-radius 5px
+  margin 5px 0
 
   .title{
     &:hover{
-      text-decoration: underline;
+      text-decoration underline
     }
 
     a{
-      font-size: 14px;
-      color: #414141;
-      cursor: pointer;
-      font-weight: bold;
+      font-size 14px
+      color #414141
+      cursor pointer
+      font-weight bold
     }
   }
 }

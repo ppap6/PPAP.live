@@ -83,17 +83,17 @@ export default {
 
 <style scoped lang="stylus">
 .container {
-  border-radius: 5px;
+  border-radius 5px
 
   .comment {
-    padding: 10px 20px 5px 20px;
-    margin: 5px 0;
-    border-radius: 5px;
-    background-color: #ffffff;
-    text-align: left;
+    padding 10px 20px 5px 20px
+    margin 5px 0
+    border-radius 5px
+    background-color #ffffff
+    text-align left
 
     &:hover {
-      cursor: pointer;
+      cursor pointer
     }
 
     .header {
@@ -102,23 +102,23 @@ export default {
       align-items center
 
       .text{
-        color: #555;
-        font-size: 14px;
+        color #555
+        font-size 14px
       }
 
       .datetime {
-        font-size: 14px;
+        font-size 14px
         color #999999
       }
 
       .title{
-        font-size: 14px;
-        color: #009688;
+        font-size 14px
+        color #009688
       }
 
       .lights{
-        font-size: 14px;
-        color: #009688;
+        font-size 14px
+        color #009688
       }
     }
 
@@ -154,9 +154,9 @@ export default {
     }
 
     .content {
-      padding: 10px 0;
-      color: #171717;
-      font-size: 14px;
+      padding 10px 0
+      color #171717
+      font-size 14px
     }
   }
 }

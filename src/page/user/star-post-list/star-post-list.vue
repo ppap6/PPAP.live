@@ -2,7 +2,7 @@
  * @Author: jwchan1996
  * @Date: 2019-06-12 14:07:33
  * @LastEditors: jwchan1996
- * @LastEditTime: 2019-12-12 19:50:10
+ * @LastEditTime: 2019-12-13 15:22:55
  -->
 <template>
   <div class="user-star-post-list">
@@ -48,25 +48,25 @@ export default {
 
 <style scoped lang="stylus">
 .post{
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  align-items: top;
-  background-color: #FFFFFF;
-  padding: 10px 20px 10px;
-  border-radius: 5px;
-  margin: 5px 0;
+  position relative
+  display flex
+  flex-direction row
+  align-items top
+  background-color #FFFFFF
+  padding 10px 20px 10px
+  border-radius 5px
+  margin 5px 0
 
   .title{
     &:hover{
-      text-decoration: underline;
+      text-decoration underline
     }
 
     a{
-      font-size: 14px;
-      color: #414141;
-      cursor: pointer;
-      font-weight: bold;
+      font-size 14px
+      color #414141
+      cursor pointer
+      font-weight bold
     }
   }
 }
