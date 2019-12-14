@@ -30,7 +30,7 @@
       </div>
     </div>
     <div class="post-content">
-      <div class="title">{{post.title}}</div>
+      <div class="title">{{post.title}}<span class="edit" v-if="uid == post.uid">编辑</span></div>
       <div class="content" v-html="post.content"></div>
     </div>
     <!-- 评论组件  -->
@@ -40,6 +40,7 @@
 
 <script>
 import CommentList from 'component/comment-list/comment-list'
+import { getStorage } from 'common/js/localstorage'
 import { getPost, addPv } from 'api/post'
 import { likePost, cancelLikePost, collectPost, cancelCollectPost, getUserPostStatus } from 'api/user'
 
@@ -47,6 +48,7 @@ export default {
   data() {
     return {
       msg: "我是帖子详情组件",
+      uid: getStorage('user').uid,
       post: {},
       noLike: true,
       isLike: false,
@@ -254,7 +256,7 @@ export default {
     }
   }
 
-  .post-content{
+  .post-content {
     text-align left
     padding 10px 20px
     background-color #FFF
@@ -272,14 +274,30 @@ export default {
       margin 12px 0
     }
 
-    .title{
+    .title {
       font-size 30px
       line-height 60px
       width 100%
       border-bottom 1px solid #ececec
+
+      .edit {
+        font-size 14px
+        color #414141
+        background-color #f2f2f2
+        padding 4px 10px
+        margin 5px 10px 15px
+        border-radius 10px
+        cursor pointer
+        transition all .1s linear
+
+        &:hover {
+          color #fff
+          background-color #4170ea
+        }
+      }
     }
 
-    .content{
+    .content {
       padding 30px 0 10px
 
       /deep/ .hljs {
@@ -378,6 +396,7 @@ export default {
         cursor pointer
         background-color #ececec
         border-radius 15px
+        transition all .1s linear
 
         &:hover{
           background-color #4170ea
@@ -390,6 +409,7 @@ export default {
         cursor pointer
         background-color #ececec
         border-radius 15px
+        transition all .1s linear
 
         &:hover{
           background-color #4170ea

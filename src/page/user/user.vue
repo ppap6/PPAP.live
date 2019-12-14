@@ -192,7 +192,6 @@ export default {
         &:hover {
           color #fff
           background-color #F54545
-          transition all .1s linear
           transform scale(1.1)
         }
       }
