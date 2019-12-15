@@ -32,6 +32,8 @@ request.interceptors.response.use(
                 return response
             }else if(response.config.url.indexOf('/user/topic/status') > -1){
                 return response
+            }else if(response.config.url.indexOf('/user/follow/status') > -1){
+                return response
             }
             //store清除state.token
             VM.$store.commit('resetToken', undefined)

@@ -10,6 +10,8 @@
           <p class="join-date">加入于 {{user.create_time ? user.create_time.split(' ')[0] : ''}}</p>
         </div>
         <span class="logout" @click="logout" v-if="uid == userId">退出</span>
+        <span class="follow" @click="followUser" v-if="uid != userId && noFollow && user != ''">关注</span>
+        <span class="follow" @click="cancelFollowUser" v-if="uid != userId && isFollow && user != ''">已关注</span>
       </header>
       <nav>
         <router-link :to="`/user/${userId}`">
@@ -78,7 +80,7 @@
 </template>
 
 <script>
-import { getUser } from 'api/user'
+import { getUser, followUser, cancelFollowUser, getUserFollowStatus } from 'api/user'
 import { getStorage, removeStorage } from 'common/js/localstorage'
 
 export default {
@@ -87,7 +89,9 @@ export default {
       navName: "posts",
       userId: this.$route.params.id,
       uid: getStorage('user').uid,
-      user: ''
+      user: '',
+      noFollow: true,
+      isFollow: false
     }
   },
   watch: {
@@ -146,6 +150,7 @@ export default {
       getUser(id).then(response => {
         if(response.data.status == 200){
           this.user = response.data.message
+          this.getUserFollowStatus()
         }
       })
     },
@@ -154,6 +159,54 @@ export default {
       this.$store.commit('resetToken', undefined)
       this.$router.push({
         path: '/'
+      })
+    },
+    getUserFollowStatus(){
+      if(this.uid == this.userId) return
+      let id = this.$route.params.id
+      getUserFollowStatus(id).then(response => {
+        if(response.data.status == 200){
+          this.isFollow = response.data.message.isFollow
+          this.noFollow = !response.data.message.isFollow
+        }
+      })
+    },
+    followUser(){
+      let data = {
+        follow_uid: this.$route.params.id
+      }
+      followUser(data).then(response => {
+        if(response.data.status === 200){
+          this.isFollow = true
+          this.noFollow = false
+        }else if(response.data.status === 10000){
+          this.isFollow = true
+          this.noFollow = false
+          alert('已关注用户')
+        }else{
+          //不作处理
+        }
+      }).catch(error => {
+        console.log('服务器丢失了，请稍后重试！')
+      })
+    },
+    cancelFollowUser(){
+      let data = {
+        follow_uid: this.$route.params.id
+      }
+      cancelFollowUser(data).then(response => {
+        if(response.data.status === 200){
+          this.isFollow = false
+          this.noFollow = true
+        }else if(response.data.status === 10000){
+          this.isFollow = false
+          this.noFollow = true
+          alert('已取消关注用户')
+        }else{
+          //不作处理
+        }
+      }).catch(error => {
+        console.log('服务器丢失了，请稍后重试！')
       })
     }
   }
@@ -192,6 +245,25 @@ export default {
         &:hover {
           color #fff
           background-color #F54545
+          transform scale(1.1)
+        }
+      }
+
+      .follow {
+        position absolute
+        top 20px
+        right 30px
+        cursor pointer
+        color #717171
+        font-size 12px
+        background-color #ececec
+        border-radius 12px
+        padding 4px 12px
+        transition all .1s linear
+
+        &:hover {
+          color #fff
+          background-color #4170ea
           transform scale(1.1)
         }
       }

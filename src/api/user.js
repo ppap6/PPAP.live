@@ -59,3 +59,18 @@ export function cancelCollectPost(data){
 export function getUserPostStatus(id){
     return Request.get(`/user/post/status/${id}`)
 }
+
+//用户关注
+export function followUser(data){
+    return Request.post('/user/follow', data)
+}
+
+//用户取消关注
+export function cancelFollowUser(data){
+    return Request.post('/user/cancel/follow', data)
+}
+
+//获取用户对用户的关注状态
+export function getUserFollowStatus(id){
+    return Request.get(`/user/follow/status/${id}`)
+}
