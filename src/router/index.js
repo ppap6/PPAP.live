@@ -9,6 +9,7 @@ import Router from 'vue-router'
 import Home from 'page/home/home'
 import Follow from 'page/follow/follow'
 import NewPost from 'page/new-post/new-post'
+import UpdatePost from 'page/update-post/update-post'
 import Notice from 'page/notice/notice'
 import ChatList from 'page/chat-list/chat-list'
 import Search from 'page/search/search'
@@ -62,6 +63,11 @@ export default new Router({
       path: '/new-post',
       name: 'NewPost',
       component: NewPost
+    },
+    {
+      path: '/update-post',
+      name: 'UpdatePost',
+      component: UpdatePost
     },
     {
       path: '/notice/:id',

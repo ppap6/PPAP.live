@@ -1,0 +1,186 @@
+<template>
+  <div class="new-post">
+    <TopicList @selectTopic="selectTopic" :topicId="topicId"></TopicList>
+    <div class="post-header">
+      <div class="title-container">
+        <span class="text">标题</span>
+        <input type="text" class="title" v-model="title" placeholder="请输入标题……">
+      </div>
+      <div class="submit" @click="submit">{{isSubmit ? 'loading…' : '保存'}}</div>
+    </div>
+    <mavon-editor
+      :externalLink="false"
+      v-model="md"
+      @change="change">
+    </mavon-editor>
+  </div>
+</template>
+
+<script>
+import TopicList from 'component/topic-list/topic-list'
+import { getPost, updatePost } from 'api/post'
+
+export default {
+  data() {
+    return {
+      msg: '我是帖子编辑组件',
+      topicId: 0,
+      title: '',
+      md: '',
+      content: '',
+      isSubmit: false
+    };
+  },
+  components: {
+    TopicList
+  },
+  created(){
+    this.getPost()
+  },
+  methods: {
+    change(value, render){
+      console.log(value)
+      console.log(render)
+      this.md = value
+      this.content = render
+    },
+    submit(){
+      if(this.isSubmit){
+        alert('正在保存')
+        return 
+      }
+      if(confirm("确定要修改该文章吗？")){
+        if(!this.topicId){
+          alert('请选择话题!')
+          return
+        }
+        if(this.title.trim().length == 0){
+          alert('标题不能为空!')
+          return
+        }
+        if(this.content.trim().length == 0){
+          alert('文章内容不能为空!')
+          return
+        }
+        this.updatePost()
+        console.log(this.content)
+      }
+    },
+    //话题子组件传递所选中的话题id
+    selectTopic(id){
+      this.topicId = id
+    },
+    //获取帖子信息
+    getPost(){
+      let id = this.$route.query.id
+      getPost(id).then(response => {
+        if(response.data.status == 200){
+          this.topicId = response.data.message.topic_id
+          this.title = response.data.message.title
+          this.md = response.data.message.md
+          this.content = response.data.message.content
+        }else if(response.data.status == 10003){
+          alert('帖子不存在')
+          this.$router.go(-1)
+        }
+      }).catch(error => {
+
+      })
+    },
+    //修改帖子
+    updatePost(){
+      this.isSubmit = true
+      let id = this.$route.query.id
+      let data = {
+        title: this.title,
+        content: this.content,
+        md: this.md,
+        topic_id: this.topicId
+      }
+      updatePost(id, data).then(response => {
+        if(response.data.status == 200){
+          alert('修改成功')
+          this.$router.go(-1)
+        }else{
+          alert(response.data.message)
+        }
+        this.isSubmit = false
+      }).catch(error => {
+        this.isSubmit = false
+      })
+    }
+  }
+}
+</script>
+
+<style scoped lang="stylus">
+.new-post {
+  max-width 1150px
+  margin auto
+  border-radius 5px
+  padding-top 10px
+
+  h1{
+    padding 20px
+  }
+
+  .post-header{
+    display flex
+    align-items center
+    justify-content left
+    background-color #fff
+    width 100%
+    margin 10px 0
+    border-radius 5px
+
+    .title-container{
+      width 100%
+      display flex
+      align-items center
+
+      .text{
+        display flex
+        align-items center
+        justify-content center
+        height 40px
+        width 80px
+        border-right 1px solid #ececec
+        background-color #fff
+      }
+
+      .title{
+        height 20px
+        width 100%
+        padding 10px 20px
+        background-color #fefefe
+      }
+    }
+
+    .submit{
+      display flex
+      align-items center
+      justify-content center
+      font-size 14px
+      height 20px
+      width 40px
+      color #fff
+      background-color #4170ea
+      padding 10px 30px
+      cursor pointer
+      transition all .1s linear
+
+      &:hover{
+        color #fff
+        height 40px
+        width 40px
+        padding 10px 12px
+        border-radius 50%
+        box-shadow 0 0 15px #aaa
+        background-color #4170ea
+        transition all .1s linear
+        transform scale(1.1)
+      }
+    }
+  }
+}
+</style>

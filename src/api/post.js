@@ -21,3 +21,8 @@ export function addPv(data){
 export function addPost(data){
     return Request.post('/post', data)
 }
+
+//修改帖子
+export function updatePost(id, data){
+    return Request.put(`/post/${id}`, data)
+}

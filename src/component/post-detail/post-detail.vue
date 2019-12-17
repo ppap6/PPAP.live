@@ -30,7 +30,7 @@
       </div>
     </div>
     <div class="post-content">
-      <div class="title">{{post.title}}<span class="edit" v-if="uid == post.uid">编辑</span></div>
+      <div class="title">{{post.title}}<span class="edit" @click="goUpdatePost" v-if="uid == post.uid">编辑</span></div>
       <div class="content" v-html="post.content"></div>
     </div>
     <!-- 评论组件  -->
@@ -182,6 +182,14 @@ export default {
       }).catch(error => {
         console.log('服务器丢失了，请稍后重试！')
       })
+    },
+    goUpdatePost(){
+      this.$router.push({
+        path: '/update-post',
+        query: {
+          id: this.post.id
+        }
+      })
     }
   }
 }
@@ -325,12 +333,12 @@ export default {
       /* blockquote 样式 */
       /deep/ blockquote {
         display block
-        border-left 8px solid #d0e5f2
+        border-left 8px solid #CBCBCB
         padding 5px 10px
         margin 10px 0
         line-height 1.4
         font-size 100%
-        background-color #f1f1f1
+        background-color #f8f8f8
       }
 
       /* code 样式 */
@@ -338,7 +346,7 @@ export default {
         display inline-block
         *display inline
         *zoom 1
-        background-color #f1f1f1
+        background-color #f8f8f8
         border-radius 3px
         padding 3px 5px
         margin 0 3px

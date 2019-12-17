@@ -31,12 +31,22 @@
 import { getTopicList } from 'api/topic'
 
 export default {
-  props: ["isRouter"],
+  props: ["isRouter", "topicId"],
   data() {
     return {
       activeId: 0,
       topicList: []
     };
+  },
+  computed: {
+    activeTopicId(){
+      return this.topicId
+    }
+  },
+  watch: {
+    activeTopicId(id){
+      this.activeId = id
+    }
   },
   created(){
     this.getTopicList()
