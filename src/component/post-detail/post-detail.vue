@@ -197,7 +197,7 @@ export default {
 
 <style scoped lang="stylus">
 .post-detail {
-  max-width 720px
+  max-width 800px
   margin auto
 
   h1 {
@@ -209,7 +209,7 @@ export default {
     background-color #ffffff
     border-top-left-radius 5px
     border-top-right-radius 5px
-    padding 20px 20px 0
+    padding 20px 30px 0
     display flex
     flex-direction row
     align-items center
@@ -266,7 +266,7 @@ export default {
 
   .post-content {
     text-align left
-    padding 10px 20px
+    padding 10px 40px
     background-color #FFF
 
     /deep/ h1,
@@ -333,9 +333,9 @@ export default {
       /* blockquote 样式 */
       /deep/ blockquote {
         display block
-        border-left 8px solid #CBCBCB
-        padding 5px 10px
-        margin 10px 0
+        border-left 4px solid #CBCBCB
+        padding 1px 10px
+        margin 20px 0
         line-height 1.4
         font-size 100%
         background-color #f8f8f8
@@ -376,7 +376,7 @@ export default {
     padding-top 10px
 
     .left{
-      padding 0 20px 10px
+      padding 0 40px 10px
       font-size 14px
       color #777
       display block !important
@@ -395,7 +395,7 @@ export default {
     }
 
     .right{
-      padding 0 20px 15px
+      padding 0 40px 15px
       font-size 14px
       color #777
 
