@@ -9,7 +9,7 @@
       <div class="submit" @click="submit">{{isSubmit ? 'loading…' : '保存'}}</div>
     </div>
     <mavon-editor
-      :externalLink="false"
+      :externalLink="true"
       v-model="md"
       @change="change">
     </mavon-editor>

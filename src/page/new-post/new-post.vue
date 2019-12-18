@@ -9,7 +9,8 @@
       <div class="submit" @click="submit">{{isSubmit ? 'loading…' : '发布'}}</div>
     </div>
     <mavon-editor
-      :externalLink="false"
+      :externalLink="true"
+      v-model="md"
       @change="change">
     </mavon-editor>
   </div>
@@ -25,6 +26,7 @@ export default {
       msg: '我是发帖 markdown 组件',
       topicId: 0,
       title: '',
+      md: '',
       content: '',
       isSubmit: false
     };
@@ -36,6 +38,7 @@ export default {
     change(value, render){
       console.log(value)
       console.log(render)
+      this.md = value
       this.content = render
     },
     submit(){
@@ -70,6 +73,7 @@ export default {
       let data = {
         title: this.title,
         content: this.content,
+        md: this.md,
         topic_id: this.topicId
       }
       addPost(data).then(response => {
