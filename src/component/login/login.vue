@@ -2,15 +2,17 @@
   <div class="container">
     <div class="main-container">
       <img class="close-btn" src="../../common/img/close.png" @click="backPrev" />
-      <div class="header">用户登录</div>
+      <div class="header">PPAP</div>
       <div class="main">
         <div class="account">
-          <span>账号：</span>
-          <input type="text" v-model="account" @keyup.enter="login" placeholder="请输入账号……" />
+          <!-- <span>账号：</span> -->
+          <img src="../../common/img/account.png" alt="">
+          <input type="text" v-model="account" @keyup.enter="login" placeholder="请输入账号" />
         </div>
         <div class="password">
-          <span>密码：</span>
-          <input type="password" v-model="password" @keyup.enter="login" placeholder="请输入密码……" />
+          <!-- <span>密码：</span> -->
+          <img src="../../common/img/password.png" alt="">
+          <input type="password" v-model="password" @keyup.enter="login" placeholder="请输入密码" />
         </div>
         <div class="login">
           <div @click="login">登录</div>
@@ -76,7 +78,7 @@ export default {
   flex-direction column
   align-items center
   justify-content center
-  background-image url('https://jwchan.cn/images/GDG2018/dance.jpg')
+  background-image url('https://img-bcy-qn.pstatp.com/user/1798447718469171/item/web/c0rn0/76b35ec01c8b11eaa5b5f16b18057a86.jpg')
   background-position center
   background-repeat no-repeat
   background-size cover
@@ -85,21 +87,30 @@ export default {
     position relative
     border-radius 5px
     margin-bottom 150px
-    background-color rgba(255,255,255,0.92)
-    box-shadow 10px 10px 10px #ddd
+    padding 20px 20px
+    background-color rgba(255,255,255,0.95)
+    // box-shadow 10px 10px 10px #ddd
 
     .close-btn {
       width 20px
       height 20px
       position absolute
-      top 10px
-      right 10px
+      top 15px
+      right 15px
       cursor pointer
+      transition all .2s linear
+
+      &:hover {
+        transform rotate(180deg)
+      }
     }
 
     .header {
       width 320px
       padding 15px 20px
+      font-weight bold
+      font-size 26px
+      color #FFD100
     }
 
     .main {
@@ -112,13 +123,21 @@ export default {
         justify-content center
         padding 10px 0
         margin auto
+        border-bottom 1px dashed #cdcdcd
+
+        img {
+          height 30px
+          width 30px
+        }
 
         input {
-          width 200px
+          width 220px
           padding 8px 10px
-          border 1px solid #999
-          border-radius 8px
+          color #515151
+          // border-bottom 1px solid #999
+          // border-radius 8px
           font-size 14px
+          background none
         }
       }
 
@@ -128,26 +147,42 @@ export default {
         justify-content center
         padding 10px 0
         margin auto
+        border-bottom 1px dashed #cdcdcd
+
+        img {
+          height 30px
+          width 30px
+        }
 
         input {
-          width 200px
+          width 220px
           padding 8px 10px
-          border 1px solid #999
-          border-radius 8px
+          color #515151
+          // border-bottom 1px solid #999
+          // border-radius 8px
           font-size 14px
+          background none
         }
       }
     }
 
     .login {
       div {
-        width 200px
-        margin 10px auto 8px
-        color #fff
-        padding 5px 10px
-        border-radius 20px
-        background-color #4170EA
+        width 300px
+        margin 30px auto 8px
+        color #313131
+        font-size 22px
+        padding 10px 10px
+        border-radius 32px
+        // background-color #4170EA
+        background-color #FFD100
         cursor pointer
+        transition all .1s linear
+
+        &:hover {
+          box-shadow 0 0 8px #bbb
+          opacity 0.8
+        }
       }
     }
 

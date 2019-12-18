@@ -2,19 +2,22 @@
   <div class="container">
     <div class="main-container">
       <img class="close-btn" src="../../common/img/close.png" @click="backPrev" />
-      <div class="header">用户注册</div>
+      <div class="header">PPAP</div>
       <div class="main">
-        <div class="account">
-          <span>昵称：</span>
-          <input type="text" v-model="name" @keyup.enter="register" placeholder="请输入昵称……" />
+        <div class="name">
+          <!-- <span>昵称：</span> -->
+          <img src="../../common/img/nick_name.png" alt="">
+          <input type="text" v-model="name" @keyup.enter="register" placeholder="请输入昵称" />
         </div>
         <div class="account">
-          <span>账号：</span>
-          <input type="text" v-model="account" @keyup.enter="register" placeholder="请输入账号……" />
+          <!-- <span>账号：</span> -->
+          <img src="../../common/img/account.png" alt="">
+          <input type="text" v-model="account" @keyup.enter="register" placeholder="请输入账号" />
         </div>
         <div class="password">
-          <span>密码：</span>
-          <input type="password" v-model="password" @keyup.enter="register" placeholder="请输入密码……" />
+          <!-- <span>密码：</span> -->
+          <img src="../../common/img/password.png" alt="">
+          <input type="password" v-model="password" @keyup.enter="register" placeholder="请输入密码" />
         </div>
         <div class="login">
           <div @click="register">注册</div>
@@ -82,7 +85,7 @@ export default {
   flex-direction column
   align-items center
   justify-content center
-  background-image url('https://jwchan.cn/images/vue_data_update.jpg')
+  background-image url('https://img-bcy-qn.pstatp.com/user/1798447718469171/item/web/c0rmz/b08cc7c01bdd11ea8dd4bfcb234d5a5c.jpg')
   background-position center
   background-repeat no-repeat
   background-size cover
@@ -91,26 +94,59 @@ export default {
     position relative
     border-radius 5px
     margin-bottom 150px
-    background-color rgba(255,255,255,0.92)
-    box-shadow 10px 10px 10px #ddd
+    padding 20px 20px
+    background-color rgba(255,255,255,0.95)
+    // box-shadow 10px 10px 10px #ddd
 
     .close-btn {
       width 20px
       height 20px
       position absolute
-      top 10px
-      right 10px
+      top 15px
+      right 15px
       cursor pointer
+      transition all .2s linear
+
+      &:hover {
+        transform rotate(180deg)
+      }
     }
 
     .header {
       width 320px
       padding 15px 20px
+      font-weight bold
+      font-size 26px
+      color #FFD100
     }
 
     .main {
       width 320px
       padding 0 20px 15px 20px
+
+      .name {
+        display flex
+        align-items center
+        justify-content center
+        padding 10px 0
+        margin auto
+        border-bottom 1px dashed #cdcdcd
+
+        img {
+          height 30px
+          width 30px
+        }
+
+        input {
+          width 220px
+          padding 8px 10px
+          color #515151
+          // border 1px solid #999
+          // border-radius 8px
+          font-size 14px
+          background none
+        }
+      }
 
       .account {
         display flex
@@ -118,13 +154,21 @@ export default {
         justify-content center
         padding 10px 0
         margin auto
+        border-bottom 1px dashed #cdcdcd
+
+        img {
+          height 30px
+          width 30px
+        }
 
         input {
-          width 200px
+          width 220px
           padding 8px 10px
-          border 1px solid #999
-          border-radius 8px
+          color #515151
+          // border 1px solid #999
+          // border-radius 8px
           font-size 14px
+          background none
         }
       }
 
@@ -134,26 +178,42 @@ export default {
         justify-content center
         padding 10px 0
         margin auto
+        border-bottom 1px dashed #cdcdcd
+
+        img {
+          height 30px
+          width 30px
+        }
 
         input {
-          width 200px
+          width 220px
           padding 8px 10px
-          border 1px solid #999
-          border-radius 8px
+          color #515151
+          // border 1px solid #999
+          // border-radius 8px
           font-size 14px
+          background none
         }
       }
     }
 
     .login {
       div {
-        width 200px
-        margin 10px auto 8px
-        color #fff
-        padding 5px 10px
-        border-radius 20px
-        background-color #4170EA
+        width 300px
+        margin 30px auto 8px
+        color #313131
+        font-size 22px
+        padding 10px 10px
+        border-radius 32px
+        // background-color #4170EA
+        background-color #FFD100
         cursor pointer
+        transition all .1s linear
+
+        &:hover {
+          box-shadow 0 0 8px #bbb
+          opacity 0.8
+        }
       }
     }
 
