@@ -83,8 +83,18 @@ export default {
           this.getUserPostStatus()
         }else if(response.data.status === 10003){
           this.post = {}
+          swal({
+            title: '你似乎来到了没有知识的荒原'
+          }).then(() => {
+            this.$router.go(-1)
+          })
         }else{
           //不作处理
+          swal({
+            title: response.data.message
+          }).then(() => {
+            this.$router.go(-1)
+          })
         }
       }).catch(error => {
         console.log('服务器丢失了，请稍后重试！')

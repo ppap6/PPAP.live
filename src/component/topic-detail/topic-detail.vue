@@ -59,8 +59,18 @@ export default {
           this.getUserTopicStatus()
         }else if(response.data.status === 10003){
           this.topic = {}
+          swal({
+            title: '这个话题并不存在呢'
+          }).then(() => {
+            this.$router.go(-1)
+          })
         }else{
           //不作处理
+          swal({
+            title: response.data.message
+          }).then(() => {
+            this.$router.go(-1)
+          })
         }
       }).catch(error => {
         console.log('服务器丢失了，请稍后重试！')

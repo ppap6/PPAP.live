@@ -152,6 +152,18 @@ export default {
         if(response.data.status == 200){
           this.user = response.data.message
           this.getUserFollowStatus()
+        }else if(response.data.status == 10003){
+          swal({
+            title: '走着走着，人没了'
+          }).then(() => {
+            this.$router.go(-1)
+          })
+        }else{
+          swal({
+            title: response.data.message
+          }).then(() => {
+            this.$router.go(-1)
+          })
         }
       })
     },
