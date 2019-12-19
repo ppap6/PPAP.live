@@ -27,6 +27,7 @@ import { login } from 'api/user'
 import { setStorage } from 'common/js/localstorage'
 import sha1 from 'crypto-js/sha1'
 import md5 from 'crypto-js/md5'
+import swal from 'sweetalert'
 
 export default {
   data(){
@@ -38,7 +39,9 @@ export default {
   methods: {
     login(){
       if(this.account.trim() === ''){
-        alert('账号不能为空')
+        swal({
+          title: '账号不能为空'
+        })
         return
       }
       if(this.password.trim() === ''){
