@@ -168,10 +168,22 @@ export default {
       })
     },
     logout(){
-      removeStorage('user')
-      this.$store.commit('resetToken', undefined)
-      this.$router.push({
-        path: '/'
+      swal({
+        title: '确定退出登录吗',
+        buttons: {
+          cancel: '取消',
+          confirm: '确定'
+        }
+      }).then(result => {
+        if(result){
+          removeStorage('user')
+          this.$store.commit('resetToken', undefined)
+          this.$router.push({
+            path: '/'
+          })
+        }else{
+          //取消退出
+        }
       })
     },
     getUserFollowStatus(){

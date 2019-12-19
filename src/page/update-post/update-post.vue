@@ -52,27 +52,37 @@ export default {
         })
         return 
       }
-      if(confirm("确定要修改该文章吗？")){
-        if(!this.topicId){
-          swal({
-            title: '请选择话题'
-          })
-          return
+      swal({
+        title: '确定更新文章吗',
+        buttons: {
+          cancel: '取消',
+          confirm: '确定'
         }
-        if(this.title.trim().length == 0){
-          swal({
-            title: '标题不能为空'
-          })
-          return
+      }).then(result => {
+        if(result){
+          if(!this.topicId){
+            swal({
+              title: '请选择话题'
+            })
+            return
+          }
+          if(this.title.trim().length == 0){
+            swal({
+              title: '标题不能为空'
+            })
+            return
+          }
+          if(this.content.trim().length == 0){
+            swal({
+              title: '文章内容不能为空'
+            })
+            return
+          }
+          this.updatePost()
+        }else{
+          //取消保存
         }
-        if(this.content.trim().length == 0){
-          swal({
-            title: '文章内容不能为空'
-          })
-          return
-        }
-        this.updatePost()
-      }
+      })
     },
     //话题子组件传递所选中的话题id
     selectTopic(id){
