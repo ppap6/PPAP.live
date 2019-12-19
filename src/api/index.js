@@ -43,7 +43,7 @@ request.interceptors.response.use(
             swal({
                 title: '请先登陆'
             }).then(() => {
-                VM.$router.replace({
+                VM.$router.push({
                     path: '/login'
                 })
             })

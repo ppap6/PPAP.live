@@ -63,6 +63,7 @@ export default {
   },
   watch: {
     $route(to, from){
+      console.log(to)
       if(to.name == 'PostDetail'){
         window.scrollTo(0, 0)
         this.getPost()
@@ -70,7 +71,6 @@ export default {
     }
   },
   created(){
-    this.addPv()
     this.getPost()
   },
   methods: {
@@ -79,6 +79,8 @@ export default {
       getPost(id).then(response => {
         if(response.data.status === 200){
           this.post = response.data.message
+          //增加浏览量
+          this.addPv()
           //获取用户对帖子的点赞收藏状态
           this.getUserPostStatus()
         }else if(response.data.status === 10003){
