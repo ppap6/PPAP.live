@@ -13,7 +13,7 @@
               <p class="name">{{post.uname}}</p>
             </router-link>
             <div class="display">
-              <router-link :to="`/topic/${post.topic_id}`">
+              <router-link :to="`/topic/${post.topic_id}`" :target="useInPerson ? '_blank' : ''">
                 <span class="topic">{{post.topic_name}}</span>
               </router-link>
               <span class="datetime">{{post.create_time}}</span>
@@ -21,7 +21,7 @@
           </div>
         </div>
         <div class="post-content">
-          <router-link :to="`/post/${post.id}`">
+          <router-link :to="`/post/${post.id}`" :target="useInPerson ? '_blank' : ''">
             <div class="post-title">{{post.title}}</div>
           </router-link>
           <div class="post-summary" v-if="!useInPerson" v-html="post.content.slice(0,40) + '…'"></div>

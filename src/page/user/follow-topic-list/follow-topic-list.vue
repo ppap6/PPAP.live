@@ -1,14 +1,14 @@
 <!--
  * @Author: jwchan1996
  * @Date: 2019-04-24 16:04:28
- * @LastEditors: jwchan1996
- * @LastEditTime: 2019-12-13 15:21:48
+ * @LastEditors  : jwchan1996
+ * @LastEditTime : 2019-12-19 11:39:14
  -->
 <template>
   <div class="user-follow-topic-list">
     <div class="topic" v-for="item in topicList" :key="item.id">
       <div class="name">
-        <router-link :to="`/topic/${item.id}`">{{item.name}}</router-link>
+        <router-link :to="`/topic/${item.id}`" target="_blank">{{item.name}}</router-link>
       </div>
     </div>
   </div>

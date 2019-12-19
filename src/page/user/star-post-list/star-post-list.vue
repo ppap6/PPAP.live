@@ -1,14 +1,14 @@
 <!--
  * @Author: jwchan1996
  * @Date: 2019-06-12 14:07:33
- * @LastEditors: jwchan1996
- * @LastEditTime: 2019-12-13 15:22:55
+ * @LastEditors  : jwchan1996
+ * @LastEditTime : 2019-12-19 11:33:22
  -->
 <template>
   <div class="user-star-post-list">
     <div class="post" v-for="item in postList" :key="item.id">
       <div class="title">
-        <router-link :to="`/post/${item.id}`">{{item.title}}</router-link>
+        <router-link :to="`/post/${item.id}`" target="_blank">{{item.title}}</router-link>
       </div>
     </div>
   </div>

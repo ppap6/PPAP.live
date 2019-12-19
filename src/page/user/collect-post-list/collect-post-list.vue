@@ -1,8 +1,14 @@
+<!--
+ * @Author: jwchan1996
+ * @Date: 2019-04-24 16:02:18
+ * @LastEditors: jwchan1996
+ * @LastEditTime: 2019-12-19 11:32:20
+ -->
 <template>
   <div class="user-collect-post-list">
     <div class="post" v-for="item in postList" :key="item.id">
       <div class="title">
-        <router-link :to="`/post/${item.id}`">{{item.title}}</router-link>
+        <router-link :to="`/post/${item.id}`" target="_blank">{{item.title}}</router-link>
       </div>
     </div>
   </div>

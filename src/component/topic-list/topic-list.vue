@@ -53,10 +53,12 @@ export default {
   },
   methods: {
     selectTopic(id) {
-      this.activeId = id
       this.$emit('selectTopic', id)
-      if(!this.isRouter) return
-      this.$router.push({path: `/topic/${id}`})
+      if(this.isRouter){
+        this.$router.push({path: `/topic/${id}`})
+      }else{
+        this.activeId = id
+      } 
     },
     getTopicList(){
       getTopicList().then(response => {

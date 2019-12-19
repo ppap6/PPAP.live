@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <p-header></p-header>
-    <router-view/>
+    <keep-alive :include="['Home', 'TopicDetail', 'PostDetail']">
+      <router-view/>
+    </keep-alive>
   </div>
 </template>
 

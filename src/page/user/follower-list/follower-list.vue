@@ -2,12 +2,12 @@
   <div class="user-fans-list">
     <div class="follower" v-for="item in fansList" :key="item.id">
       <div class="left">
-        <router-link :to="`/user/${item.id}`">
+        <router-link :to="`/user/${item.id}`" target="_blank">
           <img class="avatar" :src="item.avatar" alt>
         </router-link>
       </div>
       <div class="right">
-        <router-link :to="`/user/${item.id}`">
+        <router-link :to="`/user/${item.id}`" target="_blank">
           <p class="name">{{item.name}}</p>
         </router-link>
         <div class="count">

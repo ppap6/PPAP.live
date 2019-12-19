@@ -30,6 +30,7 @@ import LinkCard from "component/link-card/link-card"
 import { getPostList } from 'api/post'
 
 export default {
+  name: 'Home',
   data(){
     return {
       postList: []

@@ -1,8 +1,8 @@
 /*
  * @Author: jwchan1996
  * @Date: 2019-04-22 22:47:02
- * @LastEditors: jwchan1996
- * @LastEditTime: 2019-04-22 22:47:02
+ * @LastEditors  : jwchan1996
+ * @LastEditTime : 2019-12-19 10:35:25
  */
 import Vue from 'vue'
 import Router from 'vue-router'

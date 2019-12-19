@@ -24,6 +24,7 @@ import { getPostList } from "api/post"
 import { followTopic, cancelFollowTopic, getUserTopicStatus } from "api/user"
 
 export default {
+  name: 'TopicDetail',
   data () {
     return {
       msg: '我是话题详情组件',
@@ -38,8 +39,10 @@ export default {
   },
   watch: {
     $route(to, from){
-      this.getTopic()
-      this.getPostList()
+      if(to.name == 'Topic'){
+        this.getTopic()
+        this.getPostList()
+      }
     }
   },
   created(){

@@ -45,6 +45,7 @@ import { getPost, addPv } from 'api/post'
 import { likePost, cancelLikePost, collectPost, cancelCollectPost, getUserPostStatus } from 'api/user'
 
 export default {
+  name: 'PostDetail',
   data() {
     return {
       msg: "我是帖子详情组件",
@@ -58,6 +59,14 @@ export default {
   },
   components: {
     CommentList
+  },
+  watch: {
+    $route(to, from){
+      if(to.name == 'PostDetail'){
+        window.scrollTo(0, 0)
+        this.getPost()
+      }
+    }
   },
   created(){
     this.addPv()
