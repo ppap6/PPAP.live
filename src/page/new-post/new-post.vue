@@ -22,6 +22,7 @@ import { addPost } from 'api/post'
 import swal from 'sweetalert'
 
 export default {
+  name: 'NewPost',
   data() {
     return {
       msg: '我是发帖 markdown 组件',
