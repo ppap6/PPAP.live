@@ -221,10 +221,12 @@ export default {
       border-radius 15px
       color #515151
       background-color #ececec
+      transition all 0.1s linear 
 
       &:hover{
         background-color #4170ea
         color #fff
+        transform scale(1.1)
       }
     }
   }

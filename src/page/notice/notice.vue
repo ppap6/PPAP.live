@@ -162,6 +162,7 @@ export default {
         background-color #ffffff
         border-bottom 2px solid #ffffff
         cursor pointer
+        transition all 0.2s linear
       }
 
       .active {

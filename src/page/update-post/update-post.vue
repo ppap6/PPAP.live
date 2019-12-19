@@ -4,7 +4,7 @@
     <div class="post-header">
       <div class="title-container">
         <span class="text">标题</span>
-        <input type="text" class="title" v-model="title" placeholder="请输入标题……">
+        <input type="text" class="title" v-model="title" placeholder="请输入文章标题……">
       </div>
       <div class="submit" @click="submit">{{isSubmit ? 'loading…' : '保存'}}</div>
     </div>
@@ -191,18 +191,11 @@ export default {
       background-color #4170ea
       padding 10px 30px
       cursor pointer
-      transition all .1s linear
+      transition all 0.1s linear
 
       &:hover{
-        color #fff
-        height 40px
-        width 40px
-        padding 10px 12px
-        border-radius 50%
-        box-shadow 0 0 15px #aaa
-        background-color #4170ea
-        transition all .1s linear
-        transform scale(1.1)
+        transform scale(1.01)
+        box-shadow 0 0 8px #4170ea
       }
     }
   }

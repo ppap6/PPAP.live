@@ -124,6 +124,7 @@ export default {
         margin 4px
         background-color #f2f2f2
         border-radius 5px
+        transition all 0.2s linear
       }
 
       .level1-name {
@@ -144,6 +145,7 @@ export default {
           margin 4px
           background-color #f2f2f2
           border-radius 5px
+          transition all 0.2s linear
         }
       }
     }

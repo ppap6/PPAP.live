@@ -265,7 +265,7 @@ export default {
         right 30px
         cursor pointer
         color #717171
-        font-size 12px
+        font-size 14px
         background-color #ececec
         border-radius 12px
         padding 4px 12px
@@ -341,6 +341,7 @@ export default {
         background-color #ffffff
         border-bottom 2px solid #ffffff
         cursor pointer
+        transition all 0.2s linear
       }
 
       .active {
