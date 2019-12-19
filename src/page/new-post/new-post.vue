@@ -19,6 +19,7 @@
 <script>
 import TopicList from 'component/topic-list/topic-list'
 import { addPost } from 'api/post'
+import swal from 'sweetalert'
 
 export default {
   data() {
@@ -43,20 +44,28 @@ export default {
     },
     submit(){
       if(this.isSubmit){
-        alert('正在发布')
+        swal({
+          title: '正在发布'
+        })
         return 
       }
       if(confirm("确定要发表该文章吗？")){
         if(!this.topicId){
-          alert('请选择话题!')
+          swal({
+            title: '请选择话题'
+          })
           return
         }
         if(this.title.trim().length == 0){
-          alert('标题不能为空!')
+          swal({
+            title: '标题不能为空'
+          })
           return
         }
         if(this.content.trim().length == 0){
-          alert('文章内容不能为空!')
+          swal({
+            title: '文章内容不能为空'
+          })
           return
         }
         this.addPost()
@@ -78,7 +87,9 @@ export default {
       }
       addPost(data).then(response => {
         if(response.data.status == 200){
-          alert('发布成功')
+          swal({
+            title: '发布成功'
+          })
           this.$router.push({
             path: '/'
           })

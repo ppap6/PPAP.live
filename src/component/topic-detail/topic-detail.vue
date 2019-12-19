@@ -96,7 +96,9 @@ export default {
         }else if(response.data.status === 10000){
           this.isFollow = true
           this.noFollow = false
-          alert('已关注话题')
+          swal({
+            title: '已关注话题'
+          })
         }else{
           //不作处理
         }
@@ -116,7 +118,9 @@ export default {
         }else if(response.data.status === 10000){
           this.isFollow = false
           this.noFollow = true
-          alert('已取消关注话题')
+          swal({
+            title: '已取消关注话题'
+          })
         }else{
           //不作处理
         }

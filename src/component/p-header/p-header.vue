@@ -49,6 +49,7 @@
 <script>
 import { getUserLoginStatus } from 'api/user'
 import { getStorage, setStorage } from 'common/js/localstorage'
+import swal from 'sweetalert'
 
 export default {
   data(){
@@ -109,7 +110,9 @@ export default {
     },
     goSearch(){
       if(this.keywords.trim() == ''){
-        alert('请输入搜索关键字！')
+        swal({
+          title: '请输入搜索关键字'
+        })
         return
       }
       this.$router.push({

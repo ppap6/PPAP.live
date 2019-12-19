@@ -43,6 +43,7 @@ import CommentList from 'component/comment-list/comment-list'
 import { getStorage } from 'common/js/localstorage'
 import { getPost, addPv } from 'api/post'
 import { likePost, cancelLikePost, collectPost, cancelCollectPost, getUserPostStatus } from 'api/user'
+import swal from 'sweetalert'
 
 export default {
   name: 'PostDetail',
@@ -107,7 +108,9 @@ export default {
         }else if(response.data.status === 10000){
           this.isLike = true
           this.noLike = false
-          alert('已点赞帖子')
+          swal({
+            title: '已点赞帖子'
+          })
         }else{
           //不作处理
         }
@@ -127,7 +130,9 @@ export default {
         }else if(response.data.status === 10000){
           this.isLike = false
           this.noLike = true
-          alert('已取消点赞帖子')
+          swal({
+            title: '已取消点赞帖子'
+          })
         }else{
           //不作处理
         }
@@ -147,7 +152,9 @@ export default {
         }else if(response.data.status === 10000){
           this.isCollect = true
           this.noCollect = false
-          alert('已收藏帖子')
+          swal({
+            title: '已收藏帖子'
+          })
         }else{
           //不作处理
         }
@@ -167,7 +174,9 @@ export default {
         }else if(response.data.status === 10000){
           this.isCollect = false
           this.noCollect = true
-          alert('已取消收藏帖子')
+          swal({
+            title: '已取消收藏帖子'
+          })
         }else{
           //不作处理
         }

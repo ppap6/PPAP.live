@@ -45,7 +45,9 @@ export default {
         return
       }
       if(this.password.trim() === ''){
-        alert('密码不能为空')
+        swal({
+          title: '密码不能为空'
+        })
         return
       }
       let data = {
@@ -53,15 +55,22 @@ export default {
         password: md5(sha1(this.password).toString()).toString()
       }
       login(data).then(response => {
-        if(response.data.status === 200){
+        if(response.data.status == 200){
           setStorage('user', response.data.user)
-          alert('登录成功')
+          swal({
+            title: '登录成功'
+          })
           this.$router.go(-1)
           //更改state.token状态、
           this.$store.commit('resetToken', response.data.user.token)
+        }else if(response.data.status == 10003){
+          swal({
+            title: '用户账号或密码错误'
+          })
         }else{
-          console.log(response.data)
-          alert(response.data.message)
+          swal({
+            title: response.data.message
+          })
         }
       })
     },

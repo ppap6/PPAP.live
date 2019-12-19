@@ -1,6 +1,7 @@
 import axios from 'axios'
 import VM from '../main'
 import { getStorage, setStorage, removeStorage } from 'common/js/localstorage'
+import swal from 'sweetalert'
 
 // const baseURL = 'http://localhost:2333'
 const baseURL = 'http://39.108.65.176:2333'
@@ -39,7 +40,13 @@ request.interceptors.response.use(
             VM.$store.commit('resetToken', undefined)
             //清除storage
             removeStorage('user')
-            alert('请先登录！')
+            swal({
+                title: '请先登陆'
+            }).then(() => {
+                VM.$router.replace({
+                    path: '/login'
+                })
+            })
         }
         return response
     },

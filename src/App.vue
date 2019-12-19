@@ -39,6 +39,7 @@ body{
   margin-bottom: 20px !important;
 }
 .swal-button {
+  font-size: 18px !important;
   color: #616161 !important;
   background-color: #ffd100 !important;
   transition: all 0.1s linear;

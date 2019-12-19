@@ -82,6 +82,7 @@
 <script>
 import { getUser, followUser, cancelFollowUser, getUserFollowStatus } from 'api/user'
 import { getStorage, removeStorage } from 'common/js/localstorage'
+import swal from 'sweetalert'
 
 export default {
   data() {
@@ -182,7 +183,9 @@ export default {
         }else if(response.data.status === 10000){
           this.isFollow = true
           this.noFollow = false
-          alert('已关注用户')
+          swal({
+            title: '已关注用户'
+          })
         }else{
           //不作处理
         }
@@ -201,7 +204,9 @@ export default {
         }else if(response.data.status === 10000){
           this.isFollow = false
           this.noFollow = true
-          alert('已取消关注用户')
+          swal({
+            title: '已取消关注用户'
+          })
         }else{
           //不作处理
         }

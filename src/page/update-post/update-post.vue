@@ -19,6 +19,7 @@
 <script>
 import TopicList from 'component/topic-list/topic-list'
 import { getPost, updatePost } from 'api/post'
+import swal from 'sweetalert'
 
 export default {
   data() {
@@ -46,24 +47,31 @@ export default {
     },
     submit(){
       if(this.isSubmit){
-        alert('正在保存')
+        swal({
+          title: '正在保存'
+        })
         return 
       }
       if(confirm("确定要修改该文章吗？")){
         if(!this.topicId){
-          alert('请选择话题!')
+          swal({
+            title: '请选择话题'
+          })
           return
         }
         if(this.title.trim().length == 0){
-          alert('标题不能为空!')
+          swal({
+            title: '标题不能为空'
+          })
           return
         }
         if(this.content.trim().length == 0){
-          alert('文章内容不能为空!')
+          swal({
+            title: '文章内容不能为空'
+          })
           return
         }
         this.updatePost()
-        console.log(this.content)
       }
     },
     //话题子组件传递所选中的话题id
@@ -80,7 +88,9 @@ export default {
           this.md = response.data.message.md
           this.content = response.data.message.content
         }else if(response.data.status == 10003){
-          alert('帖子不存在')
+          swal({
+            title: '帖子不存在'
+          })
           this.$router.go(-1)
         }
       }).catch(error => {
@@ -99,10 +109,14 @@ export default {
       }
       updatePost(id, data).then(response => {
         if(response.data.status == 200){
-          alert('修改成功')
+          swal({
+            title: '修改成功'
+          })
           this.$router.go(-1)
         }else{
-          alert(response.data.message)
+          swal({
+            title: response.data.message
+          })
         }
         this.isSubmit = false
       }).catch(error => {

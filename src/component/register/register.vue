@@ -31,6 +31,7 @@
 import { register } from 'api/user'
 import sha1 from 'crypto-js/sha1'
 import md5 from 'crypto-js/md5'
+import swal from 'sweetalert'
 
 export default {
   data(){
@@ -43,15 +44,21 @@ export default {
   methods: {
     register(){
       if(this.name.trim() === ''){
-        alert('昵称不能为空')
+        swal({
+          title: '昵称不能为空'
+        })
         return
       }
       if(this.account.trim() === ''){
-        alert('账号不能为空')
+        swal({
+          title: '账号不能为空'
+        })
         return
       }
       if(this.password.trim() === ''){
-        alert('密码不能为空')
+        swal({
+          title: '密码不能为空'
+        })
         return
       }
       let data = {
@@ -61,11 +68,14 @@ export default {
       }
       register(data).then(response => {
         if(response.data.status === 200){
-          alert('注册成功')
+          swal({
+            title: '注册成功'
+          })
           this.$router.go(-1)
         }else{
-          console.log(response.data)
-          alert(response.data.message)
+          swal({
+            title: response.data.message
+          })
         }
       })
     },
