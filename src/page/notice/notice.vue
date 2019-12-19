@@ -55,9 +55,10 @@
 
 <script>
 export default {
+  name: 'Notice',
   data() {
     return {
-      navName: "all"
+      navName: 'all'
     }
   },
   watch: {

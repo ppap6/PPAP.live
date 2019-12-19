@@ -154,6 +154,7 @@
 import { getPersonFollowDynamicList } from 'api/person'
 
 export default {
+  name: 'Follow',
   data () {
     return {
       msg: '我所关注用户的动态的组件',
