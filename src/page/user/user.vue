@@ -166,7 +166,9 @@ export default {
           swal({
             title: '走着走着，人没了'
           }).then(() => {
-            this.$router.go(-1)
+            this.$router.replace({
+              path: '/'
+            })
           })
         }else{
           //隐藏加载动画
@@ -174,7 +176,9 @@ export default {
           swal({
             title: response.data.message
           }).then(() => {
-            this.$router.go(-1)
+            this.$router.replace({
+              path: '/'
+            })
           })
         }
       })

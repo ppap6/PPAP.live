@@ -6,11 +6,11 @@
       <div class="content">
         <template v-for="item in commentList">
           <div class="comment-item">
-            <router-link to="/user/用户id">
+            <router-link to="/user/10000">
               <img :src="item.avatar" alt="头像">
             </router-link>
             <div class="detail">
-              <router-link to="/user/用户id">
+              <router-link to="/user/10000">
                 <div class="name">{{item.name}}</div>
               </router-link>
               <div class="datetime">{{item.datetime}}</div>
@@ -22,16 +22,16 @@
             </div>
           </div>
           <div class="answer-item" v-for="answer in item.answer_list">
-            <router-link to="/user/用户id">
+            <router-link to="/user/10000">
               <img :src="answer.avatar" alt="头像">
             </router-link>
             <div class="detail">
               <div class="answer-point-to">
-                <router-link to="/user/用户id">
+                <router-link to="/user/10000">
                   <div class="name">{{answer.name}}</div>
                 </router-link>
                   回复了
-                <router-link to="/user/用户id">
+                <router-link to="/user/10000">
                   <div class="targetor">{{answer.targetor}}</div>
                 </router-link>
               </div>

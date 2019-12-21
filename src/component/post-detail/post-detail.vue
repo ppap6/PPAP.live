@@ -94,14 +94,18 @@ export default {
           swal({
             title: '你似乎来到了没有知识的荒原'
           }).then(() => {
-            this.$router.go(-1)
+            this.$router.replace({
+              path: '/'
+            })
           })
         }else{
           //不作处理
           swal({
             title: response.data.message
           }).then(() => {
-            this.$router.go(-1)
+            this.$router.replace({
+              path: '/'
+            })
           })
         }
       }).catch(error => {

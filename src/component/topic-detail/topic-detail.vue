@@ -46,6 +46,7 @@ export default {
       if(to.name == 'Topic'){
         this.getTopic()
         this.getPostList()
+        console.log(this.$route)
       }
     }
   },
@@ -70,7 +71,9 @@ export default {
           swal({
             title: '这个话题并不存在呢'
           }).then(() => {
-            this.$router.go(-1)
+            this.$router.replace({
+              path: '/'
+            })
           })
         }else{
           //隐藏加载动画
@@ -78,7 +81,9 @@ export default {
           swal({
             title: response.data.message
           }).then(() => {
-            this.$router.go(-1)
+            this.$router.replace({
+              path: '/'
+            })
           })
         }
       }).catch(error => {
