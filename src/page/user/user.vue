@@ -1,5 +1,6 @@
 <template>
   <div class="user-center">
+    <Loading :loading="loading"></Loading>
     <div class="container-header">
       <header>
         <div class="header-left">
@@ -80,6 +81,7 @@
 </template>
 
 <script>
+import Loading from 'component/loading/loading'
 import { getUser, followUser, cancelFollowUser, getUserFollowStatus } from 'api/user'
 import { getStorage, removeStorage } from 'common/js/localstorage'
 import swal from 'sweetalert'
@@ -92,7 +94,8 @@ export default {
       uid: getStorage('user').uid,
       user: '',
       noFollow: true,
-      isFollow: false
+      isFollow: false,
+      loading: true
     }
   },
   watch: {
@@ -104,6 +107,9 @@ export default {
       //反组件复用更新数据
       this.getUser()
     }
+  },
+  components: {
+    Loading
   },
   created(){
     this.getUser()
@@ -152,13 +158,19 @@ export default {
         if(response.data.status == 200){
           this.user = response.data.message
           this.getUserFollowStatus()
+          //隐藏加载动画
+          this.loading = false
         }else if(response.data.status == 10003){
+          //隐藏加载动画
+          this.loading = false
           swal({
             title: '走着走着，人没了'
           }).then(() => {
             this.$router.go(-1)
           })
         }else{
+          //隐藏加载动画
+          this.loading = false
           swal({
             title: response.data.message
           }).then(() => {

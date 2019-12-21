@@ -1,5 +1,6 @@
 <template>
   <div class="topic">
+    <Loading :loading="loading"></Loading>
     <div class="detail">
       <img :src="topic.icon" alt>
       <div class="information">
@@ -18,6 +19,7 @@
 </template>
 
 <script>
+import Loading from 'component/loading/loading'
 import PostList from "component/post-list/post-list"
 import { getTopic } from "api/topic"
 import { getPostList } from "api/post"
@@ -31,10 +33,12 @@ export default {
       topic: {},
       noFollow: true,
       isFollow: false,
-      postList: []
+      postList: [],
+      loading: true
     }
   },
   components: {
+    Loading,
     PostList
   },
   watch: {
@@ -57,7 +61,11 @@ export default {
           this.topic = response.data.message
           //获取用户对话题的关注状态
           this.getUserTopicStatus()
+          //隐藏加载动画
+          this.loading = false
         }else if(response.data.status === 10003){
+          //隐藏加载动画
+          this.loading = false
           this.topic = {}
           swal({
             title: '这个话题并不存在呢'
@@ -65,7 +73,8 @@ export default {
             this.$router.go(-1)
           })
         }else{
-          //不作处理
+          //隐藏加载动画
+          this.loading = false
           swal({
             title: response.data.message
           }).then(() => {

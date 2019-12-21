@@ -1,5 +1,6 @@
 <template>
   <div class="all-list">
+    <Loading :loading="loading"></Loading>
     <div v-for="item in activityList" :key="item._id">
       <!-- 评论消息 -->
       <div class="activity" v-if="item.type === 1" :key="item._id">
@@ -151,6 +152,7 @@
 </template>
 
 <script>
+import Loading from 'component/loading/loading'
 import { getPersonFollowDynamicList } from 'api/person'
 
 export default {
@@ -162,8 +164,12 @@ export default {
       pageSize: 20,
       activityList: [
         //type的值 1为评论，2为回复，3为关注，4为点赞，5为收藏，6为话题，7为发表
-      ]
+      ],
+      loading: true
     }
+  },
+  components: {
+    Loading
   },
   created(){
     this.getPersonFollowDynamicList()
@@ -176,9 +182,16 @@ export default {
       }
       getPersonFollowDynamicList(data).then(response => {
         if(response.data.status == 200){
-          let activityList = this.activityList
           let list = response.data.message
           this.activityList = list
+          //隐藏加载动画
+          this.loading = false
+        }else if(response.data.status == 10003){
+          this.activityList = []
+          //隐藏加载动画
+          this.loading = false
+        }else{
+          
         }
       })
     }

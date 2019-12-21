@@ -1,5 +1,6 @@
 <template>
   <div class="new-post">
+    <Loading :loading="loading"></Loading>
     <TopicList @selectTopic="selectTopic" :topicId="topicId"></TopicList>
     <div class="post-header">
       <div class="title-container">
@@ -17,6 +18,7 @@
 </template>
 
 <script>
+import Loading from 'component/loading/loading'
 import TopicList from 'component/topic-list/topic-list'
 import { getPost, updatePost } from 'api/post'
 import swal from 'sweetalert'
@@ -29,10 +31,12 @@ export default {
       title: '',
       md: '',
       content: '',
-      isSubmit: false
+      isSubmit: false,
+      loading: true
     };
   },
   components: {
+    Loading,
     TopicList
   },
   created(){
@@ -97,11 +101,17 @@ export default {
           this.title = response.data.message.title
           this.md = response.data.message.md
           this.content = response.data.message.content
+          //隐藏加载动画
+          this.loading = false
         }else if(response.data.status == 10003){
+          //隐藏加载动画
+          this.loading = false
           swal({
             title: '帖子不存在'
           })
           this.$router.go(-1)
+        }else{
+          
         }
       }).catch(error => {
 

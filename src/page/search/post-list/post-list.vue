@@ -1,9 +1,3 @@
-<!--
- * @Author: jwchan1996
- * @Date: 2019-11-05 10:41:42
- * @LastEditors: jwchan1996
- * @LastEditTime: 2019-12-13 15:18:19
- -->
 <template>
   <div class="container">
     <div class="post-list">

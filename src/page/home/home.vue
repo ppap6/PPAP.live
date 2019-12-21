@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <Loading :loading="loading"></Loading>
     <div class="left">
       <div class="profile-card">
         <ProfileCard></ProfileCard>
@@ -21,6 +22,7 @@
 </template>
 
 <script>
+import Loading from 'component/loading/loading'
 import TopicList from "component/topic-list/topic-list"
 import PostList from "component/post-list/post-list"
 import ProfileCard from "component/profile-card/profile-card"
@@ -33,10 +35,12 @@ export default {
   name: 'Home',
   data(){
     return {
-      postList: []
+      postList: [],
+      loading: true
     }
   },
   components: {
+    Loading,
     ProfileCard,
     HotPostCard,
     LinkCard,
@@ -73,10 +77,16 @@ export default {
       getPostList(data).then(response => {
         if(response.data.status === 200){
           this.postList = response.data.message
+          //隐藏加载动画
+          this.loading = false
         }else if(response.data.status === 10003){
           this.postList = []
+          //隐藏加载动画
+          this.loading = false
         }else{
           //不作处理
+          //隐藏加载动画
+          this.loading = false
         }
       }).catch(error => {
         console.log('服务器丢失了，请稍后重试！')

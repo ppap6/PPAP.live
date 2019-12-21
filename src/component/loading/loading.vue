@@ -34,7 +34,7 @@ export default {
   flex-direction column
   justify-content center
   visibility visible
-  background-color #fff
+  background-color rgba(0, 0, 0, 0.4)
   z-index 10000
 
   .img{
