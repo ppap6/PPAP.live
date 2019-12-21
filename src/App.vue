@@ -34,6 +34,7 @@ body{
   margin-top: 60px;
 }
 
+/* sweetalert弹框相关 */
 .swal-footer {
   text-align: center !important;
   margin-bottom: 20px !important;

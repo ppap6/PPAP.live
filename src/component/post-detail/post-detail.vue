@@ -1,5 +1,6 @@
 <template>
   <div class="post-detail">
+    <Loading :loading="loading"></Loading>
     <div class="post-header">
       <router-link :to="`/user/${post.uid}`">
         <img :src="post.avatar" alt>
@@ -39,6 +40,7 @@
 </template>
 
 <script>
+import Loading from 'component/loading/loading'
 import CommentList from 'component/comment-list/comment-list'
 import { getStorage } from 'common/js/localstorage'
 import { getPost, addPv } from 'api/post'
@@ -55,10 +57,12 @@ export default {
       noLike: true,
       isLike: false,
       noCollect: true,
-      isCollect: false 
+      isCollect: false ,
+      loading: true
     }
   },
   components: {
+    Loading,
     CommentList
   },
   watch: {
@@ -83,6 +87,8 @@ export default {
           this.addPv()
           //获取用户对帖子的点赞收藏状态
           this.getUserPostStatus()
+          //隐藏加载动画
+          this.loading = false
         }else if(response.data.status === 10003){
           this.post = {}
           swal({
