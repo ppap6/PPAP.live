@@ -4,7 +4,7 @@
     <div class="container">
       <div class="count">2 条评论</div>
       <div class="content">
-        <template v-for="item in commentList">
+        <div v-for="item in commentList" :key="item.id">
           <div class="comment-item">
             <router-link to="/user/10000">
               <img :src="item.avatar" alt="头像">
@@ -21,7 +21,7 @@
               </div>
             </div>
           </div>
-          <div class="answer-item" v-for="answer in item.answer_list">
+          <div class="answer-item" v-for="answer in item.answer_list" :key="answer.id">
             <router-link to="/user/10000">
               <img :src="answer.avatar" alt="头像">
             </router-link>
@@ -43,7 +43,7 @@
               </div>
             </div>
           </div>
-        </template>
+        </div>
       </div>
     </div>
   </div>
