@@ -35,7 +35,7 @@
       <div class="content" v-html="post.content"></div>
     </div>
     <!-- 评论组件  -->
-    <CommentList></CommentList>
+    <CommentList :commentList="commentList"></CommentList>
   </div>
 </template>
 
@@ -45,6 +45,7 @@ import CommentList from 'component/comment-list/comment-list'
 import { getStorage } from 'common/js/localstorage'
 import { getPost, addPv } from 'api/post'
 import { likePost, cancelLikePost, collectPost, cancelCollectPost, getUserPostStatus } from 'api/user'
+import { getCommentList } from 'api/comment'
 import swal from 'sweetalert'
 
 export default {
@@ -58,7 +59,8 @@ export default {
       isLike: false,
       noCollect: true,
       isCollect: false ,
-      loading: true
+      loading: true,
+      commentList: []
     }
   },
   components: {
@@ -71,11 +73,13 @@ export default {
       if(to.name == 'PostDetail'){
         window.scrollTo(0, 0)
         this.getPost()
+        this.getCommentList()
       }
     }
   },
   created(){
     this.getPost()
+    this.getCommentList()
   },
   methods: {
     getPost(){
@@ -107,6 +111,21 @@ export default {
               path: '/'
             })
           })
+        }
+      }).catch(error => {
+        console.log('服务器丢失了，请稍后重试！')
+      })
+    },
+    getCommentList(){
+      let id = this.$route.params.id
+      getCommentList(id).then(response => {
+        console.log(response.data)
+        if(response.data.status === 200){
+          this.commentList = response.data.message
+        }else if(response.data.status === 10003){
+          this.commentList = []
+        }else{
+          //不作处理
         }
       }).catch(error => {
         console.log('服务器丢失了，请稍后重试！')
