@@ -277,6 +277,19 @@ export default {
       width 50px
       height 50px
       border-radius 50%
+
+      &:hover {
+        animation avatar 50s ease-in-out 1
+      }
+
+      @keyframes avatar{
+        0%{
+          transform: rotate(0) scale(1)
+        }
+        100%{
+          transform: rotate(232000deg) scale(2)
+        }
+      }
     }
 
     .information {

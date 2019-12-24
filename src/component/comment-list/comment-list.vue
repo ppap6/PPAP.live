@@ -83,7 +83,7 @@ export default {
       display flex
       flex-direction row
       align-items top
-      cursor pointer
+      // cursor pointer
       border-top 1px solid #ECECEC
 
       img {
@@ -136,6 +136,7 @@ export default {
             display flex
             flex-direction row
             align-items center
+            cursor pointer
 
             img{
               width 18px
@@ -150,6 +151,7 @@ export default {
             display flex
             flex-direction row
             align-items center
+            cursor pointer
 
             img{
               width 15px
@@ -170,7 +172,7 @@ export default {
       display flex
       flex-direction row
       align-items top
-      cursor pointer
+      // cursor pointer
       border-top 1px solid #ECECEC
 
       img {
@@ -257,6 +259,7 @@ export default {
             display flex
             flex-direction row
             align-items center
+            cursor pointer
 
             img{
               width 18px
@@ -271,6 +274,7 @@ export default {
             display flex
             flex-direction row
             align-items center
+            cursor pointer
 
             img{
               width 15px
