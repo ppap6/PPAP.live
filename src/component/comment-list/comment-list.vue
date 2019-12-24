@@ -29,9 +29,9 @@
                 <router-link :to="`/user/${answer.requestor_id}`">
                   <div class="name">{{answer.requestor_name}}</div>
                 </router-link>
-                  回复了
-                <router-link :to="`/user/${answer.targetor_id}`">
-                  <div class="targetor">{{answer.targetor_name}}</div>
+                <span v-if="answer.type == 2">回复</span>
+                <router-link :to="`/user/${answer.targetor_id}`" v-if="answer.type == 2">
+                  <div class="targetor">@{{answer.targetor_name}}</div>
                 </router-link>
               </div>
               <div class="datetime">{{answer.create_time}}</div>
@@ -102,8 +102,8 @@ export default {
         text-align left
 
         .name {
-          font-size 14px
-          color #333333
+          font-size 12px
+          color #666666
           font-weight bold
 
           &:hover{
@@ -192,29 +192,38 @@ export default {
           display flex
           flex-direction row
           align-items center;
-          font-size 14px
+          font-size 12px
 
           .name {
-            font-size 14px
-            color #333333
+            font-size 12px
+            color #666666
             font-weight bold
-
-            &:after{
-              vertical-align center
-              color #999999
-              font-size 8px
-              margin 0 8px 0 8px
-              content "\2022"
-            }
 
             &:hover{
               text-decoration underline
             }
           }
 
+          span{
+            &:before{
+              vertical-align center
+              color #999999
+              font-size 8px
+              margin 0 2px 0 2px
+              content "\2022"
+            }
+            &:after{
+              vertical-align center
+              color #999999
+              font-size 8px
+              margin 0 2px 0 2px
+              content "\2022"
+            }
+          }
+
           .targetor{
-            font-size 14px
-            color #333333
+            font-size 12px
+            color #009688
             font-weight bold
 
             &:hover{
