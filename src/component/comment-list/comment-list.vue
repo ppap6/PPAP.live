@@ -10,7 +10,7 @@
             </router-link>
             <div class="detail">
               <router-link :to="`/user/${item.uid}`">
-                <div class="name">{{item.uname}}</div>
+                <span class="name">{{item.uname}}</span><span class="author" v-if="authorId == item.uid">楼主</span>
               </router-link>
               <div class="datetime">{{item.create_time}}</div>
               <div class="content">{{item.content}}</div>
@@ -27,11 +27,11 @@
             <div class="detail">
               <div class="answer-point-to">
                 <router-link :to="`/user/${answer.requestor_id}`">
-                  <div class="name">{{answer.requestor_name}}</div>
+                  <span class="name">{{answer.requestor_name}}</span><span class="author" v-if="authorId == answer.requestor_id">楼主</span>
                 </router-link>
                 <span v-if="answer.type == 2">回复</span>
                 <router-link :to="`/user/${answer.targetor_id}`" v-if="answer.type == 2">
-                  <div class="targetor">@{{answer.targetor_name}}</div>
+                  <span class="targetor">@{{answer.targetor_name}}</span><span class="author" v-if="authorId == answer.targetor_id">楼主</span>
                 </router-link>
               </div>
               <div class="datetime">{{answer.create_time}}</div>
@@ -50,7 +50,7 @@
 
 <script>
 export default {
-  props: ['commentList'],
+  props: ['commentList', 'authorId'],
   data() {
     return {
       msg: "我是评论列表组件"
@@ -106,9 +106,19 @@ export default {
           color #666666
           font-weight bold
 
-          &:hover{
+          &:hover {
             text-decoration underline
           }
+        }
+
+        .author {
+          font-weight bold
+          font-size 12px
+          padding 1px 6px
+          margin-left 4px
+          color #D6964E
+          background-color #232323
+          border-radius 6px
         }
 
         .datetime {
@@ -206,7 +216,17 @@ export default {
             }
           }
 
-          span{
+          .author {
+            font-weight bold
+            font-size 12px
+            padding 1px 6px
+            margin-left 4px
+            color #D6964E
+            background-color #232323
+            border-radius 6px
+          }
+
+          >span{
             &:before{
               vertical-align center
               color #999999

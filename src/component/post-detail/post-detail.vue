@@ -35,7 +35,7 @@
       <div class="content" v-html="post.content"></div>
     </div>
     <!-- 评论组件  -->
-    <CommentList :commentList="commentList"></CommentList>
+    <CommentList :commentList="commentList" :authorId="post.uid"></CommentList>
   </div>
 </template>
 
