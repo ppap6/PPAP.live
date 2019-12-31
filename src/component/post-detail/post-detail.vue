@@ -35,6 +35,10 @@
       <div class="content" v-html="post.content"></div>
     </div>
     <!-- 评论组件  -->
+    <div class="input-bar">
+      <CommentInput class="input"></CommentInput>
+      <div class="submit">发表评论</div>
+    </div>
     <CommentList :commentList="commentList" :authorId="post.uid"></CommentList>
   </div>
 </template>
@@ -42,6 +46,7 @@
 <script>
 import Loading from 'component/loading/loading'
 import CommentList from 'component/comment-list/comment-list'
+import CommentInput from 'component/comment-input/comment-input'
 import { getStorage } from 'common/js/localstorage'
 import { getPost, addPv } from 'api/post'
 import { likePost, cancelLikePost, collectPost, cancelCollectPost, getUserPostStatus } from 'api/user'
@@ -65,7 +70,8 @@ export default {
   },
   components: {
     Loading,
-    CommentList
+    CommentList,
+    CommentInput
   },
   watch: {
     $route(to, from){
@@ -434,6 +440,43 @@ export default {
       /deep/ ul, ol {
         margin 10px 0 10px 20px
       }
+    }
+  }
+
+  .input-bar {
+    display flex
+    flex-direction row
+    align-items center
+    justify-content center
+    // background #009688
+    z-index: 999999;
+
+    .input {
+      text-align left
+      height 68px
+      // background #f2aa24
+    }
+
+    .submit {
+      width: 70px;
+      height: 68px;
+      padding: 4px 15px;
+      margin auto
+      font-size: 14px;
+      box-sizing: border-box;
+      color: #fff;
+      border-radius: 4px;
+      text-align: center;
+      min-width: 60px;
+      cursor: pointer;
+      background-color: #00a1d6;
+      border: 1px solid #00a1d6;
+      transition: .1s;
+      user-select: none;
+      outline: none;
+      display flex
+      justify-content center
+      align-items center
     }
   }
 
