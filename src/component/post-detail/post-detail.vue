@@ -469,14 +469,18 @@ export default {
       text-align: center;
       min-width: 60px;
       cursor: pointer;
-      background-color: #00a1d6;
-      border: 1px solid #00a1d6;
+      background-color: #4170EA;
+      border: 1px solid #4170EA;
       transition: .1s;
       user-select: none;
       outline: none;
       display flex
       justify-content center
       align-items center
+
+      &:hover {
+        opacity 0.9
+      }
     }
   }
 

@@ -1,7 +1,7 @@
 <template>
   <div class="comment-list">
     <div class="container">
-      <div class="count">评论区</div>
+      <div class="count" v-if="commentList.length != 0">评论区</div>
       <div class="content">
         <div v-for="item in commentList" :key="item._id">
           <div class="comment-item">
