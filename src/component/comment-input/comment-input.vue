@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <textarea cols="80" rows="5" class="regular-input" v-model="input"></textarea>
+    <textarea cols="80" rows="5" class="regular-input" v-model="input" :placeholder="tips"></textarea>
 
     <EmojiPicker class="emoji-component" @emoji="append" :search="search">
       <div
@@ -43,10 +43,24 @@ import EmojiPicker from 'vue-emoji-picker'
 
 export default {
   name: 'commentInput',
+  props: ['inputValue', 'tips'],
   data() {
     return {
-      input: '',
+      input: this.inputValue,
       search: '',
+    }
+  },
+  computed: {
+    inputChange(){
+      return this.inputValue
+    }
+  },
+  watch: {
+    inputChange(data){
+      this.input = data
+    },
+    input(data){
+      this.$emit('inputChange', data)
     }
   },
   components: {
@@ -84,9 +98,17 @@ export default {
     height: 50px;
     outline: none;
     resize: none;
+    background-color #fafafa
 
     &:focus {
-      box-shadow: 0 0 0 1px rgba(66,153,225,.5);
+      // box-shadow: 0 0 0 1px rgba(66,153,225,.5);
+      box-shadow: 0 0 0 1px #4170ea
+      background-color #fff
+    }
+    &:hover{
+      // box-shadow: 0 0 0 1px rgba(66,153,225,.5);
+      box-shadow: 0 0 0 1px #4170ea
+      background-color #fff
     }
   }
   

@@ -36,8 +36,8 @@
     </div>
     <!-- 评论组件  -->
     <div class="input-bar">
-      <CommentInput class="input"></CommentInput>
-      <div class="submit">发表评论</div>
+      <CommentInput class="input" :inputValue="commentContent" @inputChange="inputChange" :tips="commentTips"></CommentInput>
+      <div class="submit" @click="comment">{{isComment ? '正在提交' : '发表评论'}}</div>
     </div>
     <CommentList :commentList="commentList" :authorId="post.uid"></CommentList>
   </div>
@@ -50,7 +50,7 @@ import CommentInput from 'component/comment-input/comment-input'
 import { getStorage } from 'common/js/localstorage'
 import { getPost, addPv } from 'api/post'
 import { likePost, cancelLikePost, collectPost, cancelCollectPost, getUserPostStatus } from 'api/user'
-import { getCommentList } from 'api/comment'
+import { getCommentList, comment } from 'api/comment'
 import swal from 'sweetalert'
 
 export default {
@@ -65,7 +65,10 @@ export default {
       noCollect: true,
       isCollect: false ,
       loading: true,
-      commentList: []
+      commentList: [],
+      commentContent: '',
+      isComment: false,
+      commentTips: '请自觉遵守互联网相关的政策法规，严禁发布色情、暴力、反动的言论。'
     }
   },
   components: {
@@ -253,6 +256,66 @@ export default {
         path: '/update-post',
         query: {
           id: this.post.id
+        }
+      })
+    },
+    inputChange(data){
+      this.commentContent = data
+    },
+    comment(){
+      if(this.isComment){
+        swal({
+          title: '正在提交'
+        })
+        return 
+      }
+      swal({
+        title: '确定发表评论吗',
+        buttons: {
+          cancel: '取消',
+          confirm: '确定'
+        }
+      }).then(result => {
+        if(result){
+          if(!this.post.id){
+            swal({
+              title: '获取帖子信息出错'
+            })
+            return 
+          }
+          if(this.commentContent.trim().length == 0){
+            swal({
+              title: '评论内容不能为空'
+            })
+            return 
+          }
+          this.isComment = true
+          let data = {
+            pid: this.post.id,
+            content: this.commentContent
+          }
+          comment(data).then(response => {
+            if(response.data.status == 200){
+              this.getCommentList()
+              swal({
+                title: '评论成功'
+              })
+              this.commentContent = ''
+            }else if(response.data.status == 10000){
+              swal({
+                title: '评论失败'
+              })
+            }else{
+              //不作处理
+            }
+            this.isComment = false
+          }).catch(error => {
+            console.log('服务器丢失了，请稍后重试！')
+            this.isComment = false
+          })
+        }else{
+          //取消评论
+          this.commentContent = ''
         }
       })
     }
