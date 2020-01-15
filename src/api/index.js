@@ -28,6 +28,10 @@ request.interceptors.response.use(
         if(response.data.status === 401){
             //配置请求url白名单
             if(response.config.url.indexOf('/user/login/status') > -1 ){
+                //store清除state.token
+                VM.$store.commit('resetToken', undefined)
+                //清除storage
+                removeStorage('user')
                 return response
             }else if(response.config.url.indexOf('/user/post/status') > -1){
                 return response
