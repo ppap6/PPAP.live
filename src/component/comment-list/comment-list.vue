@@ -18,6 +18,11 @@
                 <span class="light"><img src="../../common/img/light_0.png">亮了({{item.lights}})</span>
                 <span class="comment"><img src="../../common/img/comment.png">回复</span>
               </div>
+              <!-- 评论组件  -->
+              <div class="input-bar">
+                <CommentInput class="input" :inputValue="commentContent" @inputChange="inputChange" :tips="commentTips"></CommentInput>
+                <div class="submit" @click="comment">{{isComment ? '正在提交' : '发表评论'}}</div>
+              </div>
             </div>
           </div>
           <div class="answer-item" v-for="answer in item.answer_list" :key="answer._id">
@@ -40,6 +45,11 @@
                 <span class="light"><img src="../../common/img/light_0.png">亮了({{answer.lights}})</span>
                 <span class="comment"><img src="../../common/img/comment.png">回复</span>
               </div>
+              <!-- 评论组件  -->
+              <div class="input-bar">
+                <CommentInput class="input" :inputValue="commentContent" @inputChange="inputChange" :tips="commentTips"></CommentInput>
+                <div class="submit" @click="comment">{{isComment ? '正在提交' : '发表评论'}}</div>
+              </div>
             </div>
           </div>
         </div>
@@ -49,12 +59,17 @@
 </template>
 
 <script>
+import CommentInput from 'component/comment-input/comment-input'
+
 export default {
   props: ['commentList', 'authorId'],
   data() {
     return {
       msg: "我是评论列表组件"
     }
+  },
+  components: {
+    CommentInput
   }
 }
 </script>
@@ -167,6 +182,47 @@ export default {
               width 15px
               height 15px
               margin-right 3px
+            }
+          }
+        }
+
+        .input-bar {
+          display flex
+          flex-direction row
+          align-items center
+          justify-content center
+          // background #009688
+          z-index: 999999;
+
+          .input {
+            text-align left
+            height 68px
+            // background #f2aa24
+          }
+
+          .submit {
+            width: 70px;
+            height: 68px;
+            padding: 4px 15px;
+            margin auto
+            font-size: 14px;
+            box-sizing: border-box;
+            color: #fff;
+            border-radius: 4px;
+            text-align: center;
+            min-width: 60px;
+            cursor: pointer;
+            background-color: #4170EA;
+            border: 1px solid #4170EA;
+            transition: .1s;
+            user-select: none;
+            outline: none;
+            display flex
+            justify-content center
+            align-items center
+
+            &:hover {
+              opacity 0.9
             }
           }
         }
@@ -300,6 +356,47 @@ export default {
               width 15px
               height 15px
               margin-right 3px
+            }
+          }
+        }
+
+        .input-bar {
+          display flex
+          flex-direction row
+          align-items center
+          justify-content center
+          // background #009688
+          z-index: 999999;
+
+          .input {
+            text-align left
+            height 68px
+            // background #f2aa24
+          }
+
+          .submit {
+            width: 70px;
+            height: 68px;
+            padding: 4px 15px;
+            margin auto
+            font-size: 14px;
+            box-sizing: border-box;
+            color: #fff;
+            border-radius: 4px;
+            text-align: center;
+            min-width: 60px;
+            cursor: pointer;
+            background-color: #4170EA;
+            border: 1px solid #4170EA;
+            transition: .1s;
+            user-select: none;
+            outline: none;
+            display flex
+            justify-content center
+            align-items center
+
+            &:hover {
+              opacity 0.9
             }
           }
         }
