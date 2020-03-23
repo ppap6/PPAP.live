@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <textarea cols="80" rows="5" class="regular-input" v-model="input" :placeholder="tips"></textarea>
+    <textarea ref="textarea" cols="80" rows="5" class="regular-input" v-model="input" autofocus :placeholder="tips"></textarea>
 
     <EmojiPicker class="emoji-component" @emoji="append" :search="search">
       <div
@@ -43,33 +43,46 @@ import EmojiPicker from 'vue-emoji-picker'
 
 export default {
   name: 'commentInput',
-  props: ['inputValue', 'tips'],
+  props: ['tips'],
   data() {
     return {
-      input: this.inputValue,
+      textareaObj: {},
+      input: '',
       search: '',
     }
   },
-  computed: {
-    inputChange(){
-      return this.inputValue
-    }
-  },
   watch: {
-    inputChange(data){
-      this.input = data
-    },
     input(data){
+      //向父组件传递事件
       this.$emit('inputChange', data)
     }
+  },
+  mounted(){
+    this.textareaObj = this.$refs.textarea
   },
   components: {
     EmojiPicker
   },
   methods: {
     append(emoji) {
-      this.input += emoji
+      this.insertText(emoji)
     },
+    insertText(str) {
+      if (document.selection) {
+        let sel = document.selection.createRange()
+        sel.text = str
+      } else if (typeof this.textareaObj.selectionStart === 'number' && typeof this.textareaObj.selectionEnd === 'number') {
+        let startPos = this.textareaObj.selectionStart,
+            endPos = this.textareaObj.selectionEnd,
+            cursorPos = startPos,
+            tmpStr = this.textareaObj.value
+        this.input = tmpStr.substring(0, startPos) + str + tmpStr.substring(endPos, tmpStr.length)
+        cursorPos += str.length
+        this.textareaObj.selectionStart = this.textareaObj.selectionEnd = cursorPos
+      } else {
+        this.input += str
+      }
+    }
   },
   directives: {
     focus: {

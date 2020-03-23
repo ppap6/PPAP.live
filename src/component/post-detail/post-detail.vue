@@ -269,6 +269,12 @@ export default {
         })
         return 
       }
+      if(this.commentContent.trim().length == 0){
+        swal({
+          title: '评论内容不能为空'
+        })
+        return 
+      }
       swal({
         title: '确定发表评论吗',
         buttons: {

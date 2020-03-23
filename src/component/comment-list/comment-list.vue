@@ -3,29 +3,29 @@
     <div class="container">
       <div class="count" v-if="commentList.length != 0">评论区</div>
       <div class="content">
-        <div v-for="item in commentList" :key="item._id">
+        <div v-for="comment in commentList" :key="comment._id">
           <div class="comment-item">
-            <router-link :to="`/user/${item.uid}`">
-              <img :src="item.avatar" alt="头像">
+            <router-link :to="`/user/${comment.uid}`">
+              <img :src="comment.avatar" alt="头像">
             </router-link>
             <div class="detail">
-              <router-link :to="`/user/${item.uid}`">
-                <span class="name">{{item.uname}}</span><span class="author" v-if="authorId == item.uid">楼主</span>
+              <router-link :to="`/user/${comment.uid}`">
+                <span class="name">{{comment.uname}}</span><span class="author" v-if="authorId == comment.uid">楼主</span>
               </router-link>
-              <div class="datetime">{{item.create_time}}</div>
-              <div class="content">{{item.content}}</div>
+              <div class="datetime">{{comment.create_time}}</div>
+              <div class="content">{{comment.content}}</div>
               <div class="light-comment">
-                <span class="light"><img src="../../common/img/light_0.png">亮了({{item.lights}})</span>
-                <span class="comment"><img src="../../common/img/comment.png">回复</span>
+                <span class="light"><img src="../../common/img/light_0.png">亮了({{comment.lights}})</span>
+                <span class="comment" @click="displayCommentInput(comment)"><img src="../../common/img/comment.png">回复</span>
               </div>
               <!-- 评论组件  -->
-              <div class="input-bar">
-                <CommentInput class="input" :inputValue="commentContent" @inputChange="inputChange" :tips="commentTips"></CommentInput>
-                <div class="submit" @click="comment">{{isComment ? '正在提交' : '发表评论'}}</div>
+              <div class="input-bar" v-show="currentItem._id == comment._id">
+                <CommentInput class="input" @inputChange="inputChange" :tips="'回复'+comment.uname+'…'"></CommentInput>
+                <div class="submit" @click="submitComment(comment)">{{isComment ? '正在提交' : '发表评论'}}</div>
               </div>
             </div>
           </div>
-          <div class="answer-item" v-for="answer in item.answer_list" :key="answer._id">
+          <div class="answer-item" v-for="answer in comment.answer_list" :key="answer._id">
             <router-link :to="`/user/${answer.requestor_id}`">
               <img :src="answer.requestor_avatar" alt="头像">
             </router-link>
@@ -43,12 +43,12 @@
               <div class="content">{{answer.content}}</div>
               <div class="light-comment">
                 <span class="light"><img src="../../common/img/light_0.png">亮了({{answer.lights}})</span>
-                <span class="comment"><img src="../../common/img/comment.png">回复</span>
+                <span class="comment" @click="displayCommentInput(answer)" v-if="localUid != answer.requestor_id"><img src="../../common/img/comment.png">回复</span>
               </div>
               <!-- 评论组件  -->
-              <div class="input-bar">
-                <CommentInput class="input" :inputValue="commentContent" @inputChange="inputChange" :tips="commentTips"></CommentInput>
-                <div class="submit" @click="comment">{{isComment ? '正在提交' : '发表评论'}}</div>
+              <div class="input-bar" v-show="currentItem._id == answer._id">
+                <CommentInput class="input" @inputChange="inputChange" :tips="'回复'+answer.requestor_name+'…'"></CommentInput>
+                <div class="submit" @click="submitComment(answer)">{{isComment ? '正在提交' : '发表评论'}}</div>
               </div>
             </div>
           </div>
@@ -60,16 +60,42 @@
 
 <script>
 import CommentInput from 'component/comment-input/comment-input'
+import { getStorage } from 'common/js/localstorage'
+import swal from 'sweetalert'
 
 export default {
   props: ['commentList', 'authorId'],
   data() {
     return {
-      msg: "我是评论列表组件"
+      msg: "我是评论列表组件",
+      localUid: getStorage('user').uid,
+      //是否正在提交评论
+      isComment: false,
+      //当前聚焦的评论对象
+      currentItem: {}
     }
   },
   components: {
     CommentInput
+  },
+  methods: {
+    //子组件事件触发函数
+    inputChange(val){
+      this[this.currentItem._id + '_currentFocusCommentInput_content'] = val
+    },
+    //评论
+    submitComment(item){
+      if(this[item._id + '_currentFocusCommentInput_content'] == undefined || this[item._id + '_currentFocusCommentInput_content'].trim() == ''){
+        swal({
+          title: '回复不能为空'
+        })
+        return
+      }
+    },
+    //显示评论输入框
+    displayCommentInput(item){
+      this.currentItem = item
+    }
   }
 }
 </script>
