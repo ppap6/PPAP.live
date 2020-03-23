@@ -9,3 +9,8 @@ export function getCommentList(id){
 export function comment(data){
     return Request.post(`/comment`, data)
 }
+
+//添加回复
+export function answer(data){
+    return Request.post(`/answer`, data)
+}

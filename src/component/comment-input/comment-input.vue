@@ -59,6 +59,9 @@ export default {
   },
   mounted(){
     this.textareaObj = this.$refs.textarea
+    this.$bus.$on('emptyInputValue', () => {
+      this.input = ''
+    })
   },
   components: {
     EmojiPicker

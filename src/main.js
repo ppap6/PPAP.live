@@ -19,6 +19,10 @@ Vue.use(mavonEditor)
 
 Vue.config.productionTip = false
 
+//中央事件总线
+const bus = new Vue() 
+Vue.prototype.$bus = bus 
+
 /* eslint-disable no-new */
 const VM = new Vue({
   el: '#app',

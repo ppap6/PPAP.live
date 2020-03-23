@@ -39,7 +39,7 @@
       <CommentInput class="input" :inputValue="commentContent" @inputChange="inputChange" :tips="commentTips"></CommentInput>
       <div class="submit" @click="comment">{{isComment ? '正在提交' : '发表评论'}}</div>
     </div>
-    <CommentList :commentList="commentList" :authorId="post.uid"></CommentList>
+    <CommentList :commentList="commentList" :authorId="post.uid" @reloadCommentList="reloadCommentList"></CommentList>
   </div>
 </template>
 
@@ -324,6 +324,10 @@ export default {
           this.commentContent = ''
         }
       })
+    },
+    //重新加载评论
+    reloadCommentList(){
+      this.getCommentList()
     }
   }
 }

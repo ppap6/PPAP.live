@@ -48,7 +48,7 @@
               <!-- 评论组件  -->
               <div class="input-bar" v-show="currentItem._id == answer._id">
                 <CommentInput class="input" @inputChange="inputChange" :tips="'回复'+answer.requestor_name+'…'"></CommentInput>
-                <div class="submit" @click="submitComment(answer)">{{isComment ? '正在提交' : '发表评论'}}</div>
+                <div class="submit" @click="submitAnswer(answer)">{{isComment ? '正在提交' : '发表评论'}}</div>
               </div>
             </div>
           </div>
@@ -60,11 +60,12 @@
 
 <script>
 import CommentInput from 'component/comment-input/comment-input'
+import { answer as comment } from 'api/comment'
 import { getStorage } from 'common/js/localstorage'
 import swal from 'sweetalert'
 
 export default {
-  props: ['commentList', 'authorId'],
+  props: ['commentList', 'authorId', 'pid'],
   data() {
     return {
       msg: "我是评论列表组件",
@@ -83,7 +84,7 @@ export default {
     inputChange(val){
       this[this.currentItem._id + '_currentFocusCommentInput_content'] = val
     },
-    //评论
+    //回复评论
     submitComment(item){
       if(this[item._id + '_currentFocusCommentInput_content'] == undefined || this[item._id + '_currentFocusCommentInput_content'].trim() == ''){
         swal({
@@ -91,6 +92,82 @@ export default {
         })
         return
       }
+      this.isComment = true
+      let data = {
+        type: 1,
+        pid: item.pid,
+        comment_id: item._id,
+        targetor_id: item.uid,
+        content: this[item._id + '_currentFocusCommentInput_content']
+      }
+      comment(data).then(response => {
+        if(response.data.status == 200){
+          //向上发起事件
+          this.$emit('reloadCommentList')
+          //向整个单页面发布事件
+          this.$bus.$emit('emptyInputValue')
+          swal({
+            title: '回复成功'
+          })
+          //清空当前回复内容值
+          this[item._id + '_currentFocusCommentInput_content'] = ''
+          //清空当前回复对象
+          this.currentItem = {}
+        }else if(response.data.status == 10000){
+          swal({
+            title: '回复失败'
+          })
+        }else{
+          //不作处理
+        }
+        this.isComment = false
+      }).catch(error => {
+        console.log('服务器丢失了，请稍后重试！')
+        this.isComment = false
+      })
+    },
+    //回复回复
+    submitAnswer(item){
+      if(this[item._id + '_currentFocusCommentInput_content'] == undefined || this[item._id + '_currentFocusCommentInput_content'].trim() == ''){
+        swal({
+          title: '回复不能为空'
+        })
+        return
+      }
+      this.isComment = true
+      let data = {
+        type: 2,
+        pid: item.pid,
+        comment_id: item.comment_id,
+        target_answer_id: item._id,
+        targetor_id: item.requestor_id,
+        content: this[item._id + '_currentFocusCommentInput_content']
+      }
+      comment(data).then(response => {
+        if(response.data.status == 200){
+          //向上发起事件
+          this.$emit('reloadCommentList')
+          //向整个单页面发布事件
+          this.$bus.$emit('emptyInputValue')
+          swal({
+            title: '回复成功'
+          })
+          //清空当前回复内容值
+          this[item._id + '_currentFocusCommentInput_content'] = ''
+          //清空当前回复对象
+          this.currentItem = {}
+        }else if(response.data.status == 10000){
+          swal({
+            title: '回复失败'
+          })
+        }else{
+          //不作处理
+        }
+        this.isComment = false
+      }).catch(error => {
+        console.log('服务器丢失了，请稍后重试！')
+        this.isComment = false
+      })
     },
     //显示评论输入框
     displayCommentInput(item){
