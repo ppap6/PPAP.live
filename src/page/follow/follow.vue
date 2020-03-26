@@ -39,8 +39,8 @@
             <p class="title">{{item.pname}}</p>
           </router-link>
         </div>
-        <!-- <span class="text">回复了你</span> -->
-        <span class="text">
+        <span class="text" v-if="uid == item.targetor_id">回复了你</span>
+        <span class="text" v-if="uid != item.targetor_id">
           <span>回复了&nbsp;</span>
           <router-link :to="`/user/${item.targetor_id}`">
             <p class="name">{{item.targetor_name}}</p>
@@ -61,8 +61,8 @@
           </router-link>
         </div>
         <span class="datetime">{{item.create_time}}</span>
-        <!-- <span class="text">关注了你</span> -->
-        <span class="text">
+        <span class="text" v-if="uid == item.targetor_id">关注了你</span>
+        <span class="text" v-if="uid != item.targetor_id">
           <span>关注了&nbsp;</span>
           <router-link :to="`/user/${item.targetor_id}`">
             <p class="name">{{item.targetor_name}}</p>
@@ -78,8 +78,8 @@
           </router-link>
         </div>
         <span class="datetime">{{item.create_time}}</span>
-        <!-- <span class="text">点赞了你的文章</span> -->
-        <span class="text">
+        <span class="text" v-if="uid == item.targetor_id">点赞了你的文章</span>
+        <span class="text" v-if="uid != item.targetor_id">
           <span>点赞了&nbsp;</span>
           <router-link :to="`/user/${item.uid}`">
             <p class="name">{{item.uname}}</p>
@@ -101,8 +101,8 @@
           </router-link>
         </div>
         <span class="datetime">{{item.create_time}}</span>
-        <!-- <span class="text">收藏了你的文章</span> -->
-        <span class="text">
+        <span class="text" v-if="uid == item.targetor_id">收藏了你的文章</span>
+        <span class="text" v-if="uid != item.targetor_id">
           <span>收藏了&nbsp;</span>
           <router-link :to="`/user/${item.uid}`">
             <p class="name">{{item.uname}}</p>
@@ -154,12 +154,14 @@
 <script>
 import Loading from 'component/loading/loading'
 import { getPersonFollowDynamicList } from 'api/person'
+import { getStorage } from 'common/js/localstorage'
 
 export default {
   name: 'Follow',
   data () {
     return {
       msg: '我所关注用户的动态的组件',
+      uid: getStorage('user').uid,
       pageNum: 1,
       pageSize: 20,
       activityList: [
