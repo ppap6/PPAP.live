@@ -2,7 +2,7 @@
   <div class="all-list">
     <template v-for="item in noticeList">
       <!-- 评论消息 -->
-      <div class="notice" v-if="item.type === 1" :key="item._id">
+      <div class="notice" v-if="item.type === 1 && uid != item.uid" :key="item._id">
         <div class="left">
           <router-link :to="`/user/${item.uid}`">
             <img class="avatar" :src="item.avatar" alt>
@@ -24,7 +24,7 @@
         </div>
       </div>
       <!-- 回复消息 -->
-      <div class="notice" v-if="item.type === 2" :key="item._id">
+      <div class="notice" v-if="item.type === 2 && uid != item.uid" :key="item._id">
         <div class="left">
           <router-link :to="`/user/${item.uid}`">
             <img class="avatar" :src="item.avatar" alt>
@@ -46,7 +46,7 @@
         </div>
       </div>
       <!-- 关注消息 -->
-      <div class="notice" v-if="item.type === 3" :key="item._id">
+      <div class="notice" v-if="item.type === 3 && uid != item.uid" :key="item._id">
         <div class="left">
           <router-link :to="`/user/${item.uid}`">
             <img class="avatar" :src="item.avatar" alt>
@@ -57,7 +57,7 @@
         <span class="text">关注了你</span>
       </div>
       <!-- 点赞消息 -->
-      <div class="notice" v-if="item.type === 4" :key="item._id">
+      <div class="notice" v-if="item.type === 4 && uid != item.uid" :key="item._id">
         <div class="left">
           <router-link :to="`/user/${item.uid}`">
             <img class="avatar" :src="item.avatar" alt>
@@ -73,7 +73,7 @@
         </div>
       </div>
       <!-- 收藏消息 -->
-      <div class="notice" v-if="item.type === 5" :key="item._id">
+      <div class="notice" v-if="item.type === 5 && uid != item.uid" :key="item._id">
         <div class="left">
           <router-link :to="`/user/${item.uid}`">
             <img class="avatar" :src="item.avatar" alt>
@@ -94,11 +94,13 @@
 
 <script>
 import { getNoticeList } from 'api/notice'
+import { getStorage } from 'common/js/localstorage'
 
 export default {
   data () {
     return {
       msg: '全部通知的组件',
+      uid: getStorage('user').uid,
       noticeList: [
         //type的值 1为评论，2为回复，3为关注，4为点赞，5为收藏
       ],

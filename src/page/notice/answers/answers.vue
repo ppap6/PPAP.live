@@ -1,24 +1,26 @@
 <template>
   <div class="answer-list">
-    <div class="notice" v-for="item in noticeList" :key="item._id">
-      <div class="left">
-        <router-link :to="`/user/${item.uid}`">
-          <img class="avatar" :src="item.avatar" alt>
-          <p class="name">{{item.uname}}</p>
-        </router-link>
-      </div>
-      <span class="datetime">{{item.create_time}}</span>
-      <span class="text">在文章</span>
-      <div class="right">
-        <router-link :to="`/post/${item.pid}`">
-          <p class="title">{{item.pname}}</p>
-        </router-link>
-      </div>
-      <span class="text">回复了你</span>
-      <div class="right">
-        <router-link :to="`/post/${item.answer_id}`">
-          <p class="title">查看详情</p>
-        </router-link>
+    <div v-for="item in noticeList" :key="item._id">
+      <div class="notice" v-if="uid != item.uid">
+        <div class="left">
+          <router-link :to="`/user/${item.uid}`">
+            <img class="avatar" :src="item.avatar" alt>
+            <p class="name">{{item.uname}}</p>
+          </router-link>
+        </div>
+        <span class="datetime">{{item.create_time}}</span>
+        <span class="text">在文章</span>
+        <div class="right">
+          <router-link :to="`/post/${item.pid}`">
+            <p class="title">{{item.pname}}</p>
+          </router-link>
+        </div>
+        <span class="text">回复了你</span>
+        <div class="right">
+          <router-link :to="`/post/${item.answer_id}`">
+            <p class="title">查看详情</p>
+          </router-link>
+        </div>
       </div>
     </div>
   </div>
@@ -26,11 +28,13 @@
 
 <script>
 import { getAnswerNoticeList } from 'api/notice'
+import { getStorage } from 'common/js/localstorage'
 
 export default {
   data () {
     return {
       msg: '回复通知的组件',
+      uid: getStorage('user').uid,
       pageNum: 1,
       pageSize: 20,
       noticeList: []

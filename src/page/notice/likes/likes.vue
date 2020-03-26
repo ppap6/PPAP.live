@@ -1,18 +1,20 @@
 <template>
   <div class="like-list">
-    <div class="notice" v-for="item in noticeList" :key="item._id">
-      <div class="left">
-        <router-link :to="`/user/${item.uid}`">
-          <img class="avatar" :src="item.avatar" alt>
-          <p class="name">{{item.uname}}</p>
-        </router-link>
-      </div>
-      <span class="datetime">{{item.create_time}}</span>
-      <span class="text">点赞了你的文章</span>
-      <div class="right">
-        <router-link :to="`/post/${item.pid}`">
-          <p class="title">{{item.pname}}</p>
-        </router-link>
+    <div v-for="item in noticeList" :key="item._id">
+      <div class="notice" v-if="uid != item.uid">
+        <div class="left">
+          <router-link :to="`/user/${item.uid}`">
+            <img class="avatar" :src="item.avatar" alt>
+            <p class="name">{{item.uname}}</p>
+          </router-link>
+        </div>
+        <span class="datetime">{{item.create_time}}</span>
+        <span class="text">点赞了你的文章</span>
+        <div class="right">
+          <router-link :to="`/post/${item.pid}`">
+            <p class="title">{{item.pname}}</p>
+          </router-link>
+        </div>
       </div>
     </div>
   </div>
@@ -20,11 +22,13 @@
 
 <script>
 import { getLikeNoticeList } from 'api/notice'
+import { getStorage } from 'common/js/localstorage'
 
 export default {
   data () {
     return {
       msg: '点赞通知的组件',
+      uid: getStorage('user').uid,
       pageNum: 1,
       pageSize: 20,
       noticeList: []
