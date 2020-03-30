@@ -128,7 +128,6 @@ export default {
     getCommentList(){
       let id = this.$route.params.id
       getCommentList(id).then(response => {
-        console.log(response.data)
         if(response.data.status === 200){
           this.commentList = response.data.message
         }else if(response.data.status === 10003){

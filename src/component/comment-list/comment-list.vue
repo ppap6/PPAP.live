@@ -15,7 +15,7 @@
               <div class="datetime">{{comment.create_time}}</div>
               <div class="content">{{comment.content}}</div>
               <div class="light-comment">
-                <span class="light"><img src="../../common/img/light_0.png">亮了({{comment.lights}})</span>
+                <span class="light" @click="lightComment(comment, $event)"><img src="../../common/img/light_0.png">亮了({{comment.lights}})</span>
                 <span class="comment" @click="displayCommentInput(comment)"><img src="../../common/img/comment.png">回复</span>
               </div>
               <!-- 评论组件  -->
@@ -42,7 +42,7 @@
               <div class="datetime">{{answer.create_time}}</div>
               <div class="content">{{answer.content}}</div>
               <div class="light-comment">
-                <span class="light"><img src="../../common/img/light_0.png">亮了({{answer.lights}})</span>
+                <span class="light" @click="lightAnswer(answer, $event)"><img src="../../common/img/light_0.png">亮了({{answer.lights}})</span>
                 <span class="comment" @click="displayCommentInput(answer)" v-if="localUid != answer.requestor_id"><img src="../../common/img/comment.png">回复</span>
               </div>
               <!-- 评论组件  -->
@@ -61,6 +61,7 @@
 <script>
 import CommentInput from 'component/comment-input/comment-input'
 import { answer as comment } from 'api/comment'
+import { lightComment, lightAnswer, cancelLightComment, cancelLightAnswer } from 'api/user'
 import { getStorage } from 'common/js/localstorage'
 import swal from 'sweetalert'
 
@@ -172,6 +173,91 @@ export default {
     //显示评论输入框
     displayCommentInput(item){
       this.currentItem = item
+    },
+    //点亮评论
+    lightComment(comment, e){
+      if(comment.is_light){
+        cancelLightComment({
+          comment_id: comment._id
+        }).then(response => {
+          if(response.data.status == 200){
+            e.target.style.color = '#777777'
+            e.target.firstChild.src = require('common/img/light_0.png')
+            comment.lights --
+            comment.is_light = false
+          }else{
+            swal({
+              title: '点灭失败'
+            })
+          }
+        })
+      }else{
+        //点亮
+        lightComment({
+          comment_id: comment._id
+        }).then(response => {
+          if(response.data.status == 200){
+            e.target.style.color = '#bc3545'
+            e.target.firstChild.src = require('common/img/light_1.png')
+            comment.lights ++
+            comment.is_light = true
+          }else if(response.data.status == 10000){
+            e.target.style.color = '#bc3545'
+            e.target.firstChild.src = require('common/img/light_1.png')
+            comment.is_light = true
+            swal({
+              title: '已点亮'
+            })
+          }else{
+            swal({
+              title: '点亮失败'
+            })
+          }
+        })
+      }
+    },
+    //点亮回复
+    lightAnswer(answer, e){
+      if(answer.is_light){
+        cancelLightAnswer({
+          answer_id: answer._id
+        }).then(response => {
+          //点灭
+          if(response.data.status == 200){
+            e.target.style.color = '#777777'
+            e.target.firstChild.src = require('common/img/light_0.png')
+            answer.lights --
+            answer.is_light = false
+          }else{
+            swal({
+              title: '点灭失败'
+            })
+          }
+        })
+      }else{
+        //点亮
+        lightAnswer({
+          answer_id: answer._id
+        }).then(response => {
+          if(response.data.status == 200){
+            e.target.style.color = '#bc3545'
+            e.target.firstChild.src = require('common/img/light_1.png')
+            answer.lights ++
+            answer.is_light = true
+          }else if(response.data.status == 10000){
+            e.target.style.color = '#bc3545'
+            e.target.firstChild.src = require('common/img/light_1.png')
+            answer.is_light = true
+            swal({
+              title: '已点亮'
+            })
+          }else{
+            swal({
+              title: '点亮失败'
+            })
+          }
+        })
+      }
     }
   }
 }

@@ -74,3 +74,23 @@ export function cancelFollowUser(data){
 export function getUserFollowStatus(id){
     return Request.get(`/user/follow/status/${id}`)
 }
+
+//用户点亮评论
+export function lightComment(data){
+    return Request.post(`/user/light/comment`, data)
+}
+
+//用户点亮回复
+export function lightAnswer(data){
+    return Request.post(`/user/light/answer`, data)
+}
+
+//用户取消点亮评论
+export function cancelLightComment(data){
+    return Request.post(`/user/cancel/light/comment`, data)
+}
+
+//用户取消点亮回复
+export function cancelLightAnswer(data){
+    return Request.post(`/user/cancel/light/answer`, data)
+}
