@@ -1,10 +1,11 @@
 <template>
   <div class="comment-list">
     <div class="container">
-      <div class="count" v-if="commentList.length != 0">评论区</div>
+      <div class="count" v-if="commentList.length != 0">🍰评论区 {{commentCount}}🐱</div>
       <div class="content">
-        <div v-for="comment in commentList" :key="comment._id">
+        <div v-for="(comment, index) in commentList" :key="comment._id">
           <div class="comment-item">
+            <span class="floor">#{{index+1}}</span>
             <router-link :to="`/user/${comment.uid}`">
               <img :src="comment.avatar" alt="头像">
             </router-link>
@@ -68,7 +69,7 @@ import { getStorage } from 'common/js/localstorage'
 import swal from 'sweetalert'
 
 export default {
-  props: ['commentList', 'authorId', 'pid'],
+  props: ['commentList', 'authorId', 'pid', 'commentCount'],
   data() {
     return {
       msg: "我是评论列表组件",
@@ -112,6 +113,8 @@ export default {
           swal({
             title: '回复成功'
           })
+          //评论统计+1
+          this.$bus.$emit('refleshCommentCount', 1)
           //清空当前回复内容值
           this[item._id + '_currentFocusCommentInput_content'] = ''
           //清空当前回复对象
@@ -155,6 +158,8 @@ export default {
           swal({
             title: '回复成功'
           })
+          //评论统计+1
+          this.$bus.$emit('refleshCommentCount', 2)
           //清空当前回复内容值
           this[item._id + '_currentFocusCommentInput_content'] = ''
           //清空当前回复对象
@@ -286,6 +291,14 @@ export default {
       // cursor pointer
       border-top 1px solid #ECECEC
 
+      .floor {
+        position absolute
+        right 20px
+        bottom 10px
+        font-size 14px
+        color #999
+      }
+
       img {
         width 40px
         height 40px
@@ -314,10 +327,13 @@ export default {
         .author {
           font-weight bold
           font-size 12px
-          padding 1px 6px
+          // padding 1px 6px
+          padding 1px 4px
           margin-left 4px
-          color #D6964E
-          background-color #232323
+          color #777
+          // color #D6964E
+          // background-color #232323
+          background-color #ececec
           border-radius 6px
         }
 
@@ -460,10 +476,13 @@ export default {
           .author {
             font-weight bold
             font-size 12px
-            padding 1px 6px
+            // padding 1px 6px
+            padding 1px 4px
             margin-left 4px
-            color #D6964E
-            background-color #232323
+            color #777
+            // color #D6964E
+            // background-color #232323
+            background-color #ececec
             border-radius 6px
           }
 

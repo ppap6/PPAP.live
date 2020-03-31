@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <textarea ref="textarea" cols="80" rows="5" class="regular-input" v-model="input" autofocus :placeholder="tips"></textarea>
+    <textarea ref="textarea" cols="80" rows="5" class="regular-input" v-model="input" :placeholder="tips"></textarea>
 
     <EmojiPicker class="emoji-component" @emoji="append" :search="search">
       <div
@@ -101,28 +101,29 @@ export default {
 /* Tailwind CSS-styled demo is available here: https://codepen.io/DCzajkowski/pen/Brxvzj */
 
 .wrapper {
-  width: calc(100% - 100px);
-  position: relative;
-  display: block;
+  width: calc(100% - 100px) 
+  position: relative 
+  display: block 
   margin 20px 0 20px
 
   .regular-input {
     width calc(100% - 20px)
-    padding: 0.5rem 10px;
-    border-radius: 3px;
-    border: 1px solid #ccc;
-    height: 50px;
-    outline: none;
-    resize: none;
+    padding: 0.5rem 10px 
+    border-radius: 3px
+    border: 1px solid #ccc
+    height: 50px
+    outline: none
+    resize: none
     background-color #fafafa
+    font-family "微软雅黑","Avenir", Helvetica, Arial, sans-serif !important
 
     &:focus {
-      // box-shadow: 0 0 0 1px rgba(66,153,225,.5);
+      // box-shadow: 0 0 0 1px rgba(66,153,225,.5) 
       box-shadow: 0 0 0 1px #4170ea
       background-color #fff
     }
     &:hover{
-      // box-shadow: 0 0 0 1px rgba(66,153,225,.5);
+      // box-shadow: 0 0 0 1px rgba(66,153,225,.5) 
       box-shadow: 0 0 0 1px #4170ea
       background-color #fff
     }
@@ -133,79 +134,79 @@ export default {
     z-index 99 !important
 
     .emoji-invoker {
-      position: absolute;
+      position: absolute 
       // top -40px
       // left 10px
-      width: 1.5rem;
-      height: 1.5rem;
-      border-radius: 50%;
-      cursor: pointer;
-      transition: all 0.2s;
+      width: 1.5rem 
+      height: 1.5rem 
+      border-radius: 50% 
+      cursor: pointer 
+      transition: all 0.2s 
 
       &:hover {
-        transform: scale(1.1);
+        transform: scale(1.1) 
       }
 
       > svg {
-        fill: #b1c6d0;
+        fill: #b1c6d0 
       }
     }
 
     > div {
       .emoji-picker {
-        // position: absolute;
-        z-index: 99999;
-        font-family: Montserrat;
-        border: 1px solid #ccc;
-        width: 15rem;
-        height: 20rem;
-        overflow: scroll;
-        padding: 1rem;
-        box-sizing: border-box;
-        border-radius: 0.5rem;
-        background: #fff;
-        box-shadow: 1px 1px 8px #c7dbe6;
+        // position: absolute 
+        z-index: 99999 
+        font-family: Montserrat 
+        border: 1px solid #ccc 
+        width: 15rem 
+        height: 20rem 
+        overflow: scroll 
+        padding: 1rem 
+        box-sizing: border-box 
+        border-radius: 0.5rem 
+        background: #fff 
+        box-shadow: 1px 1px 8px #c7dbe6 
 
         .emoji-picker__search {
-          display: flex;
-          z-index: 99999;
+          display: flex 
+          z-index: 99999 
 
           > input {
-            flex: 1;
-            border-radius: 10rem;
-            border: 1px solid #ccc;
-            padding: 0.5rem 1rem;
-            outline: none;
+            flex: 1 
+            border-radius: 10rem 
+            border: 1px solid #ccc 
+            padding: 0.5rem 1rem 
+            outline: none 
           }
         }
 
         > div {
           h5 {
-            margin-bottom: 0;
-            color: #b1b1b1;
-            text-transform: uppercase;
-            font-size: 0.8rem;
-            cursor: default;
+            margin-bottom: 0 
+            color: #b1b1b1 
+            text-transform: uppercase 
+            font-size: 0.8rem 
+            cursor: default 
           }
 
           .emojis {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
+            display: flex 
+            flex-wrap: wrap 
+            justify-content: space-between 
 
             &:after {
-              content: "";
-              flex: auto;
+              content: "" 
+              flex: auto 
             }
 
             span {
-              padding: 0.2rem;
-              cursor: pointer;
-              border-radius: 5px;
+              padding: 0.2rem 
+              cursor: pointer 
+              border-radius: 5px 
 
               &:hover {
-                background: #ececec;
-                cursor: pointer;
+                background: #ececec 
+                cursor: pointer 
               }
             }
           }

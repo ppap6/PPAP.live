@@ -39,7 +39,7 @@
       <CommentInput class="input" :inputValue="commentContent" @inputChange="inputChange" :tips="commentTips"></CommentInput>
       <div class="submit" @click="comment">{{isComment ? '正在提交' : '发表评论'}}</div>
     </div>
-    <CommentList :commentList="commentList" :authorId="post.uid" @reloadCommentList="reloadCommentList"></CommentList>
+    <CommentList :commentList="commentList" :authorId="post.uid" :commentCount="post.comments + post.answers" @reloadCommentList="reloadCommentList"></CommentList>
   </div>
 </template>
 
@@ -78,7 +78,6 @@ export default {
   },
   watch: {
     $route(to, from){
-      console.log(to)
       if(to.name == 'PostDetail'){
         window.scrollTo(0, 0)
         this.getPost()
@@ -89,6 +88,13 @@ export default {
   created(){
     this.getPost()
     this.getCommentList()
+    this.$bus.$on('refleshCommentCount', type => {
+      if(type == 1){
+        this.post.comments ++
+      }else{
+        this.post.answers ++
+      }
+    })
   },
   methods: {
     getPost(){
@@ -305,6 +311,7 @@ export default {
               swal({
                 title: '评论成功'
               })
+              this.post.comments ++
               this.commentContent = ''
             }else if(response.data.status == 10000){
               swal({
