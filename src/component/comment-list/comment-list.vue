@@ -15,7 +15,8 @@
               <div class="datetime">{{comment.create_time}}</div>
               <div class="content">{{comment.content}}</div>
               <div class="light-comment">
-                <span class="light" @click="lightComment(comment, $event)"><img src="../../common/img/light_0.png">亮了({{comment.lights}})</span>
+                <span class="light" style="color: #777777" @click="lightComment(comment, $event)" v-if="!comment.is_light"><img src="../../common/img/light_0.png">亮了({{comment.lights}})</span>
+                <span class="light" style="color: #bc3545" @click="lightComment(comment, $event)" v-if="comment.is_light"><img src="../../common/img/light_1.png">亮了({{comment.lights}})</span>
                 <span class="comment" @click="displayCommentInput(comment)"><img src="../../common/img/comment.png">回复</span>
               </div>
               <!-- 评论组件  -->
@@ -42,7 +43,8 @@
               <div class="datetime">{{answer.create_time}}</div>
               <div class="content">{{answer.content}}</div>
               <div class="light-comment">
-                <span class="light" @click="lightAnswer(answer, $event)"><img src="../../common/img/light_0.png">亮了({{answer.lights}})</span>
+                <span class="light" style="color: #777777" @click="lightAnswer(answer, $event)" v-if="!answer.is_light"><img src="../../common/img/light_0.png">亮了({{answer.lights}})</span>
+                <span class="light" style="color: #bc3545" @click="lightAnswer(answer, $event)" v-if="answer.is_light"><img src="../../common/img/light_1.png">亮了({{answer.lights}})</span>
                 <span class="comment" @click="displayCommentInput(answer)" v-if="localUid != answer.requestor_id"><img src="../../common/img/comment.png">回复</span>
               </div>
               <!-- 评论组件  -->
@@ -177,6 +179,7 @@ export default {
     //点亮评论
     lightComment(comment, e){
       if(comment.is_light){
+        //点灭
         cancelLightComment({
           comment_id: comment._id
         }).then(response => {
@@ -186,9 +189,7 @@ export default {
             comment.lights --
             comment.is_light = false
           }else{
-            swal({
-              title: '点灭失败'
-            })
+            //不作处理
           }
         })
       }else{
@@ -209,9 +210,7 @@ export default {
               title: '已点亮'
             })
           }else{
-            swal({
-              title: '点亮失败'
-            })
+            //不作处理
           }
         })
       }
@@ -219,6 +218,7 @@ export default {
     //点亮回复
     lightAnswer(answer, e){
       if(answer.is_light){
+        //点灭
         cancelLightAnswer({
           answer_id: answer._id
         }).then(response => {
@@ -229,9 +229,7 @@ export default {
             answer.lights --
             answer.is_light = false
           }else{
-            swal({
-              title: '点灭失败'
-            })
+            //不作处理
           }
         })
       }else{
@@ -252,9 +250,7 @@ export default {
               title: '已点亮'
             })
           }else{
-            swal({
-              title: '点亮失败'
-            })
+            //不作处理
           }
         })
       }
@@ -264,10 +260,10 @@ export default {
 </script>
 
 <style scoped lang="stylus">
-.container{
+.container {
   margin 15px 0
 
-  .count{
+  .count {
     text-align left
     font-size 14px
     color #515151
@@ -337,13 +333,13 @@ export default {
           padding 4px 0
         }
 
-        .light-comment{
+        .light-comment {
           padding-top 5px
           display flex
           flex-direction row
           align-items center
           
-          .light{
+          .light {
             color #777
             font-size 12px
             margin-right 15px
@@ -352,14 +348,14 @@ export default {
             align-items center
             cursor pointer
 
-            img{
+            img {
               width 18px
               height 18px
               margin-right 2px
             }
           }
 
-          .comment{
+          .comment {
             color #555
             font-size 12px
             display flex
@@ -367,7 +363,7 @@ export default {
             align-items center
             cursor pointer
 
-            img{
+            img {
               width 15px
               height 15px
               margin-right 3px
@@ -436,7 +432,7 @@ export default {
         border-radius 50%
         flex-shrink 0
 
-        &:hover{
+        &:hover {
           text-decoration underline
         }
       }
@@ -445,7 +441,7 @@ export default {
         padding 0 10px
         text-align left
 
-        .answer-point-to{
+        .answer-point-to {
           display flex
           flex-direction row
           align-items center;
@@ -456,7 +452,7 @@ export default {
             color #666666
             font-weight bold
 
-            &:hover{
+            &:hover {
               text-decoration underline
             }
           }
@@ -471,15 +467,15 @@ export default {
             border-radius 6px
           }
 
-          >span{
-            &:before{
+          >span {
+            &:before {
               vertical-align center
               color #999999
               font-size 8px
               margin 0 2px 0 2px
               content "\2022"
             }
-            &:after{
+            &:after {
               vertical-align center
               color #999999
               font-size 8px
@@ -488,12 +484,12 @@ export default {
             }
           }
 
-          .targetor{
+          .targetor {
             font-size 12px
             color #009688
             font-weight bold
 
-            &:hover{
+            &:hover {
               text-decoration underline
             }
           }
@@ -511,14 +507,13 @@ export default {
           padding 4px 0
         }
 
-        .light-comment{
+        .light-comment {
           padding-top 5px
           display flex
           flex-direction row
           align-items center
           
-          .light{
-            color #777
+          .light {
             font-size 12px
             margin-right 15px
             display flex
@@ -526,14 +521,14 @@ export default {
             align-items center
             cursor pointer
 
-            img{
+            img {
               width 18px
               height 18px
               margin-right 2px
             }
           }
 
-          .comment{
+          .comment {
             color #555
             font-size 12px
             display flex
@@ -541,7 +536,7 @@ export default {
             align-items center
             cursor pointer
 
-            img{
+            img {
               width 15px
               height 15px
               margin-right 3px

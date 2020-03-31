@@ -130,7 +130,7 @@ export default {
   
   .emoji-component {
     position absolute
-    z-index 999999999 !important
+    z-index 99 !important
 
     .emoji-invoker {
       position: absolute;

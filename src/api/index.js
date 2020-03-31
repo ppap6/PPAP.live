@@ -25,7 +25,7 @@ request.interceptors.request.use(
 
 request.interceptors.response.use(
     response => {
-        if(response.data.status === 401){
+        if(response.data.status == 401){
             //配置请求url白名单
             if(response.config.url.indexOf('/user/login/status') > -1 ){
                 //store清除state.token
@@ -39,20 +39,22 @@ request.interceptors.response.use(
                 return response
             }else if(response.config.url.indexOf('/user/follow/status') > -1){
                 return response
-            }
-            //store清除state.token
-            VM.$store.commit('resetToken', undefined)
-            //清除storage
-            removeStorage('user')
-            swal({
-                title: '请先登陆'
-            }).then(() => {
-                VM.$router.push({
-                    path: '/login'
+            }else{
+                //store清除state.token
+                VM.$store.commit('resetToken', undefined)
+                //清除storage
+                removeStorage('user')
+                swal({
+                    title: '请先登陆'
+                }).then(() => {
+                    VM.$router.push({
+                        path: '/login'
+                    })
                 })
-            })
+            }
+        }else{
+            return response
         }
-        return response
     },
     error => {
         return Promise.reject(error)
