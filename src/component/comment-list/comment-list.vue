@@ -300,8 +300,8 @@ export default {
       }
 
       img {
-        width 40px
-        height 40px
+        width 45px
+        height 45px
         border-radius 50%
         flex-shrink 0
 
@@ -443,8 +443,8 @@ export default {
       border-top 1px solid #ECECEC
 
       img {
-        width 40px
-        height 40px
+        width 35px
+        height 35px
         border-radius 50%
         flex-shrink 0
 
