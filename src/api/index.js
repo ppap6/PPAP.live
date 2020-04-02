@@ -3,8 +3,8 @@ import VM from '../main'
 import { getStorage, setStorage, removeStorage } from 'common/js/localstorage'
 import swal from 'sweetalert'
 
-// const baseURL = 'http://localhost:2333'
-const baseURL = 'http://39.108.65.176:2333'
+const baseURL = 'http://localhost:2333'
+// const baseURL = 'http://39.108.65.176:2333'
 
 const request = axios.create({
     baseURL,
