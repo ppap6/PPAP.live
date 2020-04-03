@@ -311,8 +311,10 @@ export default {
               swal({
                 title: '评论成功'
               })
-              this.post.comments ++
+              //向整个单页面发布事件
+              this.$bus.$emit('emptyInputValue')
               this.commentContent = ''
+              this.post.comments ++
             }else if(response.data.status == 10000){
               swal({
                 title: '评论失败'
