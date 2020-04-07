@@ -16,6 +16,9 @@
               <router-link :to="`/user/${comment.uid}`">
                 <span class="name">{{comment.uname}}</span><span class="author" v-if="authorId == comment.uid">楼主</span>
               </router-link>
+              <router-link :to="`/user/${comment.requestor_id}`">
+                <img class="level" src="~common/img/6.png" alt="">
+              </router-link>
               <!-- <div class="datetime">{{comment.create_time}}</div> -->
               <div class="content">{{comment.content}}</div>
               <div class="light-comment">
@@ -41,13 +44,17 @@
                 <router-link :to="`/user/${answer.requestor_id}`">
                   <span class="name">{{answer.requestor_name}}</span><span class="author" v-if="authorId == answer.requestor_id">楼主</span>
                 </router-link>
-                <span v-if="answer.type == 2">回复</span>
-                <router-link :to="`/user/${answer.targetor_id}`" v-if="answer.type == 2">
-                  <span class="targetor">@{{answer.targetor_name}}</span><span class="author" v-if="authorId == answer.targetor_id">楼主</span>
+                <router-link :to="`/user/${answer.requestor_id}`">
+                  <img class="level" src="~common/img/2.png" alt="">
                 </router-link>
+                <span class="point-text" v-if="answer.type == 2">回复</span>
+                <router-link :to="`/user/${answer.targetor_id}`" v-if="answer.type == 2">
+                  <span class="targetor">@{{answer.targetor_name}}</span><span class="author" v-if="authorId == answer.targetor_id">楼主</span>：
+                </router-link>
+                <span class="content">{{answer.content}}</span>
               </div>
               <!-- <div class="datetime">{{answer.create_time}}</div> -->
-              <div class="content">{{answer.content}}</div>
+              <!-- <div class="content">{{answer.content}}</div> -->
               <div class="light-comment">
                 <span class="datetime">{{comment.create_time}}</span>
                 <span class="light" style="color: #777777" @click="lightAnswer(answer, $event)" v-if="!answer.is_light"><img src="../../common/img/light_0.png">亮了({{answer.lights}})</span>
@@ -327,6 +334,13 @@ export default {
         padding 0 10px
         text-align left
 
+        .level {
+          display inline-block
+          width 30px
+          height 15px
+          vertical-align middle
+        }
+
         .name {
           font-size 12px
           color #666666
@@ -463,7 +477,14 @@ export default {
       flex-direction row
       align-items top
       // cursor pointer
-      border-top 1px solid #ECECEC
+      // border-top 1px solid #ECECEC
+
+      .level {
+        display inline-block
+        width 30px
+        height 15px
+        vertical-align middle
+      }
 
       img {
         width 35px
@@ -481,10 +502,11 @@ export default {
         text-align left
 
         .answer-point-to {
-          display flex
-          flex-direction row
-          align-items center;
+          // display flex
+          // flex-direction row
+          // align-items center
           font-size 12px
+          line-height 24px
 
           .name {
             font-size 12px
@@ -509,7 +531,7 @@ export default {
             border-radius 6px
           }
 
-          >span {
+          .point-text {
             &:before {
               vertical-align center
               color #999999
@@ -534,6 +556,10 @@ export default {
             &:hover {
               text-decoration underline
             }
+          }
+
+          .content {
+            padding-left 5px
           }
         }
 

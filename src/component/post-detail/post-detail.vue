@@ -424,6 +424,8 @@ export default {
   }
 
   .post-content {
+    position relation
+    width calc(100% - 80px)
     text-align left
     padding 10px 40px
     background-color #FFF
@@ -438,7 +440,13 @@ export default {
     }
 
     /deep/ p {
+      position relation
+      width 100%
       margin 12px 0
+
+      img {
+        width 100%
+      }
     }
 
     .title {
@@ -465,6 +473,7 @@ export default {
     }
 
     .content {
+      width 100%
       padding 30px 0 10px
 
       /deep/ .hljs {
