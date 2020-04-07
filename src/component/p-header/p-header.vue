@@ -9,7 +9,7 @@
           <a @click="goSearch">
             <img class="search-icon" src="../../common/img/search.png" alt="">
           </a>
-          <input class="search-input" type="text" v-model="keywords" @keyup.enter="goSearch" placeholder="搜索">
+          <input class="search-input" type="text" v-model="keywords" @keyup.enter="goSearch" placeholder="帖子、用户">
         </div> 
       </div>
       <div class="header-right">
