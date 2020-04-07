@@ -72,9 +72,10 @@ export default {
     $route(to, from){
       if(from.path.includes('/search/posts') && (!to.path.includes('/search/users') && !to.path.includes('/search/posts'))){
         this.keywords = ''
-      }
-      if(from.path.includes('/search/users') && (!to.path.includes('/search/posts') && !to.path.includes('/search/users'))){
+      }else if(from.path.includes('/search/users') && (!to.path.includes('/search/posts') && !to.path.includes('/search/users'))){
         this.keywords = ''
+      }else{
+        this.keywords = this.$route.query.keyword
       }
     }
   },
