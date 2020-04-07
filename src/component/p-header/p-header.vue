@@ -80,6 +80,7 @@ export default {
   },
   created(){
     this.getUserLoginStatus()
+    this.keywords = this.$route.query.keyword
   },
   methods: {
     goLogin(){

@@ -22,7 +22,7 @@
         </div>
         <div class="post-content">
           <router-link :to="`/post/${post.id}`" :target="useInPerson ? '_blank' : ''">
-            <div class="post-title">{{post.title}}</div>
+            <div class="post-title" v-html="post.title"></div>
           </router-link>
           <div class="post-summary" v-if="!useInPerson" v-html="post.content.slice(0,40) + '…'"></div>
           <div class="statistics">

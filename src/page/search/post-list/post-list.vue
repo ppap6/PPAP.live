@@ -30,10 +30,32 @@ export default {
   },
   methods: {
     getSearchPostList(){
-      let keyword = this.$route.query.keyword
-      getSearchPostList(keyword).then(response => {
+      let words = this.$route.query.keyword
+      getSearchPostList(words).then(response => {
         if(response.data.status === 200){
-          this.postList = response.data.message
+
+          let posts = response.data.message
+          let postList = []
+
+          //搜索关键字数组
+          let wordsArr = words.split('')
+          
+          for(let i=0; i<posts.length; i++){
+            
+            let titleTextArr = posts[i].title.split('')
+
+            for(let j=0; j<titleTextArr.length; j++){
+              for(let k=0; k<wordsArr.length; k++){
+                if(wordsArr[k] == titleTextArr[j]){
+                  titleTextArr[j] = `<span style="color:#f54545">${wordsArr[k]}</span>`
+                }
+              }
+            }
+
+            posts[i].title = titleTextArr.join('')
+          }
+          this.postList = posts
+
         }else if(response.data.status === 10003){
           this.postList = []
         }else{

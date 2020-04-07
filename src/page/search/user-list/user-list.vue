@@ -8,7 +8,7 @@
       </div>
       <div class="right">
         <router-link :to="`/user/${item.id}`">
-          <p class="name">{{item.name}}</p>
+          <p class="name" v-html="item.name"></p>
         </router-link>
         <div class="count">
           <span class="followers">粉丝 {{item.fans_count}}</span>
@@ -39,10 +39,32 @@ export default {
   },
   methods: {
     getSearchUserList(){
-      let keyword = this.$route.query.keyword
-      getSearchUserList(keyword).then(response => {
+      let words = this.$route.query.keyword
+      getSearchUserList(words).then(response => {
         if(response.data.status === 200){
-          this.userList = response.data.message
+
+          let users = response.data.message
+          let userList = []
+
+          //搜索关键字数组
+          let wordsArr = words.split('')
+          
+          for(let i=0; i<users.length; i++){
+            
+            let nameTextArr = users[i].name.split('')
+
+            for(let j=0; j<nameTextArr.length; j++){
+              for(let k=0; k<wordsArr.length; k++){
+                if(wordsArr[k] == nameTextArr[j]){
+                  nameTextArr[j] = `<span style="color:#f54545">${wordsArr[k]}</span>`
+                }
+              }
+            }
+
+            users[i].name = nameTextArr.join('')
+          }
+          this.userList = users
+
         }else if(response.data.status === 10003){
           this.userList = []
         }else{
