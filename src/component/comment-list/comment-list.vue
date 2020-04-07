@@ -1,7 +1,10 @@
 <template>
   <div class="comment-list">
     <div class="container">
-      <div class="count" v-if="commentList.length != 0">🍰评论区 {{commentCount}}🐱</div>
+      <div class="count" v-if="commentList.length != 0">
+        <span class="left">评论 & 回复</span>
+        <span class="right">{{commentCount}} 条</span>
+      </div>
       <div class="content">
         <div v-for="(comment, index) in commentList" :key="comment._id">
           <div class="comment-item">
@@ -13,12 +16,14 @@
               <router-link :to="`/user/${comment.uid}`">
                 <span class="name">{{comment.uname}}</span><span class="author" v-if="authorId == comment.uid">楼主</span>
               </router-link>
-              <div class="datetime">{{comment.create_time}}</div>
+              <!-- <div class="datetime">{{comment.create_time}}</div> -->
               <div class="content">{{comment.content}}</div>
               <div class="light-comment">
+                <span class="datetime">{{comment.create_time}}</span>
                 <span class="light" style="color: #777777" @click="lightComment(comment, $event)" v-if="!comment.is_light"><img src="../../common/img/light_0.png">亮了({{comment.lights}})</span>
                 <span class="light" style="color: #bc3545" @click="lightComment(comment, $event)" v-if="comment.is_light"><img src="../../common/img/light_1.png">亮了({{comment.lights}})</span>
-                <span class="comment" @click="displayCommentInput(comment)"><img src="../../common/img/comment.png">回复</span>
+                <span class="comment" @click="displayCommentInput(comment)" v-if="currentItem._id != comment._id"><img src="../../common/img/comment.png">回复</span>
+                <span class="comment" @click="undisplayCommentInput(comment)" v-if="currentItem._id == comment._id"><img src="../../common/img/comment.png">取消</span>
               </div>
               <!-- 评论组件  -->
               <div class="input-bar" v-show="currentItem._id == comment._id">
@@ -41,12 +46,14 @@
                   <span class="targetor">@{{answer.targetor_name}}</span><span class="author" v-if="authorId == answer.targetor_id">楼主</span>
                 </router-link>
               </div>
-              <div class="datetime">{{answer.create_time}}</div>
+              <!-- <div class="datetime">{{answer.create_time}}</div> -->
               <div class="content">{{answer.content}}</div>
               <div class="light-comment">
+                <span class="datetime">{{comment.create_time}}</span>
                 <span class="light" style="color: #777777" @click="lightAnswer(answer, $event)" v-if="!answer.is_light"><img src="../../common/img/light_0.png">亮了({{answer.lights}})</span>
                 <span class="light" style="color: #bc3545" @click="lightAnswer(answer, $event)" v-if="answer.is_light"><img src="../../common/img/light_1.png">亮了({{answer.lights}})</span>
-                <span class="comment" @click="displayCommentInput(answer)" v-if="localUid != answer.requestor_id"><img src="../../common/img/comment.png">回复</span>
+                <span class="comment" @click="displayCommentInput(answer)" v-if="localUid != answer.requestor_id && currentItem._id != answer._id"><img src="../../common/img/comment.png">回复</span>
+                <span class="comment" @click="undisplayCommentInput(answer)" v-if="localUid != answer.requestor_id && currentItem._id == answer._id"><img src="../../common/img/comment.png">取消</span>
               </div>
               <!-- 评论组件  -->
               <div class="input-bar" v-show="currentItem._id == answer._id">
@@ -181,6 +188,10 @@ export default {
     displayCommentInput(item){
       this.currentItem = item
     },
+    //取消显示评论输入框
+    undisplayCommentInput(item){
+      this.currentItem = {}
+    },
     //点亮评论
     lightComment(comment, e){
       if(comment.is_light){
@@ -272,8 +283,10 @@ export default {
     text-align left
     font-size 14px
     color #515151
-    padding 6px 20px
+    padding 15px 20px
     background-color #FFFFFF
+    display flex
+    justify-content space-between
   }
 
   .content {
@@ -284,7 +297,7 @@ export default {
       position relative
       background-color #FFFFFF
       // border-radius 5px
-      padding 10px 20px
+      padding 10px 30px
       display flex
       flex-direction row
       align-items top
@@ -346,7 +359,7 @@ export default {
           font-size 14px
           color #171717
           line-height 20px
-          padding 4px 0
+          padding 8px 0 2px
         }
 
         .light-comment {
@@ -354,6 +367,16 @@ export default {
           display flex
           flex-direction row
           align-items center
+
+          .datetime {
+            color #777
+            font-size 12px
+            margin-right 15px
+            display flex
+            flex-direction row
+            align-items center
+            cursor pointer
+          } 
           
           .light {
             color #777
@@ -434,7 +457,7 @@ export default {
       position relative
       background-color #FFFFFF
       // border-radius 5px
-      padding 10px 20px
+      padding 10px 30px
       margin-left 50px
       display flex
       flex-direction row
@@ -523,7 +546,7 @@ export default {
           font-size 14px
           color #171717
           line-height 20px
-          padding 4px 0
+          padding 8px 0 2px
         }
 
         .light-comment {
@@ -531,6 +554,16 @@ export default {
           display flex
           flex-direction row
           align-items center
+
+          .datetime {
+            color #777
+            font-size 12px
+            margin-right 15px
+            display flex
+            flex-direction row
+            align-items center
+            cursor pointer
+          } 
           
           .light {
             font-size 12px

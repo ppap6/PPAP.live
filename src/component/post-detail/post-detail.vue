@@ -343,7 +343,7 @@ export default {
 
 <style scoped lang="stylus">
 .post-detail {
-  max-width 800px
+  max-width 700px
   margin auto
 
   h1 {
