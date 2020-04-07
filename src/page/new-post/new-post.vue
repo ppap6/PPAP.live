@@ -38,8 +38,6 @@ export default {
   },
   methods: {
     change(value, render){
-      console.log(value)
-      console.log(render)
       this.md = value
       this.content = render
     },
@@ -50,6 +48,24 @@ export default {
         })
         return 
       }
+      if(!this.topicId){
+        swal({
+          title: '请选择话题'
+        })
+        return
+      }
+      if(this.title.trim().length == 0){
+        swal({
+          title: '标题不能为空'
+        })
+        return
+      }
+      if(this.content.trim().length == 0){
+        swal({
+          title: '文章内容不能为空'
+        })
+        return
+      }
       swal({
         title: '确定发布文章吗',
         buttons: {
@@ -58,24 +74,6 @@ export default {
         }
       }).then(result => {
         if(result){
-          if(!this.topicId){
-            swal({
-              title: '请选择话题'
-            })
-            return
-          }
-          if(this.title.trim().length == 0){
-            swal({
-              title: '标题不能为空'
-            })
-            return
-          }
-          if(this.content.trim().length == 0){
-            swal({
-              title: '文章内容不能为空'
-            })
-            return
-          }
           this.addPost()
         }else{
           //取消发布
