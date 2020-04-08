@@ -184,7 +184,7 @@ export default {
       }
       getPersonFollowDynamicList(data).then(response => {
         if(response.data.status == 200){
-          let list = response.data.message
+          let list = response.data.message.list
           this.activityList = list
           //隐藏加载动画
           this.loading = false

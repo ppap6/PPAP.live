@@ -135,7 +135,7 @@ export default {
       let id = this.$route.params.id
       getCommentList(id).then(response => {
         if(response.data.status === 200){
-          this.commentList = response.data.message
+          this.commentList = response.data.message.list
         }else if(response.data.status === 10003){
           this.commentList = []
         }else{

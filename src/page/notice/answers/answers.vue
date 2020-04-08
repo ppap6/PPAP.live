@@ -51,7 +51,7 @@ export default {
       }
       getAnswerNoticeList(data).then(response => {
         if(response.data.status == 200){
-          this.noticeList = response.data.message
+          this.noticeList = response.data.message.list
         }
       })
     }

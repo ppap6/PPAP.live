@@ -32,7 +32,7 @@ export default {
       let uid = this.$route.params.id
       getPersonTopicList(uid).then(response => {
         if(response.data.status === 200){
-          this.topicList = response.data.message
+          this.topicList = response.data.message.list
         }else if(response.data.status === 10003){
           this.topicList = []
         }else{

@@ -61,7 +61,7 @@ export default {
       let uid = this.$route.params.id
       getPersonAnswerList(uid).then(response => {
         if(response.data.status === 200){
-          this.answerList = response.data.message
+          this.answerList = response.data.message.list
         }else if(response.data.status === 10003){
           this.answerList = []
         }else{

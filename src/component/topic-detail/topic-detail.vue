@@ -46,7 +46,6 @@ export default {
       if(to.name == 'Topic'){
         this.getTopic()
         this.getPostList()
-        console.log(this.$route)
       }
     }
   },
@@ -98,7 +97,7 @@ export default {
       }
       getPostList(data).then(response => {
         if(response.data.status === 200){
-          this.postList = response.data.message
+          this.postList = response.data.message.list
         }else if(response.data.status === 10003){
           this.postList = []
         }else{

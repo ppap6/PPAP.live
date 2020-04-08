@@ -76,7 +76,7 @@ export default {
       }
       getPostList(data).then(response => {
         if(response.data.status === 200){
-          this.postList = response.data.message
+          this.postList = response.data.message.list
           //隐藏加载动画
           this.loading = false
         }else if(response.data.status === 10003){

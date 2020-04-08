@@ -11,8 +11,8 @@
           <p class="name">{{item.name}}</p>
         </router-link>
         <div class="count">
-          <span class="followers">粉丝 {{item.fans_count}}</span>
-          <span class="follows">关注 {{item.follow_count}}</span>
+          <span class="followers">粉丝 {{item.fans}}</span>
+          <span class="follows">关注 {{item.follows}}</span>
         </div>
       </div>
     </div>
@@ -37,7 +37,7 @@ export default {
       let uid = this.$route.params.id
       getPersonFollowList(uid).then(response => {
         if(response.data.status === 200){
-          this.followList = response.data.message
+          this.followList = response.data.message.list
         }else if(response.data.status === 10003){
           this.followList = []
         }else{

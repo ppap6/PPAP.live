@@ -32,7 +32,7 @@ export default {
       let uid = this.$route.params.id
       getPersonLikeList(uid).then(response => {
         if(response.data.status === 200){
-          this.postList = response.data.message
+          this.postList = response.data.message.list
         }else if(response.data.status === 10003){
           this.postList = []
         }else{

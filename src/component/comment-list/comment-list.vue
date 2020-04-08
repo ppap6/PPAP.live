@@ -35,7 +35,7 @@
               </div>
             </div>
           </div>
-          <div class="answer-item" v-for="answer in comment.answer_list" :key="answer._id">
+          <div class="answer-item" v-for="answer in comment.answer.list" :key="answer._id">
             <router-link :to="`/user/${answer.requestor_id}`">
               <img :src="answer.requestor_avatar" alt="头像">
             </router-link>
