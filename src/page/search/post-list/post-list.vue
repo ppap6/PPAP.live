@@ -34,7 +34,7 @@ export default {
       getSearchPostList(words).then(response => {
         if(response.data.status === 200){
 
-          let posts = response.data.message
+          let posts = response.data.message.list
           let postList = []
 
           //搜索关键字数组

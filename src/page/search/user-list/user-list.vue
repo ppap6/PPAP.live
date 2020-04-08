@@ -43,7 +43,7 @@ export default {
       getSearchUserList(words).then(response => {
         if(response.data.status === 200){
 
-          let users = response.data.message
+          let users = response.data.message.list
           let userList = []
 
           //搜索关键字数组
