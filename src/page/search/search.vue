@@ -2,20 +2,28 @@
   <div class="search-center">
     <div class="container-header">
       <nav>
-        <router-link :to="`/search/posts?keyword=${keyword}`">
+        <router-link :to="`/search/posts?keyword=${keyword}&s=${type}`">
           <span
             class="posts"
             @click="selectNav('posts')"
             :class="{active: navName === 'posts'}"
           >帖子</span>
         </router-link>
-        <router-link :to="`/search/users?keyword=${keyword}`">
+        <router-link :to="`/search/users?keyword=${keyword}&s=${type}`">
           <span
             class="users"
             @click="selectNav('users')"
             :class="{active: navName === 'users'}"
           >用户</span>
         </router-link>
+        <div class="select-box">
+          <select class="select" @change="changeType($event)">
+            <option value="1" :selected="type == 1 ? true : false">模糊搜索</option>
+            <option value="2" :selected="type == 2 ? true : false">分词搜索</option>
+            <option value="3" :selected="type == 3 ? true : false">精准搜索</option>
+          </select>
+        </div>
+        
       </nav>
     </div>
 
@@ -30,7 +38,8 @@ export default {
   data() {
     return {
       navName: 'posts',
-      keyword: ''
+      keyword: '',
+      type: 1
     }
   },
   watch: {
@@ -39,10 +48,12 @@ export default {
       this.refleshSelectStatus(to.name)
       //存储query
       this.keyword = this.$route.query.keyword
+      this.type = this.$route.query.s
     }
   },
   created(){
     this.keyword = this.$route.query.keyword
+    this.type = this.$route.query.s
   },
   mounted(){
     this.refleshSelectStatus(this.$route.name) 
@@ -63,6 +74,15 @@ export default {
         default:
           break
       }
+    },
+    changeType(e){
+      this.type = e.target.value
+      this.$router.replace({
+        query: {
+          keyword: this.keyword,
+          s: e.target.value
+        }
+      })
     }
   }
 }
@@ -111,6 +131,7 @@ export default {
     }
 
     nav {
+      position relative
       color #515151
       text-align left
       padding 10px 20px
@@ -128,6 +149,24 @@ export default {
       .active {
         color #4170ea
         border-bottom 2px solid #4170ea
+      }
+
+      .select-box {
+        position absolute
+        top 10px
+        right 20px
+
+        .select {
+          width 100px
+          color #999
+          border-radius 3px
+          box-shadow 0 0 3px #999
+          cursor pointer !important
+          outline none !important
+          padding 1px 5px 4px
+          font-size 14px
+          line-height 18px
+        }
       }
     }
   }
