@@ -4,18 +4,21 @@
     <keep-alive :include="['Home', 'TopicDetail', 'Follow', 'Notice', 'NewPost']">
       <router-view/>
     </keep-alive>
+    <back-top>></back-top>
   </div>
 </template>
 
 <script>
-import PHeader from "component/p-header/p-header.vue";
+import PHeader from "component/p-header/p-header.vue"
+import BackTop from "component/back-top/back-top.vue"
 
 export default {
   name: "App",
   components: {
-    PHeader
+    PHeader,
+    BackTop
   }
-};
+}
 </script>
 
 <style>
