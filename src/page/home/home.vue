@@ -1,22 +1,24 @@
 <template>
   <div class="container">
     <Loading :loading="loading"></Loading>
-    <div class="left">
-      <div class="profile-card">
-        <ProfileCard></ProfileCard>
-      </div>
-      <div class="hot-post-card">
-        <HotPostCard></HotPostCard>
-      </div>
-      <div class="link-card">
-        <LinkCard></LinkCard>
-      </div>
+    <div class="left topic-list">
+      <TopicList class="topic-list-content" :isRouter="true"></TopicList>
     </div>
     <div class="center post-list">
       <PostList :postList="postList"></PostList>
     </div>
-    <div class="right topic-list">
-      <TopicList :isRouter="true"></TopicList>
+    <div class="right">
+      <div class="right-list-content">
+        <!-- <div class="profile-card">
+          <ProfileCard></ProfileCard>
+        </div> -->
+        <div class="hot-post-card">
+          <HotPostCard></HotPostCard>
+        </div>
+        <div class="link-card">
+          <LinkCard></LinkCard>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -51,7 +53,7 @@ export default {
     this.getPostList()
   },
   mounted(){
-    this.listenScroll()
+    // this.listenScroll()
   },
   methods: {
     listenScroll(){
@@ -129,6 +131,11 @@ export default {
     width 250px
     height 600px
     border-radius 5px
+
+    .right-list-content {
+      position fixed
+      width 250px
+    }
   }
 }
 </style>
