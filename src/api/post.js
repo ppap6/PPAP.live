@@ -26,3 +26,10 @@ export function addPost(data){
 export function updatePost(id, data){
     return Request.put(`/post/${id}`, data)
 }
+
+//获取热门帖子列表
+export function getHotPostList(data){
+    return Request.get('/post/hot', {
+        params: data
+    })
+}

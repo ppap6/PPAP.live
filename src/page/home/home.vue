@@ -18,6 +18,10 @@
         <div class="link-card">
           <LinkCard></LinkCard>
         </div>
+        <div class="copyright">
+          <span>©2020</span>
+          <a href="https://github.com/ppap6/PPAP.live" target="_blank">PPAP</a>
+        </div>
       </div>
     </div>
   </div>
@@ -135,6 +139,12 @@ export default {
     .right-list-content {
       position fixed
       width 250px
+
+      .copyright {
+        font-size 12px
+        padding 10px
+        text-align left
+      }
     }
   }
 }

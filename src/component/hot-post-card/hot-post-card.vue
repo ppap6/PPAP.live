@@ -1,12 +1,15 @@
 <template>
   <div class="container">
     <div class="title">
-      <p>热门讨论</p>
+      <div class="content">
+        <span>热门讨论</span>
+        <img class="hot-icon" src="~common/img/hot.png" alt>
+      </div>
     </div>
     <div class="post-list">
-      <div class="post" v-for="item in posts">
-        <img class="hot-icon" src="../../common/img/hot.png" alt>
-        <router-link to="/post/帖子id">
+      <div class="post" v-for="item in postList" :key="item.id">
+        <img class="avatar" :src="item.avatar" alt>
+        <router-link :to="`/post/${item.id}`">
           <p class="post-title">{{item.title}}</p>
         </router-link>
       </div>
@@ -15,20 +18,31 @@
 </template>
 
 <script>
+import { getHotPostList } from 'api/post'
+
 export default {
   data() {
     return {
-      posts: [
-        {
-          title: "前端知识之 vue 知识进阶"
-        },
-        {
-          title: "前端知识之 react 知识进阶"
+      postList: []
+    }
+  },
+  created(){
+    this.getHotPostList()
+  },
+  methods: {
+    getHotPostList(){
+      let data ={
+        page_num: 1,
+        page_size: 5
+      }
+      getHotPostList(data).then(response => {
+        if(response.data.status == 200){
+          this.postList = response.data.message.list
         }
-      ]
-    };
+      })
+    }
   }
-};
+}
 </script>
 
 <style scoped lang="stylus">
@@ -44,14 +58,25 @@ export default {
     justify-content center
     border-bottom 1px solid #ececec
 
-    p {
-      height 16px
-      line-height 16px
-      text-align left
-      padding 0 10px
-      margin-left 10px
-      font-size 14px
-      border-left 3px solid #009688
+    .content {
+      display flex
+      align-items center
+
+      span {
+        height 16px
+        line-height 16px
+        text-align left
+        padding 0 5px 0 10px
+        margin-left 10px
+        font-size 14px
+        border-left 3px solid #009688
+        display inline-block
+      }
+
+      .hot-icon {
+        height 22px
+        width 22px
+      }
     }
   }
 
@@ -64,15 +89,19 @@ export default {
       display flex
       flex-direction row
       align-items center
+      margin 10px auto
 
-      .hot-icon {
+      .avatar {
         height 25px
         width 25px
+        border-radius 50%
+
       }
 
       .post-title {
         font-size 12px
         color #171717
+        margin-left 10px
       }
       .post-title:hover {
         text-decoration underline
