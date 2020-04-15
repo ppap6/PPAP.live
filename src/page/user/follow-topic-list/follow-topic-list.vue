@@ -19,8 +19,8 @@ export default {
   data () {
     return {
       msg: '我的关注的话题列表组件',
-       pageNum: 1,
-      pageSize: 20,
+      pageNum: 1,
+      pageSize: 1,
       total: 0,
       loadMoreState: false,
       hasMore: true,
