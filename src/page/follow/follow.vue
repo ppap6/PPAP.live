@@ -200,10 +200,10 @@ export default {
   },
   methods: {
     listenScroll(){
-      window.addEventListener("scroll", this.handleScroll)
+      window.addEventListener('scroll', this.handleScroll)
     },
     removeListenScroll(){
-      window.removeEventListener("scroll", this.handleScroll)
+      window.removeEventListener('scroll', this.handleScroll)
     },
     handleScroll(){
       let scrollDiff = util.getScrollHeight() - util.getClientHeight() - util.getScrollTop()
