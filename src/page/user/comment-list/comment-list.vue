@@ -59,7 +59,6 @@ export default {
     },
     handleScroll(){
       let scrollDiff = util.getScrollHeight() - util.getClientHeight() - util.getScrollTop()
-      console.log(scrollDiff)
       if(scrollDiff < 50){
         this.loadMore()
       }
