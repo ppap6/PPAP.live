@@ -148,6 +148,8 @@
         </div>
       </div>
     </div>
+    <img class="nofound" src="~common/img/404.svg" v-if="noData" />
+    <LoadingBottom :state="hasMore"></LoadingBottom>
   </div>
 </template>
 
@@ -155,6 +157,8 @@
 import Loading from 'component/loading/loading'
 import { getPersonFollowDynamicList } from 'api/person'
 import { getStorage } from 'common/js/localstorage'
+import LoadingBottom from 'component/loading-bottom/loading-bottom'
+import util from 'common/js/util'
 
 export default {
   name: 'Follow',
@@ -164,19 +168,49 @@ export default {
       uid: getStorage('user').uid,
       pageNum: 1,
       pageSize: 20,
+      total: 0,
+      loadMoreState: false,
+      hasMore: true,
       activityList: [
         //type的值 1为评论，2为回复，3为关注，4为点赞，5为收藏，6为话题，7为发表
       ],
+      noData: false,
       loading: true
     }
   },
-  components: {
-    Loading
+  watch: {
+    $route(to, from){   
+      if(from.path == '/follow'){
+        this.removeListenScroll() 
+      }
+      if(to.path == '/follow'){
+        this.listenScroll() 
+      }
+    }
   },
   created(){
     this.getPersonFollowDynamicList()
   },
+  mounted(){
+    this.listenScroll()
+  },
+  components: {
+    Loading,
+    LoadingBottom
+  },
   methods: {
+    listenScroll(){
+      window.addEventListener("scroll", this.handleScroll)
+    },
+    removeListenScroll(){
+      window.removeEventListener("scroll", this.handleScroll)
+    },
+    handleScroll(){
+      let scrollDiff = util.getScrollHeight() - util.getClientHeight() - util.getScrollTop()
+      if(scrollDiff < 50){
+        this.loadMore()
+      }
+    },
     getPersonFollowDynamicList(){
       let data = {
         page_num: this.pageNum,
@@ -184,17 +218,54 @@ export default {
       }
       getPersonFollowDynamicList(data).then(response => {
         if(response.data.status == 200){
+          this.total = response.data.message.total
           let list = response.data.message.list
           this.activityList = list
           //隐藏加载动画
           this.loading = false
+          if(this.total < this.pageSize){
+            this.hasMore = false
+          }
         }else if(response.data.status == 10003){
           this.activityList = []
+          this.noData = true
           //隐藏加载动画
           this.loading = false
+          this.hasMore = false
         }else{
-          
+          //不作处理
+          //隐藏加载动画
+          this.loading = false
+          this.hasMore = false
         }
+      })
+    },
+    loadMore(){
+      //判断当前是否正在加载，避免多次加载
+      if(this.loadMoreState){
+        return
+      }
+      //进入加载模式
+      this.loadMoreState = true
+      this.pageNum ++
+      let data = {
+        page_num: this.pageNum,
+        page_size: this.pageSize
+      }
+      getPersonFollowDynamicList(data).then(response => {
+        if(response.data.status === 200){
+          let list = response.data.message.list
+          for(let i=0; i<list.length; i++){
+            this.activityList.push(list[i])
+          }
+          this.loadMoreState = false
+        }else if(response.data.status === 10003){
+          this.hasMore = false
+        }else{
+          //不作处理
+        }
+      }).catch(error => {
+        console.log('服务器丢失了，请稍后重试！')
       })
     }
   }
@@ -292,6 +363,11 @@ export default {
         }
       }
     }
+  }
+
+  .nofound {
+    height 200px
+    width 200px
   }
 }
 </style>
