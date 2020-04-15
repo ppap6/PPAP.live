@@ -68,7 +68,7 @@ export default {
       let data = {
         page_num: this.pageNum,
         page_size: this.pageSize,
-        user_id: this.$route.params.id,
+        user_id: this.$route.params.id
       }
       getPersonFansList(data).then(response => {
         if(response.data.status === 200){

@@ -55,6 +55,7 @@ export default {
 
 <style scoped lang="stylus">
 .container {
+  text-align center
   border-radius 5px
 
   .post-list {
