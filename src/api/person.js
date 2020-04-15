@@ -29,28 +29,28 @@ export function getPersonFansList(data){
 }
 
 //获取用户个人关注列表
-export function getPersonFollowList(uid){
+export function getPersonFollowList(data){
   return Request.get('/person/follow', {
       params: data
   })
 }
 
 //获取用户个人点赞列表
-export function getPersonLikeList(uid){
+export function getPersonLikeList(data){
   return Request.get('/person/like', {
       params: data
   })
 }
 
 //获取用户个人收藏列表
-export function getPersonCollectList(uid){
+export function getPersonCollectList(data){
   return Request.get('/person/collect', {
       params: data
   })
 }
 
 //获取用户个人关注话题列表
-export function getPersonTopicList(uid){
+export function getPersonTopicList(data){
   return Request.get('/person/topic', {
       params: data
   })
