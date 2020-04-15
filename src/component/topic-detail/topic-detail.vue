@@ -14,16 +14,19 @@
       <div class="follow" @click="followTopic" v-if="topic.sid != 0 && noFollow">关注</div>
       <div class="follow" @click="cancelFollowTopic" v-if="topic.sid != 0 && isFollow">已关注</div>
     </div>
-    <PostList :postList="postList"></PostList>
+    <PostList :postList="postList" :noData="noData"></PostList>
+    <LoadingBottom :state="hasMore"></LoadingBottom>
   </div>
 </template>
 
 <script>
 import Loading from 'component/loading/loading'
+import LoadingBottom from 'component/loading-bottom/loading-bottom'
 import PostList from "component/post-list/post-list"
 import { getTopic } from "api/topic"
 import { getPostList } from "api/post"
 import { followTopic, cancelFollowTopic, getUserTopicStatus } from "api/user"
+import util from 'common/js/util'
 
 export default {
   name: 'TopicDetail',
@@ -33,12 +36,19 @@ export default {
       topic: {},
       noFollow: true,
       isFollow: false,
+      pageNum: 1,
+      pageSize: 5,
+      total: 0,
+      loadMoreState: false,
+      hasMore: true,
       postList: [],
+      noData: false,
       loading: true
     }
   },
   components: {
     Loading,
+    LoadingBottom,
     PostList
   },
   watch: {
@@ -47,13 +57,34 @@ export default {
         this.getTopic()
         this.getPostList()
       }
+      if(from.name == 'Topic'){
+        this.removeListenScroll() 
+      }
+      if(to.name == 'Topic'){
+        this.listenScroll() 
+      }
     }
   },
   created(){
     this.getTopic()
     this.getPostList()
   },
+  mounted(){
+    this.listenScroll()
+  },
   methods: {
+    listenScroll(){
+      window.addEventListener("scroll", this.handleScroll)
+    },
+    removeListenScroll(){
+      window.removeEventListener("scroll", this.handleScroll)
+    },
+    handleScroll(){
+      let scrollDiff = util.getScrollHeight() - util.getClientHeight() - util.getScrollTop()
+      if(scrollDiff < 50){
+        this.loadMore()
+      }
+    },
     getTopic(){
       let id = this.$route.params.id
       getTopic(id).then(response => {
@@ -61,12 +92,10 @@ export default {
           this.topic = response.data.message
           //获取用户对话题的关注状态
           this.getUserTopicStatus()
-          //隐藏加载动画
-          this.loading = false
         }else if(response.data.status === 10003){
+          this.topic = {}
           //隐藏加载动画
           this.loading = false
-          this.topic = {}
           swal({
             title: '这个话题并不存在呢'
           }).then(() => {
@@ -91,15 +120,57 @@ export default {
     },
     getPostList(){
       let data = {
-        page_num: 1,
-        page_size: 20,
+        page_num: this.pageNum,
+        page_size: this.pageSize,
         topic_id: this.$route.params.id
       }
       getPostList(data).then(response => {
         if(response.data.status === 200){
+          this.total = response.data.message.total
           this.postList = response.data.message.list
+          //隐藏加载动画
+          this.loading = false
+          if(this.total < this.pageSize){
+            this.hasMore = false
+          }
         }else if(response.data.status === 10003){
           this.postList = []
+          this.noData = true
+          //隐藏加载动画
+          this.loading = false
+          this.hasMore = false
+        }else{
+          //不作处理
+          //隐藏加载动画
+          this.loading = false
+          this.hasMore = false
+        }
+      }).catch(error => {
+        console.log('服务器丢失了，请稍后重试！')
+      })
+    },
+    loadMore(){
+      //判断当前是否正在加载，避免多次加载
+      if(this.loadMoreState){
+        return
+      }
+      //进入加载模式
+      this.loadMoreState = true
+      this.pageNum ++
+      let data = {
+        page_num: this.pageNum,
+        page_size: this.pageSize,
+        topic_id: this.$route.params.id
+      }
+      getPostList(data).then(response => {
+        if(response.data.status === 200){
+          let list = response.data.message.list
+          for(let i=0; i<list.length; i++){
+            this.postList.push(list[i])
+          }
+          this.loadMoreState = false
+        }else if(response.data.status === 10003){
+          this.hasMore = false
         }else{
           //不作处理
         }
