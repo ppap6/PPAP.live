@@ -123,53 +123,60 @@ export default {
 </script>
 
 <style scoped lang="stylus">
-.follow {
-  position relative
-  display flex
-  flex-direction row
-  align-items top
-  background-color #FFFFFF
-  padding 10px 20px 5px
-  border-radius 5px
-  margin 5px 0
+.user-follow-people-list {
+  .follow {
+    position relative
+    display flex
+    flex-direction row
+    align-items top
+    background-color #FFFFFF
+    padding 10px 20px 5px
+    border-radius 5px
+    margin 5px 0
 
-  .left {
-    .avatar {
-      height 44px
-      width 44px
-      border-radius 50%
-    }
-  } 
+    .left {
+      .avatar {
+        height 44px
+        width 44px
+        border-radius 50%
+      }
+    } 
 
-  .right {
-    text-align left
-    padding 2px 15px
+    .right {
+      text-align left
+      padding 2px 15px
 
-    a {
-      .name {
+      a {
+        .name {
+          height 18px
+          line-height 18px
+          font-size 14px
+          font-weight bold
+          color #009688 !important
+
+          &:hover {
+            text-decoration underline
+          }
+        }
+      }
+
+      .count {
         height 18px
-        line-height 18px
-        font-size 14px
+        line-height 24px
+        font-size 12px
         font-weight bold
-        color #009688 !important
+        color #616161
 
-        &:hover {
-          text-decoration underline
+        span {
+          margin-right 10px
         }
       }
     }
+  }
 
-    .count {
-      height 18px
-      line-height 24px
-      font-size 12px
-      font-weight bold
-      color #616161
-
-      span {
-        margin-right 10px
-      }
-    }
+  .nofound {
+    height 200px
+    width 200px
   }
 }
 </style>
