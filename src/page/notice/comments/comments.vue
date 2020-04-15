@@ -40,7 +40,7 @@ export default {
       msg: '评论通知的组件',
       uid: getStorage('user').uid,
       pageNum: 1,
-      pageSize: 3,
+      pageSize: 20,
       total: 0,
       loadMoreState: false,
       hasMore: true,
