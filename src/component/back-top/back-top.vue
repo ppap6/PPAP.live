@@ -6,6 +6,8 @@
 </template>
 
 <script>
+import util from 'common/js/util'
+
 export default {
   name: 'BackTop',
   mounted(){
@@ -14,12 +16,7 @@ export default {
   },
   methods: {
     handleScroll(){         
-      //获取滚动高度
-      let osTop = document.documentElement.scrollTop || document.body.scrollTop
-      //可视区域高度
-      let clientHeight = document.documentElement.clientHeight
-      //如果滚动高度大于可视区域高度，则显示回到顶部按钮
-      if(osTop >= clientHeight/3){      
+      if(util.getScrollTop() > 200){      
         document.querySelector('#kotori').style.opacity = 1
       }else{         //否则隐藏
         document.querySelector('#kotori').style.opacity = 0

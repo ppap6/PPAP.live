@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="post-list">
-      <div class="post" v-for="post in postList" :key="post.id">
+      <div class="post" v-for="post in list" :key="post.id">
         <div class="post-header">
           <div class="header-left">
             <router-link :to="`/user/${post.uid}`" v-if="!useInPerson">
@@ -35,15 +35,19 @@
         </div>
       </div>
     </div>
+    <img class="nofound" src="~common/img/404.svg" v-if="noData" />
   </div>
 </template>
 
 <script>
 export default {
-  props: ['postList', 'useInPerson'],
+  props: ['postList', 'noData', 'useInPerson'],
   data() {
-    return {
-
+    return {}
+  },
+  computed: {
+    list(){
+      return this.postList
     }
   }
 }
@@ -154,6 +158,11 @@ export default {
         }
       }
     }
+  }
+
+  .nofound {
+    height 200px
+    width 200px
   }
 }
 </style>
