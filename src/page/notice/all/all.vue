@@ -106,7 +106,7 @@ export default {
       msg: '全部通知的组件',
       uid: getStorage('user').uid,
       pageNum: 1,
-      pageSize: 10,
+      pageSize: 20,
       total: 0,
       loadMoreState: false,
       hasMore: true,
@@ -261,6 +261,7 @@ export default {
       }
     }
   }
+
   .nofound {
     height 200px
     width 200px
