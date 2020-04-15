@@ -175,8 +175,7 @@ export default {
       this.pageNum ++
       let data = {
         page_num: this.pageNum,
-        page_size: this.pageSize,
-        user_id: this.$route.params.id
+        page_size: this.pageSize
       }
       getNoticeList(data).then(response => {
         if(response.data.status === 200){
