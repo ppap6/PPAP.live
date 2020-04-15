@@ -16,7 +16,7 @@ export default {
   },
   methods: {
     handleScroll(){         
-      if(util.getScrollTop() > 200){      
+      if(util.getScrollTop() > 0){      
         document.querySelector('#kotori').style.opacity = 1
       }else{         //否则隐藏
         document.querySelector('#kotori').style.opacity = 0

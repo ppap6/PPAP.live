@@ -54,14 +54,24 @@ export default {
   watch: {
     $route(to, from){
       if(to.name == 'Topic'){
-        this.getTopic()
-        this.getPostList()
+        if(this.topic.id != this.$route.query.id){
+          this.topic = {}
+          this.noFollow = true
+          this.isFollow = false
+          this.pageNum = 1,
+          this.total = 0
+          this.loadMoreState = false
+          this.hasMore = true
+          this.postList = []
+          this.noData = false
+          this.loading = true
+          this.getTopic()
+          this.getPostList()
+        }
+        this.listenScroll() 
       }
       if(from.name == 'Topic'){
         this.removeListenScroll() 
-      }
-      if(to.name == 'Topic'){
-        this.listenScroll() 
       }
     }
   },
