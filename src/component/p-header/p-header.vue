@@ -15,19 +15,19 @@
       <div class="header-right">
         <ul v-if="token !== undefined">
           <li>
-            <router-link to="/follow">关注</router-link>
+            <router-link :class="{active: currentTag == 'follow'}" to="/follow">关注</router-link>
           </li>
           <li>
-            <router-link to="/new-post">发帖</router-link>
+            <router-link :class="{active: currentTag == 'new'}" to="/new-post">发帖</router-link>
           </li>
           <li>
-            <router-link to="/notice">通知</router-link>
+            <router-link :class="{active: currentTag == 'notice'}" to="/notice">通知</router-link>
           </li>
           <!-- <li>
             <router-link to="/chats">私信</router-link>
           </li> -->
           <li>
-            <router-link :to="`/user/${uid}`">
+            <router-link  :class="{active: currentTag == 'user'}" :to="`/user/${uid}`">
               <img class="avatar" :src="avatar" alt="">
               <span>{{uname}}</span>
             </router-link>
@@ -57,7 +57,8 @@ export default {
       keywords: '',
       uid: 0,
       avatar: '',
-      uname: ''
+      uname: '',
+      currentTag: ''
     }
   },
   computed: {
@@ -77,11 +78,34 @@ export default {
       }else{
         this.keywords = this.$route.query.keyword
       }
+      //当前路由标记
+      if(to.path == '/follow'){
+        this.currentTag = 'follow'
+      }else if(to.path == '/new-post'){
+        this.currentTag = 'new'
+      }else if(to.path == '/notice'){
+        this.currentTag = 'notice'
+      }else{
+        this.currentTag = ''
+      }
     }
   },
   created(){
     this.getUserLoginStatus()
     this.keywords = this.$route.query.keyword
+  },
+  mounted(){
+    //当前路由标记
+    let path = this.$route.path
+    if(path == '/follow'){
+      this.currentTag = 'follow'
+    }else if(path == '/new-post'){
+      this.currentTag = 'new'
+    }else if(path == '/notice'){
+      this.currentTag = 'notice'
+    }else{
+      this.currentTag = ''
+    }
   },
   methods: {
     goLogin(){
@@ -215,6 +239,10 @@ export default {
       display flex
       flex-direction row
       align-items center
+
+      .active {
+        color #4170ea
+      }
 
       >ul {
         display flex
