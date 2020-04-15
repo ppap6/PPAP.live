@@ -1,74 +1,58 @@
 import Request from './index'
 
 //获取用户个人帖子列表
-export function getPersonPostList(uid){
+export function getPersonPostList(data){
   return Request.get('/person/post', {
-      params: {
-          user_id: uid
-      }
+      params: data
   })
 }
 
 //获取用户个人评论列表
-export function getPersonCommentList(uid){
+export function getPersonCommentList(data){
   return Request.get('/person/comment', {
-      params: {
-          user_id: uid
-      }
+      params: data
   })
 }
 
 //获取用户个人回复列表
-export function getPersonAnswerList(uid){
+export function getPersonAnswerList(data){
   return Request.get('/person/answer', {
-      params: {
-          user_id: uid
-      }
+      params: data
   })
 }
 
 //获取用户个人粉丝列表
-export function getPersonFansList(uid){
+export function getPersonFansList(data){
   return Request.get('/person/fans', {
-      params: {
-          user_id: uid
-      }
+      params: data
   })
 }
 
 //获取用户个人关注列表
 export function getPersonFollowList(uid){
   return Request.get('/person/follow', {
-      params: {
-          user_id: uid
-      }
+      params: data
   })
 }
 
 //获取用户个人点赞列表
 export function getPersonLikeList(uid){
   return Request.get('/person/like', {
-      params: {
-          user_id: uid
-      }
+      params: data
   })
 }
 
 //获取用户个人收藏列表
 export function getPersonCollectList(uid){
   return Request.get('/person/collect', {
-      params: {
-          user_id: uid
-      }
+      params: data
   })
 }
 
 //获取用户个人关注话题列表
 export function getPersonTopicList(uid){
   return Request.get('/person/topic', {
-      params: {
-          user_id: uid
-      }
+      params: data
   })
 }
 

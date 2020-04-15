@@ -59,7 +59,7 @@ export default {
     PostList
   },
   watch: {
-    $route(to, from){
+    $route(to, from){   
       if(from.path == '/'){
         this.removeListenScroll() 
       }

@@ -44,6 +44,7 @@ export default {
     }
 
     .baseline {
+      text-align center
       font-size 12px
       color #777
       padding 10px 0
