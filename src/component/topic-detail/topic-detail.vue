@@ -54,7 +54,7 @@ export default {
   watch: {
     $route(to, from){
       if(to.name == 'Topic'){
-        if(this.topic.id != this.$route.query.id){
+        if(this.topic.id != this.$route.params.id){
           this.topic = {}
           this.noFollow = true
           this.isFollow = false
