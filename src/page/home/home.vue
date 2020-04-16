@@ -19,6 +19,8 @@
         <div class="copyright">
           <span>©2020</span>
           <a href="https://github.com/ppap6/PPAP.live" target="_blank">PPAP</a>
+          <span>created by</span>
+          <a href="https://github.com/jwchan1996" target="_blank">jwchan</a>
         </div>
       </div>
     </div>
