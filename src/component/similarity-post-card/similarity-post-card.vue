@@ -45,7 +45,16 @@ export default {
       }
       getRecommendPostList(data).then(response => {
         if(response.data.status == 200){
-          let posts = response.data.message.list
+
+          let list = response.data.message.list
+          let posts = []
+          for(let m=0; m<list.length; m++){
+            if(list[m].id == this.$route.params.id){
+              continue
+            }
+            posts.push(list[m])
+          }
+
           let postList = []
 
           //搜索关键字数组
