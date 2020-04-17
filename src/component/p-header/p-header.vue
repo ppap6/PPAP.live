@@ -177,7 +177,7 @@ export default {
   left 0
   right 0
   z-index 10
-  padding 2px 10px
+  padding 0 10px
   background #ffffff
   box-shadow 0 2px 10px 0 rgba(4, 21, 39, 0.2), 0 1px rgba(4, 21, 39, 0.2)
 
@@ -250,9 +250,8 @@ export default {
         align-items center
 
         >li {
-          font-size 14px
-          padding 10px
           list-style none
+          line-height 28px
 
           >a {
             cursor pointer
@@ -260,12 +259,19 @@ export default {
             flex-direction row
             align-items center
             justify-content center
+            font-size 14px
+            padding 10px 10px
+            transition all 0.3s
+
+            &:hover {
+              background-color #f2f2f2
+              border-radius 50%
+            }
 
             .avatar {
-              width 24px
-              height 24px
+              width 28px
+              height 28px
               border-radius 50%
-              padding-right 5px
             }
 
           }
