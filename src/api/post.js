@@ -33,3 +33,10 @@ export function getHotPostList(data){
         params: data
     })
 }
+
+//获取推荐帖子列表
+export function getRecommendPostList(data){
+    return Request.get('/post/recommend', {
+        params: data
+    })
+}

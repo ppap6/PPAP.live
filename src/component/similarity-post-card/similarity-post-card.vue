@@ -1,16 +1,15 @@
 <template>
-  <div class="hot-post-card">
+  <div class="similarity-post-card">
     <div class="title">
       <div class="content">
-        <span>热门讨论</span>
-        <img class="hot-icon" src="~common/img/hot.png" alt>
+        <span>相关帖子</span>
       </div>
     </div>
     <div class="post-list">
       <div class="post" v-for="item in postList" :key="item.id">
         <img class="avatar" :src="item.avatar" alt>
         <router-link :to="`/post/${item.id}`">
-          <p class="post-title">{{item.title}}</p>
+          <p class="post-title" v-html="item.title"></p>
         </router-link>
       </div>
     </div>
@@ -18,26 +17,53 @@
 </template>
 
 <script>
-import { getHotPostList } from 'api/post'
+import { getRecommendPostList } from 'api/post'
 
 export default {
+  props: ['words'],
   data() {
     return {
       postList: []
     }
   },
+  computed: {
+    title(){
+      return this.words
+    }
+  },
   created(){
-    this.getHotPostList()
+    this.getRecommendPostList()
   },
   methods: {
-    getHotPostList(){
+    getRecommendPostList(){
       let data ={
         page_num: 1,
-        page_size: 5
+        page_size: 10,
+        post_id: this.$route.params.id
       }
-      getHotPostList(data).then(response => {
+      getRecommendPostList(data).then(response => {
         if(response.data.status == 200){
-          this.postList = response.data.message.list
+          let posts = response.data.message.list
+          let postList = []
+
+          //搜索关键字数组
+          let wordsArr = this.title.split('')
+          
+          for(let i=0; i<posts.length; i++){
+            
+            let titleTextArr = posts[i].title.split('')
+
+            for(let j=0; j<titleTextArr.length; j++){
+              for(let k=0; k<wordsArr.length; k++){
+                if(wordsArr[k] == titleTextArr[j]){
+                  titleTextArr[j] = `<span style="color:#bc3454">${wordsArr[k]}</span>`
+                }
+              }
+            }
+
+            posts[i].title = titleTextArr.join('')
+          }
+          this.postList = posts
         }
       })
     }
@@ -46,7 +72,7 @@ export default {
 </script>
 
 <style scoped lang="stylus">
-.hot-post-card {
+.similarity-post-card {
   background-color hsl(0, 0%, 100%)
   border-radius 5px
 

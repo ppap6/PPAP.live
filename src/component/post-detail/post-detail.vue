@@ -43,7 +43,10 @@
       <CommentList :commentList="commentList" :authorId="post.uid" :commentCount="post.comments + post.answers" @reloadCommentList="reloadCommentList"></CommentList>
     </div>
     <div class="right">
-      <UserCard class="card" :user="author"></UserCard>
+      <div class="content">
+        <UserCard class="user-card" :user="author"></UserCard>
+        <SimilarityPostCard class="post-card" :words="post.title"></SimilarityPostCard>
+      </div>
     </div>
   </div>
 </template>
@@ -53,6 +56,7 @@ import Loading from 'component/loading/loading'
 import CommentList from 'component/comment-list/comment-list'
 import CommentInput from 'component/comment-input/comment-input'
 import UserCard from 'component/profile-card/profile-card'
+import SimilarityPostCard from 'component/similarity-post-card/similarity-post-card'
 import { getStorage } from 'common/js/localstorage'
 import { getPost, addPv } from 'api/post'
 import { likePost, cancelLikePost, collectPost, cancelCollectPost, getUserPostStatus } from 'api/user'
@@ -82,7 +86,8 @@ export default {
     Loading,
     CommentList,
     CommentInput,
-    UserCard
+    UserCard,
+    SimilarityPostCard
   },
   watch: {
     $route(to, from){
@@ -659,9 +664,17 @@ export default {
     width 288px
     margin-left 10px
 
-    .card {
+    .content {
       position fixed
       width 288px
+
+      .user-card {
+        
+      }
+
+      .post-card {
+        margin 10px 0
+      }
     }
   }
 }
