@@ -26,6 +26,7 @@ import PostList from "component/post-list/post-list"
 import { getTopic } from "api/topic"
 import { getPostList } from "api/post"
 import { followTopic, cancelFollowTopic, getUserTopicStatus } from "api/user"
+import { getStorage } from 'common/js/localstorage'
 import util from 'common/js/util'
 
 export default {
@@ -72,6 +73,11 @@ export default {
       }
       if(from.name == 'Topic'){
         this.removeListenScroll() 
+      }
+      //关注状态判断
+      if(!getStorage('user')){
+        this.noFollow = true
+        this.isFollow = false
       }
     }
   },
