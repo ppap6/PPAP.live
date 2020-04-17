@@ -31,8 +31,10 @@ export default {
       return this.words
     }
   },
-  created(){
-    this.getRecommendPostList()
+  watch: {
+    title(){
+      this.getRecommendPostList()
+    }
   },
   methods: {
     getRecommendPostList(){
