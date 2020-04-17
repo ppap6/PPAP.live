@@ -10,7 +10,8 @@
           <div class="comment-item">
             <span class="floor">#{{index+1}}</span>
             <router-link :to="`/user/${comment.uid}`">
-              <img :src="comment.avatar" alt="头像">
+              <img :src="comment.avatar" alt="头像" v-if="comment.avatar != ''">
+              <img src="~common/img/avatar.gif" alt="头像" v-else>
             </router-link>
             <div class="detail">
               <router-link :to="`/user/${comment.uid}`">
@@ -37,7 +38,8 @@
           </div>
           <div class="answer-item" v-for="answer in comment.answer.list" :key="answer._id">
             <router-link :to="`/user/${answer.requestor_id}`">
-              <img :src="answer.requestor_avatar" alt="头像">
+              <img :src="answer.requestor_avatar" alt="头像" v-if="answer.requestor_avatar != ''">
+              <img src="~common/img/avatar.gif" alt="头像" v-else>
             </router-link>
             <div class="detail">
               <div class="answer-point-to">

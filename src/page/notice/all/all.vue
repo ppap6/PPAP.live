@@ -5,7 +5,8 @@
       <div class="notice" v-if="item.type === 1 && uid != item.uid" :key="item._id">
         <div class="left">
           <router-link :to="`/user/${item.uid}`">
-            <img class="avatar" :src="item.avatar" alt>
+            <img class="avatar" :src="item.avatar" alt v-if="item.avatar != ''">
+            <img class="avatar" src="~common/img/avatar.gif" alt v-else>
             <p class="name">{{item.uname}}</p>
           </router-link>
         </div>
@@ -27,7 +28,8 @@
       <div class="notice" v-if="item.type === 2 && uid != item.uid" :key="item._id">
         <div class="left">
           <router-link :to="`/user/${item.uid}`">
-            <img class="avatar" :src="item.avatar" alt>
+            <img class="avatar" :src="item.avatar" alt v-if="item.avatar != ''">
+            <img class="avatar" src="~common/img/avatar.gif" alt v-else>
             <p class="name">{{item.uname}}</p>
           </router-link>
         </div>
@@ -49,7 +51,8 @@
       <div class="notice" v-if="item.type === 3 && uid != item.uid" :key="item._id">
         <div class="left">
           <router-link :to="`/user/${item.uid}`">
-            <img class="avatar" :src="item.avatar" alt>
+            <img class="avatar" :src="item.avatar" alt v-if="item.avatar != ''">
+            <img class="avatar" src="~common/img/avatar.gif" alt v-else>
             <p class="name">{{item.uname}}</p>
           </router-link>
         </div>
@@ -60,7 +63,8 @@
       <div class="notice" v-if="item.type === 4 && uid != item.uid" :key="item._id">
         <div class="left">
           <router-link :to="`/user/${item.uid}`">
-            <img class="avatar" :src="item.avatar" alt>
+            <img class="avatar" :src="item.avatar" alt v-if="item.avatar != ''">
+            <img class="avatar" src="~common/img/avatar.gif" alt v-else>
             <p class="name">{{item.uname}}</p>
           </router-link>
         </div>
@@ -76,7 +80,8 @@
       <div class="notice" v-if="item.type === 5 && uid != item.uid" :key="item._id">
         <div class="left">
           <router-link :to="`/user/${item.uid}`">
-            <img class="avatar" :src="item.avatar" alt>
+            <img class="avatar" :src="item.avatar" alt v-if="item.avatar != ''">
+            <img class="avatar" src="~common/img/avatar.gif" alt v-else>
             <p class="name">{{item.uname}}</p>
           </router-link>
         </div>

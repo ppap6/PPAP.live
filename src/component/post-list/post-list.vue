@@ -5,7 +5,8 @@
         <div class="post-header">
           <div class="header-left">
             <router-link :to="`/user/${post.uid}`" v-if="!useInPerson">
-              <img class="avatar" :src="post.avatar" alt>
+              <img class="avatar" :src="post.avatar" alt v-if="post.avatar != ''">
+              <img class="avatar" src="~common/img/avatar.gif" alt v-else>
             </router-link>
           </div>
           <div class="header-right">
@@ -77,7 +78,7 @@ export default {
             height 45px
             width 45px
             border-radius 50%
-            padding-right 10px
+            margin-right 10px
           }
         }
 

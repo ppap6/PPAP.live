@@ -3,11 +3,11 @@
     <div class="container">
       <div class="header-left">
         <router-link to="/" class="pc-logo">
-          <img class="logo" src="../../common/img/logo.png" alt>
+          <img class="logo" src="~common/img/logo.png" alt>
         </router-link>
         <div>
           <a @click="goSearch">
-            <img class="search-icon" src="../../common/img/search.png" alt="">
+            <img class="search-icon" src="~common/img/search.png" alt="">
           </a>
           <input class="search-input" type="text" v-model="keywords" @keyup.enter="goSearch" placeholder="搜索帖子、用户">
         </div> 
@@ -28,7 +28,8 @@
           </li> -->
           <li>
             <router-link  :class="{active: currentTag == 'user'}" :to="`/user/${uid}`">
-              <img class="avatar" :src="avatar" alt="">
+              <img class="avatar" :src="avatar" alt="" v-if="avatar != ''">
+              <img class="avatar" src="~common/img/avatar.gif" alt="" v-if="avatar == ''">
               <!-- <span>{{uname}}</span> -->
             </router-link>
           </li>

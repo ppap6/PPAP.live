@@ -3,7 +3,8 @@
     <div class="user-list" v-for="item in userList" :key="item.id">
       <div class="left">
         <router-link :to="`/user/${item.id}`">
-          <img class="avatar" :src="item.avatar" alt>
+          <img class="avatar" :src="item.avatar" alt v-if="item.avatar != ''">
+          <img class="avatar" src="~common/img/avatar.gif" alt v-else>
         </router-link>
       </div>
       <div class="right">
