@@ -1,25 +1,25 @@
 <template>
-  <div class="container">
-    <router-link :to="`/user/${uid}`" v-if="token !== undefined">
-      <img class="profile" :src="avatar" alt>
+  <div class="profile-card">
+    <div class="user-bg" :style="`background-image: url(${author.bg})`"></div>
+    <router-link :to="`/user/${author.id}`" v-if="author.avatar != ''">
+      <img class="profile" :src="author.avatar" alt>
     </router-link>
-    <img class="profile" @click="goLogin" src="../../common/img/avatar.gif" alt v-if="token === undefined">
-    <router-link :to="`/user/${uid}`" v-if="token !== undefined">
-      <p class="name">{{uname}}</p>
+    <img class="profile" @click="goLogin" src="~common/img/avatar.gif" alt v-if="author.avatar == ''">
+    <router-link :to="`/user/${author.id}`" v-if="author.id != 0">
+      <p class="name">{{author.name}}</p>
     </router-link>
-    <p class="name" @click="goLogin" v-if="token === undefined">未登录</p>
-    <div class="user-information" v-if="token !== undefined">
-      <div class="following">
-        <div class="counts">{{follows}}</div>
-        <div class="text">关注</div>
-      </div>
+    <div class="user-information">
       <div class="followers">
-        <div class="counts">{{fans}}</div>
+        <div class="counts">{{count.fans}}</div>
         <div class="text">粉丝</div>
       </div>
+      <div class="following">
+        <div class="counts">{{count.follows}}</div>
+        <div class="text">关注</div>
+      </div>
       <div class="posts">
-        <div class="counts">{{posts}}</div>
-        <div class="text">发帖</div>
+        <div class="counts">{{count.posts}}</div>
+        <div class="text">帖子</div>
       </div>
     </div>
   </div>
@@ -29,25 +29,20 @@
 import { getStorage } from 'common/js/localstorage'
 
 export default {
+  props: ['user'],
   data() {
     return {
-      uid: 0,
-      avatar: '',
-      uname: '',
-      follows: 0,
-      fans: 0,
-      posts: 0
+      count: {}
     }
   },
   computed: {
-    token(){
-      this.uid = getStorage('user').uid == undefined ? 0 : getStorage('user').uid
-      this.avatar = getStorage('user').avatar == undefined ? 0 : getStorage('user').avatar
-      this.uname = getStorage('user').uname == undefined ? 0 : getStorage('user').uname
-      this.follows = getStorage('user').count == undefined ? 0 : getStorage('user').count.follows
-      this.fans = getStorage('user').count == undefined ? 0 : getStorage('user').count.fans
-      this.posts = getStorage('user').count == undefined ? 0 : getStorage('user').count.posts
-      return this.$store.state.token
+    author(){
+      return this.user
+    }
+  },
+  watch: {
+    author(){
+      this.count = this.author.count
     }
   },
   methods: {
@@ -61,22 +56,40 @@ export default {
 </script>
 
 <style scoped lang="stylus">
-  .container{
-    padding 15px
+  .profile-card{
+    position relative 
+    padding 0
     background-color #FFFFFF
     border-radius 5px
 
-    .profile{
+    .user-bg {
       height 80px
-      width 80px
+      width 100%
+      padding 0
+      margin 0
+      border-top-left-radius 5px
+      border-top-right-radius 5px
+      background-size cover
+      background-position center center
+      background-color #565a63
+      background-repeat no-repeat
+    }
+
+    .profile{
+      height 64px
+      width 64px
       border-radius 50%
       cursor pointer
+      border 2px solid #fff
+      margin-top -35px
     }
 
     .name{
       color #555555
+      font-size 15px
       font-weight bold
       cursor pointer
+      margin 5px 0
     }
 
     .user-information{
@@ -84,20 +97,25 @@ export default {
       flex-direction row
       align-items center
       justify-content center
+      border-top 1px solid #ececec
+      padding 5px 0
+      margin-top 20px
+      background-color #fafafa
 
       .following,
       .followers,
       .posts{
-        width 20%
+        width 33.3%
         margin 10px
 
         .counts{
-          color #666666
-          font-size 14px
+          color #666
+          font-size 12px
+          margin-bottom 2px
         }
 
         .text{
-          color #999999
+          color #777
           font-size 12px
         }
       }
