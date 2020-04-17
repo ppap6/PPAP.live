@@ -162,11 +162,6 @@ export default {
     width 250px
     height 500px
     border-radius 5px
-
-    .profile-card,
-    .hot-post-card {
-      margin-bottom 10px
-    }
   }
 
   .center {
@@ -188,6 +183,10 @@ export default {
     .right-list-content {
       position fixed
       width 250px
+
+      .hot-post-card {
+        margin-bottom 10px
+      }
 
       .copyright {
         font-size 12px

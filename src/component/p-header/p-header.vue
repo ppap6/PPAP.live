@@ -29,7 +29,7 @@
           <li>
             <router-link  :class="{active: currentTag == 'user'}" :to="`/user/${uid}`">
               <img class="avatar" :src="avatar" alt="">
-              <span>{{uname}}</span>
+              <!-- <span>{{uname}}</span> -->
             </router-link>
           </li>
         </ul>
