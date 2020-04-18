@@ -166,6 +166,7 @@ import { getPersonFollowDynamicList } from 'api/person'
 import { getStorage } from 'common/js/localstorage'
 import LoadingBottom from 'component/loading-bottom/loading-bottom'
 import util from 'common/js/util'
+import swal from 'sweetalert'
 
 export default {
   name: 'Follow',
@@ -192,6 +193,15 @@ export default {
       }
       if(to.path == '/follow'){
         this.listenScroll() 
+        if(!getStorage('user')){
+          swal({
+            title: '请先登陆'
+          }).then(() => {
+            this.$router.push({
+              path: '/login'
+            })
+          })
+        }
       }
     }
   },

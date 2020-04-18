@@ -54,6 +54,9 @@
 </template>
 
 <script>
+import { getStorage } from 'common/js/localstorage'
+import swal from 'sweetalert'
+
 export default {
   name: 'Notice',
   data() {
@@ -65,6 +68,17 @@ export default {
     $route(to, from){
       //监听路由变化，改变选中
       this.refleshSelectStatus(to.name)
+      if(to.path == '/notice'){
+        if(!getStorage('user')){
+          swal({
+            title: '请先登陆'
+          }).then(() => {
+            this.$router.push({
+              path: '/login'
+            })
+          })
+        }
+      }
     }
   },
   mounted(){
