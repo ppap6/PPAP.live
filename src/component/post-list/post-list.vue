@@ -105,22 +105,24 @@ export default {
 
     .create-time, .last-answer-time, .hots {
       padding 5px 10px
+      margin-right 5px
       border-radius 20px
       background-color #f8f8f8
-      font-size 14px
+      font-size 12px
       cursor pointer
       color #999
       transition all 0.3s
       
       &:hover {
-        background-color #f2f2f2
-        color #999
+        color #409eff
+        border 1px solid #d9ecff
       }
     }
 
     .active {
-      background-color #f2f2f2
-      color #515151
+      background-color #ecf5ff
+      color #409eff
+      border 1px solid #d9ecff
     }
   }
 
