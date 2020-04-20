@@ -1,5 +1,10 @@
 <template>
   <div class="container">
+    <div class="sort-bar" v-if="displaySortBar">
+      <div :class="{'create-time': true, 'active': currentSort == 1}" @click="sort(1)">最新发布</div>  
+      <div :class="{'last-answer-time': true, 'active': currentSort == 2}" @click="sort(2)">最新回复</div>  
+      <div :class="{'hots': true, 'active': currentSort == 3}" @click="sort(3)">热门讨论</div>  
+    </div>
     <div class="post-list">
       <div class="post" v-for="post in list" :key="post.id">
         <div class="post-header">
@@ -42,13 +47,42 @@
 
 <script>
 export default {
-  props: ['postList', 'noData', 'useInPerson'],
+  props: ['postList', 'noData', 'useInPerson', 'sortBar'],
   data() {
-    return {}
+    return {
+      currentSort: 1
+    }
   },
   computed: {
     list(){
       return this.postList
+    },
+    displaySortBar(){
+      return this.sortBar ? true : false
+    }
+  },
+  mounted(){
+    if(this.$route.query.sort){
+      this.currentSort = this.$route.query.sort
+    }
+  },
+  watch: {
+    $route(to, from){
+      if(to.query.sort){
+        this.currentSort = this.$route.query.sort
+      }else{
+        this.currentSort = 1
+      }
+    }
+  },
+  methods: {
+    sort(type){
+      this.currentSort = type
+      this.$router.replace({
+        query: {
+          sort: type
+        }
+      })
     }
   }
 }
@@ -58,6 +92,37 @@ export default {
 .container {
   text-align center
   border-radius 5px
+
+  .sort-bar {
+    display flex
+    flex-direction row
+    align-items center
+    // background-color transparent
+    background-color #fff
+    border-radius 5px
+    margin-bottom 10px
+    padding 5px 10px
+
+    .create-time, .last-answer-time, .hots {
+      padding 5px 10px
+      border-radius 20px
+      background-color #f8f8f8
+      font-size 14px
+      cursor pointer
+      color #999
+      transition all 0.3s
+      
+      &:hover {
+        background-color #f2f2f2
+        color #999
+      }
+    }
+
+    .active {
+      background-color #f2f2f2
+      color #515151
+    }
+  }
 
   .post-list {
     text-align left

@@ -14,7 +14,7 @@
       <div class="follow" @click="followTopic" v-if="topic.sid != 0 && noFollow">关注</div>
       <div class="follow" @click="cancelFollowTopic" v-if="topic.sid != 0 && isFollow">已关注</div>
     </div>
-    <PostList :postList="postList" :noData="noData"></PostList>
+    <PostList :postList="postList" :sortBar="true" :noData="noData"></PostList>
     <LoadingBottom :state="hasMore"></LoadingBottom>
   </div>
 </template>
@@ -38,11 +38,12 @@ export default {
       noFollow: true,
       isFollow: false,
       pageNum: 1,
-      pageSize: 20,
+      pageSize: 3,
       total: 0,
       loadMoreState: false,
       hasMore: true,
       postList: [],
+      sort: 1,
       noData: false,
       loading: true
     }
@@ -54,6 +55,9 @@ export default {
   },
   watch: {
     $route(to, from){
+      if(from.name == 'Topic'){
+        this.removeListenScroll() 
+      }
       if(to.name == 'Topic'){
         if(this.topic.id != this.$route.params.id){
           this.topic = {}
@@ -63,6 +67,7 @@ export default {
           this.total = 0
           this.loadMoreState = false
           this.hasMore = true
+          this.sort = 1
           this.postList = []
           this.noData = false
           this.loading = true
@@ -70,9 +75,20 @@ export default {
           this.getPostList()
         }
         this.listenScroll() 
-      }
-      if(from.name == 'Topic'){
-        this.removeListenScroll() 
+        if(to.query.sort){
+          this.pageNum = 1
+          this.loadMoreState = false
+          this.hasMore = true
+          this.sort = to.query.sort
+          this.noData = false
+          this.getPostList()
+        }else{
+          this.$router.replace({
+            query: {
+              sort: this.sort
+            }
+          })
+        }
       }
       //关注状态判断
       if(!getStorage('user')){
@@ -82,6 +98,9 @@ export default {
     }
   },
   created(){
+    if(this.$route.query.sort){
+      this.sort = this.$route.query.sort
+    }
     this.getTopic()
     this.getPostList()
   },
@@ -138,7 +157,8 @@ export default {
       let data = {
         page_num: this.pageNum,
         page_size: this.pageSize,
-        topic_id: this.$route.params.id
+        topic_id: this.$route.params.id,
+        sort: this.sort
       }
       getPostList(data).then(response => {
         if(response.data.status === 200){
@@ -170,13 +190,15 @@ export default {
       if(this.loadMoreState){
         return
       }
+      console.log("进入加载")
       //进入加载模式
       this.loadMoreState = true
       this.pageNum ++
       let data = {
         page_num: this.pageNum,
         page_size: this.pageSize,
-        topic_id: this.$route.params.id
+        topic_id: this.$route.params.id,
+        sort: this.sort
       }
       getPostList(data).then(response => {
         if(response.data.status === 200){

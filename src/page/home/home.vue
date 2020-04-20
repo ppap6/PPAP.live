@@ -5,7 +5,7 @@
       <TopicList class="topic-list-content" :isRouter="true"></TopicList>
     </div>
     <div class="center post-list">
-      <PostList :postList="postList" :noData="noData"></PostList>
+      <PostList :postList="postList" :sortBar="true" :noData="noData"></PostList>
       <LoadingBottom :state="hasMore"></LoadingBottom>
     </div>
     <div class="right">
@@ -43,11 +43,12 @@ export default {
   data(){
     return {
       pageNum: 1,
-      pageSize: 20,
+      pageSize: 5,
       total: 0,
       loadMoreState: false,
       hasMore: true,
       postList: [],
+      sort: 1,
       noData: false,
       loading: true
     }
@@ -64,6 +65,15 @@ export default {
     $route(to, from){   
       if(from.path == '/'){
         this.removeListenScroll() 
+        if(to.query.sort){
+          this.pageNum = 1
+          this.loadMoreState = false
+          this.hasMore = true
+          this.sort = to.query.sort
+          this.noData = false
+          this.loading = true
+          this.getPostList()
+        }
       }
       if(to.path == '/'){
         this.listenScroll() 
@@ -71,6 +81,7 @@ export default {
     }
   },
   created(){
+    this.sort = this.$route.query.sort
     this.getPostList()
   },
   mounted(){
@@ -92,7 +103,8 @@ export default {
     getPostList(){
       let data = {
         page_num: this.pageNum,
-        page_size: this.pageSize
+        page_size: this.pageSize,
+        sort: this.sort
       }
       getPostList(data).then(response => {
         if(response.data.status === 200){
@@ -129,7 +141,8 @@ export default {
       this.pageNum ++
       let data = {
         page_num: this.pageNum,
-        page_size: this.pageSize
+        page_size: this.pageSize,
+        sort: this.sort
       }
       getPostList(data).then(response => {
         if(response.data.status === 200){
@@ -146,6 +159,9 @@ export default {
       }).catch(error => {
         console.log('服务器丢失了，请稍后重试！')
       })
+    },
+    changeSortType(type){
+      console.log(type)
     }
   }
 }
