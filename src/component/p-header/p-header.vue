@@ -222,10 +222,10 @@ export default {
           height 32px
           width 200px
           color #515151
-          border-radius 10px
+          border-radius 20px
           line-height 32px
           padding 0 36px 0 10px
-          font-size 14px
+          font-size 0.8rem
           background #f2f2f2
 
           &hover {
