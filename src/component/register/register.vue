@@ -108,6 +108,7 @@ export default {
           swal({
             title: response.data.message
           })
+          this.verify = ''
         }
       })
     }
