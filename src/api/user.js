@@ -10,6 +10,15 @@ export function login(data){
     return Request.post('/user/login', data)
 }
 
+//获取邮箱验证码
+export function getVerify(email){
+    return Request.get('/user/verify', {
+        params: {
+            email
+        }
+    })
+}
+
 //用户注册
 export function register(data){
     return Request.post('/user/register', data)

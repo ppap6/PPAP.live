@@ -4,20 +4,31 @@
       <img class="close-btn" src="../../common/img/close.png" @click="backPrev" />
       <div class="header">PPAP</div>
       <div class="main">
-        <div class="name">
-          <!-- <span>昵称：</span> -->
+        <!-- <div class="name">
+          <span>昵称：</span>
           <img src="../../common/img/nick_name.png" alt="">
           <input type="text" v-model="name" @keyup.enter="register" placeholder="请输入昵称" />
-        </div>
-        <div class="account">
-          <!-- <span>账号：</span> -->
+        </div> -->
+        <!-- <div class="account">
+          <span>账号：</span>
           <img src="../../common/img/account.png" alt="">
           <input type="text" v-model="account" @keyup.enter="register" placeholder="请输入账号" />
+        </div> -->
+        <div class="email">
+          <!-- <span>邮箱：</span> -->
+          <img src="../../common/img/email.png" alt="">
+          <input type="text" v-model="email" @keyup.enter="register" placeholder="请输入邮箱" />
         </div>
         <div class="password">
           <!-- <span>密码：</span> -->
           <img src="../../common/img/password.png" alt="">
           <input type="password" v-model="password" @keyup.enter="register" placeholder="请输入密码" />
+        </div>
+        <div class="verify">
+          <!-- <span>验证码：</span> -->
+          <img src="../../common/img/verify.png" alt="">
+          <input type="text" v-model="verify" @keyup.enter="register" placeholder="请输入验证码" />
+          <div class="verify-btn" @click="getVerify">获取</div>
         </div>
         <div class="login">
           <div @click="register">注册</div>
@@ -28,7 +39,7 @@
 </template>
 
 <script>
-import { register } from 'api/user'
+import { register, getVerify } from 'api/user'
 import sha1 from 'crypto-js/sha1'
 import md5 from 'crypto-js/md5'
 import swal from 'sweetalert'
@@ -38,20 +49,22 @@ export default {
     return {
       name: '',
       account: '',
+      email: '',
+      verify: '',
       password: ''
     }
   },
   methods: {
     register(){
-      if(this.name.trim() === ''){
+      if(this.email.trim() === ''){
         swal({
-          title: '昵称不能为空'
+          title: '邮箱不能为空'
         })
         return
       }
-      if(this.account.trim() === ''){
+      if(this.verify.trim() === ''){
         swal({
-          title: '账号不能为空'
+          title: '验证码不能为空'
         })
         return
       }
@@ -63,7 +76,8 @@ export default {
       }
       let data = {
         name: this.name,
-        account: this.account,
+        email: this.email.trim(),
+        code: this.verify,
         password: md5(sha1(this.password).toString()).toString()
       }
       register(data).then(response => {
@@ -81,6 +95,21 @@ export default {
     },
     backPrev(){
       this.$router.go(-1)
+    },
+    getVerify(){
+      if(this.email.trim() == ''){
+        swal({
+          title: '请输入邮箱'
+        })
+        return
+      }
+      getVerify(this.email.trim()).then(response => {
+        if(response.data.status == 200){
+          swal({
+            title: response.data.message
+          })
+        }
+      })
     }
   }
 };
@@ -134,7 +163,8 @@ export default {
       width 320px
       padding 0 20px 15px 20px
 
-      .name {
+      .name, .account, .email, .password, .verify {
+        position relative
         display flex
         align-items center
         justify-content center
@@ -156,53 +186,22 @@ export default {
           font-size 14px
           background none
         }
-      }
 
-      .account {
-        display flex
-        align-items center
-        justify-content center
-        padding 10px 0
-        margin auto
-        border-bottom 1px dashed #cdcdcd
+        .verify-btn {
+          position absolute
+          top 10px
+          right 10px
+          background-color #ecf5ff
+          color #409eff
+          border 1px solid #d9ecff
+          cursor pointer
+          transition all 0.3s
+          padding 4px 20px
+          border-radius 5px
 
-        img {
-          height 30px
-          width 30px
-        }
-
-        input {
-          width 220px
-          padding 8px 10px
-          color #515151
-          // border 1px solid #999
-          // border-radius 8px
-          font-size 14px
-          background none
-        }
-      }
-
-      .password {
-        display flex
-        align-items center
-        justify-content center
-        padding 10px 0
-        margin auto
-        border-bottom 1px dashed #cdcdcd
-
-        img {
-          height 30px
-          width 30px
-        }
-
-        input {
-          width 220px
-          padding 8px 10px
-          color #515151
-          // border 1px solid #999
-          // border-radius 8px
-          font-size 14px
-          background none
+          &:active {
+            opacity 0.5
+          }
         }
       }
     }
