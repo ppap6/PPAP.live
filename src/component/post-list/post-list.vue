@@ -10,7 +10,7 @@
         <div class="post-header">
           <div class="header-left">
             <router-link :to="`/user/${post.uid}`" v-if="!useInPerson">
-              <img class="avatar" :src="post.avatar" alt v-if="post.avatar != ''">
+              <img class="avatar" :src="post.avatar" alt v-if="post.avatar != '' && post.avatar != null">
               <img class="avatar" src="~common/img/avatar.gif" alt v-else>
             </router-link>
           </div>

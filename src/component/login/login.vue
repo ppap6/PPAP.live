@@ -1,22 +1,22 @@
 <template>
   <div class="container">
     <div class="main-container">
-      <img class="close-btn" src="../../common/img/close.png" @click="backPrev" />
+      <img class="close-btn" src="~common/img/close.png" @click="backPrev" />
       <div class="header">PPAP</div>
       <div class="main">
         <!-- <div class="account">
           <span>账号：</span>
-          <img src="../../common/img/account.png" alt="">
+          <img src="~common/img/account.png" alt="">
           <input type="text" v-model="account" @keyup.enter="login" placeholder="请输入账号" />
         </div> -->
         <div class="account">
           <!-- <span>邮箱：</span> -->
-          <img src="../../common/img/email.png" alt="">
+          <img src="~common/img/email.png" alt="">
           <input type="text" v-model="email" @keyup.enter="login" placeholder="请输入邮箱" />
         </div>
         <div class="password">
           <!-- <span>密码：</span> -->
-          <img src="../../common/img/password.png" alt="">
+          <img src="~common/img/password.png" alt="">
           <input type="password" v-model="password" @keyup.enter="login" placeholder="请输入密码" />
         </div>
         <div class="login">

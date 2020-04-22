@@ -1,32 +1,32 @@
 <template>
   <div class="container">
     <div class="main-container">
-      <img class="close-btn" src="../../common/img/close.png" @click="backPrev" />
+      <img class="close-btn" src="~common/img/close.png" @click="backPrev" />
       <div class="header">PPAP</div>
       <div class="main">
         <!-- <div class="name">
           <span>昵称：</span>
-          <img src="../../common/img/nick_name.png" alt="">
+          <img src="~common/img/nick_name.png" alt="">
           <input type="text" v-model="name" @keyup.enter="register" placeholder="请输入昵称" />
         </div> -->
         <!-- <div class="account">
           <span>账号：</span>
-          <img src="../../common/img/account.png" alt="">
+          <img src="~common/img/account.png" alt="">
           <input type="text" v-model="account" @keyup.enter="register" placeholder="请输入账号" />
         </div> -->
         <div class="email">
           <!-- <span>邮箱：</span> -->
-          <img src="../../common/img/email.png" alt="">
+          <img src="~common/img/email.png" alt="">
           <input type="text" v-model="email" @keyup.enter="register" placeholder="请输入邮箱" />
         </div>
         <div class="password">
           <!-- <span>密码：</span> -->
-          <img src="../../common/img/password.png" alt="">
+          <img src="~common/img/password.png" alt="">
           <input type="password" v-model="password" @keyup.enter="register" placeholder="请输入密码" />
         </div>
         <div class="verify">
           <!-- <span>验证码：</span> -->
-          <img src="../../common/img/verify.png" alt="">
+          <img src="~common/img/verify.png" alt="">
           <input type="text" v-model="verify" @keyup.enter="register" placeholder="请输入验证码" />
           <div class="verify-btn" @click="getVerify">获取</div>
         </div>

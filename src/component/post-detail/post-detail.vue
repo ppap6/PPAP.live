@@ -4,7 +4,8 @@
       <Loading :loading="loading"></Loading>
       <div class="post-header">
         <router-link :to="`/user/${post.uid}`">
-          <img :src="post.avatar" alt>
+          <img :src="post.avatar" alt v-if="post.avatar != '' && post.avatar != null">
+          <img src="~common/img/avatar.gif" alt v-else>
         </router-link>
         <div class="information">
           <router-link :to="`/user/${post.uid}`">

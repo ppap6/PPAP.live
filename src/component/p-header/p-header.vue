@@ -28,8 +28,8 @@
           </li> -->
           <li>
             <router-link  :class="{active: currentTag == 'user'}" :to="`/user/${uid}`">
-              <img class="avatar" :src="avatar" alt="" v-if="avatar != ''">
-              <img class="avatar" src="~common/img/avatar.gif" alt="" v-if="avatar == ''">
+              <img class="avatar" :src="avatar" alt="" v-if="avatar != '' && avatar != null">
+              <img class="avatar" src="~common/img/avatar.gif" alt v-else>
               <!-- <span>{{uname}}</span> -->
             </router-link>
           </li>
