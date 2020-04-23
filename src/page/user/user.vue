@@ -231,7 +231,7 @@ export default {
           //不作处理
         }
       }).catch(error => {
-        console.log('服务器丢失了，请稍后重试！')
+
       })
     },
     cancelFollowUser(){
@@ -252,7 +252,7 @@ export default {
           //不作处理
         }
       }).catch(error => {
-        console.log('服务器丢失了，请稍后重试！')
+
       })
     }
   }

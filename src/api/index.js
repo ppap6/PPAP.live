@@ -46,10 +46,12 @@ request.interceptors.response.use(
                 removeStorage('user')
                 swal({
                     title: '请先登陆'
-                }).then(() => {
-                    VM.$router.push({
-                        path: '/login'
-                    })
+                }).then(info => {
+                    if(info){
+                        VM.$router.push({
+                            path: '/login'
+                        })
+                    }
                 })
             }
         }else{

@@ -144,7 +144,6 @@ export default {
         }
         this.isComment = false
       }).catch(error => {
-        console.log('服务器丢失了，请稍后重试！')
         this.isComment = false
       })
     },
@@ -189,7 +188,6 @@ export default {
         }
         this.isComment = false
       }).catch(error => {
-        console.log('服务器丢失了，请稍后重试！')
         this.isComment = false
       })
     },
@@ -441,22 +439,22 @@ export default {
           }
 
           .submit {
-            width: 70px;
-            height: 68px;
-            padding: 4px 15px;
+            width 70px
+            height 68px
+            padding 4px 15px
             margin auto
-            font-size: 14px;
-            box-sizing: border-box;
-            color: #fff;
-            border-radius: 4px;
-            text-align: center;
-            min-width: 60px;
-            cursor: pointer;
-            background-color: #4170EA;
-            border: 1px solid #4170EA;
-            transition: .1s;
-            user-select: none;
-            outline: none;
+            font-size 14px
+            box-sizing border-box
+            color #fff
+            border-radius 4px
+            text-align center
+            min-width 60px
+            cursor pointer
+            background-color #4170EA
+            border 1px solid #4170EA
+            transition .1s
+            user-select: none
+            outline none
             display flex
             justify-content center
             align-items center

@@ -184,7 +184,7 @@ export default {
           //不作处理
         }
       }).catch(error => {
-        console.log('服务器丢失了，请稍后重试！')
+
       })
     },
     cancelLikePost(){
@@ -206,7 +206,7 @@ export default {
           //不作处理
         }
       }).catch(error => {
-        console.log('服务器丢失了，请稍后重试！')
+
       })
     },
     collectPost(){
@@ -228,7 +228,7 @@ export default {
           //不作处理
         }
       }).catch(error => {
-        console.log('服务器丢失了，请稍后重试！')
+
       })
     },
     cancelCollectPost(){
@@ -250,7 +250,7 @@ export default {
           //不作处理
         }
       }).catch(error => {
-        console.log('服务器丢失了，请稍后重试！')
+
       })
     },
     getUserPostStatus(){
@@ -338,7 +338,6 @@ export default {
             }
             this.isComment = false
           }).catch(error => {
-            console.log('服务器丢失了，请稍后重试！')
             this.isComment = false
           })
         }else{
