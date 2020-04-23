@@ -25,6 +25,14 @@ request.interceptors.request.use(
 
 request.interceptors.response.use(
     response => {
+        // const newToken = response.header.new_token == undefined ? false : response.header.new_token
+        if(response.headers.new_token){
+            //判断返回头是否有new_token字段
+            let storage = getStorage('user')
+            //更新token
+            storage.token = response.headers.new_token
+            setStorage('user', storage)
+        }
         if(response.data.status == 401){
             //配置请求url白名单
             if(response.config.url.indexOf('/user/login/status') > -1 ){
