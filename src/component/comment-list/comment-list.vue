@@ -10,7 +10,7 @@
           <div class="comment-item">
             <span class="floor">#{{index+1}}</span>
             <router-link :to="`/user/${comment.uid}`">
-              <img :src="comment.avatar" alt="头像" v-if="comment.avatar != ''">
+              <img :src="comment.avatar" alt="头像" v-if="comment.avatar != '' && comment.avatar != null">
               <img src="~common/img/avatar.gif" alt="头像" v-else>
             </router-link>
             <div class="detail">
@@ -24,10 +24,10 @@
               <div class="content">{{comment.content}}</div>
               <div class="light-comment">
                 <span class="datetime">{{comment.create_time}}</span>
-                <span class="light" style="color: #777777" @click="lightComment(comment, $event)" v-if="!comment.is_light"><img src="../../common/img/light_0.png">亮了({{comment.lights}})</span>
-                <span class="light" style="color: #bc3545" @click="lightComment(comment, $event)" v-if="comment.is_light"><img src="../../common/img/light_1.png">亮了({{comment.lights}})</span>
-                <span class="comment" @click="displayCommentInput(comment)" v-if="currentItem._id != comment._id"><img src="../../common/img/comment.png">回复</span>
-                <span class="comment" @click="undisplayCommentInput(comment)" v-if="currentItem._id == comment._id"><img src="../../common/img/comment.png">取消</span>
+                <span class="light" style="color: #777777" @click="lightComment(comment, $event)" v-if="!comment.is_light"><img src="~common/img/light_0.png">亮了({{comment.lights}})</span>
+                <span class="light" style="color: #bc3545" @click="lightComment(comment, $event)" v-if="comment.is_light"><img src="~common/img/light_1.png">亮了({{comment.lights}})</span>
+                <span class="comment" @click="displayCommentInput(comment)" v-if="currentItem._id != comment._id"><img src="~common/img/comment.png">回复</span>
+                <span class="comment" @click="undisplayCommentInput(comment)" v-if="currentItem._id == comment._id"><img src="~common/img/comment.png">取消</span>
               </div>
               <!-- 评论组件  -->
               <div class="input-bar" v-show="currentItem._id == comment._id">
@@ -38,7 +38,7 @@
           </div>
           <div class="answer-item" v-for="answer in comment.answer.list" :key="answer._id">
             <router-link :to="`/user/${answer.requestor_id}`">
-              <img :src="answer.requestor_avatar" alt="头像" v-if="answer.requestor_avatar != ''">
+              <img :src="answer.requestor_avatar" alt="头像" v-if="answer.requestor_avatar != '' && answer.requestor_avatar != null">
               <img src="~common/img/avatar.gif" alt="头像" v-else>
             </router-link>
             <div class="detail">
@@ -59,10 +59,10 @@
               <!-- <div class="content">{{answer.content}}</div> -->
               <div class="light-comment">
                 <span class="datetime">{{comment.create_time}}</span>
-                <span class="light" style="color: #777777" @click="lightAnswer(answer, $event)" v-if="!answer.is_light"><img src="../../common/img/light_0.png">亮了({{answer.lights}})</span>
-                <span class="light" style="color: #bc3545" @click="lightAnswer(answer, $event)" v-if="answer.is_light"><img src="../../common/img/light_1.png">亮了({{answer.lights}})</span>
-                <span class="comment" @click="displayCommentInput(answer)" v-if="localUid != answer.requestor_id && currentItem._id != answer._id"><img src="../../common/img/comment.png">回复</span>
-                <span class="comment" @click="undisplayCommentInput(answer)" v-if="localUid != answer.requestor_id && currentItem._id == answer._id"><img src="../../common/img/comment.png">取消</span>
+                <span class="light" style="color: #777777" @click="lightAnswer(answer, $event)" v-if="!answer.is_light"><img src="~common/img/light_0.png">亮了({{answer.lights}})</span>
+                <span class="light" style="color: #bc3545" @click="lightAnswer(answer, $event)" v-if="answer.is_light"><img src="~common/img/light_1.png">亮了({{answer.lights}})</span>
+                <span class="comment" @click="displayCommentInput(answer)" v-if="localUid != answer.requestor_id && currentItem._id != answer._id"><img src="~common/img/comment.png">回复</span>
+                <span class="comment" @click="undisplayCommentInput(answer)" v-if="localUid != answer.requestor_id && currentItem._id == answer._id"><img src="~common/img/comment.png">取消</span>
               </div>
               <!-- 评论组件  -->
               <div class="input-bar" v-show="currentItem._id == answer._id">

@@ -1,17 +1,22 @@
 <template>
   <div class="container">
     <div class="main-container">
-      <img class="close-btn" src="../../common/img/close.png" @click="backPrev" />
+      <img class="close-btn" src="~common/img/close.png" @click="backPrev" />
       <div class="header">PPAP</div>
       <div class="main">
-        <div class="account">
-          <!-- <span>账号：</span> -->
-          <img src="../../common/img/account.png" alt="">
+        <!-- <div class="account">
+          <span>账号：</span>
+          <img src="~common/img/account.png" alt="">
           <input type="text" v-model="account" @keyup.enter="login" placeholder="请输入账号" />
+        </div> -->
+        <div class="account">
+          <!-- <span>邮箱：</span> -->
+          <img src="~common/img/email.png" alt="">
+          <input type="text" v-model="email" @keyup.enter="login" placeholder="请输入邮箱" />
         </div>
         <div class="password">
           <!-- <span>密码：</span> -->
-          <img src="../../common/img/password.png" alt="">
+          <img src="~common/img/password.png" alt="">
           <input type="password" v-model="password" @keyup.enter="login" placeholder="请输入密码" />
         </div>
         <div class="login">
@@ -33,14 +38,15 @@ export default {
   data(){
     return {
       account: '',
+      email: '',
       password: ''
     }
   },
   methods: {
     login(){
-      if(this.account.trim() === ''){
+      if(this.email.trim() === ''){
         swal({
-          title: '账号不能为空'
+          title: '邮箱不能为空'
         })
         return
       }
@@ -51,7 +57,7 @@ export default {
         return
       }
       let data = {
-        account: this.account,
+        email: this.email.trim(),
         password: md5(sha1(this.password).toString()).toString()
       }
       login(data).then(response => {

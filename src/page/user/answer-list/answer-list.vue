@@ -9,7 +9,7 @@
           </div>
           <div class="quote">
             <div class="header">
-              <img :src="item.targetor_avatar" alt="" v-if="item.targetor_avatar != ''">
+              <img :src="item.targetor_avatar" alt="" v-if="item.targetor_avatar != '' && item.targetor_avatar != null">
               <img src="~common/img/avatar.gif" alt="" v-else>
               <span class="uname">{{item.targetor_name}}</span>
             </div>
@@ -28,7 +28,8 @@
           </div>
           <div class="quote">
             <div class="header">
-              <img :src="item.targetor_avatar" alt="">
+              <img :src="item.targetor_avatar" alt="" v-if="item.targetor_avatar != '' && item.targetor_avatar != null">
+              <img src="~common/img/avatar.gif" alt v-else>
               <span class="uname">{{item.targetor_name}}</span>
             </div>
             <div class="content">{{item.target_answer_content}}</div>

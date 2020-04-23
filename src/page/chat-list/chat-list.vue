@@ -2,7 +2,7 @@
   <div class="chat-list">
     <h1>{{ msg }}</h1>
     <template v-for="item in chatList">
-      <div class="chat-item">
+      <div class="chat-item" :key="item.id">
         <img :src="item.avatar" alt="头像">
         <div class="detail">
           <div class="name">{{item.name}}</div>

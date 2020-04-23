@@ -3,7 +3,7 @@
     <div class="follow" v-for="item in followList" :key="item.id">
       <div class="left">
         <router-link :to="`/user/${item.id}`" target="_blank">
-          <img class="avatar" :src="item.avatar" alt v-if="item.avatar != ''">
+          <img class="avatar" :src="item.avatar" alt v-if="item.avatar != '' && item.avatar != null">
           <img class="avatar" src="~common/img/avatar.gif" alt v-else>
         </router-link>
       </div>

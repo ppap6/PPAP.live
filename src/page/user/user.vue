@@ -4,7 +4,7 @@
     <div class="container-header">
       <header>
         <div class="header-left">
-          <img class="avatar" :src="user.avatar" alt v-if="user.avatar != ''">
+          <img class="avatar" :src="user.avatar" alt v-if="user.avatar != '' && user.avatar != null">
           <img class="avatar" src="~common/img/avatar.gif" alt v-else>
         </div>
         <div class="header-right">

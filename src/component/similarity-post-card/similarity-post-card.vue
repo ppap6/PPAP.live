@@ -7,7 +7,7 @@
     </div>
     <div class="post-list">
       <div class="post" v-for="item in postList" :key="item.id">
-        <img class="avatar" :src="item.avatar" alt v-if="item.avatar != ''">
+        <img class="avatar" :src="item.avatar" alt v-if="item.avatar != '' && item.avatar != null">
         <img class="avatar" src="~common/img/avatar.gif" alt v-else>
         <router-link :to="`/post/${item.id}`">
           <p class="post-title" v-html="item.title"></p>

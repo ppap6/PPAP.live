@@ -1,6 +1,6 @@
 <template>
   <div class="loading" v-show="isLoading">
-    <img src="../../common/img/loading.png" alt="" class="img">
+    <img src="~common/img/loading.png" alt="" class="img">
   </div>
 </template>
 
