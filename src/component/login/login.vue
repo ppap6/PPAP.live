@@ -71,7 +71,7 @@ export default {
           this.$store.commit('resetToken', response.data.user.token)
         }else if(response.data.status == 10003){
           swal({
-            title: '用户账号或密码错误'
+            title: '用户邮箱或密码错误'
           })
         }else{
           swal({
