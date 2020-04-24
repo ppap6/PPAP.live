@@ -30,6 +30,7 @@ import UserFollowPeopleList from 'page/user/follow-people-list/follow-people-lis
 import UserStarPostList from 'page/user/star-post-list/star-post-list'
 import UserCollectPostList from 'page/user/collect-post-list/collect-post-list'
 import UserFollowTopicList from 'page/user/follow-topic-list/follow-topic-list'
+import UserSettings from 'page/user/settings/settings'
 
 // notice 的子组件
 import NoticeAll from 'page/notice/all/all'
@@ -177,6 +178,11 @@ export default new Router({
           component: UserFollowTopicList
         }
       ]
+    },
+    {
+      path: '/user/:id/settings',
+      name: 'UserSettings',
+      component: UserSettings
     },
     {
       path: '/post/:id',

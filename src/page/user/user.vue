@@ -2,6 +2,7 @@
   <div class="user-center">
     <Loading :loading="loading"></Loading>
     <div class="container-header">
+      <div class="user-bg" :style="`background-image: url(${user.bg})`"></div>
       <header>
         <div class="header-left">
           <img class="avatar" :src="user.avatar" alt v-if="user.avatar != '' && user.avatar != null">
@@ -9,9 +10,17 @@
         </div>
         <div class="header-right">
           <p class="name">{{user.name}}</p>
+          <p class="auth-title">
+            <img src="~common/img/auth_title.png">
+            <span>PPAP创始人、广州黄埔最骚程序员、反冲斗士</span>
+          </p>
           <p class="join-date">加入于 {{user.create_time ? user.create_time.split(' ')[0] : ''}}</p>
+          <p class="intro">
+            <img src="~common/img/intro.png">
+            <span>这个人神秘的一匹</span>
+          </p>
         </div>
-        <span class="logout" @click="logout" v-if="uid == userId">退出</span>
+        <span class="settings" @click="settings" v-if="uid == userId">设置</span>
         <span class="follow" @click="followUser" v-if="uid != userId && noFollow && user != ''">关注</span>
         <span class="follow" @click="cancelFollowUser" v-if="uid != userId && isFollow && user != ''">已关注</span>
       </header>
@@ -184,6 +193,11 @@ export default {
         }
       })
     },
+    settings(){
+      this.$router.push({
+        path: `/user/${this.userId}/settings`
+      })
+    },
     logout(){
       swal({
         title: '确定退出登录吗',
@@ -269,35 +283,50 @@ export default {
     border-radius 5px
     background-color #ffffff
 
+    .user-bg {
+      height 160px
+      width 100%
+      padding 0
+      margin 0
+      border-top-left-radius 5px
+      border-top-right-radius 5px
+      background-size cover
+      background-position center center
+      background-color #565a63
+      background-repeat no-repeat
+    }
+
     header {
       position relative
       display flex
-      flex-direction row
-      align-items top
-      padding 20px
+      flex-direction column
+      align-items center
+      justify-content center
+      padding 20px 20px 15px
+      margin-top -70px
 
-      .logout {
+      .settings{
         position absolute
-        top 20px
+        top 80px
         right 30px
         cursor pointer
         color #717171
         font-size 14px
         background-color #ececec
-        border-radius 12px
+        border-radius 15px
         padding 4px 12px
         transition all .1s linear
 
         &:hover {
           color #fff
-          background-color #F54545
+          background-color #4170ea
           transform scale(1.1)
         }
       }
 
       .follow {
         position absolute
-        top 20px
+        top 80px
         right 30px
         cursor pointer
         color #717171
@@ -320,22 +349,61 @@ export default {
           width 100px
           margin 0 10px
           border-radius 50%
+          border 3px solid #fff
         }
       }
 
       .header-right {
+        display flex
+        flex-direction column
+        justify-content center
+        align-items center
         padding 2px 15px
 
         .name {
-          text-align left
           font-size 24px
           font-weight bold
         }
 
         .join-date {
-          text-align left
           font-size 12px
           color #999999
+        }
+
+        .auth-title {
+          display flex
+          align-items center
+          font-size 14px
+          color #515151
+          margin 2px 0 0
+
+          img {
+            height 28px
+            width 28px
+            margin-bottom 8px
+          }
+
+          span {
+            margin 0 4px
+            color #f2aa24
+          }
+        }
+
+        .intro {
+          display flex
+          align-items center
+          font-size 14px
+          color #515151
+          margin 10px 0 0
+
+          img {
+            height 22px
+            width 22px
+          }
+
+          span {
+            margin 0 4px
+          }
         }
       }
     }
