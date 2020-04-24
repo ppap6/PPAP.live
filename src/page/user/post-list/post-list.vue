@@ -29,6 +29,17 @@ export default {
     PostList,
     LoadingBottom
   },
+  watch: {
+    $route(to, from){
+      if(to.name == 'UserPostList'){
+        this.pageNum = 1
+        this.loadMoreState = false
+        this.hasMore = true
+        this.noData = false
+        this.getPersonPostList()
+      }
+    }
+  },
   created(){
     this.getPersonPostList()
   },
