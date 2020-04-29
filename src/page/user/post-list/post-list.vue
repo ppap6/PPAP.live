@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="user-post-list">
     <div class="post-list">
       <PostList :useInPerson="true" :postList="postList" :noData="noData"></PostList>
       <LoadingBottom :state="hasMore"></LoadingBottom>
@@ -121,7 +121,7 @@ export default {
 </script>
 
 <style scoped lang="stylus">
-.container {
+.user-post-list {
   border-radius 5px
   text-align left
 
