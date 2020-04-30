@@ -1,6 +1,5 @@
 <template>
   <div class="all-list">
-    <Loading :loading="loading"></Loading>
     <div v-for="item in activityList" :key="item._id">
       <!-- 评论消息 -->
       <div class="activity" v-if="item.type === 1" :key="item._id">
@@ -161,7 +160,6 @@
 </template>
 
 <script>
-import Loading from 'component/loading/loading'
 import { getPersonFollowDynamicList } from 'api/person'
 import { getStorage } from 'common/js/localstorage'
 import LoadingBottom from 'component/loading-bottom/loading-bottom'
@@ -182,8 +180,7 @@ export default {
       activityList: [
         //type的值 1为评论，2为回复，3为关注，4为点赞，5为收藏，6为话题，7为发表
       ],
-      noData: false,
-      loading: true
+      noData: false
     }
   },
   watch: {
@@ -212,7 +209,6 @@ export default {
     this.listenScroll()
   },
   components: {
-    Loading,
     LoadingBottom
   },
   methods: {
@@ -239,7 +235,6 @@ export default {
           let list = response.data.message.list
           this.activityList = list
           //隐藏加载动画
-          this.loading = false
           if(this.total < this.pageSize){
             this.hasMore = false
           }
@@ -247,12 +242,10 @@ export default {
           this.activityList = []
           this.noData = true
           //隐藏加载动画
-          this.loading = false
           this.hasMore = false
         }else{
           //不作处理
           //隐藏加载动画
-          this.loading = false
           this.hasMore = false
         }
       })
