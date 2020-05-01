@@ -8,6 +8,11 @@
     <router-link :to="`/user/${author.id}`" v-if="author.id != 0">
       <p class="name">{{author.name}}</p>
     </router-link>
+    <p class="auth-title">
+      <img src="~common/img/auth_title.png">
+      <span>PPAP创始人、广州黄埔最骚程序员、反冲斗士</span>
+    </p>
+    <p class="intro">这个人神秘的一匹</p>
     <div class="user-information">
       <div class="followers">
         <div class="counts">{{count.fans}}</div>
@@ -90,6 +95,40 @@ export default {
       font-weight bold
       cursor pointer
       margin 5px 0
+    }
+
+    .auth-title {
+      display flex
+      align-items center
+      font-size 14px
+      color #515151
+      margin 2px 0 0
+      padding 0 15px
+      text-align center
+
+      img {
+        height 28px
+        width 28px
+        margin-bottom 8px
+      }
+
+      span {
+        margin 0 4px
+        color #f2aa24
+        overflow hidden
+        text-overflow ellipsis
+        white-space nowrap
+      }
+    }
+
+    .intro {
+      display flex
+      align-items center
+      justify-content center
+      font-size 14px
+      color #515151
+      margin 2px 0 0
+      padding 0 15px
     }
 
     .user-information{
