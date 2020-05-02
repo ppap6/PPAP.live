@@ -1,6 +1,6 @@
 <template>
   <div class="new-post">
-    <TopicList @selectTopic="selectTopic"></TopicList>
+    <TopicList @selectTopic="selectTopic" :topicId="topicId"></TopicList>
     <div class="post-header">
       <div class="title-container">
         <span class="text">标题</span>
@@ -98,6 +98,11 @@ export default {
           swal({
             title: '发布成功'
           })
+          this.topicId = 0
+          this.title = ''
+          this.md = ''
+          this.content = ''
+          this.isSubmit = false
           this.$router.push({
             path: '/'
           })

@@ -45,6 +45,7 @@ export default {
   },
   watch: {
     activeTopicId(id){
+      console.log(id)
       this.activeId = id
     }
   },

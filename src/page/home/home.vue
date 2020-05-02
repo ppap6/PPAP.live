@@ -63,7 +63,7 @@ export default {
   },
   watch: {
     $route(to, from){   
-      if(from.path == '/'){
+      if(from.path == '/' || from.path == '/new-post'){
         this.removeListenScroll() 
         if(to.query.sort){
           this.pageNum = 1
