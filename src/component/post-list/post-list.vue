@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="post-list-container">
     <div class="sort-bar" v-if="displaySortBar">
       <div :class="{'create-time': true, 'active': currentSort == 1}" @click="sort(1)">最新发布</div>  
       <div :class="{'last-answer-time': true, 'active': currentSort == 2}" @click="sort(2)">最新回复</div>  
@@ -89,7 +89,7 @@ export default {
 </script>
 
 <style scoped lang="stylus">
-.container {
+.post-list-container {
   text-align center
   border-radius 5px
 
@@ -232,6 +232,7 @@ export default {
   .nofound {
     height 200px
     width 200px
+    margin auto
   }
 }
 </style>
