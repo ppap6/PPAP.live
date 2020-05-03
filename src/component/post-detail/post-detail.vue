@@ -358,7 +358,7 @@ export default {
 <style scoped lang="stylus">
 .container {
   position relative
-  width 1200px
+  width 95vw
   margin auto
   display flex
   // align-items center
@@ -483,7 +483,7 @@ export default {
           background-color #f2f2f2
           padding 4px 10px
           margin 5px 10px 15px
-          border-radius 10px
+          border-radius 15px
           cursor pointer
           transition all .1s linear
 
