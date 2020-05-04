@@ -1,5 +1,8 @@
 <template>
   <div class="settings-container">
+    <div class="cropper-container" v-if="cropperShow">
+      <Cropper class="cropper" :img="currentCropImg" @cancelCropData="hideCropper"></Cropper>
+    </div>
     <div class="card">
       <div class="nav-header">设置</div>
       <span class="back" @click="back">返回</span>
@@ -9,7 +12,7 @@
       <div class="card-body">
         <img class="avatar" :src="user.avatar" alt v-if="user.avatar">
         <img class="avatar" src="~common/img/avatar.gif" alt v-else>
-        <div class="upload">上传头像</div>
+        <div class="upload" @click="showCropper">上传头像</div>
       </div>
     </div>
     <div class="card">
@@ -22,7 +25,7 @@
       <div class="card-header">封面</div>
       <div class="card-body">
         <div class="bg" :style="`background-image: url(${user.bg})`"></div>
-        <div class="upload">上传封面</div>
+        <div class="upload" @click="showCropper">上传封面</div>
       </div>
     </div>
     <div class="logout" @click="logout" v-if="uid == userId">退出登录</div>
@@ -32,6 +35,7 @@
 <script>
 import { getStorage, removeStorage } from 'common/js/localstorage'
 import swal from 'sweetalert'
+import Cropper from 'component/cropper/cropper'
 
 export default {
   name: 'Settings',
@@ -39,8 +43,13 @@ export default {
     return {
       userId: this.$route.params.id,
       uid: getStorage('user').uid,
-      user: getStorage('user')
+      user: getStorage('user'),
+      cropperShow: true,
+      currentCropImg: ''
     }
+  },
+  components: {
+    Cropper
   },
   methods: {
     logout(){
@@ -64,6 +73,15 @@ export default {
     },
     back(){
       this.$router.go(-1)
+    },
+    showCropper(){
+      this.currentCropImg = 'https://img.xiaoduyu.com/dcb97678-d958-4210-be43-6ebd5ebcc5c5.png?imageMogr2/crop/!1200x1200a593a43/thumbnail/!200/quality/90'
+      this.cropperShow = true
+    },
+    hideCropper(state){
+      if(state){
+        this.cropperShow = false
+      }
     }
   }
 }
@@ -76,6 +94,27 @@ export default {
   max-width 700px
   margin auto
   border-radius 5px
+
+  .cropper-container {
+    position fixed
+    top 0
+    left 0
+    height 100%
+    width 100%
+    background-color rgba(0, 0, 0, 0.9)
+    z-index 10000
+
+    .cropper {
+      height 60%
+      width 100%
+      text-align center
+      display flex
+      align-items center
+      flex-direction column
+      justify-content center
+      visibility visible
+    }
+  }
   
   .logout {
     width 100px
