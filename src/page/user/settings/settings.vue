@@ -12,7 +12,8 @@
       <div class="card-body">
         <img class="avatar" :src="user.avatar" alt v-if="user.avatar">
         <img class="avatar" src="~common/img/avatar.gif" alt v-else>
-        <div class="upload" @click="showCropper">上传头像</div>
+        <label class="upload" for="uploadAvatar">上传头像</label>
+				<input type="file" id="uploadAvatar" style="position:absolute; clip:rect(0 0 0 0);" accept="image/png, image/jpeg, image/gif, image/jpg" @change="getUploadImg($event)">
       </div>
     </div>
     <div class="card">
@@ -75,13 +76,38 @@ export default {
       this.$router.go(-1)
     },
     showCropper(){
-      this.currentCropImg = 'https://img.xiaoduyu.com/dcb97678-d958-4210-be43-6ebd5ebcc5c5.png?imageMogr2/crop/!1200x1200a593a43/thumbnail/!200/quality/90'
       this.cropperShow = true
     },
     hideCropper(state){
       if(state){
         this.cropperShow = false
       }
+    },
+    getUploadImg(e){
+      //上传图片
+      const file = e.target.files[0]
+      if (!/\.(gif|jpg|jpeg|png|bmp|GIF|JPG|PNG)$/.test(e.target.value)) {
+        swal({
+          title: '图片类型必须是.gif,jpeg,jpg,png,bmp中的一种'
+        })
+        return false
+      }
+      const reader = new FileReader()
+      reader.onload = e => {
+        let data
+        if (typeof e.target.result === "object") {
+          // 把Array Buffer转化为blob 如果是base64不需要
+          data = window.URL.createObjectURL(new Blob([e.target.result]))
+        } else {
+          data = e.target.result
+        }
+        this.currentCropImg = data
+        this.showCropper()
+      }
+      // 转化为base64
+      // reader.readAsDataURL(file)
+      // 转化为blob
+      reader.readAsArrayBuffer(file)
     }
   }
 }
@@ -203,6 +229,7 @@ export default {
       }
 
       .upload {
+        display block
         font-size 14px 
         color #171717
         width 70px
