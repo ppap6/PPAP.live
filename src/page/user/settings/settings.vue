@@ -1,7 +1,7 @@
 <template>
   <div class="settings-container">
     <div class="cropper-container" v-if="cropperShow">
-      <Cropper class="cropper" :img="currentCropImg" @cancelCropData="hideCropper"></Cropper>
+      <Cropper class="cropper" :img="currentCropImg" @getCropData="getCropData" @cancelCropData="hideCropper"></Cropper>
     </div>
     <div class="card">
       <div class="nav-header">设置</div>
@@ -13,7 +13,7 @@
         <img class="avatar" :src="user.avatar" alt v-if="user.avatar">
         <img class="avatar" src="~common/img/avatar.gif" alt v-else>
         <label class="upload" for="uploadAvatar">上传头像</label>
-				<input type="file" id="uploadAvatar" style="position:absolute; clip:rect(0 0 0 0);" accept="image/png, image/jpeg, image/gif, image/jpg" @change="getUploadImg($event)">
+				<input type="file" id="uploadAvatar" style="position:absolute; clip:rect(0 0 0 0);" accept="image/png, image/jpeg, image/gif, image/jpg" @change="getUploadAvatarImg($event)">
       </div>
     </div>
     <div class="card">
@@ -26,7 +26,8 @@
       <div class="card-header">封面</div>
       <div class="card-body">
         <div class="bg" :style="`background-image: url(${user.bg})`"></div>
-        <div class="upload" @click="showCropper">上传封面</div>
+        <label class="upload" for="uploadBg">上传封面</label>
+				<input type="file" id="uploadBg" style="position:absolute; clip:rect(0 0 0 0);" accept="image/png, image/jpeg, image/gif, image/jpg" @change="getUploadBgImg($event)">
       </div>
     </div>
     <div class="logout" @click="logout" v-if="uid == userId">退出登录</div>
@@ -45,8 +46,12 @@ export default {
       userId: this.$route.params.id,
       uid: getStorage('user').uid,
       user: getStorage('user'),
-      cropperShow: true,
-      currentCropImg: ''
+      //裁剪层展示
+      cropperShow: false,
+      //当前裁剪源图片
+      currentCropImg: '',
+      //当前上传图片类型（1代表头像，2代表背景）
+      currentUploadImgType: 0
     }
   },
   components: {
@@ -81,9 +86,10 @@ export default {
     hideCropper(state){
       if(state){
         this.cropperShow = false
+        this.currentUploadImgType = 0
       }
     },
-    getUploadImg(e){
+    getUploadAvatarImg(e){
       //上传图片
       const file = e.target.files[0]
       if (!/\.(gif|jpg|jpeg|png|bmp|GIF|JPG|PNG)$/.test(e.target.value)) {
@@ -102,12 +108,50 @@ export default {
           data = e.target.result
         }
         this.currentCropImg = data
+        this.currentUploadImgType = 1
         this.showCropper()
       }
       // 转化为base64
       // reader.readAsDataURL(file)
       // 转化为blob
       reader.readAsArrayBuffer(file)
+    },
+    getUploadBgImg(e){
+      //上传图片
+      const file = e.target.files[0]
+      if (!/\.(gif|jpg|jpeg|png|bmp|GIF|JPG|PNG)$/.test(e.target.value)) {
+        swal({
+          title: '图片类型必须是.gif,jpeg,jpg,png,bmp中的一种'
+        })
+        return false
+      }
+      const reader = new FileReader()
+      reader.onload = e => {
+        let data
+        if (typeof e.target.result === "object") {
+          // 把Array Buffer转化为blob 如果是base64不需要
+          data = window.URL.createObjectURL(new Blob([e.target.result]))
+        } else {
+          data = e.target.result
+        }
+        this.currentCropImg = data
+        this.currentUploadImgType = 2
+        this.showCropper()
+      }
+      // 转化为base64
+      // reader.readAsDataURL(file)
+      // 转化为blob
+      reader.readAsArrayBuffer(file)
+    },
+    getCropData(data){
+      console.log(data)
+      //获取裁剪图片数据后进行当前上传图片类型进行上传
+      if(this.currentUploadImgType == 1){
+        console.log('avatar')
+      }else{
+        console.log('bg')
+      }
+      this.cropperShow = false
     }
   }
 }

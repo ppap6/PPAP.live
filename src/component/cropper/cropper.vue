@@ -54,7 +54,7 @@ export default {
   methods: {
     getCropData(){
       this.$refs.cropper.getCropData(data => {
-        console.log(data)
+        this.$emit('getCropData', data)
       })
     },
     cancel(){
