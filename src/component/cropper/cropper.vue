@@ -1,5 +1,5 @@
 <template>
-  <div class="cropper">
+  <div class="cropper-container">
     <VueCropper
       ref="cropper"
       :img="option.img"
@@ -14,6 +14,7 @@
       :centerBox="option.centerBox"
       :maxImgSize="option.maxImgSize"
       :mode="option.mode"
+      :fixedNumber="option.fixedNumber"
     ></VueCropper>
     <div class="func">
       <div class="confirm" @click="getCropData">确定</div>
@@ -27,7 +28,7 @@ import { VueCropper }  from 'vue-cropper'
 
 export default {
   name: 'Cropper',
-  props: ['img'],
+  props: ['img', 'type'],
   data(){
     return {
       option: {
@@ -38,13 +39,15 @@ export default {
         fixedBox: true,
         autoCrop: true,
         // 只有自动截图开启 宽度高度才生效
-        autoCropWidth: 200,
-        autoCropHeight: 200,
+        autoCropWidth: this.type == 2 ? 600 : 150,
+        autoCropHeight: 150,
         original: true,
-        centerBox: true,
+        centerBox: false,
         cropData: {},
-        mode: 'contain',
-        maxImgSize: 500
+        mode: '',
+        maxImgSize: 500,
+        //根据type类型决定截图比例
+        fixedNumber: [(this.type == 2 ? 4 : 1), 1]
       },
     }
   },
@@ -65,7 +68,7 @@ export default {
 </script>
 
 <style scoped lang="stylus">
-.cropper {
+.cropper-container {
   .func {
     display flex
     align-items center

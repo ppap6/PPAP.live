@@ -1,7 +1,7 @@
 <template>
   <div class="settings-container">
-    <div class="cropper-container" v-if="cropperShow">
-      <Cropper class="cropper" :img="currentCropImg" @getCropData="getCropData" @cancelCropData="hideCropper"></Cropper>
+    <div class="cropper-fixed" v-if="cropperShow">
+      <Cropper class="cropper" :img="currentCropImg" :type="currentUploadImgType" @getCropData="getCropData" @cancelCropData="hideCropper"></Cropper>
     </div>
     <div class="card">
       <div class="nav-header">设置</div>
@@ -13,7 +13,7 @@
         <img class="avatar" :src="user.avatar" alt v-if="user.avatar">
         <img class="avatar" src="~common/img/avatar.gif" alt v-else>
         <label class="upload" for="uploadAvatar">上传头像</label>
-				<input type="file" id="uploadAvatar" style="position:absolute; clip:rect(0 0 0 0);" accept="image/png, image/jpeg, image/gif, image/jpg" @change="getUploadAvatarImg($event)">
+				<input type="file" ref="uploadAvatar" id="uploadAvatar" style="position:absolute; clip:rect(0 0 0 0);" accept="image/png, image/jpeg, image/gif, image/jpg" @change="getUploadAvatarImg($event)">
       </div>
     </div>
     <div class="card">
@@ -27,7 +27,7 @@
       <div class="card-body">
         <div class="bg" :style="`background-image: url(${user.bg})`"></div>
         <label class="upload" for="uploadBg">上传封面</label>
-				<input type="file" id="uploadBg" style="position:absolute; clip:rect(0 0 0 0);" accept="image/png, image/jpeg, image/gif, image/jpg" @change="getUploadBgImg($event)">
+				<input type="file" ref="uploadBg" id="uploadBg" style="position:absolute; clip:rect(0 0 0 0);" accept="image/png, image/jpeg, image/gif, image/jpg" @change="getUploadBgImg($event)">
       </div>
     </div>
     <div class="logout" @click="logout" v-if="uid == userId">退出登录</div>
@@ -110,6 +110,7 @@ export default {
         this.currentCropImg = data
         this.currentUploadImgType = 1
         this.showCropper()
+        this.$refs.uploadAvatar.value = ''
       }
       // 转化为base64
       // reader.readAsDataURL(file)
@@ -137,6 +138,7 @@ export default {
         this.currentCropImg = data
         this.currentUploadImgType = 2
         this.showCropper()
+        this.$refs.uploadBg.value = ''
       }
       // 转化为base64
       // reader.readAsDataURL(file)
@@ -165,7 +167,7 @@ export default {
   margin auto
   border-radius 5px
 
-  .cropper-container {
+  .cropper-fixed {
     position fixed
     top 0
     left 0
@@ -175,7 +177,7 @@ export default {
     z-index 10000
 
     .cropper {
-      height 60%
+      height 80%
       width 100%
       text-align center
       display flex
