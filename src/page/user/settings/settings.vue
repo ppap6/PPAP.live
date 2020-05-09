@@ -98,6 +98,12 @@ export default {
         })
         return false
       }
+      if(file.size > 300000){
+        swal({
+          title: '图片大小不能超过300k'
+        })
+        return false
+      }
       const reader = new FileReader()
       reader.onload = e => {
         let data
@@ -123,6 +129,12 @@ export default {
       if (!/\.(gif|jpg|jpeg|png|bmp|GIF|JPG|PNG)$/.test(e.target.value)) {
         swal({
           title: '图片类型必须是.gif,jpeg,jpg,png,bmp中的一种'
+        })
+        return false
+      }
+      if(file.size > 500000){
+        swal({
+          title: '图片大小不能超过500k'
         })
         return false
       }
