@@ -478,6 +478,8 @@ export default {
         border-bottom 1px solid #ececec
 
         .edit {
+          display inline
+          white-space nowrap
           font-size 14px
           color #414141
           background-color #f2f2f2
