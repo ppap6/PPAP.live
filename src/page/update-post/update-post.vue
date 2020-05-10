@@ -10,8 +10,10 @@
       <div class="submit" @click="submit">{{isSubmit ? 'loading…' : '保存'}}</div>
     </div>
     <mavon-editor
+      ref="editor"
       :externalLink="true"
       v-model="md"
+      @imgAdd="imgAdd"
       @change="change">
     </mavon-editor>
   </div>
@@ -43,6 +45,13 @@ export default {
     this.getPost()
   },
   methods: {
+    //插入图片
+    imgAdd(rel, data){
+      let timestamp = +new Date()
+      //自定义图片rel值
+      this.$refs.editor.$img2Url(rel, timestamp)
+      this.$refs.editor.$imgUpdateByUrl(timestamp, data.miniurl)
+    },
     change(value, render){
       this.md = value
       this.content = render
@@ -99,6 +108,34 @@ export default {
           this.title = response.data.message.title
           this.md = response.data.message.md
           this.content = response.data.message.content
+          //获取img标签的rel，替换原始md为图片源
+          let box = response.data.message.content
+          let relarr = []
+          let pos = box.indexOf(' rel="')
+          let sliceStr = box.slice(pos+6)
+          let rel = sliceStr.split('" ')[0]
+          while(pos > -1){
+            relarr.push(rel)
+            pos = box.indexOf(' rel="', pos+6)
+            sliceStr = box.slice(pos+6)
+            rel = sliceStr.split('" ')[0]
+          }
+          //获取img标签的src，替换原始md为图片源
+          let srcarr=[]
+          let pos2 = box.indexOf('img src="')
+          let sliceStr2 = box.slice(pos2+9)
+          let src = sliceStr2.split('" ')[0]
+          while(pos2 > -1){
+            srcarr.push(src)
+            pos2 = box.indexOf('img src="', pos2+9)
+            sliceStr2 = box.slice(pos2+9)
+            src = sliceStr2.split('" ')[0]
+          }
+          this.$nextTick(() => {
+            for(let i=0; i<relarr.length; i++){
+              this.$refs.editor.$imgAddByUrl(relarr[i], srcarr[i])
+            }
+          })
           //隐藏加载动画
           this.loading = false
         }else if(response.data.status == 10003){
@@ -206,6 +243,11 @@ export default {
         box-shadow 0 0 8px #4170ea
       }
     }
+  }
+
+  //隐藏图片删除按钮（因为不起作用）
+  /deep/ .dropdown-images {
+    display none
   }
 }
 </style>
