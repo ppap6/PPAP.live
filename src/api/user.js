@@ -103,3 +103,8 @@ export function cancelLightComment(data){
 export function cancelLightAnswer(data){
     return Request.post(`/user/cancel/light/answer`, data)
 }
+
+//用户上传头像背景
+export function upload(data){
+    return Request.post('/user/upload', data)
+}

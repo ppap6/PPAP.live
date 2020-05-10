@@ -35,7 +35,8 @@
 </template>
 
 <script>
-import { getStorage, removeStorage } from 'common/js/localstorage'
+import { upload } from 'api/user'
+import { getStorage, setStorage, removeStorage } from 'common/js/localstorage'
 import swal from 'sweetalert'
 import Cropper from 'component/cropper/cropper'
 
@@ -158,14 +159,37 @@ export default {
       reader.readAsArrayBuffer(file)
     },
     getCropData(data){
-      console.log(data)
       //获取裁剪图片数据后进行当前上传图片类型进行上传
       if(this.currentUploadImgType == 1){
         console.log('avatar')
+        this.upload(1, data)
       }else{
         console.log('bg')
+        this.upload(2, data)
       }
       this.cropperShow = false
+    },
+    upload(type, url){
+      let data = {
+        type,
+        url
+      }
+      upload(data).then(response => {
+        if(response.data.status == 200){
+          let user = getStorage('user')
+          if(type == 1){
+            user.avatar = url
+          }else{
+            user.bg = url
+          }
+          setStorage('user', user)
+          this.user = user
+        }else{
+          swal({
+            title: response.data.message
+          })
+        }
+      })
     }
   }
 }
