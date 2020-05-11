@@ -17,6 +17,16 @@
       </div>
     </div>
     <div class="card">
+      <div class="card-header">昵称</div>
+      <div class="card-body">
+        <span class="name-modify" v-if="isInitName" @click="isModifyName=!isModifyName" v-show="!isModifyName">修改</span>
+        <span class="name-save" v-if="isInitName" @click="updateUserName" v-show="isModifyName">保存</span>
+        <div class="name" v-show="!isModifyName">{{uname}}</div>
+        <input class="name-input" type="text" v-model="uname" v-show="isModifyName">
+      </div>
+      <div class="tips" v-if="isInitName">昵称是你的特定ID象征，只能修改一次，为自己起一个好的昵称吧</div>
+    </div>
+    <div class="card">
       <div class="card-header">个性签名</div>
       <div class="card-body">
         <div class="intro">这个人神秘的一匹</div>
@@ -47,12 +57,23 @@ export default {
       userId: this.$route.params.id,
       uid: getStorage('user').uid,
       user: getStorage('user'),
+      uname: getStorage('user').uname,
       //裁剪层展示
       cropperShow: false,
       //当前裁剪源图片
       currentCropImg: '',
       //当前上传图片类型（1代表头像，2代表背景）
-      currentUploadImgType: 0
+      currentUploadImgType: 0,
+      //昵称修改状态
+      isModifyName: false
+    }
+  },
+  computed: {
+    isInitName(){
+      if(this.user.uname.indexOf('P小酱') == 0 && !isNaN(parseInt(this.user.uname.split('P小酱')[1]))){
+        return true
+      }
+      return false
     }
   },
   components: {
@@ -190,6 +211,12 @@ export default {
           })
         }
       })
+    },
+    //修改用户昵称
+    updateUserName(){
+      this.isModifyName = !this.isModifyName
+      this.user.uname = this.uname
+      //发送http，成功后更新本地localStorage user，更新本组件user相关
     }
   }
 }
@@ -256,6 +283,15 @@ export default {
       border-radius 5px
     }
 
+    .tips {
+      text-align left
+      font-size 12px
+      padding 8px 15px
+      background-color #fdf6ec
+      border-color #faecd8
+      color #e6a23c
+    }
+
     .back {
       position absolute
       top 8px
@@ -284,6 +320,7 @@ export default {
     }
 
     .card-body {
+      position relative
       padding 10px 15px
       color #717171
       
@@ -292,6 +329,40 @@ export default {
         width 100px
         margin 5px 0 0
         border-radius 50%
+      }
+
+      .name {
+        font-size 14px
+        text-align left
+      }
+      .name-modify, .name-save {
+        position absolute 
+        top -33px
+        right 20px
+        cursor pointer
+        color #717171
+        font-size 12px
+        background-color #ececec
+        border-radius 15px
+        padding 4px 12px
+        transition all .1s linear
+
+        &:hover {
+          color #fff
+          background-color #4170ea
+          transform scale(1.1)
+        }
+      }
+      .name-input {
+        display block
+        width 300px
+        padding 10px 15px
+        font-size 14px
+        text-align left
+        background-color #fdf6ec
+        color #e6a23c
+        border 1px solid #faecd8
+        border-radius 20px
       }
 
       .intro {
