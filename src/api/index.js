@@ -3,11 +3,8 @@ import VM from '../main'
 import { getStorage, setStorage, removeStorage } from 'common/js/localstorage'
 import swal from 'sweetalert'
 
-const baseURL = 'http://localhost:2333'
-// const baseURL = 'http://39.108.65.176:2333'
-
 const request = axios.create({
-    baseURL,
+    // baseURL,
     headers: {
         "Content-Type": "application/json;charset=UTF-8"
     }
@@ -15,6 +12,7 @@ const request = axios.create({
   
 request.interceptors.request.use(
     config => {
+        config.baseURL = window.baseUrl
         config.headers.common['Authorization'] = 'Bearer ' + getStorage('user').token
         return config
     },

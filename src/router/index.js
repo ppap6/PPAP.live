@@ -48,7 +48,7 @@ import SearchUserList from 'page/search/user-list/user-list'
 Vue.use(Router)
 
 export default new Router({
-  mode: 'history',
+  mode: 'hash',
   routes: [
     {
       path: '/',
