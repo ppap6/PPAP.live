@@ -90,6 +90,7 @@ export default {
           swal({
             title: response.data.message
           })
+          this.verify = ''
         }
       })
     },
@@ -105,6 +106,11 @@ export default {
       }
       getVerify(this.email.trim()).then(response => {
         if(response.data.status == 200){
+          swal({
+            title: response.data.message
+          })
+          this.verify = ''
+        }else{
           swal({
             title: response.data.message
           })
