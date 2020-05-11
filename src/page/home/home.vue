@@ -22,6 +22,9 @@
           <span>created by</span>
           <a href="https://github.com/jwchan1996" target="_blank">jwchan</a>
         </div>
+        <div class="record">
+          <a href="http://www.beian.miit.gov.cn/" target="_blank">粤ICP备17128781号</a>
+        </div>
       </div>
     </div>
   </div>
@@ -208,6 +211,17 @@ export default {
         font-size 12px
         padding 10px
         text-align left
+      }
+
+      .record {
+        font-size 12px
+        padding 0 10px
+        margin-top -8px
+        text-align left
+        
+        a {
+          color #515151 !important
+        }
       }
     }
   }
