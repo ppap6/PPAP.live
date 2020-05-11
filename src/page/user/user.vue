@@ -2,7 +2,7 @@
   <div class="user-center">
     <Loading :loading="loading"></Loading>
     <div class="container-header">
-      <div class="user-bg" :style="`background-image: url(${user.bg})`"></div>
+      <div class="user-bg" :style="`background-image: url(${user.bg});background-color: ${user.bg ? 'transparentify' : '#565a63'}`"></div>
       <header>
         <div class="header-left">
           <img class="avatar" :src="user.avatar" alt v-if="user.avatar != '' && user.avatar != null">
@@ -292,7 +292,8 @@ export default {
       border-top-right-radius 5px
       background-size cover
       background-position center center
-      background-color #565a63
+      // background-color #565a63
+      background-color transparentify
       background-repeat no-repeat
     }
 

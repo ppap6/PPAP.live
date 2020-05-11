@@ -35,7 +35,7 @@
     <div class="card">
       <div class="card-header">封面</div>
       <div class="card-body">
-        <div class="bg" :style="`background-image: url(${user.bg})`"></div>
+        <div class="bg" :style="`background-image: url(${user.bg});background-color: ${user.bg ? 'transparentify' : '#565a63'}`"></div>
         <label class="upload" for="uploadBg">上传封面</label>
 				<input type="file" ref="uploadBg" id="uploadBg" style="position:absolute; clip:rect(0 0 0 0);" accept="image/png, image/jpeg, image/gif, image/jpg" @change="getUploadBgImg($event)">
       </div>
@@ -377,7 +377,8 @@ export default {
         margin 5px 0 10px
         background-size cover
         background-position center center
-        background-color #565a63
+        // background-color #565a63
+        background-color transparentify
         background-repeat no-repeat
       }
 
