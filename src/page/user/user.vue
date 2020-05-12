@@ -2,7 +2,7 @@
   <div class="user-center">
     <Loading :loading="loading"></Loading>
     <div class="container-header">
-      <div class="user-bg" :style="`background-image: url(${user.bg});background-color: ${user.bg ? 'transparentify' : '#565a63'}`"></div>
+      <div class="user-bg" :style="`background-image: ${user.bg ? 'url('+user.bg+')' : 'none'};background-color: ${user.bg ? 'transparentify' : '#565a63'}`"></div>
       <header>
         <div class="header-left">
           <img class="avatar" :src="user.avatar" alt v-if="user.avatar != '' && user.avatar != null">

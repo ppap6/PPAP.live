@@ -1,6 +1,6 @@
 <template>
   <div class="profile-card">
-    <div class="user-bg" :style="`background-image: url(${author.bg});background-color: ${author.bg ? 'transparentify' : '#565a63'}`"></div>
+    <div class="user-bg" :style="`background-image: ${author.bg ? 'url('+author.bg+')' : 'none'};background-color: ${author.bg ? 'transparentify' : '#565a63'}`"></div>
     <router-link :to="`/user/${author.id}`" v-if="author.avatar != '' && author.avatar != null">
       <img class="profile" :src="author.avatar" alt>
     </router-link>
