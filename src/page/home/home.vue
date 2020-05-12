@@ -89,6 +89,15 @@ export default {
   },
   mounted(){
     this.listenScroll()
+    this.$bus.$on('newPost', () => {
+      this.pageNum = 1
+      this.loadMoreState = false
+      this.hasMore = true
+      this.sort = 1
+      this.noData = false
+      this.loading = true
+      this.getPostList()
+    })
   },
   methods: {
     listenScroll(){

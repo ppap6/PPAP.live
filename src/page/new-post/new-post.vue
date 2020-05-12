@@ -103,6 +103,7 @@ export default {
           this.md = ''
           this.content = ''
           this.isSubmit = false
+          this.$bus.$emit('newPost')
           this.$router.push({
             path: '/'
           })
