@@ -33,10 +33,10 @@
       </div>
     </div>
     <div class="card">
-      <div class="card-header">封面</div>
+      <div class="card-header">背景</div>
       <div class="card-body">
         <div class="bg" :style="`background-image: ${user.bg ? 'url('+user.bg+')' : 'none'};background-color: ${user.bg ? 'transparentify' : '#565a63'}`"></div>
-        <label class="upload" for="uploadBg">上传封面</label>
+        <label class="upload" for="uploadBg">上传背景</label>
 				<input type="file" ref="uploadBg" id="uploadBg" style="position:absolute; clip:rect(0 0 0 0);" accept="image/png, image/jpeg, image/gif, image/jpg" @change="getUploadBgImg($event)">
       </div>
     </div>
