@@ -108,3 +108,8 @@ export function cancelLightAnswer(data){
 export function upload(data){
     return Request.post('/user/upload', data)
 }
+
+//用户修改自己信息
+export function updateSelf(data){
+    return Request.put(`user`, data)
+}

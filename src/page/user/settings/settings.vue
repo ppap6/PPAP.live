@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import { upload } from 'api/user'
+import { upload, updateSelf } from 'api/user'
 import { getStorage, setStorage, removeStorage } from 'common/js/localstorage'
 import swal from 'sweetalert'
 import Cropper from 'component/cropper/cropper'
@@ -214,9 +214,28 @@ export default {
     },
     //修改用户昵称
     updateUserName(){
-      this.isModifyName = !this.isModifyName
-      this.user.uname = this.uname
-      //发送http，成功后更新本地localStorage user，更新本组件user相关
+      let data = {
+        type: 'name',
+        name: this.uname
+      }
+      updateSelf(data).then(response => {
+        if(response.data.status == 200){
+          this.isModifyName = !this.isModifyName
+          //更新本地localStorage user
+          let user = getStorage('user')
+          user.uname = this.uname
+          setStorage('user', user)
+          // 更新本组件user相关
+          this.user = user
+          swal({
+            title: '保存成功'
+          })
+        }else{
+          swal({
+            title: response.data.message
+          })
+        }
+      })
     }
   }
 }
