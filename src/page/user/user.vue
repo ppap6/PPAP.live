@@ -15,9 +15,9 @@
             <span>PPAP创始人、广州黄埔最骚程序员、反冲斗士</span>
           </p>
           <p class="join-date">加入于 {{user.create_time ? user.create_time.split(' ')[0] : ''}}</p>
-          <p class="intro">
+          <p class="intro" v-if="user.signature">
             <img src="~common/img/intro.png">
-            <span>这个人神秘的一匹</span>
+            <span>{{user.signature}}</span>
           </p>
         </div>
         <span class="settings" @click="settings" v-if="uid == userId">设置</span>

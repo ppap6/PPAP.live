@@ -12,7 +12,7 @@
       <img src="~common/img/auth_title.png">
       <span>PPAP创始人、广州黄埔最骚程序员、反冲斗士</span>
     </p>
-    <p class="intro">这个人神秘的一匹</p>
+    <p class="intro" v-if="author.signature">{{author.signature}}</p>
     <div class="user-information">
       <div class="followers">
         <div class="counts">{{count.fans}}</div>
