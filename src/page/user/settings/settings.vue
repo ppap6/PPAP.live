@@ -27,9 +27,13 @@
       <div class="tips" v-if="isInitName">昵称是你的特定ID象征，只能修改一次，为自己起一个好的昵称吧</div>
     </div>
     <div class="card">
-      <div class="card-header">个性签名</div>
+      <div class="card-header">个人签名</div>
       <div class="card-body">
-        <div class="intro">这个人神秘的一匹</div>
+        <!-- <div class="intro">这个人神秘的一匹</div> -->
+        <span class="signature-modify" @click="isModifySignature=!isModifySignature" v-show="!isModifySignature">编辑</span>
+        <span class="signature-save" @click="updateUserSignature" v-show="isModifySignature">保存</span>
+        <div class="signature" v-show="!isModifySignature">{{signature}}</div>
+        <input class="signature-input" type="text" v-model="signature" v-show="isModifySignature">
       </div>
     </div>
     <div class="card">
@@ -58,6 +62,7 @@ export default {
       uid: getStorage('user').uid,
       user: getStorage('user'),
       uname: getStorage('user').uname,
+      signature: getStorage('user').signature,
       //裁剪层展示
       cropperShow: false,
       //当前裁剪源图片
@@ -65,7 +70,9 @@ export default {
       //当前上传图片类型（1代表头像，2代表背景）
       currentUploadImgType: 0,
       //昵称修改状态
-      isModifyName: false
+      isModifyName: false,
+      //昵称个人签名状态
+      isModifySignature: false
     }
   },
   computed: {
@@ -236,6 +243,37 @@ export default {
           })
         }
       })
+    },
+    //修改用户个人签名
+    updateUserSignature(){
+      if(this.signature.trim().length > 100){
+        swal({
+          title: '长度不能超过100个字符'
+        })
+        return
+      }
+      let data = {
+        type: 'signature',
+        signature: this.signature
+      }
+      updateSelf(data).then(response => {
+        if(response.data.status == 200){
+          this.isModifySignature = !this.isModifySignature
+          //更新本地localStorage user
+          let user = getStorage('user')
+          user.signature = this.signature
+          setStorage('user', user)
+          // 更新本组件user相关
+          this.user = user
+          swal({
+            title: '保存成功'
+          })
+        }else{
+          swal({
+            title: response.data.message
+          })
+        }
+      })
     }
   }
 }
@@ -387,6 +425,40 @@ export default {
       .intro {
         font-size 14px
         text-align left
+      }
+
+      .signature {
+        font-size 14px
+        text-align left
+      }
+      .signature-modify, .signature-save {
+        position absolute 
+        top -33px
+        right 20px
+        cursor pointer
+        color #717171
+        font-size 12px
+        background-color #ececec
+        border-radius 15px
+        padding 4px 12px
+        transition all .1s linear
+
+        &:hover {
+          color #fff
+          background-color #4170ea
+          transform scale(1.1)
+        }
+      }
+      .signature-input {
+        display block
+        width 300px
+        padding 10px 15px
+        font-size 14px
+        text-align left
+        background-color #fdf6ec
+        color #e6a23c
+        border 1px solid #faecd8
+        border-radius 20px
       }
 
       .bg {
