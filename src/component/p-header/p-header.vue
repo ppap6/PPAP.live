@@ -142,13 +142,24 @@ export default {
         })
         return
       }
-      this.$router.push({
-        path: '/search',
-        query: {
-          keyword: this.keywords.trim(),
-          s: 1
-        }
-      })
+      console.log(this.$route)
+      if(this.$route.path == '/search/users'){
+        this.$router.push({
+          path: '/search/users',
+          query: {
+            keyword: this.keywords.trim(),
+            s: 1
+          }
+        })
+      }else{
+        this.$router.push({
+          path: '/search/posts',
+          query: {
+            keyword: this.keywords.trim(),
+            s: 1
+          }
+        })
+      }
     },
     getUserLoginStatus(){
       getUserLoginStatus().then(response => {
