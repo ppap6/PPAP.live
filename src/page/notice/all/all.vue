@@ -19,7 +19,7 @@
         </div>
         <span class="text">留下了评论</span>
         <div class="right">
-          <router-link :to="`/post/${item.comment_id}`">
+          <router-link :to="`/comment/${item.comment_id}`">
             <p class="title">查看详情</p>
           </router-link>
         </div>
@@ -42,7 +42,7 @@
         </div>
         <span class="text">回复了你</span>
         <div class="right">
-          <router-link :to="`/post/${item.answer_id}`">
+          <router-link :to="`/answer/${item.answer_id}`">
             <p class="title">查看详情</p>
           </router-link>
         </div>

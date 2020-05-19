@@ -16,6 +16,8 @@ import Search from 'page/search/search'
 
 import PostDetail from 'component/post-detail/post-detail'
 import Topic from 'component/topic-detail/topic-detail'
+import CommentDetail from 'component/comment-detail/comment-detail'
+import AnswerDetail from 'component/answer-detail/answer-detail'
 
 import Login from 'component/login/login'
 import Register from 'component/register/register'
@@ -193,6 +195,16 @@ export default new Router({
       path: '/topic/:id',
       name: 'Topic',
       component: Topic
+    },
+    {
+      path: '/comment/:id',
+      name: 'CommentDetail',
+      component: CommentDetail
+    },
+    {
+      path: '/answer/:id',
+      name: 'AnswerDetail',
+      component: AnswerDetail
     },
     {
       path: '/login',
