@@ -58,7 +58,7 @@
               <!-- <div class="datetime">{{answer.create_time}}</div> -->
               <!-- <div class="content">{{answer.content}}</div> -->
               <div class="light-comment">
-                <span class="datetime">{{comment.create_time}}</span>
+                <span class="datetime">{{answer.create_time}}</span>
                 <span class="light" style="color: #777777" @click="lightAnswer(answer, $event)" v-if="!answer.is_light"><img src="~common/img/light_0.png">亮了({{answer.lights}})</span>
                 <span class="light" style="color: #bc3545" @click="lightAnswer(answer, $event)" v-if="answer.is_light"><img src="~common/img/light_1.png">亮了({{answer.lights}})</span>
                 <span class="comment" @click="displayCommentInput(answer)" v-if="localUid != answer.requestor_id && currentItem._id != answer._id"><img src="~common/img/comment.png">回复</span>

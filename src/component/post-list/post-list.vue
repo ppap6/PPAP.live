@@ -156,7 +156,8 @@ export default {
             .name {
               height 18px
               line-height 18px
-              font-size 14px
+              font-size 13px
+              font-weight bold
               color #444
 
               &:hover{
@@ -198,8 +199,8 @@ export default {
         padding 5px 0
 
         .post-title{
-          color #313131 !important
-          font-size 16px
+          color #424242 !important
+          font-size 17px
           font-weight bold
           padding-bottom 5px
 
