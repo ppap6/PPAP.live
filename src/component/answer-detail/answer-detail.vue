@@ -1,9 +1,9 @@
 <template>
   <div class="comment-detail">
-    <div class="answer-detail" v-if="answer_detail.type == 2">
+    <div class="answer-detail">
       <div class="post">
         <!-- <span class="text">来自：</span> -->
-        <router-link :to="`/post/${post.id}`" target="_blank">
+        <router-link :to="`/post/${post.id}`">
           <span class="title">{{post.title}}</span>
         </router-link>
         <div class="content" v-html="post.content.slice(0,40) + '…'"></div>
@@ -14,15 +14,15 @@
           <img src="~common/img/avatar.gif" alt v-else>
           <span class="uname">{{answer_detail.targetor_name}}</span>
         </div>
-        <div class="content">{{answer_detail.target_answer_content}}</div>
+        <div class="content">{{answer_detail.type == 1 ? answer_detail.comment_content : answer_detail.target_answer_content}}</div>
       </div>
       <div class="requestor">
-        <router-link :to="`/user/${answer_detail.requestor_id}`" target="_blank">
+        <router-link :to="`/user/${answer_detail.requestor_id}`">
           <img :src="answer_detail.requestor_avatar" alt="" v-if="answer_detail.requestor_avatar != '' && answer_detail.requestor_avatar != null">
           <img src="~common/img/avatar.gif" alt="" v-else>
         </router-link>
         <div class="right">
-          <router-link :to="`/user/${answer_detail.requestor_id}`" target="_blank">
+          <router-link :to="`/user/${answer_detail.requestor_id}`">
             <span class="uname">{{answer_detail.requestor_name}}</span>
           </router-link>
           <div class="content">{{answer_detail.content}}</div>
@@ -108,7 +108,7 @@
 
 <script>
 import CommentInput from 'component/comment-input/comment-input'
-import { answer as comment } from 'api/comment'
+import { answer as comment, getAnswerDetail } from 'api/comment'
 import { lightComment, lightAnswer, cancelLightComment, cancelLightAnswer } from 'api/user'
 import { getStorage } from 'common/js/localstorage'
 import swal from 'sweetalert'
@@ -116,169 +116,38 @@ import swal from 'sweetalert'
 export default {
   data(){
     return {
-      msg: "我是评论详情组件",
-      total: 10,
+      msg: "我是回复详情组件",
+      total: 0,
       localUid: getStorage('user').uid,
-      post: {
-        id: 1,
-        title: '母猪的产后护理',
-        content: '母猪的产后护理母猪的产后护理母猪的产后护理母猪的产后护理母猪的产后护理'
-      },
-      comment: {
-        _id: "5cfdfaa6d92d7ac21848d673",
-        uid: 1,
-        pid: 1,
-        content: "webrtc视频通话6",
-        create_time: "2019-06-10 14:38:00",
-        update_time: "2019-07-11 00:55:51",
-        lights: 1,
-        status: 1,
-        uname: "P小酱15654564651",
-        avatar: "https://jwchan.cn/images/avatar.jpg",
-        is_light: true
-      },
-      answer_detail: {
-        "_id": "5d025f8607fe44086c6eefb7",
-        "type": 2,
-        "pid": 1,
-        "ptitle": "围棋少年",
-        "comment_id": "5cfdfaa6d92d7ac21848d673",
-        "target_answer_id": "5d00f9b9b5997a2340a9f318",
-        "requestor_id": 1,
-        "targetor_id": 2,
-        "content": "我渴望有价值的对手",
-        "create_time": "2019-06-13 22:39:00",
-        "update_time": "2019-06-13 22:39:00",
-        "lights": 2,
-        "status": 1,
-        "requestor_name": "P小酱15654564651",
-        "requestor_avatar": "https://jwchan.cn/images/avatar.jpg",
-        "targetor_name": "小助手",
-        "targetor_avatar": "https://img.xiaoduyu.com/dcb97678-d958-4210-be43-6ebd5ebcc5c5.png?imageMogr2/crop/!1200x1200a593a43/thumbnail/!200/quality/90",
-        "comment_content": "webrtc视频通话6",
-        "target_answer_content": "来了，铁汁！"
-      },
+      post: {},
+      comment: {},
+      answer_detail: {},
       //是否正在提交评论
       isComment: false,
       //当前聚焦的评论对象
       currentItem: {},
-      answerList: [
-        {
-          "_id": "5d00f9b9b5997a2340a9f318",
-          "type": 1,
-          "pid": 1,
-          "comment_id": "5cfdfaa6d92d7ac21848d673",
-          "requestor_id": 2,
-          "targetor_id": 1,
-          "content": "来了，铁汁！",
-          "create_time": "2019-06-12 21:12:00",
-          "update_time": "2019-06-12 21:12:00",
-          "lights": 0,
-          "status": 1,
-          "requestor_name": "小助手",
-          "requestor_avatar": "https://img.xiaoduyu.com/dcb97678-d958-4210-be43-6ebd5ebcc5c5.png?imageMogr2/crop/!1200x1200a593a43/thumbnail/!200/quality/90",
-          "targetor_name": "P小酱15654564651",
-          "targetor_avatar": "https://jwchan.cn/images/avatar.jpg",
-          "is_light": false
-        },
-        {
-          "_id": "5d025f8607fe44086c6eefb7",
-          "type": 2,
-          "pid": 1,
-          "comment_id": "5cfdfaa6d92d7ac21848d673",
-          "target_answer_id": "5d00f9b9b5997a2340a9f318",
-          "requestor_id": 1,
-          "targetor_id": 2,
-          "content": "我渴望有价值的对手",
-          "create_time": "2019-06-13 22:39:00",
-          "update_time": "2019-06-13 22:39:00",
-          "lights": 2,
-          "status": 1,
-          "requestor_name": "P小酱15654564651",
-          "requestor_avatar": "https://jwchan.cn/images/avatar.jpg",
-          "targetor_name": "小助手",
-          "targetor_avatar": "https://img.xiaoduyu.com/dcb97678-d958-4210-be43-6ebd5ebcc5c5.png?imageMogr2/crop/!1200x1200a593a43/thumbnail/!200/quality/90",
-          "is_light": true
-        },
-        {
-          "_id": "5d2b4c0eda42461e00f36e8f",
-          "type": 1,
-          "pid": 1,
-          "comment_id": "5cfdfaa6d92d7ac21848d673",
-          "requestor_id": 2,
-          "targetor_id": 1,
-          "content": "可以6，但没必要",
-          "create_time": "2019-07-14 23:36:46",
-          "update_time": "2019-07-15 23:56:17",
-          "lights": 1,
-          "status": 1,
-          "requestor_name": "小助手",
-          "requestor_avatar": "https://img.xiaoduyu.com/dcb97678-d958-4210-be43-6ebd5ebcc5c5.png?imageMogr2/crop/!1200x1200a593a43/thumbnail/!200/quality/90",
-          "targetor_name": "P小酱15654564651",
-          "targetor_avatar": "https://jwchan.cn/images/avatar.jpg",
-          "is_light": true
-        },
-        {
-          "_id": "5d430d0261ce1e20acfa2d91",
-          "type": 1,
-          "pid": 1,
-          "comment_id": "5cfdfaa6d92d7ac21848d673",
-          "requestor_id": 2,
-          "targetor_id": 1,
-          "content": "我把你画成花",
-          "create_time": "2019-08-02 00:02:10",
-          "update_time": "2019-08-02 00:02:10",
-          "lights": 0,
-          "status": 1,
-          "requestor_name": "小助手",
-          "requestor_avatar": "https://img.xiaoduyu.com/dcb97678-d958-4210-be43-6ebd5ebcc5c5.png?imageMogr2/crop/!1200x1200a593a43/thumbnail/!200/quality/90",
-          "targetor_name": "P小酱15654564651",
-          "targetor_avatar": "https://jwchan.cn/images/avatar.jpg",
-          "is_light": false
-        },
-        {
-          "_id": "5d430d29bb895920c0dd0367",
-          "type": 1,
-          "pid": 1,
-          "comment_id": "5cfdfaa6d92d7ac21848d673",
-          "requestor_id": 2,
-          "targetor_id": 1,
-          "content": "我把你画成花",
-          "create_time": "2019-08-02 00:02:49",
-          "update_time": "2019-08-02 00:02:49",
-          "lights": 1,
-          "status": 1,
-          "requestor_name": "小助手",
-          "requestor_avatar": "https://img.xiaoduyu.com/dcb97678-d958-4210-be43-6ebd5ebcc5c5.png?imageMogr2/crop/!1200x1200a593a43/thumbnail/!200/quality/90",
-          "targetor_name": "P小酱15654564651",
-          "targetor_avatar": "https://jwchan.cn/images/avatar.jpg",
-          "is_light": true
-        },
-        {
-          "_id": "5d8f81ff4fc1f720ece0ed80",
-          "type": 1,
-          "pid": 1,
-          "comment_id": "5cfdfaa6d92d7ac21848d673",
-          "requestor_id": 2,
-          "targetor_id": 1,
-          "content": "我爱你祖国！！！",
-          "create_time": "2019-09-28 23:53:35",
-          "update_time": "2019-09-28 23:53:35",
-          "lights": 0,
-          "status": 1,
-          "requestor_name": "小助手",
-          "requestor_avatar": "https://img.xiaoduyu.com/dcb97678-d958-4210-be43-6ebd5ebcc5c5.png?imageMogr2/crop/!1200x1200a593a43/thumbnail/!200/quality/90",
-          "targetor_name": "P小酱15654564651",
-          "targetor_avatar": "https://jwchan.cn/images/avatar.jpg",
-          "is_light": false
-        }
-      ]
+      answerList: []
     }
+  },
+  created(){
+    this.getAnswerDetail()
   },
   components: {
     CommentInput
   },
   methods: {
+    getAnswerDetail(){
+      const answerId = this.$route.params.id
+      getAnswerDetail(answerId).then(response => {
+        if(response.data.status == 200){
+          this.post = response.data.message.post
+          this.comment = response.data.message.comment
+          this.total = response.data.message.answer_list.total
+          this.answerList = response.data.message.answer_list.list
+          this.answer_detail = response.data.message.answer_detail
+        }
+      })
+    },
     //子组件事件触发函数
     inputChange(val){
       this[this.currentItem._id + '_currentFocusCommentInput_content'] = val
@@ -301,15 +170,10 @@ export default {
       }
       comment(data).then(response => {
         if(response.data.status == 200){
-          //向上发起事件
-          this.$emit('reloadCommentList')
-          //向整个单页面发布事件
-          this.$bus.$emit('emptyInputValue')
+          this.getAnswerDetail()
           swal({
             title: '回复成功'
           })
-          //评论统计+1
-          this.$bus.$emit('refleshCommentCount', 1)
           //清空当前回复内容值
           this[item._id + '_currentFocusCommentInput_content'] = ''
           //清空当前回复对象
@@ -345,15 +209,10 @@ export default {
       }
       comment(data).then(response => {
         if(response.data.status == 200){
-          //向上发起事件
-          this.$emit('reloadCommentList')
-          //向整个单页面发布事件
-          this.$bus.$emit('emptyInputValue')
+          this.getAnswerDetail()
           swal({
             title: '回复成功'
           })
-          //评论统计+1
-          this.$bus.$emit('refleshCommentCount', 2)
           //清空当前回复内容值
           this[item._id + '_currentFocusCommentInput_content'] = ''
           //清空当前回复对象

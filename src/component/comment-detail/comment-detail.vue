@@ -91,7 +91,7 @@ export default {
   data(){
     return {
       msg: "我是评论详情组件",
-      total: 10,
+      total: 0,
       localUid: getStorage('user').uid,
       post: {},
       comment: {},
