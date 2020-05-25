@@ -14,3 +14,8 @@ export function comment(data){
 export function answer(data){
     return Request.post(`/answer`, data)
 }
+
+//查看评论详情相关信息
+export function getCommentDetail(comment_id){
+    return Request.get(`/comment/detail/${comment_id}`)
+}
