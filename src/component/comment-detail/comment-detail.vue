@@ -483,6 +483,7 @@ export default {
   
   .answer-list {
     width 700px
+    margin-bottom 20px
 
     .count {
       text-align left

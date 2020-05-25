@@ -6,7 +6,7 @@
         <router-link :to="`/post/${post.id}`">
           <span class="title">{{post.title}}</span>
         </router-link>
-        <div class="content" v-html="post.content.slice(0,40) + '…'"></div>
+        <div class="content" v-html="post.content != undefined ? post.content.slice(0,40) + '…' : '…'"></div>
       </div>
       <div class="quote">
         <div class="header">
@@ -66,7 +66,7 @@
             </div>
           </div>
         </div>
-        <div class="answer-item" v-for="answer in answerList" :key="answer._id">
+        <div :class="answer_detail._id == answer._id ? 'answer-item current' : 'answer-item'" v-for="answer in answerList" :key="answer._id">
           <router-link :to="`/user/${answer.requestor_id}`">
             <img :src="answer.requestor_avatar" alt="头像" v-if="answer.requestor_avatar != '' && answer.requestor_avatar != null">
             <img src="~common/img/avatar.gif" alt="头像" v-else>
@@ -451,6 +451,7 @@ export default {
   
   .answer-list {
     width 700px
+    margin-bottom 20px
 
     .count {
       text-align left
@@ -629,8 +630,20 @@ export default {
         }
       }
 
+      .current {
+        border-top 1px solid #d9ecff
+        border-bottom 1px solid #d9ecff
+        background-color #ecf5ff !important
+
+        .detail {
+          .content {
+            background-color #ecf5ff !important
+          }
+        }
+      }
+
       .answer-item {
-        width calc(100% - 140px)
+        width calc(100% - 110px)
         position relative
         background-color #FFFFFF
         // border-radius 5px

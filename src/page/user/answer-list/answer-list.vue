@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="answer-list">
-      <router-link :to="`/post/${item.pid}`" target="_blank" v-for="item in answerList" :key="item._id">
+      <router-link :to="`/answer/${item._id}`" target="_blank" v-for="item in answerList" :key="item._id">
         <div class="answer" v-if="item.type == 1">
           <div class="header">
             <span class="datetime">{{item.create_time}}</span>
