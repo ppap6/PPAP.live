@@ -14,6 +14,10 @@
             <img src="~common/img/auth_title.png">
             <span>PPAP创始人、广州黄埔最骚程序员、反冲斗士</span>
           </p>
+          <p class="auth-role" v-if="user.role_id != 5">
+            <img src="~common/img/auth_role.png">
+            <span>{{user.role_name}}</span>
+          </p>
           <p class="join-date">加入于 {{user.create_time ? user.create_time.split(' ')[0] : ''}}</p>
           <p class="intro" v-if="user.signature">
             <img src="~common/img/intro.png">
@@ -371,6 +375,30 @@ export default {
           color #999999
         }
 
+        .auth-role {
+          display flex
+          align-items center
+          justify-content center
+          font-size 14px
+          color #515151
+          margin 2px 0 10px
+          padding 0 15px
+          text-align center
+
+          img {
+            height 20px
+            width 20px
+          }
+
+          span {
+            margin 0 4px
+            color #f2aa24
+            overflow hidden
+            text-overflow ellipsis
+            white-space nowrap
+          }
+        }
+
         .auth-title {
           display flex
           align-items center
@@ -398,12 +426,12 @@ export default {
           margin 10px 0 0
 
           img {
-            height 22px
-            width 22px
+            height 18px
+            width 18px
           }
 
           span {
-            margin 0 4px
+            margin 0 8px
           }
         }
       }
