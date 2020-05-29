@@ -96,7 +96,7 @@ export default {
         height 25px
         width 25px
         border-radius 50%
-
+        flex-shrink 0
       }
 
       .post-title {
