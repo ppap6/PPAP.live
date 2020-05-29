@@ -14,10 +14,12 @@
               <img src="~common/img/avatar.gif" alt="头像" v-else>
             </router-link>
             <div class="detail">
-              <router-link :to="`/user/${comment.uid}`">
+              <router-link class="user-name" :to="`/user/${comment.uid}`">
                 <span class="name">{{comment.uname}}</span><span class="author" v-if="authorId == comment.uid">楼主</span>
+                <img class="auth-title" src="~common/img/auth_title.png" alt="" v-if="comment.utitle">
+                <img class="auth-role" src="~common/img/auth_role.png" alt="" v-if="comment.role_id != 5">
               </router-link>
-              <router-link :to="`/user/${comment.requestor_id}`">
+              <router-link :to="`/user/${comment.uid}`">
                 <!-- <img class="level" src="~common/img/6.png" alt=""> -->
               </router-link>
               <!-- <div class="datetime">{{comment.create_time}}</div> -->
@@ -43,8 +45,10 @@
             </router-link>
             <div class="detail">
               <div class="answer-point-to">
-                <router-link :to="`/user/${answer.requestor_id}`">
+                <router-link class="user-name" :to="`/user/${answer.requestor_id}`">
                   <span class="name">{{answer.requestor_name}}</span><span class="author" v-if="authorId == answer.requestor_id">楼主</span>
+                  <img class="auth-title" src="~common/img/auth_title.png" alt="" v-if="answer.requestor_title">
+                  <img class="auth-role" src="~common/img/auth_role.png" alt="" v-if="answer.requestor_role_id != 5">
                 </router-link>
                 <router-link :to="`/user/${answer.requestor_id}`">
                   <!-- <img class="level" src="~common/img/2.png" alt=""> -->
@@ -52,7 +56,7 @@
                 <span v-if="answer.type != 2">:</span>
                 <span class="point-text" v-if="answer.type == 2">回复</span>
                 <router-link :to="`/user/${answer.targetor_id}`" v-if="answer.type == 2">
-                  <span class="targetor">@{{answer.targetor_name}}</span><span class="author" v-if="authorId == answer.targetor_id">楼主</span>：
+                  <span class="targetor">@{{answer.targetor_name}}</span><span class="author" v-if="authorId == answer.targetor_id">楼主</span> :
                 </router-link>
                 <span class="content">{{answer.content}}</span>
               </div>
@@ -335,34 +339,51 @@ export default {
         padding 0 10px
         text-align left
 
-        .level {
-          display inline-block
-          width 30px
-          height 15px
-          vertical-align middle
-        }
+        .user-name {
+          display flex
+          align-items center
 
-        .name {
-          font-size 12px
-          color #666666
-          font-weight bold
-
-          &:hover {
-            text-decoration underline
+          .level {
+            display inline-block
+            width 30px
+            height 15px
+            vertical-align middle
           }
-        }
 
-        .author {
-          font-weight bold
-          font-size 12px
-          // padding 1px 6px
-          padding 1px 4px
-          margin-left 4px
-          color #777
-          // color #D6964E
-          // background-color #232323
-          background-color #ececec
-          border-radius 6px
+          .name {
+            font-size 12px
+            color #666666
+            font-weight bold
+
+            &:hover {
+              text-decoration underline
+            }
+          }
+
+          .author {
+            font-weight bold
+            font-size 12px
+            // padding 1px 6px
+            padding 1px 4px
+            margin-left 4px
+            color #777
+            // color #D6964E
+            // background-color #232323
+            background-color #ececec
+            border-radius 6px
+          }
+          
+          .auth-title {
+            height 20px
+            width 20px
+            margin 0 2px 2px 4px
+          }
+
+          .auth-role {
+            height 18px
+            width 18px
+            margin 0 4px 0 2px
+          }
         }
 
         .datetime {
@@ -509,27 +530,45 @@ export default {
           font-size 12px
           line-height 24px
 
-          .name {
-            font-size 12px
-            color #666666
-            font-weight bold
+          .user-name {
+            display inline-flex
+            align-items center
+            line-height 18px
 
-            &:hover {
-              text-decoration underline
+            .name {
+              font-size 12px
+              color #666666
+              font-weight bold
+
+              &:hover {
+                text-decoration underline
+              }
             }
-          }
 
-          .author {
-            font-weight bold
-            font-size 12px
-            // padding 1px 6px
-            padding 1px 4px
-            margin-left 4px
-            color #777
-            // color #D6964E
-            // background-color #232323
-            background-color #ececec
-            border-radius 6px
+            .author {
+              font-weight bold
+              font-size 12px
+              // padding 1px 6px
+              padding 1px 4px
+              margin-left 4px
+              color #777
+              // color #D6964E
+              // background-color #232323
+              background-color #ececec
+              border-radius 6px
+            }
+
+            .auth-title {
+              height 20px
+              width 20px
+              margin 0 2px 2px 4px
+            }
+
+            .auth-role {
+              height 18px
+              width 18px
+              margin 0 4px 0 2px
+            }
           }
 
           .point-text {
@@ -557,6 +596,19 @@ export default {
             &:hover {
               text-decoration underline
             }
+          }
+
+          .author {
+            font-weight bold
+            font-size 12px
+            // padding 1px 6px
+            padding 1px 4px
+            margin-left 4px
+            color #777
+            // color #D6964E
+            // background-color #232323
+            background-color #ececec
+            border-radius 6px
           }
 
           .content {
