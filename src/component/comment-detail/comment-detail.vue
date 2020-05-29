@@ -16,7 +16,7 @@
           <span class="name">{{comment.uname}}</span>
         </router-link>
         <router-link :to="`/user/${comment.requestor_id}`">
-          <img class="level" src="~common/img/6.png" alt="">
+          <!-- <img class="level" src="~common/img/6.png" alt=""> -->
         </router-link>
         <!-- <div class="datetime">{{comment.create_time}}</div> -->
         <div class="content">{{comment.content}}</div>
@@ -51,8 +51,9 @@
                 <span class="name">{{answer.requestor_name}}</span>
               </router-link>
               <router-link :to="`/user/${answer.requestor_id}`">
-                <img class="level" src="~common/img/2.png" alt="">
+                <!-- <img class="level" src="~common/img/2.png" alt=""> -->
               </router-link>
+              <span v-if="answer.type != 2">:</span>
               <span class="point-text" v-if="answer.type == 2">回复</span>
               <router-link :to="`/user/${answer.targetor_id}`" v-if="answer.type == 2">
                 <span class="targetor">@{{answer.targetor_name}}</span>：
