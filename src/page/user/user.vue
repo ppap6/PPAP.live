@@ -10,9 +10,9 @@
         </div>
         <div class="header-right">
           <p class="name">{{user.name}}</p>
-          <p class="auth-title">
+          <p class="auth-title" v-if="user.utitle">
             <img src="~common/img/auth_title.png">
-            <span>PPAP创始人、广州黄埔最骚程序员、反冲斗士</span>
+            <span>{{user.utitle}}</span>
           </p>
           <p class="auth-role" v-if="user.role_id != 5">
             <img src="~common/img/auth_role.png">

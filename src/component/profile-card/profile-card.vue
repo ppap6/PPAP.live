@@ -8,9 +8,9 @@
     <router-link :to="`/user/${author.id}`" v-if="author.id != 0">
       <p class="name">{{author.name}}</p>
     </router-link>
-    <p class="auth-title">
+    <p class="auth-title" v-if="author.utitle">
       <img src="~common/img/auth_title.png">
-      <span>PPAP创始人、广州黄埔最骚程序员、反冲斗士</span>
+      <span>{{author.utitle}}</span>
     </p>
     <p class="auth-role" v-if="author.role_id != 5">
       <img src="~common/img/auth_role.png">
