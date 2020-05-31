@@ -47,9 +47,13 @@ import Lights from 'page/notice/lights/lights'
 import SearchPostList from 'page/search/post-list/post-list'
 import SearchUserList from 'page/search/user-list/user-list'
 
+import swal from 'sweetalert'
+import { getStorage } from 'common/js/localstorage'
+
+
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   mode: 'hash',
   routes: [
     {
@@ -222,3 +226,20 @@ export default new Router({
     }
   ]
 })
+
+router.beforeEach((to, from, next) => { 
+  if((to.path.search('/follow') != -1) || (to.path.search('/new-post') != -1) || (to.path.search('/notice') != -1) || (to.path.search('/settings') != -1)){
+    if(getStorage('user') == ' '){
+      //判断未登录状态访问限制路由返回主页
+      next({
+        path: '/'
+      })
+    }else{
+      next()
+    }
+  }else{
+    next()
+  }
+})
+
+export default router
