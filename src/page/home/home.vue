@@ -22,9 +22,9 @@
           <span>created by</span>
           <a href="https://github.com/jwchan1996" target="_blank">jwchan</a>
         </div>
-        <div class="record">
+        <!-- <div class="record">
           <a href="http://www.beian.miit.gov.cn/" target="_blank">粤ICP备17128781号</a>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
@@ -40,6 +40,7 @@ import LinkCard from "component/link-card/link-card"
 
 import { getPostList } from 'api/post'
 import util from 'common/js/util'
+import { formatTime } from 'common/js/timeformat'
 
 export default {
   name: 'Home',
@@ -121,7 +122,11 @@ export default {
       getPostList(data).then(response => {
         if(response.data.status === 200){
           this.total = response.data.message.total
-          this.postList = response.data.message.list
+          let list = response.data.message.list
+          for(let i=0; i<list.length; i++){
+            list[i].create_time = formatTime(list[i].create_time)
+          }
+          this.postList = list
           //隐藏加载动画
           this.loading = false
           if(this.total < this.pageSize){

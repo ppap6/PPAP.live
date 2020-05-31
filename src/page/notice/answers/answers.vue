@@ -34,6 +34,7 @@ import { getAnswerNoticeList } from 'api/notice'
 import { getStorage } from 'common/js/localstorage'
 import LoadingBottom from 'component/loading-bottom/loading-bottom'
 import util from 'common/js/util'
+import { formatTime } from 'common/js/timeformat'
 
 export default {
   data () {
@@ -84,7 +85,11 @@ export default {
       getAnswerNoticeList(data).then(response => {
         if(response.data.status === 200){
           this.total = response.data.message.total
-          this.noticeList = response.data.message.list
+          let list = response.data.message.list
+          for(let i=0; i<list.length; i++){
+            list[i].create_time = formatTime(list[i].create_time)
+          }
+          this.noticeList = list
           if(this.total < this.pageSize){
             this.hasMore = false
           }

@@ -28,6 +28,7 @@ import { getPostList } from "api/post"
 import { followTopic, cancelFollowTopic, getUserTopicStatus } from "api/user"
 import { getStorage } from 'common/js/localstorage'
 import util from 'common/js/util'
+import { formatTime } from 'common/js/timeformat'
 
 export default {
   name: 'TopicDetail',
@@ -163,7 +164,11 @@ export default {
       getPostList(data).then(response => {
         if(response.data.status === 200){
           this.total = response.data.message.total
-          this.postList = response.data.message.list
+          let list = response.data.message.list
+          for(let i=0; i<list.length; i++){
+            list[i].create_time = formatTime(list[i].create_time)
+          }
+          this.postList = list
           //隐藏加载动画
           this.loading = false
           if(this.total < this.pageSize){

@@ -142,7 +142,6 @@ export default {
         })
         return
       }
-      console.log(this.$route)
       if(this.$route.path == '/search/users'){
         this.$router.push({
           path: '/search/users',

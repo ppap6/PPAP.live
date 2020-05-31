@@ -165,6 +165,7 @@ import { getStorage } from 'common/js/localstorage'
 import LoadingBottom from 'component/loading-bottom/loading-bottom'
 import util from 'common/js/util'
 import swal from 'sweetalert'
+import { formatTime } from 'common/js/timeformat'
 
 export default {
   name: 'Follow',
@@ -233,6 +234,9 @@ export default {
         if(response.data.status == 200){
           this.total = response.data.message.total
           let list = response.data.message.list
+          for(let i=0; i<list.length; i++){
+            list[i].create_time = formatTime(list[i].create_time)
+          }
           this.activityList = list
           //隐藏加载动画
           if(this.total < this.pageSize){

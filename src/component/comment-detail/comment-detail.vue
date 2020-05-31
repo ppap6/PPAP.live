@@ -91,6 +91,7 @@ import { answer as comment, getCommentDetail } from 'api/comment'
 import { lightComment, lightAnswer, cancelLightComment, cancelLightAnswer } from 'api/user'
 import { getStorage } from 'common/js/localstorage'
 import swal from 'sweetalert'
+import { formatTime } from 'common/js/timeformat'
 
 export default {
   data(){
@@ -119,9 +120,15 @@ export default {
       getCommentDetail(commentId).then(response => {
         if(response.data.status == 200){
           this.post = response.data.message.post
-          this.comment = response.data.message.comment
+          let comment = response.data.message.comment
+          comment.create_time = formatTime(comment.create_time)
+          this.comment = comment
           this.total = response.data.message.answer_list.total
-          this.answerList = response.data.message.answer_list.list
+          let list = response.data.message.answer_list.list
+          for(let i=0; i<list.length; i++){
+            list[i].create_time = formatTime(list[i].create_time)
+          }
+          this.answerList = list
         }
       })
     },

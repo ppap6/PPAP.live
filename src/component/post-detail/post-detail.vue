@@ -63,6 +63,7 @@ import { getPost, addPv } from 'api/post'
 import { likePost, cancelLikePost, collectPost, cancelCollectPost, getUserPostStatus } from 'api/user'
 import { getCommentList, comment } from 'api/comment'
 import swal from 'sweetalert'
+import { formatTime } from 'common/js/timeformat'
 
 export default {
   name: 'PostDetail',
@@ -115,7 +116,9 @@ export default {
       let id = this.$route.params.id
       getPost(id).then(response => {
         if(response.data.status === 200){
-          this.post = response.data.message
+          let post = response.data.message
+          post.create_time = formatTime(post.create_time)
+          this.post = post
           this.author = response.data.message.author
           //增加浏览量
           this.addPv()
@@ -150,7 +153,15 @@ export default {
       let id = this.$route.params.id
       getCommentList(id).then(response => {
         if(response.data.status === 200){
-          this.commentList = response.data.message.list
+          let list = response.data.message.list
+          for(let i=0; i<list.length; i++){
+            list[i].create_time = formatTime(list[i].create_time)
+            let answerlist = list[i].answer.list
+            for(let j=0; j<answerlist.length; j++){
+              answerlist[j].create_time = formatTime(answerlist[j].create_time)
+            }
+          }
+          this.commentList = list
         }else if(response.data.status === 10003){
           this.commentList = []
         }else{

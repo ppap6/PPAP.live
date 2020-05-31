@@ -9,6 +9,7 @@
 <script>
 import PostList from 'component/post-list/post-list'
 import { getSearchPostList, getSearchPostListByChar, getSearchPostListByIndex } from 'api/search'
+import { formatTime } from 'common/js/timeformat'
 
 export default {
   data() {
@@ -47,7 +48,9 @@ export default {
         if(response.data.status === 200){
 
           let posts = response.data.message.list
-          let postList = []
+          for(let i=0; i<posts.length; i++){
+            posts[i].create_time = formatTime(posts[i].create_time)
+          }
 
           //搜索关键字数组
           let wordsArr = words.split('')
@@ -83,7 +86,9 @@ export default {
         if(response.data.status === 200){
 
           let posts = response.data.message.list
-          let postList = []
+          for(let i=0; i<posts.length; i++){
+            posts[i].create_time = formatTime(posts[i].create_time)
+          }
 
           //搜索关键字数组
           let wordsArr = words.split('')
@@ -119,7 +124,9 @@ export default {
         if(response.data.status === 200){
 
           let posts = response.data.message.list
-          let postList = []
+          for(let i=0; i<posts.length; i++){
+            posts[i].create_time = formatTime(posts[i].create_time)
+          }
 
           //搜索关键字数组
           let wordsArr = words.split('')
