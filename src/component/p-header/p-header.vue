@@ -93,7 +93,7 @@ export default {
   },
   created(){
     this.getUserLoginStatus()
-    this.keywords = this.$route.query.keyword
+    this.keywords = this.$route.query.keyword == undefined ? '' : this.$route.query.keyword
   },
   mounted(){
     //当前路由标记
