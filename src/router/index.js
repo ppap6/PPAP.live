@@ -228,7 +228,7 @@ const router = new Router({
 })
 
 router.beforeEach((to, from, next) => { 
-  if((to.path.search('/follow') != -1) || (to.path.search('/new-post') != -1) || (to.path.search('/notice') != -1) || (to.path.search('/settings') != -1)){
+  if((to.path == '/follow') || (to.path == '/new-post') || (to.path.search('/notice') != -1) || (to.path.search('/settings') != -1)){
     if(getStorage('user') == ' '){
       //判断未登录状态访问限制路由返回主页
       next({
