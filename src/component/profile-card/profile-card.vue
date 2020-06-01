@@ -1,10 +1,10 @@
 <template>
   <div class="profile-card">
     <div class="user-bg" :style="`background-image: ${author.bg ? 'url('+author.bg+')' : 'none'};background-color: ${author.bg ? 'transparentify' : '#565a63'}`"></div>
-    <router-link :to="`/user/${author.id}`" v-if="author.avatar != '' && author.avatar != null">
-      <img class="profile" :src="author.avatar" alt>
+    <router-link :to="`/user/${author.id}`">
+      <img class="profile" :src="author.avatar" alt v-if="author.avatar != '' && author.avatar != null">
+      <img class="profile" src="~common/img/avatar.gif" alt v-if="author.avatar == '' || author.avatar == null">
     </router-link>
-    <img class="profile" @click="goLogin" src="~common/img/avatar.gif" alt v-if="author.avatar == '' || author.avatar == null">
     <router-link :to="`/user/${author.id}`" v-if="author.id != 0">
       <p class="name">{{author.name}}</p>
     </router-link>
