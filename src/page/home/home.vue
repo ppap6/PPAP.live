@@ -4,10 +4,6 @@
     <div class="left topic-list">
       <TopicList class="topic-list-content" :isRouter="true"></TopicList>
     </div>
-    <div class="center post-list">
-      <PostList :postList="postList" :sortBar="true" :noData="noData"></PostList>
-      <LoadingBottom :state="hasMore"></LoadingBottom>
-    </div>
     <div class="right">
       <div class="right-list-content">
         <div class="hot-post-card">
@@ -26,6 +22,10 @@
           <a href="http://www.beian.miit.gov.cn/" target="_blank">粤ICP备17128781号</a>
         </div> -->
       </div>
+    </div>
+    <div class="center post-list">
+      <PostList :postList="postList" :sortBar="true" :noData="noData"></PostList>
+      <LoadingBottom :state="hasMore"></LoadingBottom>
     </div>
   </div>
 </template>
@@ -249,7 +249,25 @@ export default {
       margin 10px 0 0
     }
     .right {
-      display none
+      // display none
+      position relative
+      width 100vw
+      height auto
+      border-radius 5px
+      margin-top 10px
+
+      .right-list-content {
+        position relative
+        width 100vw
+
+        .link-card {
+          display none
+        }
+
+        .copyright {
+          padding 0 10px
+        }
+      }
     }
   }
 }
