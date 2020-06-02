@@ -511,7 +511,7 @@ export default {
   }
   
   .answer-list {
-    width 700px
+    max-width 700px
     margin-bottom 20px
 
     .count {

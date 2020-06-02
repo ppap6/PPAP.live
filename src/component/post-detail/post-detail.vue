@@ -558,6 +558,7 @@ export default {
           code {
             display block
             padding 1em
+            overflow-x scroll 
           }
         } 
 
@@ -574,11 +575,12 @@ export default {
       align-items center
       justify-content center
       // background #009688
-      z-index: 999999;
+      z-index: 99;
 
       .input {
         text-align left
         height 68px
+        margin-left 10px
         // background #f2aa24
       }
 
@@ -688,6 +690,17 @@ export default {
       .post-card {
         margin 10px 0
       }
+    }
+  }
+
+  @media screen and (max-width: 850px) {
+    .post-detail  {
+      position relative
+      width 100vw
+    }
+
+    .right {
+      display none
     }
   }
 }

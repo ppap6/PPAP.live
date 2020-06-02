@@ -7,21 +7,25 @@
           <router-link :to="`/user/${item.uid}`">
             <img class="avatar" :src="item.avatar" alt v-if="item.avatar != '' && item.avatar != null">
             <img class="avatar" src="~common/img/avatar.gif" alt v-else>
+          </router-link>
+        </div>
+        <div class="right">
+          <router-link :to="`/user/${item.uid}`">
             <p class="name">{{item.uname}}</p>
           </router-link>
-        </div>
-        <span class="datetime">{{item.create_time}}</span>
-        <span class="text">在文章</span>
-        <div class="right">
-          <router-link :to="`/post/${item.pid}`">
-            <p class="title">{{item.pname}}</p>
-          </router-link>
-        </div>
-        <span class="text">留下了评论</span>
-        <div class="right">
-          <router-link :to="`/comment/${item.comment_id}`">
-            <p class="title">查看详情</p>
-          </router-link>
+          <span class="text">在文章</span>
+          <div class="link">
+            <router-link :to="`/post/${item.pid}`">
+              <p class="title">{{item.pname}}</p>
+            </router-link>
+          </div>
+          <span class="text">留下了评论</span>
+          <div class="link">
+            <router-link :to="`/comment/${item.comment_id}`">
+              <p class="title">查看详情</p>
+            </router-link>
+          </div>
+          <span class="datetime">{{item.create_time}}</span>
         </div>
       </div>
       <!-- 回复消息 -->
@@ -30,27 +34,31 @@
           <router-link :to="`/user/${item.uid}`">
             <img class="avatar" :src="item.avatar" alt v-if="item.avatar != '' && item.avatar != null">
             <img class="avatar" src="~common/img/avatar.gif" alt v-else>
+          </router-link>
+        </div>
+        <div class="right">
+          <router-link :to="`/user/${item.uid}`">
             <p class="name">{{item.uname}}</p>
           </router-link>
-        </div>
-        <span class="datetime">{{item.create_time}}</span>
-        <span class="text">在文章</span>
-        <div class="right">
-          <router-link :to="`/post/${item.pid}`">
-            <p class="title">{{item.pname}}</p>
-          </router-link>
-        </div>
-        <span class="text" v-if="uid == item.targetor_id">回复了你</span>
-        <span class="text" v-if="uid != item.targetor_id">
-          <span>回复了&nbsp;</span>
-          <router-link :to="`/user/${item.targetor_id}`">
-            <p class="name">{{item.targetor_name}}</p>
-          </router-link>
-        </span>
-        <div class="right">
-          <router-link :to="`/answer/${item.answer_id}`">
-            <p class="title">查看详情</p>
-          </router-link>
+          <span class="text">在文章</span>
+          <div class="link">
+            <router-link :to="`/post/${item.pid}`">
+              <p class="title">{{item.pname}}</p>
+            </router-link>
+          </div>
+          <span class="text" v-if="uid == item.targetor_id">回复了你</span>
+          <span class="text" v-if="uid != item.targetor_id">
+            <span>回复了&nbsp;</span>
+            <router-link :to="`/user/${item.targetor_id}`">
+              <p class="name">{{item.targetor_name}}</p>
+            </router-link>
+          </span>
+          <div class="link">
+            <router-link :to="`/answer/${item.answer_id}`">
+              <p class="title">查看详情</p>
+            </router-link>
+          </div>
+          <span class="datetime">{{item.create_time}}</span>
         </div>
       </div>
       <!-- 关注消息 -->
@@ -59,17 +67,21 @@
           <router-link :to="`/user/${item.uid}`">
             <img class="avatar" :src="item.avatar" alt v-if="item.avatar != '' && item.avatar != null">
             <img class="avatar" src="~common/img/avatar.gif" alt v-else>
-            <p class="name">{{item.uname}}</p>
           </router-link>
         </div>
-        <span class="datetime">{{item.create_time}}</span>
-        <span class="text" v-if="uid == item.targetor_id">关注了你</span>
-        <span class="text" v-if="uid != item.targetor_id">
-          <span>关注了&nbsp;</span>
-          <router-link :to="`/user/${item.targetor_id}`">
-            <p class="name">{{item.targetor_name}}</p>
+        <div class="right">
+          <router-link :to="`/user/${item.uid}`">
+            <p class="name">{{item.uname}}</p>
           </router-link>
-        </span>
+          <span class="text" v-if="uid == item.targetor_id">关注了你&nbsp;</span>
+          <span class="text" v-if="uid != item.targetor_id">
+            <span>关注了&nbsp;</span>
+            <router-link :to="`/user/${item.targetor_id}`">
+              <p class="name">{{item.targetor_name}}</p>
+            </router-link>
+          </span>
+          <span class="datetime">{{item.create_time}}</span>
+        </div>
       </div>
       <!-- 点赞消息 -->
       <div class="activity" v-if="item.type === 4" :key="item._id">
@@ -77,22 +89,26 @@
           <router-link :to="`/user/${item.uid}`">
             <img class="avatar" :src="item.avatar" alt v-if="item.avatar != '' && item.avatar != null">
             <img class="avatar" src="~common/img/avatar.gif" alt v-else>
-            <p class="name">{{item.uname}}</p>
           </router-link>
         </div>
-        <span class="datetime">{{item.create_time}}</span>
-        <span class="text" v-if="uid == item.targetor_id">点赞了你的文章</span>
-        <span class="text" v-if="uid != item.targetor_id">
-          <span>点赞了&nbsp;</span>
+        <div class="right">
           <router-link :to="`/user/${item.uid}`">
             <p class="name">{{item.uname}}</p>
           </router-link>
-          <span>&nbsp;的文章</span>
-        </span>
-        <div class="right">
-          <router-link :to="`/post/${item.pid}`">
-            <p class="title">{{item.pname}}</p>
-          </router-link>
+          <span class="text" v-if="uid == item.targetor_id">点赞了你的文章</span>
+          <span class="text" v-if="uid != item.targetor_id">
+            <span>点赞了&nbsp;</span>
+            <router-link :to="`/user/${item.uid}`">
+              <p class="name">{{item.uname}}</p>
+            </router-link>
+            <span>&nbsp;的文章</span>
+          </span>
+          <div class="link">
+            <router-link :to="`/post/${item.pid}`">
+              <p class="title">{{item.pname}}</p>
+            </router-link>
+          </div>
+          <span class="datetime">{{item.create_time}}</span>
         </div>
       </div>
       <!-- 收藏 -->
@@ -101,22 +117,26 @@
           <router-link :to="`/user/${item.uid}`">
             <img class="avatar" :src="item.avatar" alt v-if="item.avatar != '' && item.avatar != null">
             <img class="avatar" src="~common/img/avatar.gif" alt v-else>
-            <p class="name">{{item.uname}}</p>
           </router-link>
         </div>
-        <span class="datetime">{{item.create_time}}</span>
-        <span class="text" v-if="uid == item.targetor_id">收藏了你的文章</span>
-        <span class="text" v-if="uid != item.targetor_id">
-          <span>收藏了&nbsp;</span>
+        <div class="right">
           <router-link :to="`/user/${item.uid}`">
             <p class="name">{{item.uname}}</p>
           </router-link>
-          <span>&nbsp;的文章</span>
-        </span>
-        <div class="right">
-          <router-link :to="`/post/${item.pid}`">
-            <p class="title">{{item.pname}}</p>
-          </router-link>
+          <span class="text" v-if="uid == item.targetor_id">收藏了你的文章</span>
+          <span class="text" v-if="uid != item.targetor_id">
+            <span>收藏了&nbsp;</span>
+            <router-link :to="`/user/${item.uid}`">
+              <p class="name">{{item.uname}}</p>
+            </router-link>
+            <span>&nbsp;的文章</span>
+          </span>
+          <div class="link">
+            <router-link :to="`/post/${item.pid}`">
+              <p class="title">{{item.pname}}</p>
+            </router-link>
+          </div>
+          <span class="datetime">{{item.create_time}}</span>
         </div>
       </div>
       <!-- 关注话题 -->
@@ -125,16 +145,20 @@
           <router-link :to="`/user/${item.uid}`">
             <img class="avatar" :src="item.avatar" alt v-if="item.avatar != '' && item.avatar != null">
             <img class="avatar" src="~common/img/avatar.gif" alt v-else>
-            <p class="name">{{item.uname}}</p>
           </router-link>
         </div>
-        <span class="datetime">{{item.create_time}}</span>
-        <span class="text">
-          <span>关注了话题&nbsp;</span>
-          <router-link :to="`/topic/${item.topic_id}`">
-            <p class="name">{{item.topic_name}}</p>
+        <div class="right">
+          <router-link :to="`/user/${item.uid}`">
+            <p class="name">{{item.uname}}</p>
           </router-link>
-        </span>
+          <span class="text">
+            <span>关注了话题&nbsp;</span>
+            <router-link :to="`/topic/${item.topic_id}`">
+              <p class="name">{{item.topic_name}}</p>
+            </router-link>
+          </span>
+          <span class="datetime">{{item.create_time}}</span>
+        </div>
       </div>
        <!-- 关注消息 -->
       <div class="activity" v-if="item.type === 7" :key="item._id">
@@ -142,15 +166,19 @@
           <router-link :to="`/user/${item.uid}`">
             <img class="avatar" :src="item.avatar" alt v-if="item.avatar != '' && item.avatar != null">
             <img class="avatar" src="~common/img/avatar.gif" alt v-else>
-            <p class="name">{{item.uname}}</p>
           </router-link>
         </div>
-        <span class="datetime">{{item.create_time}}</span>
-        <span class="text">发表了文章</span>
         <div class="right">
-          <router-link :to="`/post/${item.pid}`">
-            <p class="title">{{item.pname}}</p>
+          <router-link :to="`/user/${item.uid}`">
+            <p class="name">{{item.uname}}</p>
           </router-link>
+          <span class="text">发表了文章</span>
+          <div class="link">
+            <router-link :to="`/post/${item.pid}`">
+              <p class="title">{{item.pname}}</p>
+            </router-link>
+          </div>
+          <span class="datetime">{{item.create_time}}</span>
         </div>
       </div>
     </div>
@@ -296,83 +324,98 @@ export default {
     position relative
     display flex
     flex-direction row
-    align-items center
+    align-items top
     background-color #FFFFFF
     padding 10px 20px
     border-radius 5px
     margin 5px 0
 
     .left {
+      flex-shrink 0
+
       a{
         display flex
         flex-direction row
         align-items center
 
         .avatar {
-          height 24px
-          width 24px
+          height 28px
+          width 28px
           border-radius 50%
-          margin-right 6px
-        }
-
-        .name{
-          color #333333
-          font-size 14px
-
-          &:hover{
-            text-decoration underline
-          }
+          margin-right 10px
         }
       }
     } 
 
-    .datetime{
-      font-size 14px
-      margin-left 5px
-      color #999999
-    }
-
-    .text{
-      font-size 14px
-      margin 0 5px
-      color #999999
+    .right {
       display flex
       flex-direction row
       align-items center
+      flex-wrap wrap
 
       a{
         display flex
         flex-direction row
         align-items center
 
-        .avatar {
-          height 24px
-          width 24px
-          border-radius 50%
-          margin-right 6px
-        }
-
         .name{
           color #333333
           font-size 14px
+          margin 0 5px 0 0
 
           &:hover{
             text-decoration underline
           }
         }
       }
-    }
+      
+      .datetime{
+        font-size 13px
+        color #999999
+      }
 
-    .right{
-      a {
-        .title {
-          height 18px
-          line-height 18px
-          font-size 14px
-          color #1c1e25 !important
+      .text{
+        font-size 14px
+        color #999999
+        display flex
+        flex-direction row
+        align-items center
 
-          &:hover {
-            text-decoration underline
+        a{
+          display flex
+          flex-direction row
+          align-items center
+
+          .avatar {
+            height 24px
+            width 24px
+            border-radius 50%
+            margin-right 6px
+          }
+
+          .name{
+            color #333333
+            font-size 14px
+
+            &:hover{
+              text-decoration underline
+            }
+          }
+        }
+      }
+
+      .link{
+        a {
+          .title {
+            height 18px
+            line-height 18px
+            font-size 14px
+            color #1c1e25 !important
+            margin 0 5px
+
+            &:hover {
+              text-decoration underline
+            }
           }
         }
       }

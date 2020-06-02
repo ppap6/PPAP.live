@@ -7,21 +7,25 @@
           <router-link :to="`/user/${item.uid}`">
             <img class="avatar" :src="item.avatar" alt v-if="item.avatar != '' && item.avatar != null">
             <img class="avatar" src="~common/img/avatar.gif" alt v-else>
+          </router-link>
+        </div>
+        <div class="right">
+          <router-link :to="`/user/${item.uid}`">
             <p class="name">{{item.uname}}</p>
           </router-link>
-        </div>
-        <span class="datetime">{{item.create_time}}</span>
-        <span class="text">在文章</span>
-        <div class="right">
-          <router-link :to="`/post/${item.pid}`">
-            <p class="title">{{item.pname}}</p>
-          </router-link>
-        </div>
-        <span class="text">留下了评论</span>
-        <div class="right">
-          <router-link :to="`/comment/${item.comment_id}`">
-            <p class="title">查看详情</p>
-          </router-link>
+          <span class="text">在文章</span>
+          <div class="link">
+            <router-link :to="`/post/${item.pid}`">
+              <p class="title">{{item.pname}}</p>
+            </router-link>
+          </div>
+          <span class="text">留下了评论</span>
+          <div class="link">
+            <router-link :to="`/comment/${item.comment_id}`">
+              <p class="title">查看详情</p>
+            </router-link>
+          </div>
+          <span class="datetime">{{item.create_time}}</span>
         </div>
       </div>
       <!-- 回复消息 -->
@@ -30,21 +34,25 @@
           <router-link :to="`/user/${item.uid}`">
             <img class="avatar" :src="item.avatar" alt v-if="item.avatar != '' && item.avatar != null">
             <img class="avatar" src="~common/img/avatar.gif" alt v-else>
+          </router-link>
+        </div>
+        <div class="right">
+          <router-link :to="`/user/${item.uid}`">
             <p class="name">{{item.uname}}</p>
           </router-link>
-        </div>
-        <span class="datetime">{{item.create_time}}</span>
-        <span class="text">在文章</span>
-        <div class="right">
-          <router-link :to="`/post/${item.pid}`">
-            <p class="title">{{item.pname}}</p>
-          </router-link>
-        </div>
-        <span class="text">回复了你</span>
-        <div class="right">
-          <router-link :to="`/answer/${item.answer_id}`">
-            <p class="title">查看详情</p>
-          </router-link>
+          <span class="text">在文章</span>
+          <div class="link">
+            <router-link :to="`/post/${item.pid}`">
+              <p class="title">{{item.pname}}</p>
+            </router-link>
+          </div>
+          <span class="text">回复了你</span>
+          <div class="link">
+            <router-link :to="`/answer/${item.answer_id}`">
+              <p class="title">查看详情</p>
+            </router-link>
+          </div>
+          <span class="datetime">{{item.create_time}}</span>
         </div>
       </div>
       <!-- 关注消息 -->
@@ -53,11 +61,15 @@
           <router-link :to="`/user/${item.uid}`">
             <img class="avatar" :src="item.avatar" alt v-if="item.avatar != '' && item.avatar != null">
             <img class="avatar" src="~common/img/avatar.gif" alt v-else>
-            <p class="name">{{item.uname}}</p>
           </router-link>
         </div>
-        <span class="datetime">{{item.create_time}}</span>
-        <span class="text">关注了你</span>
+        <div class="right">
+          <router-link :to="`/user/${item.uid}`">
+            <p class="name">{{item.uname}}</p>
+          </router-link>
+          <span class="text">关注了你&nbsp;</span>
+          <span class="datetime">{{item.create_time}}</span>
+        </div>
       </div>
       <!-- 点赞消息 -->
       <div class="notice" v-if="item.type === 4 && uid != item.uid" :key="item._id">
@@ -65,15 +77,19 @@
           <router-link :to="`/user/${item.uid}`">
             <img class="avatar" :src="item.avatar" alt v-if="item.avatar != '' && item.avatar != null">
             <img class="avatar" src="~common/img/avatar.gif" alt v-else>
-            <p class="name">{{item.uname}}</p>
           </router-link>
         </div>
-        <span class="datetime">{{item.create_time}}</span>
-        <span class="text">点赞了你的文章</span>
         <div class="right">
-          <router-link :to="`/post/${item.pid}`">
-            <p class="title">{{item.pname}}</p>
+          <router-link :to="`/user/${item.uid}`">
+            <p class="name">{{item.uname}}</p>
           </router-link>
+          <span class="text">点赞了你的文章</span>
+          <div class="link">
+            <router-link :to="`/post/${item.pid}`">
+              <p class="title">{{item.pname}}</p>
+            </router-link>
+          </div>
+          <span class="datetime">{{item.create_time}}</span>
         </div>
       </div>
       <!-- 收藏消息 -->
@@ -82,15 +98,19 @@
           <router-link :to="`/user/${item.uid}`">
             <img class="avatar" :src="item.avatar" alt v-if="item.avatar != '' && item.avatar != null">
             <img class="avatar" src="~common/img/avatar.gif" alt v-else>
-            <p class="name">{{item.uname}}</p>
           </router-link>
         </div>
-        <span class="datetime">{{item.create_time}}</span>
-        <span class="text">收藏了你的文章</span>
         <div class="right">
-          <router-link :to="`/post/${item.pid}`">
-            <p class="title">{{item.pname}}</p>
+          <router-link :to="`/user/${item.uid}`">
+            <p class="name">{{item.uname}}</p>
           </router-link>
+          <span class="text">收藏了你的文章</span>
+          <div class="link">
+            <router-link :to="`/post/${item.pid}`">
+              <p class="title">{{item.pname}}</p>
+            </router-link>
+          </div>
+          <span class="datetime">{{item.create_time}}</span>
         </div>
       </div>
     </template>
@@ -220,51 +240,91 @@ export default {
     margin 5px 0 
 
     .left {
+      flex-shrink 0
+
       a{
-        display flex 
-        flex-direction row 
-        align-items center 
+        display flex
+        flex-direction row
+        align-items center
 
         .avatar {
-          height 24px 
-          width 24px 
-          border-radius 50% 
-          margin-right 6px 
-        }
-
-        .name{
-          color #333333 
-          font-size 14px 
-
-          &:hover{
-            text-decoration underline 
-          }
+          height 28px
+          width 28px
+          border-radius 50%
+          margin-right 10px
         }
       }
     } 
 
-    .datetime{
-      font-size 14px 
-      margin-left 5px 
-      color #999999 
-    }
+    .right {
+      display flex
+      flex-direction row
+      align-items center
+      flex-wrap wrap
 
-    .text{
-      font-size 14px 
-      margin 0 5px 
-      color #999999 
-    }
+      a{
+        display flex
+        flex-direction row
+        align-items center
 
-    .right{
-      a {
-        .title {
-          height 18px 
-          line-height 18px 
-          font-size 14px 
-          color #1c1e25 !important 
+        .name{
+          color #333333
+          font-size 14px
+          margin 0 5px 0 0
 
-          &:hover {
-            text-decoration underline 
+          &:hover{
+            text-decoration underline
+          }
+        }
+      }
+      
+      .datetime{
+        font-size 13px
+        color #999999
+      }
+
+      .text{
+        font-size 14px
+        color #999999
+        display flex
+        flex-direction row
+        align-items center
+
+        a{
+          display flex
+          flex-direction row
+          align-items center
+
+          .avatar {
+            height 24px
+            width 24px
+            border-radius 50%
+            margin-right 6px
+          }
+
+          .name{
+            color #333333
+            font-size 14px
+
+            &:hover{
+              text-decoration underline
+            }
+          }
+        }
+      }
+
+      .link{
+        a {
+          .title {
+            height 18px
+            line-height 18px
+            font-size 14px
+            color #1c1e25 !important
+            margin 0 5px
+
+            &:hover {
+              text-decoration underline
+            }
           }
         }
       }

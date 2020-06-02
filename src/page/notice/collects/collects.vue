@@ -6,15 +6,19 @@
           <router-link :to="`/user/${item.uid}`">
             <img class="avatar" :src="item.avatar" alt v-if="item.avatar != '' && item.avatar != null">
             <img class="avatar" src="~common/img/avatar.gif" alt v-else>
-            <p class="name">{{item.uname}}</p>
           </router-link>
         </div>
-        <span class="datetime">{{item.create_time}}</span>
-        <span class="text">收藏了你的文章</span>
         <div class="right">
-          <router-link :to="`/post/${item.pid}`">
-            <p class="title">{{item.pname}}</p>
+          <router-link :to="`/user/${item.uid}`">
+            <p class="name">{{item.uname}}</p>
           </router-link>
+          <span class="text">收藏了你的文章</span>
+          <div class="link">
+            <router-link :to="`/post/${item.pid}`">
+              <p class="title">{{item.pname}}</p>
+            </router-link>
+          </div>
+          <span class="datetime">{{item.create_time}}</span>
         </div>
       </div>
     </div>
@@ -144,51 +148,91 @@ export default {
     margin 5px 0
 
     .left {
+      flex-shrink 0
+
       a{
         display flex
         flex-direction row
         align-items center
 
         .avatar {
-          height 24px
-          width 24px
+          height 28px
+          width 28px
           border-radius 50%
-          margin-right 6px
+          margin-right 10px
         }
+      }
+    } 
+
+    .right {
+      display flex
+      flex-direction row
+      align-items center
+      flex-wrap wrap
+
+      a{
+        display flex
+        flex-direction row
+        align-items center
 
         .name{
           color #333333
           font-size 14px
+          margin 0 5px 0 0
 
           &:hover{
             text-decoration underline
           }
         }
       }
-    } 
+      
+      .datetime{
+        font-size 13px
+        color #999999
+      }
 
-    .datetime{
-      font-size 14px
-      margin-left 5px
-      color #999999
-    }
+      .text{
+        font-size 14px
+        color #999999
+        display flex
+        flex-direction row
+        align-items center
 
-    .text{
-      font-size 14px
-      margin 0 5px
-      color #999999
-    }
+        a{
+          display flex
+          flex-direction row
+          align-items center
 
-    .right{
-      a {
-        .title {
-          height 18px
-          line-height 18px
-          font-size 14px
-          color #1c1e25 !important
+          .avatar {
+            height 24px
+            width 24px
+            border-radius 50%
+            margin-right 6px
+          }
 
-          &:hover {
-            text-decoration underline
+          .name{
+            color #333333
+            font-size 14px
+
+            &:hover{
+              text-decoration underline
+            }
+          }
+        }
+      }
+
+      .link{
+        a {
+          .title {
+            height 18px
+            line-height 18px
+            font-size 14px
+            color #1c1e25 !important
+            margin 0 5px
+
+            &:hover {
+              text-decoration underline
+            }
           }
         }
       }

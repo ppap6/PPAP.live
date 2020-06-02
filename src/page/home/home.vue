@@ -193,7 +193,7 @@ export default {
   .left {
     position fixed
     width 250px
-    height 500px
+    // height 500px
     border-radius 5px
   }
 
@@ -237,6 +237,19 @@ export default {
           color #515151 !important
         }
       }
+    }
+  }
+
+  @media screen and (max-width: 850px) {
+    .left {
+      position relative
+      width 100vw
+    }
+    .center {
+      margin 10px 0 0
+    }
+    .right {
+      display none
     }
   }
 }

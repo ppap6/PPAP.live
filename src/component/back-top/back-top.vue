@@ -81,7 +81,7 @@ export default {
   }
 }
 
-@media screen and (max-width: 414px) {
+@media screen and (max-width: 500px) {
   .back-top {
     display none
   }

@@ -184,6 +184,24 @@ export default {
         border-bottom 2px solid #4170ea
       }
     }
+
+    @media screen and (max-width: 500px) {
+      nav {
+        position relative
+        height 50px
+        width 100vw
+        padding 0
+        overflow-y hidden
+        overflow-x auto
+        display flex
+        white-space nowrap
+
+        a {
+          display inline-block
+          line-height 50px
+        }
+      }
+    }
   }
 
   .container-content {

@@ -4,7 +4,7 @@
     <keep-alive :include="['Home', 'TopicDetail', 'NewPost']">
       <router-view/>
     </keep-alive>
-    <back-top>></back-top>
+    <back-top class="back-top"></back-top>
   </div>
 </template>
 
@@ -38,6 +38,14 @@ body{
 }
 
 /* sweetalert弹框相关 */
+@media screen and (max-width: 500px) {
+  .swal-overlay {
+    width: 100vw;
+  }
+  .swal-modal {
+    width: 90vw;
+  }
+}
 .swal-footer {
   text-align: center !important;
   margin-bottom: 20px !important;

@@ -286,6 +286,7 @@ export default {
   max-width 700px
   margin auto
   border-radius 5px
+  overflow hidden
 
   .cropper-fixed {
     position fixed

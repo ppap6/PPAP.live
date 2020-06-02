@@ -9,7 +9,7 @@
           <a @click="goSearch">
             <img class="search-icon" src="~common/img/search.png" alt="">
           </a>
-          <input class="search-input" type="text" v-model="keywords" @keyup.enter="goSearch" placeholder="搜索帖子、用户">
+          <input class="search-input" type="text" v-model="keywords" @keyup.enter="goSearch" placeholder="帖子、用户">
         </div> 
       </div>
       <div class="header-right">
@@ -187,8 +187,8 @@ export default {
   top 0
   left 0
   right 0
-  z-index 10
-  padding 0 10px
+  z-index 100
+  padding 0
   background #ffffff
   box-shadow 0 2px 10px 0 rgba(4, 21, 39, 0.2), 0 1px rgba(4, 21, 39, 0.2)
 
@@ -211,8 +211,14 @@ export default {
         .logo {
           width 60px
           height 28px
-          margin 8px 10px
+          margin 8px 5px 8px 10px
           border-radius 5px
+        }
+      }
+
+      @media screen and (max-width: 372px) {
+        .pc-logo {
+          display none
         }
       }
 
@@ -233,13 +239,25 @@ export default {
           width 200px
           color #515151
           border-radius 20px
-          line-height 32px
           padding 0 36px 0 10px
+          margin-left 5px
           font-size 0.8rem
           background #f2f2f2
 
           &hover {
             background #ececec
+          }
+        }
+
+        @media screen and (max-width: 500px) {
+          .search-input {
+            width calc(100vw - 328px)
+            // width 50px
+          }
+        }
+        @media screen and (max-width: 372px) {
+          .search-input {
+            width calc(100vw - 248px)
           }
         }
        

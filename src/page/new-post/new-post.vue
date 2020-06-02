@@ -9,6 +9,7 @@
       <div class="submit" @click="submit">{{isSubmit ? 'loading…' : '发布'}}</div>
     </div>
     <mavon-editor
+      class="editor"
       :externalLink="true"
       v-model="md"
       @change="change">
@@ -178,6 +179,10 @@ export default {
         box-shadow 0 0 8px #4170ea
       }
     }
+  }
+
+  .editor {
+    margin-bottom 20px
   }
 }
 </style>
