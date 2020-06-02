@@ -77,7 +77,7 @@ export default {
       }else if(from.path.includes('/search/users') && (!to.path.includes('/search/posts') && !to.path.includes('/search/users'))){
         this.keywords = ''
       }else{
-        this.keywords = this.$route.query.keyword
+        this.keywords = this.$route.query.keyword == undefined ? '' : this.$route.query.keyword
       }
       //当前路由标记
       if(to.path == '/follow'){
@@ -111,12 +111,10 @@ export default {
   methods: {
     goLogin(){
       if(this.$route.path == '/register' || this.$route.path == '/login'){
-        console.log('replace')
         this.$router.replace({
           path: '/login'
         })
       }else{
-        console.log('push')
         this.$router.push({
           path: '/login'
         })
@@ -124,12 +122,10 @@ export default {
     },
     goRegister(){
       if(this.$route.path == '/register' || this.$route.path == '/login'){
-        console.log('replace')
         this.$router.replace({
           path: '/register'
         })
       }else{
-        console.log('push')
         this.$router.push({
           path: '/register'
         })
