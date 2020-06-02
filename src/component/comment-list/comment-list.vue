@@ -1,79 +1,77 @@
 <template>
   <div class="comment-list">
-    <div class="container">
-      <div class="count" v-if="commentList.length != 0">
-        <span class="left">评论 & 回复</span>
-        <span class="right">{{commentCount}} 条</span>
-      </div>
-      <div class="content">
-        <div v-for="(comment, index) in commentList" :key="comment._id">
-          <div class="comment-item">
-            <span class="floor">#{{index+1}}</span>
-            <router-link :to="`/user/${comment.uid}`">
-              <img :src="comment.avatar" alt="头像" v-if="comment.avatar != '' && comment.avatar != null">
-              <img src="~common/img/avatar.gif" alt="头像" v-else>
+    <div class="count" v-if="commentList.length != 0">
+      <span class="left">评论 & 回复</span>
+      <span class="right">{{commentCount}} 条</span>
+    </div>
+    <div class="content">
+      <div v-for="(comment, index) in commentList" :key="comment._id">
+        <div class="comment-item">
+          <span class="floor">#{{index+1}}</span>
+          <router-link :to="`/user/${comment.uid}`">
+            <img :src="comment.avatar" alt="头像" v-if="comment.avatar != '' && comment.avatar != null">
+            <img src="~common/img/avatar.gif" alt="头像" v-else>
+          </router-link>
+          <div class="detail">
+            <router-link class="user-name" :to="`/user/${comment.uid}`">
+              <span class="name">{{comment.uname}}</span><span class="author" v-if="authorId == comment.uid">楼主</span>
+              <img class="auth-title" src="~common/img/auth_title.png" alt="" v-if="comment.utitle">
+              <img class="auth-role" src="~common/img/auth_role.png" alt="" v-if="comment.role_id != 5">
             </router-link>
-            <div class="detail">
-              <router-link class="user-name" :to="`/user/${comment.uid}`">
-                <span class="name">{{comment.uname}}</span><span class="author" v-if="authorId == comment.uid">楼主</span>
-                <img class="auth-title" src="~common/img/auth_title.png" alt="" v-if="comment.utitle">
-                <img class="auth-role" src="~common/img/auth_role.png" alt="" v-if="comment.role_id != 5">
-              </router-link>
-              <router-link :to="`/user/${comment.uid}`">
-                <!-- <img class="level" src="~common/img/6.png" alt=""> -->
-              </router-link>
-              <!-- <div class="datetime">{{comment.create_time}}</div> -->
-              <div class="content">{{comment.content}}</div>
-              <div class="light-comment">
-                <span class="datetime">{{comment.create_time}}</span>
-                <span class="light" style="color: #777777" @click="lightComment(comment, $event)" v-if="!comment.is_light"><img src="~common/img/light_0.png">亮了({{comment.lights}})</span>
-                <span class="light" style="color: #bc3545" @click="lightComment(comment, $event)" v-if="comment.is_light"><img src="~common/img/light_1.png">亮了({{comment.lights}})</span>
-                <span class="comment" @click="displayCommentInput(comment)" v-if="currentItem._id != comment._id"><img src="~common/img/comment.png">回复</span>
-                <span class="comment" @click="undisplayCommentInput(comment)" v-if="currentItem._id == comment._id"><img src="~common/img/comment.png">取消</span>
-              </div>
-              <!-- 评论组件  -->
-              <div class="input-bar" v-show="currentItem._id == comment._id">
-                <CommentInput class="input" @inputChange="inputChange" :tips="'回复'+comment.uname+'…'"></CommentInput>
-                <div class="submit" @click="submitComment(comment)">{{isComment ? '正在提交' : '发表评论'}}</div>
-              </div>
+            <router-link :to="`/user/${comment.uid}`">
+              <!-- <img class="level" src="~common/img/6.png" alt=""> -->
+            </router-link>
+            <!-- <div class="datetime">{{comment.create_time}}</div> -->
+            <div class="content">{{comment.content}}</div>
+            <div class="light-comment">
+              <span class="datetime">{{comment.create_time}}</span>
+              <span class="light" style="color: #777777" @click="lightComment(comment, $event)" v-if="!comment.is_light"><img src="~common/img/light_0.png">亮了({{comment.lights}})</span>
+              <span class="light" style="color: #bc3545" @click="lightComment(comment, $event)" v-if="comment.is_light"><img src="~common/img/light_1.png">亮了({{comment.lights}})</span>
+              <span class="comment" @click="displayCommentInput(comment)" v-if="currentItem._id != comment._id"><img src="~common/img/comment.png">回复</span>
+              <span class="comment" @click="undisplayCommentInput(comment)" v-if="currentItem._id == comment._id"><img src="~common/img/comment.png">取消</span>
+            </div>
+            <!-- 评论组件  -->
+            <div class="input-bar" v-show="currentItem._id == comment._id">
+              <CommentInput class="input" @inputChange="inputChange" :tips="'回复'+comment.uname+'…'"></CommentInput>
+              <div class="submit" @click="submitComment(comment)">{{isComment ? '正在提交' : '发表评论'}}</div>
             </div>
           </div>
-          <div class="answer-item" v-for="answer in comment.answer.list" :key="answer._id">
-            <router-link :to="`/user/${answer.requestor_id}`">
-              <img :src="answer.requestor_avatar" alt="头像" v-if="answer.requestor_avatar != '' && answer.requestor_avatar != null">
-              <img src="~common/img/avatar.gif" alt="头像" v-else>
-            </router-link>
-            <div class="detail">
-              <div class="answer-point-to">
-                <router-link class="user-name" :to="`/user/${answer.requestor_id}`">
-                  <span class="name">{{answer.requestor_name}}</span><span class="author" v-if="authorId == answer.requestor_id">楼主</span>
-                  <img class="auth-title" src="~common/img/auth_title.png" alt="" v-if="answer.requestor_title">
-                  <img class="auth-role" src="~common/img/auth_role.png" alt="" v-if="answer.requestor_role_id != 5">
-                </router-link>
-                <router-link :to="`/user/${answer.requestor_id}`">
-                  <!-- <img class="level" src="~common/img/2.png" alt=""> -->
-                </router-link>
-                <span v-if="answer.type != 2">:</span>
-                <span class="point-text" v-if="answer.type == 2">回复</span>
-                <router-link :to="`/user/${answer.targetor_id}`" v-if="answer.type == 2">
-                  <span class="targetor">@{{answer.targetor_name}}</span><span class="author" v-if="authorId == answer.targetor_id">楼主</span> :
-                </router-link>
-                <span class="content">{{answer.content}}</span>
-              </div>
-              <!-- <div class="datetime">{{answer.create_time}}</div> -->
-              <!-- <div class="content">{{answer.content}}</div> -->
-              <div class="light-comment">
-                <span class="datetime">{{answer.create_time}}</span>
-                <span class="light" style="color: #777777" @click="lightAnswer(answer, $event)" v-if="!answer.is_light"><img src="~common/img/light_0.png">亮了({{answer.lights}})</span>
-                <span class="light" style="color: #bc3545" @click="lightAnswer(answer, $event)" v-if="answer.is_light"><img src="~common/img/light_1.png">亮了({{answer.lights}})</span>
-                <span class="comment" @click="displayCommentInput(answer)" v-if="localUid != answer.requestor_id && currentItem._id != answer._id"><img src="~common/img/comment.png">回复</span>
-                <span class="comment" @click="undisplayCommentInput(answer)" v-if="localUid != answer.requestor_id && currentItem._id == answer._id"><img src="~common/img/comment.png">取消</span>
-              </div>
-              <!-- 评论组件  -->
-              <div class="input-bar" v-show="currentItem._id == answer._id">
-                <CommentInput class="input" @inputChange="inputChange" :tips="'回复'+answer.requestor_name+'…'"></CommentInput>
-                <div class="submit" @click="submitAnswer(answer)">{{isComment ? '正在提交' : '发表评论'}}</div>
-              </div>
+        </div>
+        <div class="answer-item" v-for="answer in comment.answer.list" :key="answer._id">
+          <router-link :to="`/user/${answer.requestor_id}`">
+            <img :src="answer.requestor_avatar" alt="头像" v-if="answer.requestor_avatar != '' && answer.requestor_avatar != null">
+            <img src="~common/img/avatar.gif" alt="头像" v-else>
+          </router-link>
+          <div class="detail">
+            <div class="answer-point-to">
+              <router-link class="user-name" :to="`/user/${answer.requestor_id}`">
+                <span class="name">{{answer.requestor_name}}</span><span class="author" v-if="authorId == answer.requestor_id">楼主</span>
+                <img class="auth-title" src="~common/img/auth_title.png" alt="" v-if="answer.requestor_title">
+                <img class="auth-role" src="~common/img/auth_role.png" alt="" v-if="answer.requestor_role_id != 5">
+              </router-link>
+              <router-link :to="`/user/${answer.requestor_id}`">
+                <!-- <img class="level" src="~common/img/2.png" alt=""> -->
+              </router-link>
+              <span v-if="answer.type != 2">:</span>
+              <span class="point-text" v-if="answer.type == 2">回复</span>
+              <router-link :to="`/user/${answer.targetor_id}`" v-if="answer.type == 2">
+                <span class="targetor">@{{answer.targetor_name}}</span><span class="author" v-if="authorId == answer.targetor_id">楼主</span> :
+              </router-link>
+              <span class="content">{{answer.content}}</span>
+            </div>
+            <!-- <div class="datetime">{{answer.create_time}}</div> -->
+            <!-- <div class="content">{{answer.content}}</div> -->
+            <div class="light-comment">
+              <span class="datetime">{{answer.create_time}}</span>
+              <span class="light" style="color: #777777" @click="lightAnswer(answer, $event)" v-if="!answer.is_light"><img src="~common/img/light_0.png">亮了({{answer.lights}})</span>
+              <span class="light" style="color: #bc3545" @click="lightAnswer(answer, $event)" v-if="answer.is_light"><img src="~common/img/light_1.png">亮了({{answer.lights}})</span>
+              <span class="comment" @click="displayCommentInput(answer)" v-if="localUid != answer.requestor_id && currentItem._id != answer._id"><img src="~common/img/comment.png">回复</span>
+              <span class="comment" @click="undisplayCommentInput(answer)" v-if="localUid != answer.requestor_id && currentItem._id == answer._id"><img src="~common/img/comment.png">取消</span>
+            </div>
+            <!-- 评论组件  -->
+            <div class="input-bar" v-show="currentItem._id == answer._id">
+              <CommentInput class="input" @inputChange="inputChange" :tips="'回复'+answer.requestor_name+'…'"></CommentInput>
+              <div class="submit" @click="submitAnswer(answer)">{{isComment ? '正在提交' : '发表评论'}}</div>
             </div>
           </div>
         </div>
@@ -288,7 +286,7 @@ export default {
 </script>
 
 <style scoped lang="stylus">
-.container {
+.comment-list {
   margin 15px 0
 
   .count {

@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="post-detail-container">
     <div class="post-detail">
       <Loading :loading="loading"></Loading>
       <div class="post-header">
@@ -20,12 +20,12 @@
         </div>
       </div>
       <div class="post-footer">
-        <div class="left">
+        <div class="count">
           <span class="reads">{{post.pv}} 次阅读</span>
           <span class="comments">{{post.comments}} 条评论</span>
           <span class="answers">{{post.answers}} 条回复</span>
         </div>
-        <div class="right">
+        <div class="lights-collects">
           <span class="likes" @click="likePost" v-show="noLike">点赞 {{post.likes}}</span>
           <span class="likes" @click="cancelLikePost" v-show="isLike">已点赞 {{post.likes}}</span>
           <span class="collects" @click="collectPost" v-show="noCollect">收藏 {{post.collects}}</span>
@@ -36,6 +36,8 @@
         <div class="title">{{post.title}}<span class="edit" @click="goUpdatePost" v-if="uid == post.uid">编辑</span></div>
         <div class="content" v-html="post.content"></div>
       </div>
+      <!-- 相关帖子 -->
+      <SimilarityPostCard class="post-card" :words="post.title"></SimilarityPostCard>
       <!-- 评论组件  -->
       <div class="input-bar">
         <CommentInput class="input" :inputValue="commentContent" @inputChange="inputChange" :tips="commentTips"></CommentInput>
@@ -367,9 +369,10 @@ export default {
 </script>
 
 <style scoped lang="stylus">
-.container {
+.post-detail-container {
   position relative
   width 95vw
+  // width 100vw
   margin auto
   display flex
   // align-items center
@@ -569,6 +572,11 @@ export default {
       }
     }
 
+    .post-card {
+      // display none
+      margin-top 10px
+    }
+
     .input-bar {
       display flex
       flex-direction row
@@ -580,7 +588,6 @@ export default {
       .input {
         text-align left
         height 68px
-        margin-left 10px
         // background #f2aa24
       }
 
@@ -620,12 +627,14 @@ export default {
       align-items center
       justify-content space-between
       padding-top 10px
+      // flex-wrap wrap
 
-      .left{
+      .count{
         padding 0 40px 10px
         font-size 14px
         color #777
         display block !important
+        flex-shrink 0
 
         .reads{
           padding-right 10px
@@ -640,10 +649,11 @@ export default {
         }
       }
 
-      .right{
+      .lights-collects{
         padding 0 40px 15px
         font-size 14px
         color #777
+        flex-shrink 0
 
         .likes{
           padding 4px 10px
@@ -694,14 +704,31 @@ export default {
   }
 
   @media screen and (max-width: 850px) {
-    .post-detail  {
+    .post-detail {
       position relative
-      width 100vw
+      width 100%
+
+      .input-bar {
+        .input {
+          margin-left 10px
+        }
+      }
+
+      .post-footer {
+        flex-direction column
+        align-items flex-start
+      }
     }
 
     .right {
       display none
     }
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .post-detail-container {
+    width 100vw
   }
 }
 </style>

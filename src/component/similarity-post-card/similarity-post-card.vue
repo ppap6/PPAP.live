@@ -111,6 +111,12 @@ export default {
         display inline-block
       }
 
+      @media screen and (max-width: 850px) {
+        span {
+          margin-left 20px
+        }
+      }
+
       .hot-icon {
         height 22px
         width 22px
@@ -144,6 +150,12 @@ export default {
       .post-title:hover {
         text-decoration underline
       }
+    }
+  }
+
+  @media screen and (max-width: 850px){
+    .post-list {
+      padding 10px 20px
     }
   }
 }
