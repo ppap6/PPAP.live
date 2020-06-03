@@ -11,6 +11,7 @@
     </div>
     <mavon-editor
       ref="editor"
+      class="editor"
       :externalLink="true"
       v-model="md"
       @imgAdd="imgAdd"
@@ -248,6 +249,10 @@ export default {
   //隐藏图片删除按钮（因为不起作用）
   /deep/ .dropdown-images {
     display none
+  }
+
+  .editor {
+    margin-bottom 20px
   }
 }
 </style>

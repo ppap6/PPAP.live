@@ -577,6 +577,12 @@ export default {
       margin-top 10px
     }
 
+    @media screen and (min-width: 850px) {
+      .post-card {
+        display none
+      }
+    }
+
     .input-bar {
       display flex
       flex-direction row
