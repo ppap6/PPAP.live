@@ -12,8 +12,8 @@
           <p class="name" v-html="item.name"></p>
         </router-link>
         <div class="count">
-          <span class="followers">粉丝 {{item.fans_count}}</span>
-          <span class="follows">关注 {{item.follow_count}}</span>
+          <span class="followers">粉丝 {{item.fans}}</span>
+          <span class="follows">关注 {{item.follows}}</span>
         </div>
       </div>
     </div>
