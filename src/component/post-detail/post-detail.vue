@@ -561,7 +561,7 @@ export default {
           code {
             display block
             padding 1em
-            overflow-x scroll 
+            overflow-x auto 
           }
         } 
 
