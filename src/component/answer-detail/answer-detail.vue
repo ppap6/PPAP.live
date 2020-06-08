@@ -1,5 +1,6 @@
 <template>
   <div class="comment-detail">
+    <Loading :loading="loading"></Loading>
     <div class="answer-detail">
       <div class="post">
         <!-- <span class="text">来自：</span> -->
@@ -114,6 +115,7 @@
 </template>
 
 <script>
+import Loading from 'component/loading/loading'
 import CommentInput from 'component/comment-input/comment-input'
 import { answer as comment, getAnswerDetail } from 'api/comment'
 import { lightComment, lightAnswer, cancelLightComment, cancelLightAnswer } from 'api/user'
@@ -125,6 +127,7 @@ export default {
   data(){
     return {
       msg: "我是回复详情组件",
+      loading: true,
       total: 0,
       localUid: getStorage('user').uid,
       post: {},
@@ -141,6 +144,7 @@ export default {
     this.getAnswerDetail()
   },
   components: {
+    Loading,
     CommentInput
   },
   methods: {
@@ -162,7 +166,17 @@ export default {
           let answer_detail = response.data.message.answer_detail
           answer_detail.create_time = formatTime(answer_detail.create_time)
           this.answer_detail = answer_detail
+          //隐藏加载动画
+          this.loading = false
+        }else{
+          swal({
+            title: '没能正常获取数据呢，铁子'
+          })
         }
+      }).catch(error => {
+        swal({
+          title: '网络或者服务数据出问题了？'
+        })
       })
     },
     //子组件事件触发函数
