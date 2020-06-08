@@ -66,6 +66,7 @@ import { likePost, cancelLikePost, collectPost, cancelCollectPost, getUserPostSt
 import { getCommentList, comment } from 'api/comment'
 import swal from 'sweetalert'
 import { formatTime } from 'common/js/timeformat'
+import Lightimage from 'lightimage'
 
 export default {
   name: 'PostDetail',
@@ -128,6 +129,12 @@ export default {
           this.getUserPostStatus()
           //隐藏加载动画
           this.loading = false
+          //监听图片
+          this.$nextTick(() => {
+            new Lightimage('.content').init({
+              cursor: 'zoom-in'
+            })
+          })
         }else if(response.data.status === 10003){
           this.post = {}
           swal({
