@@ -132,7 +132,15 @@ export default {
           //监听图片
           this.$nextTick(() => {
             new Lightimage('.content').init({
-              cursor: 'zoom-in'
+              cursor: 'zoom-in',
+              showAnimationDuration: '0.8s',
+              maskLayerBindClose: true,
+              maskLayerBgColor: 'rgba(0, 0, 0, 0.9)',
+              showCloseBtn: true, 
+              closeBtnHeight: 48,
+              closeBtnWidth: 48,
+              closeBtnColor: '#9c9c9c',
+              closeBtnBgColor: 'rgba(0, 0, 0, 0)'
             })
           })
         }else if(response.data.status === 10003){
