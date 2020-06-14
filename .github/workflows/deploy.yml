@@ -6,7 +6,7 @@ on:
       - master
 
 jobs:
-  build:
+  build-deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -17,9 +17,7 @@ jobs:
       - run: |
           npm install
           npm run build
-
-  deploy: 
-    steps:       
+      
       - name: executing remote ssh commands using password
         uses: appleboy/ssh-action@master
         with:
