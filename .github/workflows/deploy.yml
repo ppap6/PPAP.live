@@ -24,7 +24,7 @@ jobs:
         host: ${{ secrets.ALIYUN_HOST }}
         username: ${{ secrets.ALIYUN_USER }}
         password: ${{ secrets.ALIYUN_PASSWORD }}
-        script: bash /root/del.sh
+        script: bash /ppap/del.sh
     
     - name: copy file via ssh password
       uses: appleboy/scp-action@master
