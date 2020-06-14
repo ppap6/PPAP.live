@@ -18,19 +18,21 @@ jobs:
           npm install
           npm run build
 
-    - name: executing remote ssh commands using password
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.ALIYUN_HOST }}
-        username: ${{ secrets.ALIYUN_USER }}
-        password: ${{ secrets.ALIYUN_PASSWORD }}
-        script: bash /ppap/del.sh
-    
-    - name: copy file via ssh password
-      uses: appleboy/scp-action@master
-      with:
-        host: ${{ secrets.ALIYUN_HOST }}
-        username: ${{ secrets.ALIYUN_USER }}
-        password: ${{ secrets.ALIYUN_PASSWORD }}
-        source: "./dist"
-        target: ${{ secrets.ALIYUN_PPAPLIVE_PATH}}
+  deploy: 
+    steps:       
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.ALIYUN_HOST }}
+          username: ${{ secrets.ALIYUN_USER }}
+          password: ${{ secrets.ALIYUN_PASSWORD }}
+          script: bash /ppap/del.sh
+      
+      - name: copy file via ssh password
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.ALIYUN_HOST }}
+          username: ${{ secrets.ALIYUN_USER }}
+          password: ${{ secrets.ALIYUN_PASSWORD }}
+          source: "./dist"
+          target: ${{ secrets.ALIYUN_PPAPLIVE_PATH}}
