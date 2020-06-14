@@ -1,4 +1,4 @@
-name: deploy
+name: deploy-page
 
 on: 
   push:
@@ -6,7 +6,7 @@ on:
       - master
 
 jobs:
-  build-deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
