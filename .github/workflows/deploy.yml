@@ -26,11 +26,19 @@ jobs:
           password: ${{ secrets.ALIYUN_PASSWORD }}
           script: bash /ppap/del.sh
       
-      - name: copy file via ssh password
-        uses: appleboy/scp-action@master
+      # - name: copy file via ssh password
+      #   uses: appleboy/scp-action@master
+      #   with:
+      #     host: ${{ secrets.ALIYUN_HOST }}
+      #     username: ${{ secrets.ALIYUN_USER }}
+      #     password: ${{ secrets.ALIYUN_PASSWORD }}
+      #     source: "./dist/static, ./dist/index.html"
+      #     target: ${{ secrets.ALIYUN_PPAPLIVE_PATH}}
+      - name: Upload ftp
+        uses: sebastianpopp/ftp-action@releases/v2
         with:
           host: ${{ secrets.ALIYUN_HOST }}
-          username: ${{ secrets.ALIYUN_USER }}
+          user: ${{ secrets.ALIYUN_USER }}
           password: ${{ secrets.ALIYUN_PASSWORD }}
-          source: "./dist/static, ./dist/index.html"
-          target: ${{ secrets.ALIYUN_PPAPLIVE_PATH}}
+          localDir: "dist/"
+          remoteDir: ${{ secrets.ALIYUN_PPAPLIVE_PATH}}
