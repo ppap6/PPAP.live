@@ -1,4 +1,4 @@
-name: deploy-page
+name: cicd
 
 on: 
   push:
