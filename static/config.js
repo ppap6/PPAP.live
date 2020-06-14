@@ -1,1 +1,1 @@
-window.baseUrl = 'http://localhost:2333'
+window.baseUrl = 'http://ppap.live:2333'

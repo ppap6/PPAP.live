@@ -12,7 +12,7 @@ const request = axios.create({
   
 request.interceptors.request.use(
     config => {
-        config.baseURL = window.baseUrl
+        config.baseURL = process.env.NODE_ENV === 'production' ? window.baseUrl : 'http://localhost:2333'
         config.headers.common['Authorization'] = 'Bearer ' + getStorage('user').token
         return config
     },
