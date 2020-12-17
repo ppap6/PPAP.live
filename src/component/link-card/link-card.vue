@@ -4,7 +4,7 @@
       <p>友情链接</p>
     </div>
     <div class="link-list">
-      <div class="link" v-for="item in linkList">
+      <div class="link" v-for="item in linkList" :key="item.id">
         <a :href="item.href" target="_blank">
           <p class="link-title">{{item.title}}</p>
           <p class="link-intro">{{item.intro}}</p>
@@ -20,13 +20,15 @@ export default {
     return {
       linkList: [
         {
-          title: "我爱盐酥鸡",
-          intro: "一个记录成长轨迹的博客",
+          id: 1,
+          title: "飘香豆腐的博客",
+          intro: "vuepress 博客，记录 bug 的诞生",
           href: "https://jwchan.cn"
         },
         {
-          title: "jwchan1996",
-          intro: "Always remain eager to learn，these will push you up in your career.",
+          id: 2,
+          title: "飘香豆腐的主页",
+          intro: "时间过得可真快啊...",
           href: "https://github.com/jwchan1996"
         },
       ]

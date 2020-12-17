@@ -125,6 +125,7 @@ export default {
           let list = response.data.message.list
           for(let i=0; i<list.length; i++){
             list[i].create_time = formatTime(list[i].create_time)
+            list[i].content = list[i].content.replace(/<[^>]+>/g, "")
           }
           this.postList = list
           //隐藏加载动画
