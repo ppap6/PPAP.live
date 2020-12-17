@@ -161,7 +161,8 @@ export default {
         title: this.title,
         content: this.content,
         md: this.md,
-        topic_id: this.topicId
+        topic_id: this.topicId,
+        status: 1
       }
       updatePost(id, data).then(response => {
         if(response.data.status == 200){
