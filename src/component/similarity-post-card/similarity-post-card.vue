@@ -2,7 +2,7 @@
   <div class="similarity-post-card">
     <div class="title">
       <div class="content">
-        <span>相关帖子</span>
+        <span>更多帖子</span>
       </div>
     </div>
     <div class="post-list">
