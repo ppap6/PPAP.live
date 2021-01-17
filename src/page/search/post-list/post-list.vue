@@ -50,6 +50,7 @@ export default {
           let posts = response.data.message.list
           for(let i=0; i<posts.length; i++){
             posts[i].create_time = formatTime(posts[i].create_time)
+            posts[i].content = posts[i].content.replace(/<[^>]+>/g, "")
           }
 
           //搜索关键字数组
@@ -88,6 +89,7 @@ export default {
           let posts = response.data.message.list
           for(let i=0; i<posts.length; i++){
             posts[i].create_time = formatTime(posts[i].create_time)
+            posts[i].content = posts[i].content.replace(/<[^>]+>/g, "")
           }
 
           //搜索关键字数组
@@ -126,6 +128,7 @@ export default {
           let posts = response.data.message.list
           for(let i=0; i<posts.length; i++){
             posts[i].create_time = formatTime(posts[i].create_time)
+            posts[i].content = posts[i].content.replace(/<[^>]+>/g, "")
           }
 
           //搜索关键字数组

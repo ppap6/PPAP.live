@@ -167,6 +167,7 @@ export default {
           let list = response.data.message.list
           for(let i=0; i<list.length; i++){
             list[i].create_time = formatTime(list[i].create_time)
+            list[i].content = list[i].content.replace(/<[^>]+>/g, "")
           }
           this.postList = list
           //隐藏加载动画
@@ -209,6 +210,8 @@ export default {
         if(response.data.status === 200){
           let list = response.data.message.list
           for(let i=0; i<list.length; i++){
+            list[i].create_time = formatTime(list[i].create_time)
+            list[i].content = list[i].content.replace(/<[^>]+>/g, "")
             this.postList.push(list[i])
           }
           this.loadMoreState = false
