@@ -13,7 +13,7 @@
     "axios": "^0.19.0",
     "crypto-js": "^3.1.9-1",
     "lightimage": "^0.2.0",
-    "mavon-editor": "^2.7.5",
+    "mavon-editor": "^2.8.2",
     "sweetalert": "^2.1.2",
     "vue": "^2.5.2",
     "vue-cropper": "^0.5.2",
